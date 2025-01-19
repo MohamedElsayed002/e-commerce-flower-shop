@@ -49,7 +49,27 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			  rose: {
+				50: '#FFE6F0', 100: '#FFCCE0', 200: '#FF99C2', 300: '#FF66A3', 
+				400: '#FF3385', 500: '#FF0066', 600: '#CC0052', 700: '#99003D', 
+				800: '#660029', 900: '#330014',
+			  },
+			  purple: {
+				50: '#F3E8FF', 100: '#E6D0FF', 200: '#CCA1FF', 300: '#B372FF', 
+				400: '#9952FF', 500: '#7F00FF', 600: '#6600CC', 700: '#4C0099', 
+				800: '#330066', 900: '#1A0033',
+			  },
+			  blueGray: {
+				50: '#E5E5EB', 100: '#CCCCD6', 200: '#9999AD', 300: '#666685', 
+				400: '#4D4D6A', 500: '#33334D', 600: '#26263A', 700: '#1A1A27', 
+				800: '#0D0D13', 900: '#000000',
+			  },
+			  green: {
+				50: '#E6FFFA', 100: '#CCFFF5', 200: '#99FFEB', 300: '#66FFE0', 
+				400: '#33FFD6', 500: '#00FFCC', 600: '#00CC99', 700: '#009973', 
+				800: '#00664D', 900: '#003326',
+			  },
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -58,6 +78,6 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 };
 export default config;
