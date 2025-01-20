@@ -29,7 +29,7 @@ export default function Navbar() {
                     <IoSearch  className='w-[20px] h-[21px] text-[#F82BA9]'/>
                     <FaRegHeart className='w-[20px] h-[21px] text-[#F82BA9]'/>
                     <IoLockClosedOutline className='w-[30px] h-[21px] text-[#F82BA9]'/>
-                  
+                  <Tbutton/>
                     </div>
                 </div>
             </div>

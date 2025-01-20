@@ -26,12 +26,6 @@ export default function Footer() {
                     <p className="text-[30px] font-bold">
       {t('discountOffer', { discount })}
     </p>
-
-                    {/* <p className='text-[30px] font-bold'>Get 
-                        <span className='text-[#F82BA9] font-bold'>
-                        20%
-                        </span>
-                         Off Discount Coupon</p> */}
                         <p className='text-[#757F95] text-[20px] font-medium'>{t('By Subscribe Our Newsletter')}</p>
 
                     </div>
@@ -44,7 +38,7 @@ export default function Footer() {
                 </div>
             
                 </div>
-                <Tbutton/>
+             
           
         
             </div>
