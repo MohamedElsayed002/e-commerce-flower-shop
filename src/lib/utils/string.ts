@@ -1,3 +1,3 @@
-export function getThreeWords(title: string) {
-  return title.split(' ').slice(0, 3).join(' ');
+export function getTwoWords(title: string) {
+  return title.split(' ').slice(0, 2).join(' ');
 }

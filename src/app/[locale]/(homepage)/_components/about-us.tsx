@@ -3,8 +3,11 @@ import React from "react";
 import { FaArrowRightLong, FaCheck } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function AboutUs() {
+  const t = useTranslations();
+
   return (
     <div className="about-us flex w-[1280px] justify-between items-center">
       <div className="about-us-gifts relative w-[530.49px] h-[376.95px] flex justify-between">
@@ -18,7 +21,7 @@ export default function AboutUs() {
         </div>
         <div
           style={{ transform: "rotate(3.09deg)" }}
-          className="absolute w-[268.88px] left-3 -z-1 h-[363px] border-4 border-rose-400 rounded-tl-[50px] rounded-b-[120px] rounded-tr-[120px]"
+          className="absolute w-[268.88px] left-3 -z-1 h-[363px] border-4 border-light-pink-900 rounded-tl-[50px] rounded-b-[120px] rounded-tr-[120px]"
         ></div>
         <div className="flex flex-col pt-[15.97px] gap-2">
           <div className="about-us-gift-two relative w-[193px] h-[193px] rounded-full">
@@ -41,28 +44,26 @@ export default function AboutUs() {
       </div>
       <div className="about flex flex-col w-[657px] gap-6">
         <h6
-          className="text-[17px] font-bold uppercase text-rose-400"
+          className="text-[17px] font-bold uppercase text-light-pink-900"
           style={{ letterSpacing: "4px" }}
         >
-          about us
+          {t("about-us")}
         </h6>
         <div>
           <p className="text-blueGray-600 text-3xl font-bold w-[603px]">
-            We Provide Best And Quality{" "}
-            <span className="text-rose-400">
-              Gifts <br /> Box
+            {t('we-provide-best-and-quality')} {(" ")}
+            <span className="text-light-pink-900">
+              {t('gifts')} <br /> {t('box')}
             </span>{" "}
-            Product For You
+            {t('product-for-you')}
           </p>
           <p className="text-blueGray-200 w-[631px]">
-            Recusandae tempora aut laborum molestias veniam. A commodi sequi
-            accusantium ullam cupiditate. Neque quidem qui et autem dolor dicta
-            necessitatibus ut ad.
+{t('at-rose-we-are-dedicated-to-curating-exceptional-products-that-inspire-our-mission-is-to-provide-quality-affordability-and-unmatched-customer-satisfaction-in-every-purchase')}
           </p>
         </div>
         <Button asChild>
           <Link href="/about">
-            Discover More <FaArrowRightLong />
+            {t('discover-more')} <FaArrowRightLong />
           </Link>
         </Button>
         <div className="about-us-offers grid grid-cols-2">
@@ -71,32 +72,28 @@ export default function AboutUs() {
               <FaCheck />
             </div>
             <p className="text-xs font-medium">
-              Streamlined Shipping Experience
+              {t('streamlined-shipping-experience')}
             </p>
           </div>
           <div className="mb-2 flex justify-start items-center">
             <div className="bg-purple-400 text-white w-[42px] h-[42px] rounded-full flex justify-center items-center mr-[13.5px]">
               <FaCheck />
             </div>
-            <p className="text-xs font-medium">
-            Affordable Modern Design
-            </p>
+            <p className="text-xs font-medium">{t('affordable-modern-design')}</p>
           </div>
           <div className="mb-2 flex justify-start items-center">
             <div className="bg-purple-400 text-white w-[42px] h-[42px] rounded-full flex justify-center items-center mr-[13.5px]">
               <FaCheck />
             </div>
             <p className="text-xs font-medium">
-            Competitive Price & Easy To Shop
+              {t('competitive-price-and-easy-to-shop')}
             </p>
           </div>
           <div className="mb-2 flex justify-start items-center">
             <div className="bg-purple-400 text-white w-[42px] h-[42px] rounded-full flex justify-center items-center mr-[13.5px]">
               <FaCheck />
             </div>
-            <p className="text-xs font-medium">
-            We Made Awesome Products
-            </p>
+            <p className="text-xs font-medium">{t('we-made-awesome-products')}</p>
           </div>
         </div>
       </div>

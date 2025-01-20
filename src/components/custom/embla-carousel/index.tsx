@@ -35,7 +35,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className="embla__container flex">
           {slides.map((product, index) => (
             <div className="embla__slide flex flex-col" key={index}>
-              <div className="bg-rose-50 px-5 pb-[29.8px] pt-5 rounded-[20px] mb-4 relative">
+              <div className="bg-light-pink-50 px-5 pb-[29.8px] pt-5 rounded-[20px] mb-4 relative">
                 <div className="w-[262px] h-[222px]">
                   <Image
                     src={product.imgCover}
@@ -45,7 +45,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <p className="badge bg-rose-400 px-[15px] py-[2px] rounded-full absolute top-2 right-2 text-[11px] text-white uppercase font-medium tracking-[1px]">New</p>
+                <p className="badge bg-light-pink-900 px-[15px] py-[2px] rounded-full absolute top-2 right-2 text-[11px] text-white uppercase font-medium tracking-[1px]">New</p>
               </div>
               <div className="product-data w-[302px] flex justify-between items-center">
                 <div className="flex flex-col justify-start gap-[9px]">
