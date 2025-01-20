@@ -1,17 +1,24 @@
 "use client";
 
+import ErrorComponent from "@/components/common/ErrorComponent";
 
-export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
   return (
-    <html>
-        <body>
-            <main >
-                {error.message}
-                <button className="mt-8" onClick={reset}>
-                Try again
-                </button>
-            </main>
-        </body>
-    </html>
+    <main className="h-screen flex flex-col items-center justify-center">
+      <ErrorComponent>{error.message}</ErrorComponent>
+
+      <button
+        className="mt-8"
+        onClick={reset}
+      >
+        Try again
+      </button>
+    </main>
   );
 }

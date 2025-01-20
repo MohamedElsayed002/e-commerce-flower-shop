@@ -1,12 +1,9 @@
+import NotFoundComponent from "@/components/common/NotFoundComponent";
 
 export default function NotFound() {
   return (
-    <html>
-        <body>
-            <main >
-                Not Found
-            </main>
-        </body>
-    </html>
+    <main className="h-screen flex items-center justify-center">
+      <NotFoundComponent />
+    </main>
   );
 }
