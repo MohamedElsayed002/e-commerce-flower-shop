@@ -2,6 +2,7 @@ import React from 'react'
 import FooterInput from '@/components/FooterInput/FooterInput'
 import style from '@/components/shared/Footer/Footer.module.css'
 import { useTranslations } from 'next-intl'
+import Tbutton from '@/components/shared/Tbutton/Tbutton'
 
 export default function Footer() {
     const t =useTranslations()
@@ -43,6 +44,8 @@ export default function Footer() {
                 </div>
             
                 </div>
+                <Tbutton/>
+          
         
             </div>
 
