@@ -5,8 +5,9 @@ import style from '@/components/shared/Footer/Footer.module.css'
 export default function Footer() {
   return (
     <main>
-        <div className='' >
-            <div className={`${style.element}   `}>
+        <div className='footer'   >      
+        
+        <div className={`${style.element}   `}>
                 <div className='flex flex-col justify-center items-center gap-10 '>
                 <div className='flex gap-[80px] justify-center pt-10 pr-[80px] text-[16px] pl-[80px] font-bold'>
                     <p>About US</p>
