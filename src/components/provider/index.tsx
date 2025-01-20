@@ -1,3 +1,4 @@
+
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import NextAuthProvider from "./components/next-auth-provider";
 
@@ -10,7 +11,7 @@ export default function Providers({ children }: ProvidersProps) {
   const messages = useMessages();
 
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider  messages={messages}>
       <NextAuthProvider>{children}</NextAuthProvider>
     </NextIntlClientProvider>
   );
