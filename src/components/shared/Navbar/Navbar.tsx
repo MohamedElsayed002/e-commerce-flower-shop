@@ -9,13 +9,13 @@ import { IoSearch } from "react-icons/io5";
 export default function Navbar() {
   return (
     <main>
-        <div className='w-[1,440px] h-[86px] cursor-pointer  '>
+        <div className=' cursor-pointer  '>
             <div className=' container m-auto   flex items-center  justify-between pl-[80px] pr-[80px]   '>
                 <div>
                    <Image src={logo} alt='logo' className='w-[86px] h-[86px] p-2' />
 
                 </div>
-                <div className='flex gap-[24px]'>
+                <div className='flex gap-[24px] text-[16px] font-bold text-[#160E4B]'>
                     <p className='text-[#F82BA9]'>Home</p>
                     <p className=' hover:text-[#F82BA9]'>All Category</p>
                     <p className=' hover:text-[#F82BA9]'>About</p>
