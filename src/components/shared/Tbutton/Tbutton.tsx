@@ -14,7 +14,8 @@ import {
 
 
 export default function LocaleToggle() {
-  
+
+  //Translation Function
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -27,7 +28,7 @@ export default function LocaleToggle() {
   
 
   return (
-
+    // DropDown Selector For Translation
     <DropdownMenu>
   <DropdownMenuTrigger><FaGlobe className="text-[#F82BA9]"/></DropdownMenuTrigger>
   <DropdownMenuContent>

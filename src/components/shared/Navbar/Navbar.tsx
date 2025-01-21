@@ -15,16 +15,19 @@ export default function Navbar() {
     <main>
         <div className=' cursor-pointer  '>
             <div className=' container m-auto   flex items-center  justify-between pl-[80px] pr-[80px]   '>
+              {/* Logo */}
                 <div>
                    <Image src={logo} alt='logo' className='w-[86px] h-[86px] p-2' />
 
                 </div>
+                {/* Navigation Links */}
                 <div className='flex gap-[24px] text-[16px] font-bold text-[#160E4B]'>
-                    <p className='text-[#F82BA9]'>{t('Home')}</p>
-                    <p className=' hover:text-[#F82BA9]'>{t('All Category')}</p>
-                    <p className=' hover:text-[#F82BA9]'>{t('About')}</p>
-                    <p className=' hover:text-[#F82BA9]'>{t('Contact')}</p>
+                    <a className='text-[#F82BA9]'>{t('Home')}</a>
+                    <a className=' hover:text-[#F82BA9]'>{t('All Category')}</a>
+                    <a className=' hover:text-[#F82BA9]'>{t('About')}</a>
+                    <a className=' hover:text-[#F82BA9]'>{t('Contact')}</a>
                     </div>
+                    {/* Icons */}
                     <div className='flex gap-5   '>
                     <IoSearch  className='w-[20px] h-[21px] text-[#F82BA9]'/>
                     <FaRegHeart className='w-[20px] h-[21px] text-[#F82BA9]'/>
@@ -33,9 +36,6 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
- 
-
-        
     </main>
   )
 }
