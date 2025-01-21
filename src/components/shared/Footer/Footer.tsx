@@ -2,7 +2,7 @@ import React from 'react'
 import FooterInput from '@/components/FooterInput/FooterInput'
 import style from '@/components/shared/Footer/Footer.module.css'
 import { useTranslations } from 'next-intl'
-import Tbutton from '@/components/shared/Tbutton/Tbutton'
+
 
 export default function Footer() {
     const t =useTranslations()
@@ -11,10 +11,10 @@ export default function Footer() {
     <main>
         <div className='footer'   >      
         
-        <div className={`${style.element}   `}>
+        <div className={`${style.element}`}>
                 <div className='flex flex-col justify-center items-center gap-10 '>
                 <div className='flex gap-[80px] justify-center pt-10 pr-[80px] text-[16px] pl-[80px] font-bold'>
-                    <p>{t('About US')}</p>
+                    <p>{t('About Us')}</p>
                     <p>{t('Store Location')}</p>
                     <p>{t('Contact')}</p>
                     <p>{t('Delivery')} </p>
@@ -32,21 +32,12 @@ export default function Footer() {
                     <div>
                     <FooterInput/>
 
-                    </div>
-                   
-                      
+                    </div>  
                 </div>
             
                 </div>
-             
-          
-        
             </div>
-
         </div>
-   
-
-       
     </main>
 
 
