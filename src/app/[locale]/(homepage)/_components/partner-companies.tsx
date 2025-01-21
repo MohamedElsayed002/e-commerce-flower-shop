@@ -11,7 +11,7 @@ const images: StaticImageData[] = [Company_1, Company_2, Company_3, Company_4, C
 export default function CompaniesSection() {
   return (
     <>
-         <section className='py-10'>
+         <section className='my-6 md:my-10 xl:my-20 px-6 md:px-0'>
           <div className="container mx-auto">
             <div className='flex flex-col items-center gap-10 bg-main rounded-[20px] py-10 px-6'>
               <div className=" relative z-10 max-w-[509px] mx-auto">
@@ -27,7 +27,6 @@ export default function CompaniesSection() {
                     <Image src={image} alt={`Company's Logo`} className='w-full' />
                   </li>
                 )}
-
               </ul>
             </div>
           </div>

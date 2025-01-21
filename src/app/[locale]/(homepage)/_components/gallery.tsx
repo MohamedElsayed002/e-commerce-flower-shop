@@ -11,7 +11,7 @@ export default function GallerySection() {
   
   return (
     <>
-        <section className='py-10 px-6 md:px-0'>
+        <section className='my-6 md:my-10 xl:my-20 px-6 md:px-0'>
             <div className="container mx-auto">
               <GalleryHeading/>
               {/* Gallery Photos */}
@@ -27,7 +27,6 @@ export default function GallerySection() {
     </>
   )
 }
-
 
 function GalleryHeading () {
   return (
