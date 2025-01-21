@@ -1,6 +1,6 @@
-import AboutUs from "./_components/about-us";
 import BestSeller from "./_components/best-seller";
 import PopularProducts from "./_components/popular-products";
+import AboutUs from "./_components/about-us";
 
 export default function Home() {
   return (
