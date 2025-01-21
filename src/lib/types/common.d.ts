@@ -8,8 +8,3 @@ declare type RouteProps = {
   params: { locale: "en" | "ar" };
   searchParams: SearchParams;
 };
-
-declare type Translations<T> = {
-  language: "ar" | "en";
-  data: T;
-};

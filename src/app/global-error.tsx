@@ -10,8 +10,12 @@ export default function Error({
   return (
     <html>
       <body>
-        <main>ERROR! {error.message}</main>
-        <button onClick={() => reset()}>Try again</button>
+        <main>
+          {/* Error Message*/}
+          ERROR! {error.message}
+          {/* Try again Button*/}
+          <button onClick={() => reset()}>Try again</button>
+        </main>
       </body>
     </html>
   );

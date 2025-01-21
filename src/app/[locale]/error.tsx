@@ -11,8 +11,10 @@ export default function Error({
 }) {
   return (
     <main className="h-screen flex flex-col items-center justify-center">
+      {/* Error Message*/}
       <ErrorComponent>{error.message}</ErrorComponent>
 
+      {/* Try again*/}
       <button
         className="mt-8"
         onClick={reset}
