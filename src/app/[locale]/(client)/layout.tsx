@@ -4,6 +4,8 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import Providers from "@/components/provider";
+import Navbar from "./_components/Navbar";
+import Footer from "./_components/Footer";
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -20,7 +22,9 @@ export default function LocaleLayout({ params: { locale }, children }: LocaleLay
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={`antialiased`}>
         <Providers>
+          <Navbar/>
           {children}
+          <Footer/>
         </Providers>
       </body>
     </html>

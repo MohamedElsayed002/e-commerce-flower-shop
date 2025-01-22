@@ -1,6 +1,6 @@
 import React from 'react'
-import FooterInput from '@/components/FooterInput/FooterInput'
-import style from '@/components/shared/Footer/Footer.module.css'
+import FooterInput from '@/app/[locale]/(client)/_components/FooterInput/FooterInput'
+import style from '@/app/[locale]/(client)/_components/Footer.module.css'
 import { useTranslations } from 'next-intl'
 
 
