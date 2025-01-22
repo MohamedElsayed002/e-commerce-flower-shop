@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 
 export default function Footer() {
   const t =useTranslations()
+  //Validation 
    const subscriptionSchema = z.object({
       email: z.string().email("Invalid email address").nonempty("Email is required"),
     });

@@ -12,7 +12,10 @@ export default function Providers({ children }: ProvidersProps) {
 
   return (
     <NextIntlClientProvider  messages={messages}>
-      <NextAuthProvider>{children}</NextAuthProvider>
+      {/* <NextAuthProvider>
+      </NextAuthProvider> */}
+      {children}
+      
     </NextIntlClientProvider>
   );
 }

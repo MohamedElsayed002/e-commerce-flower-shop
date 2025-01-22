@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import logo from '../../../../Public/assets/images/logo.png'
+import logo from '../../../../../Public/assets/images/logo.png'
 import { FaRegHeart } from "react-icons/fa6";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
@@ -11,6 +11,7 @@ import Tbutton from "@/components/shared/Tbutton/Tbutton"
 export default function Navbar() {
 
   const t = useTranslations()
+  console.log('hii')
   return (
     <main>
         <div className=' cursor-pointer  '>
