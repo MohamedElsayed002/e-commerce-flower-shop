@@ -18,6 +18,16 @@ export default function PopularProducts() {
   const t = useTranslations();
   const [activeTab, setActiveTab] = useState<number>(0);
 
+  // Add rating to products
+  const [ratings, setRatings] = useState<{ [key: string]: number }>({});
+
+  const handleRating = (productId: string, rating: number) => {
+    setRatings((prevRatings) => ({
+      ...prevRatings,
+      [productId]: rating,
+    }));
+  };
+
   // Tabs with categoryIDs and labels for filtering products
   const tabs = [
     {
@@ -79,7 +89,7 @@ export default function PopularProducts() {
           <div className="bg-light-pink-900 w-[53px] h-[2px] z-10"></div>
           <div
             className="bg-light-pink-50 w-[136px] h-[17px] absolute bottom-0 -z-10 
-            rounded-tr-full rounded-br-full rtl:rounded-tl-full rtl:rounded-bl-full"
+            rounded-e-full rtl:rounded-s-none"
           ></div>
         </div>
         {/* Tabs for Category Selection */}
@@ -123,10 +133,10 @@ export default function PopularProducts() {
                   className="w-[222px] h-[222px] mt-5 mb-[30px] group-hover:opacity-70 transition-opacity duration-300 z-10"
                 />
                 <div className="absolute inset-0 flex justify-center items-center gap-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                  <div className="bg-light-pink-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white">
+                  <div className="cursor-pointer bg-light-pink-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white">
                     <FaRegEye />
                   </div>
-                  <div className="bg-light-pink-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white">
+                  <div className="cursor-pointer bg-light-pink-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white">
                     <FaRegHeart />
                   </div>
                 </div>
@@ -139,14 +149,18 @@ export default function PopularProducts() {
                     <h6 className="text-start text-[17px] font-semibold text-blueGray-600">
                       {getTwoWords(product.title)}
                     </h6>
-                    {/* Rating */}
+                    {/* Star Rating */}
                     <div className="flex text-[#FBA707]">
-                      <FaStar />
-                      <FaStar />
-                      <FaStar />
-                      <FaStar />
-                      <FaRegStar />
-                    </div>
+            {Array.from({ length: 5 }, (_, index) => (
+              <span
+                key={index}
+                onClick={() => handleRating(product.id, index + 1)}
+                className="cursor-pointer"
+              >
+                {index < (ratings[product.id] || 0) ? <FaStar /> : <FaRegStar />}
+              </span>
+            ))}
+          </div>
                     {/* Price */}
                     <p className="text-base text-[#F05454] font-medium text-start">
                       ${product.priceAfterDiscount || product.price.toFixed(2)}{" "}
@@ -158,7 +172,7 @@ export default function PopularProducts() {
                     </p>
                   </div>
                   {/* Add to Cart Icon */}
-                  <div className="text-white bg-purple-400 w-[42px] h-[42px] rounded-full flex justify-center items-center">
+                  <div className="cursor-pointer text-white bg-purple-400 w-[42px] h-[42px] rounded-full flex justify-center items-center">
                     <BsHandbag />
                   </div>
                 </div>

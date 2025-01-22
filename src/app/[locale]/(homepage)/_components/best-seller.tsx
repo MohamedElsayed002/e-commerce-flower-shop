@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { useQuery } from "@tanstack/react-query";
 import LoadingComponent from "@/components/common/loading-component";
@@ -28,17 +28,17 @@ export default function BestSeller() {
   const t = useTranslations();
 
   // State for determining text direction (RTL or LTR)
-  const [isRTL, setIsRTL] = useState<boolean>(false);
+  // const [isRTL, setIsRTL] = useState<boolean>(false);
 
   // Function to get the direction of the text
-  function getDirection() {
-    const direction = document.documentElement.dir;
-    setIsRTL(direction === "rtl");
-  }
+  // function getDirection() {
+  //   const direction = document.documentElement.dir;
+  //   setIsRTL(direction === "rtl");
+  // }
 
-  useEffect(() => {
-    getDirection();
-  }, []);
+  // useEffect(() => {
+  //   getDirection();
+  // }, []);
 
   // Fetch best-seller products data
   const {
@@ -105,7 +105,6 @@ export default function BestSeller() {
             loop: true,
             slidesToScroll: 1,
             align: "start",
-            direction: isRTL ? "rtl" : "ltr",
           }}
           className="w-[954px] relative"
         >
@@ -132,10 +131,10 @@ export default function BestSeller() {
                           className="w-[222px] h-[222px] group-hover:opacity-70 transition-opacity duration-300 z-10 mt-5 mb-[30px]"
                         />
                         <div className="absolute inset-0 flex justify-center items-center gap-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                          <div className="bg-light-pink-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white">
+                          <div className="cursor-pointer bg-light-pink-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white">
                             <FaRegEye />
                           </div>
-                          <div className="bg-light-pink-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white">
+                          <div className="cursor-pointer bg-light-pink-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white">
                             <FaRegHeart />
                           </div>
                         </div>
@@ -165,7 +164,7 @@ export default function BestSeller() {
                               )}
                             </p>
                           </div>
-                          <div className="text-white bg-purple-400 w-[42px] h-[42px] rounded-full flex justify-center items-center">
+                          <div className="cursor-pointer text-white bg-purple-400 w-[42px] h-[42px] rounded-full flex justify-center items-center">
                             <BsHandbag />
                           </div>
                         </div>
@@ -177,17 +176,19 @@ export default function BestSeller() {
             </CarouselContent>
           )}
           {/* Carousel Navigation */}
-          {isRTL ? (
+          <CarouselPrevious className="left-[0.1rem] top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
+          <CarouselNext className="right-[0.45rem] top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
+          {/* {isRTL ? (
             <>
-              <CarouselNext className="right-1 top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
-              <CarouselPrevious className="left-[0.5rem] top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
+              <CarouselNext className="right-[0.45rem] top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
+              <CarouselPrevious className="left-[0.1rem] top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
             </>
           ) : (
             <>
-              <CarouselPrevious className="left-[0.5rem] top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
-              <CarouselNext className="right-1 top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
+              <CarouselPrevious className="left-[0.1rem] top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
+              <CarouselNext className="right-[0.45rem] top-[8.5rem] border-0 bg-light-pink-900 hover:bg-light-pink-700" />
             </>
-          )}
+          )} */}
         </Carousel>
       </div>
     </div>

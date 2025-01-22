@@ -8,6 +8,8 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/button";
+import { useLocale } from "next-intl";
+import { Locale } from "@/i18n/routing";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -58,9 +60,12 @@ const Carousel = React.forwardRef<
     },
     ref
   ) => {
+    const locale = useLocale() as Locale;
+
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
+        direction: locale === "ar" ? "rtl" : "ltr",
         axis: orientation === "horizontal" ? "x" : "y",
       },
       plugins
