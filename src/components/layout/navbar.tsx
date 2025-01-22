@@ -1,0 +1,52 @@
+"use client";
+import React from "react";
+import Image from "next/image";
+import { FaRegHeart } from "react-icons/fa6";
+import { IoLockClosedOutline } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
+import LocaleToggle from "@/components/common/toggle-locale";
+
+export default function Navbar() {
+  // Translation
+  const t = useTranslations();
+
+  return (
+    <header className=" cursor-pointer  ">
+      <div className=" container m-auto   flex items-center  justify-between pl-[80px] pr-[80px]   ">
+        {/* Logo */}
+        <div>
+          <Image
+            src="/assets/images/logo.png"
+            alt="logo"
+            width={86}
+            height={0}
+            className=" p-2"
+          />
+        </div>
+
+        {/* Navigation Links */}
+        <div className="flex gap-[24px] text-[16px] font-bold text-[#160E4B]">
+          <Link
+            href="#"
+            className="text-[#F82BA9]"
+          >
+            {t("home")}
+          </Link>
+          <a className=" hover:text-[#F82BA9]">{t("all-categories")}</a>
+          <a className=" hover:text-[#F82BA9]">{t("about")}</a>
+          <a className=" hover:text-[#F82BA9]">{t("contact")}</a>
+        </div>
+
+        {/* Icons */}
+        <div className="flex gap-5">
+          <IoSearch className="w-[20px] h-[21px] text-[#F82BA9]" />
+          <FaRegHeart className="w-[20px] h-[21px] text-[#F82BA9]" />
+          <IoLockClosedOutline className="w-[30px] h-[21px] text-[#F82BA9]" />
+          <LocaleToggle />
+        </div>
+      </div>
+    </header>
+  );
+}

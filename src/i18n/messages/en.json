@@ -1,3 +1,7 @@
 {
-      "discountOffer": "Get {discount}% Off Discount Coupon"
+  "discountOffer": "Get {discount}% Off Discount Coupon",
+  "home": "Home",
+  "all-categories": "All Categories",
+  "about": "About",
+  "contact": "Contact"
 }

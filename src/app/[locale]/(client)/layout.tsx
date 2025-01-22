@@ -1,32 +1,21 @@
+import Footer from "@/components/layout/footer";
+import Navbar from "@/components/layout/navbar";
 
-import { routing } from "@/i18n/routing";
-import { setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
-
-import Providers from "@/components/provider";
-import Navbar from "./_components/Navbar";
-import Footer from "./_components/Footer";
-
-type LocaleLayoutProps = {
+type LayoutProps = {
   children: React.ReactNode;
-} & Pick<BaseParams, "params">;
+};
 
-
-
-export default function LocaleLayout({ params: { locale }, children }: LocaleLayoutProps) {
-  if (!routing.locales.includes(locale)) notFound();
-
-  setRequestLocale(locale);
-
+export default function ClientLayout({ children }: LayoutProps) {
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={`antialiased`}>
-        <Providers>
-          <Navbar/>
-          {children}
-          <Footer/>
-        </Providers>
-      </body>
-    </html>
+    <>
+      {/* Header */}
+      <Navbar />
+
+      {/* Main content */}
+      {children}
+
+      {/* Footer */}
+      {/* <Footer /> */}
+    </>
   );
 }

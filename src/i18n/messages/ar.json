@@ -1,14 +1,14 @@
 {
-    "Home":"الصفحه الرئيسيه",
-    "All Category":"جميع المحتويات",
-    "About":"عن",
-    "Contact":"تواصل معنا",
-    "About Us":"معلومات عن",
-    "Store Location":"موقعنا",
-    "Delivery":"التوصيل",
-    "Policy":"سياسه المكان",
-    "FAQS":"الاسئله الشائعه",
-    "By Subscribe Our Newsletter":"من خلال الاشتراك في نشرتنا الاخباريه",
-     "discountOffer": "احصل على قسيمة خصم بنسبة {discount}%",
-     "Supscribe":"اشترك"
+  "About Us": "معلومات عن",
+  "Store Location": "موقعنا",
+  "Delivery": "التوصيل",
+  "Policy": "سياسه المكان",
+  "FAQS": "الاسئله الشائعه",
+  "By Subscribe Our Newsletter": "من خلال الاشتراك في نشرتنا الاخباريه",
+  "discountOffer": "احصل على قسيمة خصم بنسبة {discount}%",
+  "Supscribe": "اشترك",
+  "home": "الصفحه الرئيسيه",
+  "all-categories": "جميع الفئات",
+  "about": "من نحن",
+  "contact": "تواصل معنا"
 }
