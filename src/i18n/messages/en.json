@@ -1,1 +1,5 @@
-{}
+{
+  "error": "Error",
+  "fallback-error-message": "Something went wrong.",
+  "not-found-message": "Couldn't find the page you are looking for."
+}
