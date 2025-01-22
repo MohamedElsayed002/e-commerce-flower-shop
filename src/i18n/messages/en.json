@@ -1,5 +1,5 @@
 {
-  "discountOffer": "Get {discount}% Off Discount Coupon",
+  "discountOffer": "Get <span>{discount}%</span> Off Discount Coupon",
   "home": "Home",
   "all-categories": "All Categories",
   "about": "About",

@@ -5,7 +5,7 @@
   "Policy": "سياسه المكان",
   "FAQS": "الاسئله الشائعه",
   "By Subscribe Our Newsletter": "من خلال الاشتراك في نشرتنا الاخباريه",
-  "discountOffer": "احصل على قسيمة خصم بنسبة {discount}%",
+  "discountOffer": "احصل على قسيمة خصم بنسبة <span>{discount}%</span>",
   "Supscribe": "اشترك",
   "home": "الصفحه الرئيسيه",
   "all-categories": "جميع الفئات",

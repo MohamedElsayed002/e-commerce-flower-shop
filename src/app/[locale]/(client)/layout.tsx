@@ -1,5 +1,5 @@
 import Footer from "@/components/layout/footer";
-import Navbar from "@/components/layout/navbar";
+import Header from "@/components/layout/header";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -9,13 +9,13 @@ export default function ClientLayout({ children }: LayoutProps) {
   return (
     <>
       {/* Header */}
-      <Navbar />
+      <Header />
 
       {/* Main content */}
       {children}
 
       {/* Footer */}
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
