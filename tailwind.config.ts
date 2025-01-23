@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
-        roboto: ["Roboto", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
+        roboto: ["var(--font-roboto)", "sans-serif"],
       },
       colors: {
         background: "hsl(var(--background))",
