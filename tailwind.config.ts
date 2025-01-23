@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -50,7 +54,31 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
-        rose: {
+        "custom-light-rose": {
+          50: "#FEEAF6",
+          100: "#FED5EE",
+          200: "#FDBFE5",
+          300: "#FCAADD",
+          400: "#FB95D4",
+          500: "#FB80CB",
+          600: "#FA6BC3",
+          700: "#F955BA",
+          800: "#F940B2",
+          900: "#F82BA9",
+        },
+        "custom-dark-rose": {
+          50: "#130000",
+          100: "#2C0000",
+          200: "#460000",
+          300: "#5F0010",
+          400: "#79002A",
+          500: "#920043",
+          600: "#AB005D",
+          700: "#C50076",
+          800: "#DE128F",
+          900: "#F82BA9",
+        },
+        "custom-rose": {
           50: "#FFE6F0",
           100: "#FFCCE0",
           200: "#FF99C2",
@@ -62,31 +90,31 @@ const config: Config = {
           800: "#660029",
           900: "#330014",
         },
-        purple: {
+        "custom-purple": {
           50: "#F3E8FF",
           100: "#E6D0FF",
           200: "#CCA1FF",
           300: "#B372FF",
-          400: "#9952FF",
+          400: "#8C52FF",
           500: "#7F00FF",
           600: "#6600CC",
           700: "#4C0099",
           800: "#330066",
           900: "#1A0033",
         },
-        "blue-gray": {
+        "custom-blue-gray": {
           50: "#E5E5EB",
-          100: "#CCCCD6",
-          200: "#9999AD",
+          100: "#DEE2E6",
+          200: "#757F95",
           300: "#666685",
           400: "#4D4D6A",
           500: "#33334D",
-          600: "#26263A",
+          600: "#160E4B",
           700: "#1A1A27",
           800: "#0D0D13",
           900: "#000000",
         },
-        mint: {
+        "custom-mint": {
           50: "#E6FFFA",
           100: "#CCFFF5",
           200: "#99FFEB",
