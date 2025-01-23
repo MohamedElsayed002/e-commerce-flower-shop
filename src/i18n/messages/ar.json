@@ -1,14 +1,16 @@
 {
-  "About Us": "معلومات عن",
-  "Store Location": "موقعنا",
-  "Delivery": "التوصيل",
-  "Policy": "سياسه المكان",
-  "FAQS": "الاسئله الشائعه",
-  "By Subscribe Our Newsletter": "من خلال الاشتراك في نشرتنا الاخباريه",
+  "about us": "من نحن",
+  "store location": "موقعنا",
+  "delivery": "التوصيل",
+  "policy": "سياسه المكان",
+  "faqs": "الاسئله الشائعه",
+  "by subscribe our newsletter": "من خلال الاشتراك في نشرتنا الاخباريه",
   "discountOffer": "احصل على قسيمة خصم بنسبة <span>{discount}%</span>",
   "Supscribe": "اشترك",
   "home": "الصفحه الرئيسيه",
   "all-categories": "جميع الفئات",
   "about": "من نحن",
-  "contact": "تواصل معنا"
+  "contact": "تواصل معنا",
+  "email is required": "البريد الإلكتروني مطلوب",
+  "Please enter a valid email": "الرجاء إدخال بريد إلكتروني صالح"
 }

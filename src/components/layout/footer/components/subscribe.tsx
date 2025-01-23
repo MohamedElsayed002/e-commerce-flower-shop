@@ -14,9 +14,10 @@ export default function Subscribe() {
   // Form & Validation
   const Schema = z.object({
     email: z
+  
       .string({ required_error: "Please enter your email" })
-      .email("Please enter a valid email")
-      .nonempty("Email is required"),
+      .email(`{t("please enter a valid email")}`)
+      .nonempty(`{t("email is required")}`),
   });
 
   type Inputs = z.infer<typeof Schema>;

@@ -1,4 +1,4 @@
-import React from "react";
+import react from "react";
 import FooterInput from "@/components/layout/footer/components/subscribe";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -25,12 +25,12 @@ export default function Footer() {
       <div className="flex flex-col justify-center items-center gap-10 ">
         {/* Footer Header Contents */}
         <div className="flex gap-[80px] justify-center pt-10 pr-[80px] text-[16px] pl-[80px] font-bold">
-          <p>{t("About Us")}</p>
-          <p>{t("Store Location")}</p>
+          <p>{t("about us")}</p>
+          <p>{t("store location")}</p>
           <p>{t("contact")}</p>
-          <p>{t("Delivery")} </p>
-          <p>{t("Policy")}</p>
-          <p>{t("FAQS")}</p>
+          <p>{t("delivery")} </p>
+          <p>{t("policy")}</p>
+          <p>{t("faqs")}</p>
         </div>
 
         {/* Subscribe */}
@@ -47,7 +47,7 @@ export default function Footer() {
 
             {/* Description */}
             <p className="text-[#757F95] text-xl font-medium">
-              {t("By Subscribe Our Newsletter")}
+              {t("by subscribe our newsletter")}
             </p>
           </div>
 
