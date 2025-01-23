@@ -4,8 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const category = searchParams.get("category");
+  const sort = searchParams.get("sort");
 
-  const baseUrl = `${process.env.API_BASE_URL}/products?category=${category}`;
+  const baseUrl = `${process.env.API_BASE_URL}/products?category=${category}&sort=${sort}`;
 
   try {
     const response = await fetch(baseUrl, {

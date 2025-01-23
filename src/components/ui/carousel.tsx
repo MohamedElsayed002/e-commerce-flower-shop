@@ -4,7 +4,7 @@ import * as React from "react";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/button";
@@ -221,7 +221,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-    <FaArrowLeft className="h-4 w-4 text-white" />
+    <IoIosArrowBack className="h-4 w-4" />
     <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -250,7 +250,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <FaArrowRight className="h-4 w-4 text-white" />
+      <IoIosArrowForward className="h-4 w-4" />
       <span className="sr-only">Next slide</span>
     </Button>
   );

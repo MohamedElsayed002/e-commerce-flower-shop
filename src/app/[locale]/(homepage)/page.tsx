@@ -1,16 +1,16 @@
-import BestSeller from "./_components/best-seller";
-import PopularProducts from "./_components/popular-products";
-import AboutUs from "./_components/about-us";
+import AboutUsComponent from "./_components/about-us";
+import BestSellerComponent from "./_components/best-seller";
+import PopularProductsComponent from "./_components/popular-products";
 
 export default function Home() {
   return (
-<div className="container mx-auto my-20">
-  {/* Best Seller */}
-  <BestSeller />
-  {/* Popular Products */}
-  <PopularProducts />
-  {/* About Us */}
-  <AboutUs />
-</div>
+    <div className="container mx-auto my-20">
+      {/* Best Seller */}
+      <BestSellerComponent />
+      {/* Popular Products */}
+      <PopularProductsComponent />
+      {/* About Us */}
+      <AboutUsComponent />
+    </div>
   );
 }
