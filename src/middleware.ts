@@ -3,7 +3,8 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest } from "next/server";
 import { LOCALES, routing } from "./i18n/routing";
 
-const publicPages = ["/"];
+const authPages = ["/auth/login", "/auth/register"];
+const publicPages = ["/", ...authPages];
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -27,7 +28,9 @@ const authMiddleware = withAuth(
 
 export default async function middleware(req: NextRequest) {
   const publicPathnameRegex = RegExp(
-    `^(/(${LOCALES.join("|")}))?(${publicPages.flatMap((p) => (p === "/" ? ["", "/"] : p)).join("|")})/?$`,
+    `^(/(${LOCALES.join("|")}))?(${publicPages
+      .flatMap((p) => (p === "/" ? ["", "/"] : p))
+      .join("|")})/?$`,
     "i"
   );
 
@@ -35,7 +38,6 @@ export default async function middleware(req: NextRequest) {
 
   // If the user is navigating to a public page check if they are authenticated or not
   if (isPublicPage) {
-
     // Otherwise, let them navigate
     return handleI18nRouting(req);
   } else {
