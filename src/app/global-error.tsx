@@ -10,10 +10,14 @@ export default function Error({
   return (
     <html>
       <body>
-        <main>
-          {/* Error Message*/}
-          ERROR! {error.message}
-          {/* Try again Button*/}
+        <main className="h-screen flex-col flex gap-12">
+          {/* Headline */}
+          <h1 className="text-9xl font-bold text-red-600">ERROR!</h1>
+
+          {/* Error Message */}
+          <p>{error.message}</p>
+
+          {/* Try again Button */}
           <button onClick={() => reset()}>Try again</button>
         </main>
       </body>

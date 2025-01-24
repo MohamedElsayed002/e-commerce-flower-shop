@@ -10,6 +10,7 @@ export default function ErrorComponent({ children }: ErrorComponentProps) {
 
   return (
     <section className="flex flex-col gap-6 text-center items-center">
+      {/* Headline */}
       <span className="text-9xl text-red-500 font-bold">{t("error")}</span>
 
       {/* Error Message */}

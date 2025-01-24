@@ -6,6 +6,7 @@ export default function NotFoundComponent() {
 
   return (
     <section className="flex flex-col gap-6 text-center items-center">
+      {/* Headline */}
       <span className="text-9xl text-red-500 font-bold">404</span>
 
       {/* Not Found Message */}
