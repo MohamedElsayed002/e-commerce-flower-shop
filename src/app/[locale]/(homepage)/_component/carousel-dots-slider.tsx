@@ -1,0 +1,133 @@
+
+
+"use client"
+
+import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from "@/components/ui/carousel";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import * as React from "react"
+import { CarouselDots } from "@/components/ui/CarouselDots";
+import { cn } from "@/lib/utils";
+
+
+
+// Function Carousel Dots slider
+export default function CarouselDemo() {
+    // Translation
+  const t = useTranslations();
+
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) {
+     return
+}
+ setCount(api.scrollSnapList().length);
+setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+ return (
+<div className="flex flex-row space-x-3  ">
+  <div className="basis-1/4 relative ml-1 ">
+  <Image
+  className="rounded-lg mt-3 "
+src="/Red christmas gifts with white ribbon.png" 
+alt=""
+width={400} 
+height={400}
+priority />
+  <div className="absolute inset-0  flex flex-col justify-end items-start  text-white ml-6 mb-6 rtl:mr-3 ">
+   <h3 className="text-md font-semibold text-custom-light-rose-900 mb-3  ">
+ {t('start-10-99')}
+</h3>
+<h1 className="text-2xl font-bold text-gray-800 mb-3">
+ {t('special-gifts-box')}
+ <p className="text-2xl font-bold text-gray-800 ">{t('for-your-love')}</p>
+</h1>
+<Link href={`/products`}>
+<button className=" px-5 py-3 bg-custom-light-rose-900 text-white rounded-lg mb-10 ">
+ {t('shop-now')} →
+</button>
+</Link>
+</div>
+</div>
+
+   {/* Section Slider  */}
+<div className="basis-1/1 ">
+<div className="max-w-5xl mx-auto p-3">
+<Carousel
+  opts={{ align: "start", loop: true }}
+  setApi={setApi}
+  className="relative overflow-hidden h-[431px] rounded-lg">
+    
+  <CarouselContent className="flex">
+
+     {/* map for Section slider  */}
+   {["/slider1.jpg", "/slider2.png", "/slider3.jpg"].map((img, idx) => (
+<CarouselItem key={idx} className="relative min-w-full">
+  <Image
+    className="w-full h-[450px] object-cover"
+    src={img}
+    alt="Slide"
+    width={600}
+    height={400}
+    priority
+  />
+ <div className="absolute inset-0  flex flex-col justify-center items-start px-10 text-white ml-5  ">
+<h3 className="text-lg font-semibold text-custom-light-rose-900  mb-6">
+{t('best-gift-shop-0')}
+</h3>
+<h1 className="text-4xl font-bold text-gray-800 mb-5">
+{t('choose-perfect')} <h2><span className="text-light-pink-900">{t('gifts')}</span>{t('from-us')}</h2>
+</h1>
+<p className="text-gray-600 mb-2">
+{t('culpa-ducimus-nesciunt-aliquam-non-rerum')}
+</p>
+<p className="text-gray-600 mb-2">{t('to-be-rejected-everything-0')}
+{t('of-things-option-pains')}</p>
+<Link href={`/products`}>
+<button className="mb-5 px-5 py-3 bg-custom-light-rose-900 text-white rounded-lg mt-6  ">
+{t('shop-now')} →
+</button>
+</Link>
+</div>
+</CarouselItem>
+    ))}
+
+  </CarouselContent>
+ {/* Navigation Buttons */}
+ <CarouselPrevious  className="absolute rtl:-bottom-2 rtl:ms-12 -left-15 right-12 me-12 -top-15   bottom-3 bg-white	 text-black p-2 rounded-full ">
+ </CarouselPrevious>
+     
+ <CarouselNext className=" right-12 -top-15 bottom-3  rtl:-bottom-2 bg-white text-black p-2 rounded-full">
+ </CarouselNext>
+
+ {/* Dots Buttons */}
+ <div className="absolute bottom-4 left-0 right-0 flex justify-center ">
+  <CarouselDots 
+
+  totalSlides={count} currentSlide={current} onDotClick={(index) => api?.scrollTo(index)}
+  className="my-4"
+  dotClassName={(index) =>
+    cn(
+     "w-2 h-2 rounded-full transition-all  rtl:m-2 ",
+  current === index
+    ? "bg-custom-light-rose-900 w-5  "    
+    : "bg-custom-light-rose-900 "  
+    )
+  }
+  />
+</div>
+</Carousel>
+</div>
+</div>
+</div>
+  );
+}
