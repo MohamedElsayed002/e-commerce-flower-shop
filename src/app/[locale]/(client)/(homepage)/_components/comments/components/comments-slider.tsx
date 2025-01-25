@@ -8,8 +8,11 @@ import { AvatarDemo } from "./comment-avatar";
 import { FaStar } from "react-icons/fa6";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,
 } from "@/components/ui/carousel"
+import { useTranslations } from "next-intl";
 
 export default function CarouselSlider() {
+
+  const t = useTranslations();
 
   const [active, setIsActive] = useState<'prev' | 'next'>('prev');
   return (
@@ -35,7 +38,7 @@ export default function CarouselSlider() {
 
                           <div>
                               <h3 className="text-[17px] text-blueGray-900 font-inter font-bold">Ahmed Mohamed</h3>
-                              <h4 className="text-[17px] text-rose-900 font-inter font-bold">Customer</h4>
+                              <h4 className="text-[17px] text-rose-900 font-inter font-bold">{t('customer')}</h4>
                           </div>
 
                         </div>
@@ -45,7 +48,7 @@ export default function CarouselSlider() {
                   {/* COMMENT */}
                   <div className="pt-6">
                       <p className="text-sm text-blueGray-500 font-inter font-normal leading-[18px]"> 
-                      Ab vel consequatur repellat eos omnis accusamus porro sunt dolorem. Totam voluptas ullam ut. Neque accusantium voluptas rerum. Dolorem veritatis quo omnis nihil nulla harum eum. Dignissimos laborum necessitatibus vero nihil.
+                      {t('this-was-my-first-purchase-from-this-brand-and-i-am-very-happy-with-my-choice-the-product-exceeded-my-expectations-being-both-durable-and-easy-to-use-the-packaging-was-neat-and-the-instructions-were-clear-iwill-definitely-buy-again')}
                       </p>
                   </div>
 
