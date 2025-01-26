@@ -5,5 +5,10 @@
   "this-was-my-first-purchase-from-this-brand-and-i-am-very-happy-with-my-choice-the-product-exceeded-my-expectations-being-both-durable-and-easy-to-use-the-packaging-was-neat-and-the-instructions-were-clear-iwill-definitely-buy-again": "كانت هذه أول مرة أشتري من هذه العلامة التجارية، وأنا سعيد جدًا باختياري. المنتج تجاوز توقعاتي، فهو متين وسهل الاستخدام. التغليف كان مرتبًا والتعليمات واضحة. بالتأكيد سأشتري مرة أخرى!",
   "companies": "شركة",
   "trusted-by-over": "موثوق بنا بواسطة اكثر من ",
-  "4-5k": " ٤٥٠٠  "
+  "4-5k": " ٤٥٠٠  ",
+  "error": "خطأ",
+  "fallback-error-message": "حدث خطأ ما.",
+  "not-found-message": "تعذر العثور على هذه الصفحة.",
+  "customer": "عميل",
+  "user-avatar": "صورة المستخدم"
 }

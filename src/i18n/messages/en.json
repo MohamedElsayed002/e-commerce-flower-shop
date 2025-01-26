@@ -7,5 +7,9 @@
   "this-was-my-first-purchase-from-this-brand-and-i-am-very-happy-with-my-choice-the-product-exceeded-my-expectations-being-both-durable-and-easy-to-use-the-packaging-was-neat-and-the-instructions-were-clear-iwill-definitely-buy-again": "This was my first purchase from this brand, and I am very happy with my choice. The product exceeded my expectations, being both durable and easy to use. The packaging was neat, and the instructions were clear. Iwill definitely buy again!",
   "trusted-by-over": "Trusted By Over",
   "companies": "Companies",
-  "4-5k": "4.5k+"
+  "4-5k": "4.5k+",
+  "error": "Error",
+  "fallback-error-message": "Something went wrong.",
+  "not-found-message": "Couldn't find the page you are looking for.",
+  "user-avatar": "User Avatar"
 }
