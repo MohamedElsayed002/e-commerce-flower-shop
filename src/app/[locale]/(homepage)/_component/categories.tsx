@@ -37,7 +37,7 @@ export default function Categories({ data }) {
                     <h3 className="text-sm font-semibold">{category.name}</h3>
                     <p className="text-xs text-gray-500">
                       {category.productsCount}
-                      {t("items")}{" "}
+                      {t("items")}
                     </p>
                   </div>
                 </div>
