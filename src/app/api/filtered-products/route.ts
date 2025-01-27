@@ -1,39 +1,40 @@
 import { JSON_HEADER } from "@/lib/constants/api.constant";
 import { NextRequest, NextResponse } from "next/server";
 
+// Handle GET requests for fetching products
 export async function GET(req: NextRequest) {
+  // Extract query parameters from the request URL
   const { searchParams } = new URL(req.url);
-  const category = searchParams.get("category");
-  const sort = searchParams.get("sort");
+  const category = searchParams.get("category"); // Category filter
+  const sort = searchParams.get("sort"); // Sort parameter
 
+  // Construct the base API URL with query parameters
   const baseUrl = `${process.env.API_BASE_URL}/products?category=${category}&sort=${sort}`;
 
   try {
+    // Fetch data from the API
     const response = await fetch(baseUrl, {
-      next: { tags: ["products"] },
-      headers: {
-        ...JSON_HEADER,
-      },
+      next: { tags: ["products"] }, // Cache or revalidation options
+      headers: { ...JSON_HEADER }, // Custom headers
     });
 
+    // Handle unsuccessful responses
     if (!response.ok) {
-      return new NextResponse("Failed to fetch products", { status: response.status });
+      console.error(`Error fetching products: ${response.statusText}`);
+      return NextResponse.json({ error: "Failed to fetch products" }, { status: response.status });
     }
 
-    const payload: APIResponse<{ products: Product[] }> = await response.json();
+    // Parse the response data
+    const data = await response.json();
 
-    if (payload.message === "success" && "products" in payload) {
-      return NextResponse.json(payload.products);
-    }
-
-    return new NextResponse(
-      JSON.stringify({ error: payload.message || "Unexpected error" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
+    // Return the products data as a JSON response
+    return new NextResponse(JSON.stringify(data.products), {
+      status: response.status,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    return new NextResponse(
-      JSON.stringify({ error: "Server error", details: (error as Error).message }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
+    // Handle unexpected errors
+    console.error(`Error: ${error}`);
+    return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
   }
 }

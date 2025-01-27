@@ -13,7 +13,7 @@ export default function Providers({ children }: ProvidersProps) {
   return (
     <NextIntlClientProvider messages={messages}>
       {/* <NextAuthProvider>
-        </NextAuthProvider> */}
+      </NextAuthProvider> */}
         <ReactQueryProvider>{children}</ReactQueryProvider>
     </NextIntlClientProvider>
   );

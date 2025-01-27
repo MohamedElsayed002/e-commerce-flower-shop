@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function LoadingComponent() {
+export default function SpinnerComponent() {
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="loader"></div>
+      <div className="spinner"></div>
     </div>
   );
 }

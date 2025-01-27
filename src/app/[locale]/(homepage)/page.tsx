@@ -1,16 +1,21 @@
-import AboutUsComponent from "./_components/about-us";
-import BestSellerComponent from "./_components/best-seller";
-import PopularProductsComponent from "./_components/popular-products";
+import AboutUs from "./_components/about-us";
+import BestSeller from "./_components/best-seller";
+import PopularItems from "./_components/popular-items";
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams: SearchParams }) {
+  console.log("Search params", searchParams); 
+
   return (
-    <div className="container mx-auto my-20">
+    <div className="container custom-x mx-auto my-20">
       {/* Best Seller */}
-      <BestSellerComponent />
-      {/* Popular Products */}
-      <PopularProductsComponent />
-      {/* About Us */}
-      <AboutUsComponent />
+      <BestSeller />
+
+      {/* <PopularItems /> */}
+      <PopularItems searchParams={searchParams} />
+
+      {/* Other components */}
+      <AboutUs />
+
     </div>
   );
 }
