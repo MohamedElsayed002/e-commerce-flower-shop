@@ -9,7 +9,7 @@
   "culpa-ducimus-nesciunt-aliquam-non-rerum": "لا يوجد خطأ في الخطأ",
   "gifts-box": "صندوق الهدايا",
   "awesome-gifts-box": "صندوق هدايا رائع",
-  "collectons": "مجموعات",
+  "Collectons": "مجموعات",
   "occasion-gifts": "هدايا المناسبات",
   "best-occasion-gifts": "أفضل هدايا المناسبات",
   "occasion-gifts-0": "هدايا المناسبات",
@@ -31,5 +31,7 @@
   "error": "خطأ",
   "fallback-error-message": "حدث خطأ ما.",
   "not-found-message": "تعذر العثور على هذه الصفحة.",
-  "o-be-rejected-everything": "o أن يرفض كل شيء"
+  "o-be-rejected-everything": "o أن يرفض كل شيء",
+  "items": "أغراض",
+  "collectons-0": "Collectons"
 }

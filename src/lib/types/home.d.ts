@@ -1,5 +1,4 @@
-declare type categories = {
-    _id:string
+declare type Category = {
        name: string;
        slug: string;
        image: string;

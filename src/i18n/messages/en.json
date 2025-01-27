@@ -9,7 +9,7 @@
   "culpa-ducimus-nesciunt-aliquam-non-rerum": "Culpa ducimus nesciunt aliquam non rerum",
   "gifts-box": "Gifts Box",
   "awesome-gifts-box": "Awesome Gifts Box",
-  "collectons": "collectons",
+  "Collectons": "Collectons",
   "occasion-gifts": "Occasion Gifts",
   "best-occasion-gifts": "Best Occasion Gifts",
   "occasion-gifts-0": "Occasion Gifts",
@@ -30,6 +30,7 @@
   "to-be-rejected-everything-0": "to be rejected everything",
   "error": "Error",
   "fallback-error-message": "Something went wrong.",
-  "not-found-message": "Couldn't find the page you are looking for."
-  
+  "not-found-message": "Couldn't find the page you are looking for.",
+  "items": "items",
+  "collectons-0": "Collectons"
 }

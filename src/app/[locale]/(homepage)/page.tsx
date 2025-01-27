@@ -1,10 +1,13 @@
+import React from "react";
 import Categories from "./_component/categories";
+import { categoriesWrapper } from "@/lib/apis/category.api";
 
-export default function Home() {
+export default async function Page() {
+  const data = await categoriesWrapper();
+
   return (
-    <div>
-    
-      <Categories/>
-    </div>
+    <>
+      <Categories data={data} />
+    </>
   );
 }
