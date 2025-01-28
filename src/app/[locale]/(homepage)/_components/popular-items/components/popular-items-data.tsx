@@ -36,12 +36,12 @@ export default function PopularItemsData({ product }: PopularItemsProps) {
 
         {/* Hover Action Buttons */}
         <div className="absolute inset-0 flex justify-center items-center gap-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-          {/* View Product Button */}
+          {/* TODO: View Product Button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
             <FaRegEye />
           </Button>
 
-          {/* Add to Wishlist Button */}
+          {/* TODO: Add to Wishlist Button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
             <FaRegHeart />
           </Button>
@@ -58,13 +58,13 @@ export default function PopularItemsData({ product }: PopularItemsProps) {
               {product.title}
             </h6>
 
-            {/* Product Rating */}
+            {/* TODO: Product Rating */}
             <div className="flex text-rate-color">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaRegStar />
+              {[...Array(5)].map((_, index) => (
+                <span key={index}>
+                  {index < (product?.rating || 4) ? <FaStar /> : <FaRegStar />}
+                </span>
+              ))}
             </div>
 
             {/* Product Price */}
@@ -85,7 +85,7 @@ export default function PopularItemsData({ product }: PopularItemsProps) {
             </p>
           </div>
 
-          {/* Add to Cart Icon */}
+          {/* TODO: Add to Cart Icon */}
           <Button className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800">
             <BsHandbag />
           </Button>

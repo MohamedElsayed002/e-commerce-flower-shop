@@ -30,11 +30,11 @@ export async function GET(request: Request) {
 
     // Return the extracted categories as a JSON response
     return NextResponse.json({ categories }, { status: response.status });
-  } catch (error) {
-    // Handle unexpected errors and return a 500 status with error details
-    console.error(`Error fetching categories: ${error}`);
+  } catch (error: unknown) {
+    // Handle unexpected errors
+    console.error('Error fetching categories:', error instanceof Error ? error.message : String(error));
     return NextResponse.json(
-      { error: "An unexpected error occurred while fetching categories" },
+      { error: "An unexpected error occurred" }, 
       { status: 500 }
     );
   }

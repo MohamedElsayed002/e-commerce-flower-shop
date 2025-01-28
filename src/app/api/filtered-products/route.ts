@@ -32,9 +32,13 @@ export async function GET(req: NextRequest) {
       status: response.status,
       headers: { "Content-Type": "application/json" },
     });
-  } catch (error) {
+  } catch (error: unknown) {
     // Handle unexpected errors
-    console.error(`Error: ${error}`);
-    return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
+    console.error('Error fetching products:', error instanceof Error ? error.message : String(error));
+    return NextResponse.json(
+      { error: "An unexpected error occurred" }, 
+      { status: 500 }
+    );
   }
 }
+

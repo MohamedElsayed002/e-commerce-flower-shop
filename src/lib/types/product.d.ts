@@ -10,5 +10,6 @@ declare type Product = {
   occasion: string;
   discount: number;
   sold: number;
+  rating?: number;
   id: string;
 } & DatabaseFields;
