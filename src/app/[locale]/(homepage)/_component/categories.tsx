@@ -49,8 +49,10 @@ export default function Categories({ data }) {
 
       {/* Section Special Gifts  and  slider */}
       <CarouselDotsSlider />
+
       {/* Section  Gift*/}
       <SpecialGifts />
+
       {/* Section Features */}
       <div className="bg-custom-rose-50 py-8 p-7 mt-12 max-w-7xl rounded-lg">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">

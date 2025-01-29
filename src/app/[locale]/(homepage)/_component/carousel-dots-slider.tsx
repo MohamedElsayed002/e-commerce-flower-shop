@@ -96,7 +96,7 @@ export default function CarouselDotsSlider() {
                   <div className="absolute inset-0  flex flex-col justify-center items-start px-10 text-white ml-5  ">
                     {/*Text */}
                     <h3 className="text-lg font-semibold text-custom-rose-900  mb-6">
-                      {t("best-gift-shop-0")}
+                      {t("best-gift-shop")}
                     </h3>
                     {/*Text */}
                     <h1 className="text-4xl font-bold text-gray-800 mb-5">

@@ -1,17 +1,14 @@
+import NotFoundComponent from "@/components/common/not-found-component";
 import { Link } from "@/i18n/routing";
 
 export default function NotFound() {
   return (
-    <html>
-      <body>
-        <main className="h-screen flex flex-col gap-12">
-          {/* Headline */}
-          <h1 className="text-9xl font-bold text-red-600">404 not found :(</h1>
+    <main className="h-screen flex items-center flex-col gap-12 justify-center">
+      {/* Message */}
+      <NotFoundComponent />
 
-          {/* Homepage link */}
-          <Link href="/">Go back to homepage</Link>
-        </main>
-      </body>
-    </html>
+      {/* Homepage link */}
+      <Link href="/">Go back to homepage</Link>
+    </main>
   );
 }
