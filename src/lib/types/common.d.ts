@@ -8,3 +8,5 @@ declare type RouteProps = {
 declare type LayoutProps = {
   children: React.ReactNode;
 } & Pick<RouteProps, "params">;
+
+declare type SkeletonProps = JSX.IntrinsicElements["div"];
