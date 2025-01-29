@@ -80,3 +80,17 @@ body {
   --font-inter: "Inter", sans-serif;
   --font-roboto: "Roboto", sans-serif;
 }
+
+/*****************************************************************/
+/******************** Comments Section Styles ********************/
+/*****************************************************************/
+
+.comments-section {
+  background-image: url('/assets/images/testimonials\ background.png');
+}
+
+.avatar-frame {
+   background: conic-gradient(transparent 0deg 140deg, #F82BA9 140.2deg 300deg, transparent 300.2deg 360deg);
+}
+
+/****************************************************************/
