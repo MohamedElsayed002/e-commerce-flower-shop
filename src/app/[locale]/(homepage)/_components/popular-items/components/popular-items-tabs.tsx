@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // Props for the PopularItemsTabs component
 type PopularItemsTabsProps = {
@@ -16,6 +15,9 @@ export default function PopularItemsTabs({ tabsData }: PopularItemsTabsProps) {
   // Navigation
   const router = useRouter();
 
+  // Get the current search parameters
+  const searchParams = useSearchParams();
+
   /**
    * Handles tab click events.
    * Updates the active tab index and appends the selected category ID to the query string.
@@ -28,7 +30,7 @@ export default function PopularItemsTabs({ tabsData }: PopularItemsTabsProps) {
     setActiveTab(index);
 
     // Get the current URL query parameters
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParams.toString());
 
     // Set the "category" parameter to the selected category ID
     params.set("category", categoryId);
@@ -41,7 +43,8 @@ export default function PopularItemsTabs({ tabsData }: PopularItemsTabsProps) {
     <div className="categories">
       {/* Render the list of category tabs */}
       <ul className="list-none flex gap-6 text-xl font-normal text-blue-gray-900 font-inter">
-        {tabsData.map((tab: any, index: number) => (
+        {tabsData.map((tab: Category, index: number) => (
+          // Category tab
           <li
             key={index}
             onClick={() => handleTabClick(index, tab.id)}
@@ -51,7 +54,7 @@ export default function PopularItemsTabs({ tabsData }: PopularItemsTabsProps) {
                 : "hover:text-custom-rose-900"
             }`}
           >
-            {/* Display the name of the category */}
+            {/* Category name */}
             {tab.name}
           </li>
         ))}

@@ -12,7 +12,7 @@ export default function AboutUsContent() {
   const checkIconStyles =
     "bg-custom-purple-900 text-white w-[42px] h-[42px] rounded-full flex justify-center items-center";
 
-  // List of features/offers to be displayed in the About Us section
+  // List of features/offers to be displayed in the about us section
   const aboutUsOffers = [
     t("streamlined-shipping-experience"),
     t("affordable-modern-design"),
@@ -22,7 +22,7 @@ export default function AboutUsContent() {
 
   return (
     <div className="about flex flex-col w-[657px] gap-6">
-      {/* Section Title */}
+      {/* Section title */}
       <h6
         className="text-[17px] font-bold uppercase text-custom-rose-900"
         style={{ letterSpacing: "4px" }}
@@ -30,9 +30,9 @@ export default function AboutUsContent() {
         {t("about-us")}
       </h6>
 
-      {/* Introductory Content */}
+      {/* Introductory content */}
       <div>
-        {/* Main Title with Highlighted Words */}
+        {/* Main title with highlighted words */}
         <p className="text-blue-gray-900 text-3xl font-bold w-[603px]">
           {t("we-provide-best-and-quality")}{" "}
           <span className="text-custom-rose-900">
@@ -42,27 +42,29 @@ export default function AboutUsContent() {
         </p>
 
         {/* Subtitle/Description */}
-        <p className="text-blue-gray-500 w-[631px]">{t("about-us-paragraph")}</p>
+        <p className="text-blue-gray-500 w-[631px] mt-2">{t("about-us-paragraph")}</p>
       </div>
 
-      {/* Discover More Button */}
+      {/* Discover more button */}
       <Button
         asChild
         className="bg-custom-rose-900 h-[49px] w-[167px] rounded-[10px] py-[10px] px-5 hover:bg-custom-rose-800"
       >
         <Link href="/about">
           {t("discover-more")}
-          {/* Arrow Icons for LTR and RTL */}
+          {/* Arrow right icon for ltr */}
           <span className="ltr:inline rtl:hidden">
             <FaArrowRightLong />
           </span>
+
+          {/* Arrow left icon for rtl */}
           <span className="rtl:inline ltr:hidden">
             <FaArrowLeftLong />
           </span>
         </Link>
       </Button>
 
-      {/* About Us Features/Offers */}
+      {/* About us features/offers */}
       <div className="about-us-offers grid grid-cols-2">
         {aboutUsOffers.map((offer, index) => (
           <div key={index} className="mb-2 flex justify-start items-center">
@@ -71,7 +73,7 @@ export default function AboutUsContent() {
               <FaCheck />
             </div>
 
-            {/* Feature Text */}
+            {/* Feature text */}
             <p className="text-xs font-medium">{offer}</p>
           </div>
         ))}

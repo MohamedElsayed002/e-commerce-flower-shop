@@ -5,10 +5,10 @@ import BestSellerCarousel from "./components/best-seller-carousel";
 export default function BestSeller() {
   return (
     <div className="best-seller flex justify-between px-0 mb-20">
-      {/* About Best Sellers */}
+      {/* About best sellers products */}
       <BestSellerContent />
 
-      {/* Best Seller Products Carousel */}
+      {/* Best seller products carousel */}
       <BestSellerCarousel />
     </div>
   );

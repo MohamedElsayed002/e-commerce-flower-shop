@@ -1,4 +1,13 @@
 {
+  "our-gallery": "Our Gallery",
+  "let-and-39-s-check-our-photo-gallery": "Let's Check Our Photo Gallery",
+  "trusted-by-over-less-than-span-classname-text-rose-900-greater-than-4-5k-less-than-span-greater-than-companies": "Trusted By Over <span className='text-rose-900'>4.5k+</span> Companies",
+  "customer": "Customer",
+  "less-than-p-greater-than": "</p>",
+  "this-was-my-first-purchase-from-this-brand-and-i-am-very-happy-with-my-choice-the-product-exceeded-my-expectations-being-both-durable-and-easy-to-use-the-packaging-was-neat-and-the-instructions-were-clear-iwill-definitely-buy-again": "This was my first purchase from this brand, and I am very happy with my choice. The product exceeded my expectations, being both durable and easy to use. The packaging was neat, and the instructions were clear. Iwill definitely buy again!",
+  "trusted-by-over": "Trusted By Over",
+  "companies": "Companies",
+  "4-5k": "4.5k+",
   "error": "Error",
   "fallback-error-message": "Something went wrong.",
   "not-found-message": "Couldn't find the page you are looking for.",
@@ -26,5 +35,6 @@
   "gifts-box": "Gifts Box",
   "popular-items": "Popular Items",
   "coming-soon": "Coming Soon",
-  "usd": "USD"
+  "usd": "USD",
+  "user-avatar": "User Avatar"
 }

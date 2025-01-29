@@ -10,11 +10,13 @@ export default function Home({ searchParams }: { searchParams: SearchParams }) {
       {/* Best Seller */}
       <BestSeller />
 
-      {/* <PopularItems /> */}
+      {/* Popular Items */}
       <PopularItems searchParams={searchParams} />
 
-      {/* Other components */}
+      {/* About Us */}
       <AboutUs />
+
+      {/* Other components */}
 
     </div>
   );

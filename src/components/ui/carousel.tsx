@@ -1,8 +1,10 @@
 "use client";
 
 import * as React from "react";
-import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
+import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
 
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/button";

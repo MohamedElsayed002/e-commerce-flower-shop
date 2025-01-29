@@ -5,10 +5,10 @@ import AboutUsContent from "./components/about-us-content";
 export default function AboutUs() {
   return (
     <div className="about-us flex w-[1280px] justify-between items-center">
-      {/* About Us Gift Section */}
+      {/* About us gifts section */}
       <AboutUsGifts />
 
-      {/* About Us Content Section */}
+      {/* About us content section */}
       <AboutUsContent />
     </div>
   );

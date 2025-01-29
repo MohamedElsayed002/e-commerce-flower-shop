@@ -10,8 +10,7 @@ export default async function PopularItems({ searchParams }: { searchParams: Sea
   // Translation
   const t = await getTranslations();
 
-  // Fetch the data server-side
-  const response = await fetch(`http://localhost:3000/api/categories`);
+  const response = await fetch(`${process.env.NEXT_BASE_URL}/categories`);
   const data = await response.json();
 
   // Map the fetched categories data to a simplified format
@@ -25,20 +24,17 @@ export default async function PopularItems({ searchParams }: { searchParams: Sea
     ? searchParams.category[0]
     : searchParams.category || categories[0]?.id;
 
-  // Debugging: Log the selected category
-  console.log("Selected category:", selectedCategory);
-
   return (
     <div className="mb-20">
-      {/* Section Header */}
+      {/* Section header */}
       <div className="flex justify-between items-center mb-6">
         <div className="relative">
-          {/* Section Title */}
+          {/* Section title */}
           <h3 className="text-custom-blue-gray-600 font-bold text-[30px] z-10 font-inter">
             {t("popular-items")}
           </h3>
 
-          {/* Underline Decoration */}
+          {/* Underline decoration */}
           <div className="bg-custom-rose-900 w-[53px] h-[2px] z-10"></div>
           <div
             className="bg-main-color w-[136px] h-[17px] absolute bottom-0 -z-10 
