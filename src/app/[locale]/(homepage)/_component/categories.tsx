@@ -6,9 +6,9 @@ import { LuWalletMinimal } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import * as React from "react";
-import CarouselDemo from "./carousel-dots-slider";
 import SpecialGifts from "./special-gifts";
 import { Carousel, CarouselContent, CarouselItem } from "../../../../components/ui/carousel";
+import CarouselDotsSlider from "./carousel-dots-slider";
 
 export default function Categories({ data }) {
   // Translation
@@ -48,11 +48,9 @@ export default function Categories({ data }) {
       </Carousel>
 
       {/* Section Special Gifts  and  slider */}
-      <CarouselDemo />
-
+      <CarouselDotsSlider />
       {/* Section  Gift*/}
       <SpecialGifts />
-
       {/* Section Features */}
       <div className="bg-custom-rose-50 py-8 p-7 mt-12 max-w-7xl rounded-lg">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
