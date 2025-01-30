@@ -26,29 +26,21 @@ export default function Header() {
 
         {/* Navigation Links */}
         <div className="flex gap-[24px] text-[16px] font-medium text-[#160E4B]">
-          <Link
-            href="#"
-            className="transition-colors text-pink-900"
-          >
+          <Link href="#" className="transition-colors text-custom-rose-900">
             {t("home")}
           </Link>
-          <Link
-            href="#"
-            className="transition-colors  hover:text-pink-900"
-          >
+          <Link href="#" className="transition-colors  hover:text-custom-rose-900">
             {t("all-categories")}
           </Link>
-          <a className="transition-colors  hover:text-pink-900">{t("about")}</a>
-          <a className="transition-colors  hover:text-pink-900">
-            {t("contact")}
-          </a>
+          <a className="transition-colors  hover:text-custom-rose-900">{t("about")}</a>
+          <a className="transition-colors  hover:text-custom-rose-900">{t("contact")}</a>
         </div>
 
         {/* Icons */}
         <div className="flex gap-5">
-          <IoSearch className="w-[20px] h-[21px] text-[#F82BA9]" />
-          <FaRegHeart className="w-[20px] h-[21px] text-[#F82BA9]" />
-          <IoLockClosedOutline className="w-[30px] h-[21px] text-[#F82BA9]" />
+          <IoSearch className="w-[20px] h-[21px] text-custom-rose-900" />
+          <FaRegHeart className="w-[20px] h-[21px] text-custom-rose-900" />
+          <IoLockClosedOutline className="w-[30px] h-[21px] text-custom-rose-900" />
           <LocaleToggle />
         </div>
       </div>

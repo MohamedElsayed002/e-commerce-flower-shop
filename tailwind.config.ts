@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ["var(--font-inter)", "sans-serif"],
+        roboto: ["var(--font-roboto)", "sans-serif"],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -51,9 +55,7 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
-
-        // Custom colors for the first pink palette
-        pink: {
+        "custom-rose": {
           50: "#FEEAF6",
           100: "#FED5EE",
           200: "#FDBFE5",
@@ -65,19 +67,47 @@ const config: Config = {
           800: "#F940B2",
           900: "#F82BA9",
         },
-        // Custom colors for the second pink palette
-        "pink-dark": {
-          50: "#130000",
-          100: "#2C0000",
-          200: "#460000",
-          300: "#5F0010",
-          400: "#79002A",
-          500: "#920043",
-          600: "#AB005D",
-          700: "#C50076",
-          800: "#DE128F",
-          900: "#F82BA9",
+        "custom-purple": {
+          50: "#F3EEFF",
+          100: "#E8DCFF",
+          200: "#DDCBFF",
+          300: "#D1BAFF",
+          400: "#C5A8FF",
+          500: "#BA97FF",
+          600: "#AF86FF",
+          700: "#A375FF",
+          800: "#9763FF",
+          900: "#8C52FF",
         },
+        "blue-gray": {
+          50: "#E8E7ED",
+          100: "#D0CFDB",
+          200: "#B9B7C9",
+          300: "#A29FB7",
+          400: "#8A86A5",
+          500: "#757F95",
+          600: "#5C5681",
+          700: "#453E6F",
+          800: "#2D265D",
+          900: "#160E4B",
+        },
+        "mint-green": {
+          50: "#EBFBF6",
+          100: "#D7F7ED",
+          200: "#C4F3E3",
+          300: "#B0EFDA",
+          400: "#9CEBD1",
+          500: "#88E8C8",
+          600: "#74E4BF",
+          700: "#61E0B5",
+          800: "#4DDCAC",
+          900: "#39D8A3",
+        },
+        flamingo: "#F05454",
+        "rate-color": "#FBA707",
+      },
+      backgroundColor: {
+        "main-color": "#FEEDF7",
       },
       borderRadius: {
         lg: "var(--radius)",

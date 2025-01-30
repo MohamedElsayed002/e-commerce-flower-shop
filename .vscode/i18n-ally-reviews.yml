@@ -26,6 +26,16 @@ reviews:
             suggestion: ''
             type: approve
             time: '2025-01-23T18:29:32.364Z'
+      ar:
+        comments:
+          - user:
+              name: assmaayaser17
+              email: yaserassmaa@gmail.com
+            id: nc6a6u5WC6T2EPT737whg
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2025-01-30T12:41:29.157Z'
   Supscribe:
     locales:
       en:
@@ -62,3 +72,69 @@ reviews:
             suggestion: ''
             type: approve
             time: '2025-01-23T18:44:56.025Z'
+  Store location:
+    locales:
+      ar:
+        comments:
+          - user:
+              name: assmaayaser17
+              email: yaserassmaa@gmail.com
+            id: nKV4ejIxUTpGQJTWWsKbM
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2025-01-30T12:21:59.897Z'
+      en:
+        comments:
+          - user:
+              name: assmaayaser17
+              email: yaserassmaa@gmail.com
+            id: v0c4UScpmMDvU8YKOC8xw
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2025-01-30T12:46:02.212Z'
+  about us:
+    locales:
+      ar:
+        comments:
+          - user:
+              name: assmaayaser17
+              email: yaserassmaa@gmail.com
+            id: XU6NyV6wtyWAixrdLaEPt
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2025-01-30T12:24:04.773Z'
+      en:
+        comments:
+          - user:
+              name: assmaayaser17
+              email: yaserassmaa@gmail.com
+            id: k3QIEsxObdAmSZQx9PI3n
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2025-01-30T12:24:44.612Z'
+  discountOffer:
+    locales:
+      ar:
+        comments:
+          - user:
+              name: assmaayaser17
+              email: yaserassmaa@gmail.com
+            id: vWYgO2ad2N_m4SCwbIZ3Q
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2025-01-30T12:33:09.136Z'
+      en:
+        comments:
+          - user:
+              name: assmaayaser17
+              email: yaserassmaa@gmail.com
+            id: 464E6WZSgwd7XdkUmhYJf
+            comment: ''
+            suggestion: ''
+            type: approve
+            time: '2025-01-30T12:37:38.093Z'

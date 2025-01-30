@@ -14,7 +14,6 @@ export default function Subscribe() {
   // Form & Validation
   const Schema = z.object({
     email: z
-  
       .string({ required_error: "Please enter your email" })
       .email(`{t("please enter a valid email")}`)
       .nonempty(`{t("email is required")}`),
@@ -37,10 +36,7 @@ export default function Subscribe() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center">
       <div className="flex relative text-[14px font-semibold] text-[#757F95]">
         {/* Input */}
         <Input
@@ -67,9 +63,7 @@ export default function Subscribe() {
       </div>
 
       {/* Feedback */}
-      {errors.email && (
-        <p className="text-red-600 text-sm mt-2">{errors.email.message}</p>
-      )}
+      {errors.email && <p className="text-red-600 text-sm mt-2">{errors.email.message}</p>}
     </form>
   );
 }

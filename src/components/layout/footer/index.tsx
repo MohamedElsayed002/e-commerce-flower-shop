@@ -26,7 +26,7 @@ export default function Footer() {
         {/* Footer Header Contents */}
         <div className="flex gap-[80px] justify-center pt-10 pr-[80px] text-[16px] pl-[80px] font-bold">
           <p>{t("about us")}</p>
-          <p>{t("store location")}</p>
+          <p>{t("Store location")}</p>
           <p>{t("contact")}</p>
           <p>{t("delivery")} </p>
           <p>{t("policy")}</p>
@@ -41,12 +41,12 @@ export default function Footer() {
             <p className="text-[30px] font-bold">
               {t.rich("discountOffer", {
                 discount,
-                span: (v) => <span className="text-pink-900">{v}</span>,
+                span: (v) => <span className="text-custom-rose-900">{v}</span>,
               })}
             </p>
 
             {/* Description */}
-            <p className="text-[#757F95] text-xl font-medium">
+            <p className="text-blue-gray-500 text-xl font-medium">
               {t("by subscribe our newsletter")}
             </p>
           </div>

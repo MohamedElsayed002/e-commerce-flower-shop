@@ -1,4 +1,3 @@
-
 "use client";
 import { FaGlobe } from "react-icons/fa";
 import { usePathname, useRouter } from "@/i18n/routing";
@@ -10,35 +9,30 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
+} from "@/components/ui/dropdown-menu";
 
 export default function LocaleToggle() {
-
-  //Translation Function
+  // Navigation
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
- 
-  const switchLocale = (locale: "en" | "ar") => {
 
+  // Translation toggle
+  const switchLocale = (locale: "en" | "ar") => {
     router.push(`${pathname}?${searchParams.toString()}`, { locale });
-   
   };
-  
 
   return (
     // DropDown Selector For Translation
     <DropdownMenu>
-  <DropdownMenuTrigger><FaGlobe className="text-[#F82BA9]"/></DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem onClick={() => switchLocale("en")}>English</DropdownMenuItem>
-    <DropdownMenuItem onClick={() => switchLocale("ar")}>Arabic</DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>   
-  )}
- 
- 
-
-
+      <DropdownMenuTrigger>
+        <FaGlobe className="text-custom-rose-900" />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => switchLocale("en")}>English</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => switchLocale("ar")}>Arabic</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
