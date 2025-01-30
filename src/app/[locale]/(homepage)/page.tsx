@@ -3,21 +3,19 @@ import BestSeller from "./_components/best-seller";
 import PopularItems from "./_components/popular-items";
 
 export default function Home({ searchParams }: { searchParams: SearchParams }) {
-  console.log("Search params", searchParams); 
-
   return (
-    <div className="container custom-x mx-auto my-20">
-      {/* Best Seller */}
-      <BestSeller />
+      <div className="container custom-x mx-auto my-20">
+        {/* Best Seller */}
+        <BestSeller />
 
-      {/* Popular Items */}
-      <PopularItems searchParams={searchParams} />
+        {/* Popular Items */}
+        <PopularItems searchParams={searchParams} />
 
-      {/* About Us */}
-      <AboutUs />
+        {/* About Us */}
+        <AboutUs />
 
-      {/* Other components */}
+        {/* Other components */}
 
-    </div>
-  );
+      </div>
+    );
 }

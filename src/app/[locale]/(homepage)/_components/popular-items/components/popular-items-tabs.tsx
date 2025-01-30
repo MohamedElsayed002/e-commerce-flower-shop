@@ -36,7 +36,7 @@ export default function PopularItemsTabs({ tabsData }: PopularItemsTabsProps) {
     params.set("category", categoryId);
 
     // Update the URL with the new query string
-    router.push(`?${params.toString()}`);
+    router.replace(`?${params.toString()}`, { scroll: false });
   };
 
   return (
