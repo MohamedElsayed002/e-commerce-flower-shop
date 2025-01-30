@@ -40,12 +40,12 @@ export default function CarouselDotsSlider() {
   }, [api]);
 
   return (
-    <div className="flex flex-row space-x-3  ">
+    <div className="flex flex-row space-x-3 ">
       {/* Section: Left Image with Details */}
-      <div className="basis-1/4 relative ml-1 ">
+      <div className="basis-1/4 relative  ml-2   ">
         {/* Image */}
         <Image
-          className="rounded-lg mt-3 "
+          className="rounded-[15px] mt-3"
           src="/Red christmas gifts with white ribbon.png"
           alt=""
           width={400}
@@ -63,7 +63,7 @@ export default function CarouselDotsSlider() {
           </h1>
           {/* Button */}
           <Link href={`/products`}>
-            <button className=" px-5 py-3 bg-custom-rose-900 text-white rounded-lg mb-4">
+            <button className=" px-5 py-3 bg-custom-rose-900 text-white rounded-lg rtl:mb-4 mb-2 ">
               {t("shop-now")} →
             </button>
           </Link>
@@ -72,11 +72,11 @@ export default function CarouselDotsSlider() {
 
       {/*  Slides  */}
       <div className="basis-1/1 ">
-        <div className="max-w-5xl mx-auto p-3">
+        <div className="max-w-5xl mt-3 px-3 mr-4">
           <Carousel
             opts={{ align: "start", loop: true }}
             setApi={setApi}
-            className="relative overflow-hidden h-[431px] rounded-lg"
+            className="relative overflow-hidden h-[428px] rounded-[15px] rtl:mb-5 "
           >
             <CarouselContent className="flex">
               {/* map for img slider  */}
@@ -84,7 +84,7 @@ export default function CarouselDotsSlider() {
                 <CarouselItem key={idx} className="relative min-w-full">
                   {/* Image */}
                   <Image
-                    className="w-full h-[450px] object-cover"
+                    className="w-full h-[428px] object-cover "
                     src={img}
                     alt="Slide"
                     width={600}
@@ -102,7 +102,7 @@ export default function CarouselDotsSlider() {
                     <h1 className="text-4xl font-bold text-gray-800 mb-5">
                       {t("choose-perfect")}
                       <h2>
-                        <span className="text-custom-rose-900 ">{t("gifts")}</span>
+                        <span className="text-custom-rose-900 ">{t("gifts")} </span>
                         {t("from-us")}
                       </h2>
                     </h1>
@@ -125,8 +125,8 @@ export default function CarouselDotsSlider() {
               ))}
             </CarouselContent>
             {/* Navigation Buttons */}
-            <CarouselPrevious className="absolute rtl:-bottom-2 rtl:ms-12 -left-15 right-12 me-12 -top-15   bottom-3 bg-white	 text-black p-2 rounded-full " />
-            <CarouselNext className=" right-12 -top-15 bottom-3  rtl:-bottom-2 bg-white text-black p-2 rounded-full" />
+            <CarouselPrevious className="absolute rtl:-bottom-1 rtl:ms-12 -left-15 right-12 me-12 -top-15   bottom-3 bg-white	 text-black p-2 rounded-full " />
+            <CarouselNext className=" right-12 -top-15 bottom-3  rtl:-bottom-1 bg-white text-black p-2 rounded-full" />
             {/* Dots Buttons */}
             <div className="absolute bottom-4 left-0 right-0 flex justify-center ">
               <CarouselDots

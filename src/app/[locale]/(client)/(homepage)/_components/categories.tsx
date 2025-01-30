@@ -6,8 +6,8 @@ import { LuWalletMinimal } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import * as React from "react";
-import SpecialGifts from "./special-gifts";
-import { Carousel, CarouselContent, CarouselItem } from "../../../../components/ui/carousel";
+import SpecialGifts from "@/app/[locale]/(client)/(homepage)/_components/special-gifts";
+import { Carousel, CarouselContent, CarouselItem } from "../../../../../components/ui/carousel";
 import CarouselDotsSlider from "./carousel-dots-slider";
 
 export default function Categories({ data }) {
@@ -18,13 +18,13 @@ export default function Categories({ data }) {
     <div className="container px-[8rem] ">
       {/* Categories Carousel */}
       <Carousel>
-        <CarouselContent className="flex flex-row p-4">
+        <CarouselContent className="flex flex-row p-4  ">
           {data.categories.map((category: any) => (
-            <CarouselItem key={category._id} className=" lg:basis-1/5">
+            <CarouselItem key={category._id} className=" lg:basis-1/5 ">
               <Link href={`/products/${category.slug}`}>
-                <div className="bg-custom-rose-50 rounded-xl  flex items-center p-4 ">
+                <div className="bg-custom-rose-50 rounded-xl  flex items-center p-4 mr-3  rtl:ml-4">
                   {/* Category icon */}
-                  <div className="w-16 h-16  bg-custom-rose-900 rounded-full flex items-center justify-center mr-4  rtl:ml-5 ">
+                  <div className="w-16 h-16  bg-custom-rose-900 rounded-full flex items-center justify-center mr-4  rtl:ml-3 ">
                     <img
                       src={category.image}
                       alt={category.name}
@@ -49,17 +49,15 @@ export default function Categories({ data }) {
 
       {/* Section Special Gifts  and  slider */}
       <CarouselDotsSlider />
-
       {/* Section  Gift*/}
       <SpecialGifts />
-
       {/* Section Features */}
-      <div className="bg-custom-rose-50 py-8 p-7 mt-12 max-w-7xl rounded-lg">
+      <div className="bg-custom-rose-50 py-8 p-7 mt-12 max-w-7xl rounded-[15px] mr-4 rtl:ml-6 ">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
           {/* Feature 1 */}
           <div className="flex items-center space-x-3 ">
             <div className="bg-custom-rose-900 p-3 rounded-full rtl:ml-3">
-              <BsTruck className="w-8 h-8 text-white " />
+              <BsTruck className="w-6 h-6 text-white " />
             </div>
             <p className="text-gray-500">
               <span className="font-bold text-gray-800">{t("free-delivery")}</span>
@@ -69,7 +67,7 @@ export default function Categories({ data }) {
 
           {/* Feature 2 */}
           <div className="flex items-center space-x-3">
-            <div className="bg-custom-rose-900 p-3 rounded-full max-w-10xl rtl:ml-3">
+            <div className="bg-custom-rose-900 p-3 rounded-full  rtl:ml-3">
               <TfiReload className="w-6 h-6 text-white " />
             </div>
             <p className="text-gray-500">
@@ -90,7 +88,7 @@ export default function Categories({ data }) {
             </p>
           </div>
 
-          {/* Feature 4: 24/7 Support */}
+          {/* Feature 4 */}
           <div className="flex items-center space-x-3">
             <div className="bg-custom-rose-900 p-3 rounded-full rtl:ml-3">
               <BsHeadset className="w-6 h-6  text-white" />

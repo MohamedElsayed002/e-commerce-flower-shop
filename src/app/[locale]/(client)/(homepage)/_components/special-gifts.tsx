@@ -10,7 +10,7 @@ export default function SpecialGifts() {
   const t = useTranslations();
 
   return (
-    <div className="grid gap-x-3  grid-cols-3 mt-4  rtl:ml-5">
+    <div className="grid  grid-cols-3 mt-6  ">
       {/* First gift box */}
       <div className="relative">
         {/* Gift box image */}
@@ -23,7 +23,7 @@ export default function SpecialGifts() {
           priority
         />
         {/* Overlay content for the first gift box */}
-        <div className="absolute inset-0  flex flex-col justify-center items-end mr-5 text-white px-2 rtl:m-3 ">
+        <div className="absolute inset-0  flex flex-col justify-center items-end mr-[30px] text-white px-2 rtl:ml-7 ">
           <h3 className=" text-custom-rose-900 mb-2">{t("gifts-box")}</h3>
           <h2 className="text-[20px] font-semibold  text-gray-900 ">{t("awesome-gifts-box")}</h2>
           <h1 className="text-[20px] font-semibold text-gray-900 ">{t("collectons")}</h1>
@@ -46,7 +46,7 @@ export default function SpecialGifts() {
           priority
         />
         {/* Overlay content for the second gift box */}
-        <div className="absolute inset-0  flex flex-col justify-center items-end mr-5 text-white rtl:m-3 px-3 ">
+        <div className="absolute inset-0  flex flex-col justify-center items-end mr-[30px]  text-white rtl:ml-5 px-3 ">
           <h3 className=" text-custom-rose-900 mb-2">{t("occasion-gifts")}</h3>
           <h2 className=" text-[20px] font-semibold text-gray-900 ">{t("best-occasion-gifts")}</h2>
           <h1 className="text-[20px] font-semibold text-gray-900 ">{t("collectons")}</h1>
@@ -69,7 +69,7 @@ export default function SpecialGifts() {
           priority
         />
         {/* Overlay content for the third gift box */}
-        <div className="absolute inset-0  flex flex-col justify-center items-end mr-5 text-white rtl:m-3 px-2 ">
+        <div className="absolute inset-0  flex flex-col justify-center items-end mr-[30px]  text-white rtl:ml-5 px-2 ">
           <h3 className=" text-white mb-2">{t("occasion-gifts")}</h3>
           <h2 className="text-[20px] font-semibold text-gray-900  ">{t("combo-sets-gift-box")}</h2>
           <h1 className="text-[20px] font-semibold text-gray-900  "> {t("up-to-50-off")}</h1>
