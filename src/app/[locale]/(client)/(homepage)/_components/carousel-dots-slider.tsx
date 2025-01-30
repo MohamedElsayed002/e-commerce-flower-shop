@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 export default function CarouselDotsSlider() {
   // Translation
   const t = useTranslations();
+
   // State
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
