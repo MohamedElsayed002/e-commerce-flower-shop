@@ -1,5 +1,5 @@
-import SkeletonBar from "@/components/common/SkeletonBar";
-import SkeletonCircle from "@/components/common/SkeletonCircle";
+import SkeletonBar from "@/components/common/skeleton-bar";
+import SkeletonCircle from "@/components/common/skeleton-circle";
 
 export default function CategorySkeleton(props: SkeletonProps) {
   return (

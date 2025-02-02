@@ -1,5 +1,5 @@
-import SkeletonBar from "@/components/common/SkeletonBar";
-import SkeletonSquare from "@/components/common/SkeletonSquare";
+import SkeletonBar from "@/components/common/skeleton-bar";
+import SkeletonSquare from "@/components/common/skeleton-square";
 
 export default function ProductSkeleton(props: SkeletonProps) {
   return (
