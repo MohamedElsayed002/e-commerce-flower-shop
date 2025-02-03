@@ -34,11 +34,9 @@ export default function AboutUsContent() {
       <div>
         {/* Main title with highlighted words */}
         <p className="text-blue-gray-900 text-3xl font-bold w-[603px]">
-          {t("we-provide-best-and-quality")}{" "}
-          <span className="text-custom-rose-900">
-            {t("gifts")} <br /> {t("box")}
-          </span>{" "}
-          {t("product-for-you")}
+          {t.rich("about-us-headline", {
+            span: (v) => <span className="text-custom-rose-900">{v}</span>,
+          })}
         </p>
 
         {/* Subtitle/Description */}

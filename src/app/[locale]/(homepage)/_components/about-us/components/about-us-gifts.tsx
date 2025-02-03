@@ -20,8 +20,7 @@ export default function AboutUsGifts() {
 
       {/* Border decoration */}
       <div
-        style={{ transform: "rotate(3.09deg) rtl:rotate(-3.09deg)" }}
-        className="absolute w-[268.88px] -z-1 h-[363px] border-4 border-custom-rose-900 rounded-b-[120px] left-3 rounded-tl-[50px] rounded-tr-[120px] 
+        className="absolute w-[268.88px] rotate-[3.09deg] rtl:-rotate-[3.09] -z-1 h-[363px] border-4 border-custom-rose-900 rounded-b-[120px] left-3 rounded-tl-[50px] rounded-tr-[120px] 
           rtl:right-3 rtl:rounded-tr-[50px] rtl:rounded-tl-[120px]"
       ></div>
 

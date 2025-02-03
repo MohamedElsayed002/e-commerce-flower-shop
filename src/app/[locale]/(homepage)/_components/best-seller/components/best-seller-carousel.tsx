@@ -13,16 +13,17 @@ export default async function BestSellerCarousel() {
   // Translation
   const t = await getTranslations();
 
+  // Variables
   const response = await fetch(
     `${process.env.NEXT_BASE_URL}/filtered-products?category=673c46fd1159920171827c85&sort=-sold`
   );
   const payload = await response.json();
 
   return (
-    <div className="best-seller-products w-[954px] overflow-hidden flex justify-center items-center">
+    <div className="overflow-hidden flex justify-center items-center col-span-3">
       {/* Show a "Coming Soon" message if no products are available */}
       {payload.length === 0 ? (
-        <div className="col-span-4 text-center text-xl font-semibold text-blue-gray-900">
+        <div className="col-span-4 min-h-80 text-center text-xl font-semibold text-blue-gray-900">
           {t("coming-soon")}
         </div>
       ) : (
@@ -33,14 +34,14 @@ export default async function BestSellerCarousel() {
             slidesToScroll: 1,
             align: "start",
           }}
-          className="w-[954px] relative"
+          className="w-full relative"
         >
           {/* Carousel content */}
           <CarouselContent>
             {payload.map((product: Product, index: number) => (
-                <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
-                  <ProductCard product={product} key={index} />
-                </CarouselItem>
+              <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
+                <ProductCard product={product} key={index} />
+              </CarouselItem>
             ))}
           </CarouselContent>
 
