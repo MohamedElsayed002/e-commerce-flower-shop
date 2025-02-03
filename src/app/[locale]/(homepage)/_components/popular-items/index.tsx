@@ -5,8 +5,6 @@ import PopularItemsTabs from "./components/popular-items-tabs";
 import PopularItemsGrid from "./components/popular-items-grid";
 
 export default async function PopularItems({ searchParams }: { searchParams: SearchParams }) {
-  console.log("Component is rendering");
-
   // Translation
   const t = await getTranslations();
 

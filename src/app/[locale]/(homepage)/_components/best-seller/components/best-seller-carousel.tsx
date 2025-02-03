@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import React from "react";
 import { getTranslations } from "next-intl/server";
-import ProductCard from "@/components/custom/product-card-component";
+import ProductCard from "@/components/features/product/product-card-component";
 
 export default async function BestSellerCarousel() {
   // Translation

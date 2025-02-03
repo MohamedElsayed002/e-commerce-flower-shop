@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import ProductCard from "@/components/custom/product-card-component";
+import ProductCard from "@/components/features/product/product-card-component";
 import React from "react";
 
 type PopularItemsGridProps = {
