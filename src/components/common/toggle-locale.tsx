@@ -1,4 +1,5 @@
 "use client";
+
 import { FaGlobe } from "react-icons/fa";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
