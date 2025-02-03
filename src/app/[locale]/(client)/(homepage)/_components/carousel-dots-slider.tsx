@@ -15,7 +15,6 @@ import * as React from "react";
 import { CarouselDots } from "@/components/ui/carousel-dots";
 import { cn } from "@/lib/utils";
 
-// Function Carousel Dots slider
 export default function CarouselDotsSlider() {
   // Translation
   const t = useTranslations();
@@ -47,7 +46,7 @@ export default function CarouselDotsSlider() {
         {/* Image */}
         <Image
           className="rounded-[15px] mt-3"
-          src="/Red christmas gifts with white ribbon.png"
+          src="/Red-christmas-gifts-with-white-ribbon.png"
           alt=""
           width={400}
           height={400}
