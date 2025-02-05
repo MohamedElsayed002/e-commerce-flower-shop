@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa6";
@@ -14,7 +15,7 @@ export default function Header() {
 
   return (
     <header className=" cursor-pointer  ">
-      <div className=" container m-auto   flex items-center  justify-between pl-[80px] pr-[80px]   ">
+      <div className=" container m-auto   flex items-center  justify-between pl-[80px] pr-[80px]">
         {/* Logo */}
         <Image
           src="/assets/images/logo.png"
@@ -32,8 +33,12 @@ export default function Header() {
           <Link href="#" className="transition-colors  hover:text-custom-rose-900">
             {t("all-categories")}
           </Link>
-          <a className="transition-colors  hover:text-custom-rose-900">{t("about")}</a>
-          <a className="transition-colors  hover:text-custom-rose-900">{t("contact")}</a>
+          <Link href="#" className="transition-colors  hover:text-custom-rose-900">
+            {t("about-us")}
+          </Link>
+          <Link href="#" className="transition-colors  hover:text-custom-rose-900">
+            {t("contact")}
+          </Link>
         </div>
 
         {/* Icons */}

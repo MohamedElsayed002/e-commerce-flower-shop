@@ -15,8 +15,8 @@ export default function Subscribe() {
   const Schema = z.object({
     email: z
       .string({ required_error: "Please enter your email" })
-      .email(`{t("please enter a valid email")}`)
-      .nonempty(`{t("email is required")}`),
+      .email(t("subscribe-email-invalid"))
+      .nonempty(t("email-is-required")),
   });
 
   type Inputs = z.infer<typeof Schema>;
@@ -53,12 +53,10 @@ export default function Subscribe() {
           className="bg-[#F82BA9] rounded-[30px] absolute right-1 top-1/2  w-[131px] h-[90%] -translate-y-1/2 text-[16px] font-medium "
         >
           {/* Text */}
-          {t("Supscribe")}
+          {t("Subscribe")}
 
           {/* Icon */}
-          <span>
-            <FaArrowRight size={15} />
-          </span>
+          <FaArrowRight size={15} />
         </Button>
       </div>
 

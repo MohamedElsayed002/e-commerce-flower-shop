@@ -1,13 +1,20 @@
-import TestimonialSection from "./_components/testimonials";
-import GallerySection from "./_components/gallery";
-import CompaniesSection from "./_components/partner-companies";
+import AboutUs from "./_components/about-us";
+import BestSeller from "./_components/best-seller";
+import PopularItems from "./_components/popular-items";
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams: SearchParams }) {
   return (
-    <>
-      <GallerySection />
-      <TestimonialSection />
-      <CompaniesSection />
-    </>
+    <div className="container custom-x mx-auto my-20">
+      {/* Best Seller */}
+      <BestSeller />
+
+      {/* Popular Items */}
+      <PopularItems searchParams={searchParams} />
+
+      {/* About Us */}
+      <AboutUs />
+
+      {/* Other components */}
+    </div>
   );
 }

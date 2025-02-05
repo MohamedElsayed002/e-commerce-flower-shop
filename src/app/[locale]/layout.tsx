@@ -1,4 +1,3 @@
-
 import Providers from "@/components/provider";
 import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";

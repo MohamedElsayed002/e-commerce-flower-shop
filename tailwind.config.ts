@@ -114,6 +114,16 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      container: {
+        padding: {
+          DEFAULT: "1rem",
+          sm: "2rem",
+          lg: "4rem",
+          xl: "5rem",
+          "2xl": "6rem",
+          "custom-x": "80.5px",
+        },
+      },
     },
   },
   plugins: [tailwindcssAnimate],

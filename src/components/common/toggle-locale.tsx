@@ -1,14 +1,12 @@
 "use client";
 
-import { FaGlobe } from "react-icons/fa";
+import { BsGlobe } from "react-icons/bs";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
@@ -27,10 +25,9 @@ export default function LocaleToggle() {
     // DropDown Selector For Translation
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <FaGlobe className="text-custom-rose-900" />
+        <BsGlobe className="text-custom-rose-900" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => switchLocale("en")}>English</DropdownMenuItem>
         <DropdownMenuItem onClick={() => switchLocale("ar")}>Arabic</DropdownMenuItem>
       </DropdownMenuContent>

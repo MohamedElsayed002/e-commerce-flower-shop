@@ -25,8 +25,8 @@ export default function Footer() {
       <div className="flex flex-col justify-center items-center gap-10 ">
         {/* Footer Header Contents */}
         <div className="flex gap-[80px] justify-center pt-10 pr-[80px] text-[16px] pl-[80px] font-bold">
-          <p>{t("about us")}</p>
-          <p>{t("Store location")}</p>
+          <p>{t("about-us")}</p>
+          <p>{t("store-location")}</p>
           <p>{t("contact")}</p>
           <p>{t("delivery")} </p>
           <p>{t("policy")}</p>
@@ -36,25 +36,22 @@ export default function Footer() {
         {/* Subscribe */}
         <div className=" text-center flex flex-col gap-[40px]">
           {/* Discount Part */}
-          <div>
-            {/* Headline */}
-            <p className="text-[30px] font-bold">
-              {t.rich("discountOffer", {
-                discount,
-                span: (v) => <span className="text-custom-rose-900">{v}</span>,
-              })}
-            </p>
 
-            {/* Description */}
-            <p className="text-blue-gray-500 text-xl font-medium">
-              {t("by subscribe our newsletter")}
-            </p>
-          </div>
+          {/* Headline */}
+          <p className="text-[30px] font-bold">
+            {t.rich("discount-offer", {
+              discount,
+              span: (v) => <span className="text-custom-rose-900">{v}</span>,
+            })}
+          </p>
+
+          {/* Description */}
+          <p className="text-blue-gray-500 text-xl font-medium">
+            {t("by-subscribe-our-newsletter")}
+          </p>
 
           {/* Subscribe Input */}
-          <div>
-            <FooterInput />
-          </div>
+          <FooterInput />
         </div>
       </div>
     </footer>
