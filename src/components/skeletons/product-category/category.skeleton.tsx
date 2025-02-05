@@ -1,13 +1,15 @@
 import SkeletonBar from "@/components/common/skeleton-bar";
 import SkeletonCircle from "@/components/common/skeleton-circle";
+import { cn } from "@/lib/utils/cn";
 
 export default function CategorySkeleton(props: SkeletonProps) {
   return (
     <div
       {...props}
-      className={`flex items-center gap-4 p-4 bg-[#FEEDF7] rounded-[20px]  w-56 h-[122px] ${
-        props.className || ""
-      }`}
+      className={cn(
+        "flex items-center gap-4 p-4 bg-zinc-50 rounded-[20px]  w-56 h-[122px] ",
+        props.className
+      )}
     >
       {/* Left Column: Circle */}
       <SkeletonCircle className="h-[90px] w-[90px]" />
