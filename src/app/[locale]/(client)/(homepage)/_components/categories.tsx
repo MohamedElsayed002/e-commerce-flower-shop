@@ -15,7 +15,7 @@ export default function Categories({ data }) {
   const t = useTranslations();
 
   return (
-    <div className="container px-[8rem] ">
+    <div className="container">
       {/* Categories Carousel */}
       <Carousel>
         <CarouselContent className="flex flex-row p-4  ">
@@ -34,10 +34,11 @@ export default function Categories({ data }) {
 
                   {/* Category details */}
                   <div>
-                    <h3 className="text-sm font-semibold">{category.name}</h3>
+                    <h3 className="text-sm font-semibold capitalize">{category.name}</h3>
                     <p className="text-xs text-gray-500">
-                      {category.productsCount}
-                      {t("items")}
+                      {t("items", {
+                        count: category.productsCount,
+                      })}
                     </p>
                   </div>
                 </div>

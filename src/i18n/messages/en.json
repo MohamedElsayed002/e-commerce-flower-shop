@@ -13,7 +13,7 @@
   "not-found-message": "Couldn't find the page you are looking for.",
   "user-avatar": "User Avatar",
   "gifts": "Gifts",
-  "start-10-99": "START $ 10 . 99",
+  "start-10-99": "START $10.99",
   "special-gifts-box": "Special Gifts Box",
   "for-your-love": "For Your Love",
   "shop-now": "Shop Now",
@@ -34,10 +34,12 @@
   "100-secure-payment": "100% Secure Payment",
   "24-7-support": "24/7 Support",
   "feel-free-to-call-us": "Feel Free To Call Us",
-  "items": "items",
+  "items": "{count} items",
   "collectons": "collectons",
   "we-have-the-best-gifts-and-the-best-departments": "we have the best gifts and the best departments",
   "choose-the-best-gifts-for-occasions-from-several-categories": "choose the best gifts for occasions from several categories",
-  "occasion-gifts": "occasion-gifts",
-  "best-gift-shop": "BEST GIFT SHOP"
+  "occasion-gifts": "Occasion gifts",
+  "best-gift-shop": "BEST GIFT SHOP",
+  "landing-slider-card-title": "Special gifts box for your love",
+  "landing-slider-title": "Choose the perfect <span>gifts</span> from us"
 }

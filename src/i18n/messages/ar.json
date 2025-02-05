@@ -33,9 +33,11 @@
   "100-secure-payment": "دفع آمن بنسبة 100%",
   "24-7-support": "دعم 24/7",
   "feel-free-to-call-us": "لا تتردد في الاتصال بنا",
-  "items": "أغراض",
+  "items": "{count} أغراض",
   "collectons": "مجموعات",
   "we-have-the-best-gifts-and-the-best-departments": "لدينا أفضل الهدايا وأفضل الاقسام",
   "choose-the-best-gifts-for-occasions-from-several-categories": "اختر أفضل الهدايا للمناسبات من عدة فئات",
-  "best-gift-shop": "أفضل متجر للهدايا"
+  "best-gift-shop": "أفضل متجر للهدايا",
+  "landing-slider-card-title": "صندوق هدايا مميز لمن تحب",
+  "landing-slider-title": "اختر <span>الهدايا</span> المثالية منّا"
 }
