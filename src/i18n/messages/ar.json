@@ -19,7 +19,6 @@
   "from-us": "منا",
   "choose-perfect": "اختر الكمال",
   "gifts-box": "صندوق الهدايا",
-  "awesome-gifts-box": "صندوق هدايا رائع",
   "occasion-gifts": "هدايا المناسبات",
   "best-occasion-gifts": "أفضل هدايا المناسبات",
   "combo-sets-gift-box": "مجموعات كومبو من علب الهدايا",
@@ -39,5 +38,8 @@
   "choose-the-best-gifts-for-occasions-from-several-categories": "اختر أفضل الهدايا للمناسبات من عدة فئات",
   "best-gift-shop": "أفضل متجر للهدايا",
   "landing-slider-card-title": "صندوق هدايا مميز لمن تحب",
-  "landing-slider-title": "اختر <span>الهدايا</span> المثالية منّا"
+  "landing-slider-title": "اختر <span>الهدايا</span> المثالية منّا",
+  "gift-box-text": "صندوق هدايا رائع مجموعات",
+  "best occasion gifts": "أفضل هدايا المناسبات مجموعات",
+  "combo sets gift box": "مجموعات هدايا كومبو خصم حتي 50%"
 }

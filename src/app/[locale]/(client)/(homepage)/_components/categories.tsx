@@ -18,7 +18,7 @@ export default function Categories({ data }) {
     <div className="container">
       {/* Categories Carousel */}
       <Carousel>
-        <CarouselContent className="flex flex-row p-4  ">
+        <CarouselContent className="flex flex-row py-5">
           {data.categories.map((category: any) => (
             <CarouselItem key={category._id} className=" lg:basis-1/5 ">
               <Link href={`/products/${category.slug}`}>
@@ -53,52 +53,62 @@ export default function Categories({ data }) {
       {/* Section  Gift*/}
       <SpecialGifts />
       {/* Section Features */}
-      <div className="bg-custom-rose-50 py-8 p-7 mt-12 max-w-7xl rounded-[15px] mr-4 rtl:ml-6 ">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Feature 1 */}
-          <div className="flex items-center space-x-3 ">
-            <div className="bg-custom-rose-900 p-3 rounded-full rtl:ml-3">
-              <BsTruck className="w-6 h-6 text-white " />
-            </div>
-            <p className="text-gray-500">
-              <span className="font-bold text-gray-800">{t("free-delivery")}</span>
-              <br /> <span className="text-sm"> {t("orders-over-120")}</span>
-            </p>
+      <div className="bg-custom-rose-50 mt-12 grid grid-cols-4 py-10 rounded-[.9rem]  ">
+        {/* Feature 1 */}
+        <div className="flex items-center space-x-3 col-span-1 ml-7 rtl:mr-7">
+          <div className="bg-custom-rose-900 p-3 rounded-full  rtl:ml-3">
+            {/* Icon */}
+            <BsTruck className="w-6 h-6 text-white" />
           </div>
 
-          {/* Feature 2 */}
-          <div className="flex items-center space-x-3">
-            <div className="bg-custom-rose-900 p-3 rounded-full  rtl:ml-3">
-              <TfiReload className="w-6 h-6 text-white " />
-            </div>
-            <p className="text-gray-500">
-              <span className="font-bold text-gray-800">{t("get-refund")}</span>
-              <br />
-              <span className="text-sm"> {t("within-30-days-returns")}</span>
-            </p>
+          {/* Text */}
+          <p className="text-gray-500">
+            <span className="font-bold text-gray-800">{t("free-delivery")}</span>
+            <br /> <span className="text-sm"> {t("orders-over-120")}</span>
+          </p>
+        </div>
+
+        {/* Feature 2 */}
+        <div className="flex items-center space-x-3 col-span-1">
+          <div className="bg-custom-rose-900 p-3 rounded-full rtl:ml-3">
+            {/* Icon */}
+            <TfiReload className="w-6 h-6 text-white " />
           </div>
 
-          {/* Feature 3 */}
-          <div className="flex items-center space-x-3">
-            <div className="bg-custom-rose-900 p-3 rounded-full rtl:ml-3">
-              <LuWalletMinimal className="w-6 h-6  text-white" />
-            </div>
-            <p className="text-gray-500">
-              <span className="font-bold text-gray-800">{t("safe-payment")}</span>
-              <br /> <span className="text-sm"> {t("100-secure-payment")}</span>
-            </p>
+          {/* Text */}
+          <p className="text-gray-500">
+            <span className="font-bold text-gray-800">{t("get-refund")}</span>
+            <br />
+            <span className="text-sm"> {t("within-30-days-returns")}</span>
+          </p>
+        </div>
+
+        {/* Feature 3 */}
+        <div className="flex items-center space-x-3 col-span-1">
+          <div className="bg-custom-rose-900 p-3 rounded-full  rtl:ml-3">
+            {/* Icon */}
+            <LuWalletMinimal className="w-6 h-6  text-white" />
           </div>
 
-          {/* Feature 4 */}
-          <div className="flex items-center space-x-3">
-            <div className="bg-custom-rose-900 p-3 rounded-full rtl:ml-3">
-              <BsHeadset className="w-6 h-6  text-white" />
-            </div>
-            <p className="text-gray-500 ">
-              <span className="font-bold text-gray-800">{t("24-7-support")}</span>
-              <br /> <span className="text-sm"> {t("feel-free-to-call-us")}</span>
-            </p>
+          {/* Text */}
+          <p className="text-gray-500">
+            <span className="font-bold text-gray-800">{t("safe-payment")}</span>
+            <br /> <span className="text-sm"> {t("100-secure-payment")}</span>
+          </p>
+        </div>
+
+        {/* Feature 4 */}
+        <div className="flex items-center space-x-3 col-span-1">
+          <div className="bg-custom-rose-900 p-3 rounded-full  rtl:ml-3">
+            {/* Icon */}
+            <BsHeadset className="w-6 h-6  text-white" />
           </div>
+
+          {/* Text */}
+          <p className="text-gray-500">
+            <span className="font-bold text-gray-800">{t("24-7-support")}</span>
+            <br /> <span className="text-sm"> {t("feel-free-to-call-us")}</span>
+          </p>
         </div>
       </div>
     </div>

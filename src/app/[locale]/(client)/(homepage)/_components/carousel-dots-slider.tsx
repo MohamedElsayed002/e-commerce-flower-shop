@@ -10,11 +10,10 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import * as React from "react";
 import { CarouselDots } from "@/components/ui/carousel-dots";
 import { cn } from "@/lib/utils";
-import { Link } from "@/i18n/routing";
-import { FaArrowRight } from "react-icons/fa6";
 import ArrowRight from "@/components/common/arrow-right";
 
 export default function CarouselDotsSlider() {
@@ -42,9 +41,9 @@ export default function CarouselDotsSlider() {
   }, [api]);
 
   return (
-    <div className="grid grid-cols-12 gap-3">
+    <div className="grid grid-cols-12 gap-5">
       {/* Card */}
-      <div className="col-span-3 relative rounded-[.9rem] overflow-hidden flex flex-col justify-end">
+      <div className="col-span-3 relative rounded-[.9rem] overflow-hidden flex flex-col justify-end rtl:mr-2 ">
         {/* Image */}
         <Image
           className="object-cover"
@@ -62,7 +61,7 @@ export default function CarouselDotsSlider() {
             {t("start-10-99")}
           </span>
 
-          {/* Title */}
+          {/* Text */}
           <p className="text-2xl font-bold text-gray-800 capitalize">
             {t.rich("landing-slider-card-title", {
               br: () => <br />,
@@ -83,9 +82,9 @@ export default function CarouselDotsSlider() {
       <Carousel
         opts={{ align: "start", loop: true }}
         setApi={setApi}
-        className="overflow-hidden w-full rounded-[15px] col-span-9"
+        className="overflow-hidden  rounded-[.9rem] col-span-9 mr-2 rtl:ml-2"
       >
-        <CarouselContent className="flex">
+        <CarouselContent>
           {/* map for img slider  */}
           {["/slider1.jpg", "/slider2.png", "/slider3.jpg"].map((img, idx) => (
             <CarouselItem key={idx} className="relative min-w-full">
@@ -94,31 +93,37 @@ export default function CarouselDotsSlider() {
                 className="w-full h-[428px] object-cover "
                 src={img}
                 alt="Slide"
-                width={600}
+                width={400}
                 height={400}
                 priority
               />
 
-              {/* Overlay Text on Each Slide */}
-              <div className="absolute inset-0  flex flex-col justify-center items-start px-10 text-white ml-5  ">
-                <p className="font-bold text-blue-gray-900 text-[2.75rem] max-w-[55%] capitalize leading-tight">
+              {/* Content */}
+              <div className="absolute inset-0  flex flex-col justify-center items-start px-10 text-white ">
+                {/* Text Gift Shop */}
+                <span className="text-md font-bold text-custom-rose-900 ltr:tracking-[0.25em]">
+                  {t("best-gift-shop")}
+                </span>
+                <p className="font-bold text-blue-gray-900 text-[2.75rem] max-w-[55%] capitalize leading-tight mt-5">
                   {t.rich("landing-slider-title", {
                     span: (v) => <span className="text-custom-rose-900">{v}</span>,
                   })}
                 </p>
 
                 {/* Text */}
-                <p className="text-gray-600 mb-2">
+                <p className="text-gray-600 mb-2 mt-5">
                   {t("we-have-the-best-gifts-and-the-best-departments")}
                 </p>
+
                 {/* Text */}
                 <p className="text-gray-600 mb-2">
                   {t("choose-the-best-gifts-for-occasions-from-several-categories")}
                 </p>
+
                 {/* Button */}
                 <Link
                   href={`/products`}
-                  className="px-5 py-3 bg-custom-rose-900 text-white rounded-lg flex items-center gap-2"
+                  className="px-5 py-3 bg-custom-rose-900 text-white rounded-lg flex items-center gap-2 mt-[2rem]"
                 >
                   {t("shop-now")} <ArrowRight />
                 </Link>

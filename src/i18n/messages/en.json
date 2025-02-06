@@ -21,8 +21,6 @@
   "choose-perfect": "Choose Perfect",
   "culpa-ducimus-nesciunt-aliquam-non-rerum": "Culpa ducimus nesciunt aliquam non rerum",
   "gifts-box": "Gifts Box",
-  "awesome-gifts-box": "Awesome Gifts Box",
-  "best-occasion-gifts": "Best Occasion Gifts",
   "combo-sets-gift-box": "Combo Sets Gift Box",
   "up-to-50-off": "Up To 50% Off",
   "discover-now": "Discover Now",
@@ -35,11 +33,13 @@
   "24-7-support": "24/7 Support",
   "feel-free-to-call-us": "Feel Free To Call Us",
   "items": "{count} items",
-  "collectons": "collectons",
   "we-have-the-best-gifts-and-the-best-departments": "we have the best gifts and the best departments",
   "choose-the-best-gifts-for-occasions-from-several-categories": "choose the best gifts for occasions from several categories",
   "occasion-gifts": "Occasion gifts",
   "best-gift-shop": "BEST GIFT SHOP",
   "landing-slider-card-title": "Special gifts box for your love",
-  "landing-slider-title": "Choose the perfect <span>gifts</span> from us"
+  "landing-slider-title": "Choose the perfect <span>gifts</span> from us",
+  "gift-box-text": "awesome gifts box <br></br> collectons",
+  "best occasion gifts": "best occasion gifts <br></br> collectons",
+  "combo sets gift box": "combo sets gift box <br></br> up to 50% off"
 }
