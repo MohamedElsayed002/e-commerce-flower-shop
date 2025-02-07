@@ -14,6 +14,7 @@
   "Subscribe": "Subscribe",
   "Email-is-required": "Email is required",
   "subscribe-email-invalid": "Please enter a valid email",
+  "enter-your-email": "Enter Your Email",
   "our-gallery": "Our Gallery",
   "let-and-39-s-check-our-photo-gallery": "Let's Check Our Photo Gallery",
   "trusted-by-over-less-than-span-classname-text-rose-900-greater-than-4-5k-less-than-span-greater-than-companies": "Trusted By Over <span className='text-rose-900'>4.5k+</span> Companies",
@@ -45,5 +46,6 @@
   "usd": "USD",
   "user-avatar": "User Avatar",
   "best-selling-headline": "Best <span>selling gifts</span> and products",
-  "about-us-headline": "We Provide the Best Quality <span>Gift Boxes</span> for You"
+  "about-us-headline": "We Provide the Best Quality <span>Gift Boxes</span> for You",
+  "email-is-required-0": "email is required"
 }
