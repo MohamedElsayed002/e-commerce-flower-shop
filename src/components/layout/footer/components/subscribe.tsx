@@ -6,8 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { FaArrowRightLong } from "react-icons/fa6";
+import ArrowRight from "@/components/common/arrow-long-right";
 
 export default function Subscribe() {
   // Translation
@@ -18,7 +17,7 @@ export default function Subscribe() {
     email: z
       .string({ required_error: "Please enter your email" })
       .email(t("subscribe-email-invalid"))
-      .nonempty(t('email-is-required-0')),
+      .nonempty(t("email-is-required-0")),
   });
 
   type Inputs = z.infer<typeof Schema>;
@@ -44,7 +43,7 @@ export default function Subscribe() {
         <Input
           id="email"
           type="email"
-          placeholder={t('enter-your-email')}
+          placeholder={t("enter-your-email")}
           className="ltr:placeholder:text-left rtl:placeholder:text-right text-left rtl:text-right  "
           {...register("email")}
         />
@@ -52,19 +51,15 @@ export default function Subscribe() {
         {/* Subscribe */}
         <Button
           type="submit"
-          className="bg-custom-rose-900  rounded-[30px] absolute ltr:right-1 rtl:left-1   top-1/2  w-[131px] h-[90%] -translate-y-1/2 text-[16px] font-medium ">
+          className="bg-custom-rose-900  rounded-[30px] absolute ltr:right-1 rtl:left-1   top-1/2  w-[131px] h-[90%] -translate-y-1/2 text-[16px] font-medium "
+        >
           {/* Text */}
           {t("Subscribe")}
 
           {/* Icon */}
           {/* Arrow right icon for ltr */}
-          <span className="ltr:inline rtl:hidden">
-            <FaArrowRightLong/>
-          </span>
-
-          {/* Arrow left icon for rtl */}
-          <span className="rtl:inline ltr:hidden">
-         <FaArrowLeftLong/>
+          <span>
+            <ArrowRight />
           </span>
         </Button>
       </div>
