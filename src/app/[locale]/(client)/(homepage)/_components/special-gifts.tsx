@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import * as React from "react";
 
 export default function SpecialGifts() {
-  // Translatio
+  // Translation
   const t = useTranslations();
 
   return (

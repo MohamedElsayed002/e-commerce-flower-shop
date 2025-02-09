@@ -4,11 +4,12 @@ import { TfiReload } from "react-icons/tfi";
 import { BsHeadset, BsTruck } from "react-icons/bs";
 import { LuWalletMinimal } from "react-icons/lu";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import * as React from "react";
 import SpecialGifts from "@/app/[locale]/(client)/(homepage)/_components/special-gifts";
 import { Carousel, CarouselContent, CarouselItem } from "../../../../../components/ui/carousel";
 import CarouselDotsSlider from "./carousel-dots-slider";
+import Image from "next/image";
 
 export default function Categories({ data }) {
   // Translation
@@ -19,13 +20,15 @@ export default function Categories({ data }) {
       {/* Categories Carousel */}
       <Carousel>
         <CarouselContent className="flex flex-row py-5">
-          {data.categories.map((category: any) => (
+          {data.categories.map((category: Category) => (
             <CarouselItem key={category._id} className=" lg:basis-1/5 ">
               <Link href={`/products/${category.slug}`}>
                 <div className="bg-custom-rose-50 rounded-xl  flex items-center p-4 mr-3  rtl:ml-4">
                   {/* Category icon */}
                   <div className="w-16 h-16  bg-custom-rose-900 rounded-full flex items-center justify-center mr-4  rtl:ml-3 ">
-                    <img
+                    <Image
+                      height={400}
+                      width={400}
                       src={category.image}
                       alt={category.name}
                       className="w-10 h-10 ilter brightness-0 invert"

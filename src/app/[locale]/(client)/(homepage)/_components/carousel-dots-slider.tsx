@@ -10,7 +10,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import * as React from "react";
 import { CarouselDots } from "@/components/ui/carousel-dots";
 import { cn } from "@/lib/utils";
