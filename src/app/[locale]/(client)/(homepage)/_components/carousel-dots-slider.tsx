@@ -85,7 +85,7 @@ export default function CarouselDotsSlider() {
         className="overflow-hidden  rounded-[.9rem] col-span-9 mr-2 rtl:ml-2"
       >
         <CarouselContent>
-          {/* map for img slider  */}
+          {/* Map for img slider  */}
           {["/slider1.jpg", "/slider2.png", "/slider3.jpg"].map((img, idx) => (
             <CarouselItem key={idx} className="relative min-w-full">
               {/* Image */}
@@ -134,6 +134,7 @@ export default function CarouselDotsSlider() {
         {/* Navigation Buttons */}
         <CarouselPrevious className="absolute rtl:-bottom-1 rtl:ms-12 -left-15 right-12 me-12 -top-15   bottom-3 bg-white	 text-black p-2 rounded-full " />
         <CarouselNext className=" right-12 -top-15 bottom-3  rtl:-bottom-1 bg-white text-black p-2 rounded-full" />
+
         {/* Dots Buttons */}
         <div className="absolute bottom-4 left-0 right-0 flex justify-center ">
           <CarouselDots

@@ -20,6 +20,7 @@ export default function SpecialGifts() {
         <div className="z-10 relative text-white  text-right mr-3">
           {/* Text First */}
           <h3 className="text-custom-rose-900">{t("gifts-box")}</h3>
+
           {/* Text Sec */}
           <h2 className="text-[20px] font-semibold  text-gray-900 capitalize leading-tight mt-4">
             {t.rich("gift-box-text", {
@@ -40,10 +41,12 @@ export default function SpecialGifts() {
       <div className="col-span-4 relative rounded-[.9rem] h-[272px] overflow-hidden  flex flex-col justify-center items-end rtl:items-start">
         {/* Gift box image */}
         <Image className="object-cover w-full" src="/img2.png" alt="" fill sizes="400px" priority />
+
         {/* Overlay content for the second gift box */}
         <div className="z-10 relative text-white text-right mr-3">
           {/* Text First */}
           <h3 className="text-custom-rose-900 mb-3">{t("occasion-gifts")}</h3>
+
           {/* Text Sec */}
           <h2 className="text-[20px] font-semibold text-gray-900 capitalize leading-tight">
             {t.rich("best occasion gifts", {
@@ -64,10 +67,12 @@ export default function SpecialGifts() {
       <div className="col-span-4 relative rounded-[.9rem] h-[272px] overflow-hidden  flex flex-col justify-center items-end rtl:items-start">
         {/* Gift box image */}
         <Image className="object-cover w-full" src="/img1.png" alt="" fill sizes="400px" priority />
+
         {/* Overlay content for the third gift box */}
         <div className="z-10 relative text-white text-right mr-3">
           {/* Text First */}
           <h3 className="text-white mb-3">{t("occasion-gifts")}</h3>
+
           {/* Text Sec */}
           <h2 className="text-[20px] font-semibold text-gray-900 capitalize leading-tight">
             {t.rich("combo sets gift box", {

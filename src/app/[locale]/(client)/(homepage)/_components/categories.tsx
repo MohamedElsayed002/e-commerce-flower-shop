@@ -50,8 +50,10 @@ export default function Categories({ data }) {
 
       {/* Section Special Gifts  and  slider */}
       <CarouselDotsSlider />
+
       {/* Section  Gift*/}
       <SpecialGifts />
+
       {/* Section Features */}
       <div className="bg-custom-rose-50 mt-12 grid grid-cols-4 py-10 rounded-[.9rem]  ">
         {/* Feature 1 */}
