@@ -14,7 +14,7 @@ export default function Header() {
   const t = useTranslations();
 
   return (
-    <header className=" cursor-pointer  ">
+    <header>
       <div className=" container m-auto   flex items-center  justify-between pl-[80px] pr-[80px]">
         {/* Logo */}
         <Image

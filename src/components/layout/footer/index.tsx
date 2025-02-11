@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
 
         {/* Subscribe */}
-        <div className=" text-center flex flex-col gap-[40px]">
+        <div className=" text-center flex flex-col gap-[8px]">
           {/* Discount Part */}
 
           {/* Headline */}
@@ -49,10 +49,10 @@ export default function Footer() {
           <p className="text-blue-gray-500 text-xl font-medium">
             {t("by-subscribe-our-newsletter")}
           </p>
-
-          {/* Subscribe Input */}
-          <FooterInput />
         </div>
+        
+        {/* Subscribe Input */}
+        <FooterInput />
       </div>
     </footer>
   );
