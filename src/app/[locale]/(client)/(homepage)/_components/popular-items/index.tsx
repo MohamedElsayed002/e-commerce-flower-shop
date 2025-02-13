@@ -19,7 +19,7 @@ export default async function PopularItems({ searchParams, categories }: Popular
     : searchParams.category || categories[0]?._id;
 
   return (
-    <div className="mb-20">
+    <div className="mb-20 container">
       {/* Section header */}
       <div className="flex justify-between items-center mb-6">
         <div className="relative">
