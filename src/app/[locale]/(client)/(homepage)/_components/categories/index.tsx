@@ -20,7 +20,7 @@ export default function Categories({ categories }: CategoriesPropes) {
   const t = useTranslations();
 
   return (
-    <div className="container">
+    <div>
       {/* Categories Carousel */}
       <Carousel>
         <CarouselContent className="flex flex-row py-5">

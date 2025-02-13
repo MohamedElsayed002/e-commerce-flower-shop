@@ -1,5 +1,5 @@
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import NextAuthProvider from "./components/next-auth-provider";
+// import NextAuthProvider from "./components/next-auth-provider";
 import ReactQueryProvider from "./components/react-query-provider";
 
 type ProvidersProps = {
@@ -12,9 +12,9 @@ export default function Providers({ children }: ProvidersProps) {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <NextAuthProvider>
+      {/* <NextAuthProvider>
+      </NextAuthProvider> */}
         <ReactQueryProvider>{children}</ReactQueryProvider>
-      </NextAuthProvider>
     </NextIntlClientProvider>
   );
 }
