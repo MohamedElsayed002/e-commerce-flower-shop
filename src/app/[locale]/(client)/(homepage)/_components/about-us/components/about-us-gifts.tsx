@@ -3,7 +3,7 @@ import React from "react";
 
 export default function AboutUsGifts() {
   return (
-    <div className="about-us-gifts relative w-[530.49px] h-[376.95px] flex justify-between">
+    <div className="relative w-[530.49px] h-[376.95px] flex justify-between">
       {/* Main gift box */}
       <div
         className="about-us-gift-one z-10 relative w-[302px] h-[344px] mt-[24.21px] rounded-b-[120px] overflow-hidden

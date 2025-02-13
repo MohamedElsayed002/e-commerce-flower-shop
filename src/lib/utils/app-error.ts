@@ -1,7 +1,7 @@
 export default class AppError {
-  protected message: string | ValidationError[] = "";
+  protected message: string = "";
 
-  constructor(message: string | ValidationError[]) {
+  constructor(message: string) {
     this.message = message;
   }
 }

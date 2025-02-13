@@ -4,7 +4,7 @@ import AboutUsContent from "./components/about-us-content";
 
 export default function AboutUs() {
   return (
-    <div className="about-us flex w-[1280px] justify-between items-center">
+    <div className=" flex justify-between items-center container gap-16">
       {/* About us gifts section */}
       <AboutUsGifts />
 
