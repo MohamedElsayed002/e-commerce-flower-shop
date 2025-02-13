@@ -8,14 +8,8 @@ declare type SuccessfulResponse<T> = {
   message: "success";
 } & T;
 
-declare type ValidationError = {
-  field: string;
-  errorMessage: string;
-};
-
 declare type ErrorResponse = {
-  error: string | ValidationError[];
-  message: string | ValidationError[];
+  error: string;
 };
 
 declare type APIResponse<T> = SuccessfulResponse<T> | ErrorResponse;
@@ -28,6 +22,5 @@ declare type Metadata = {
 };
 
 declare type PaginatedResponse<T> = {
-  [key: string]: T;
-  pagination: Metadata;
-};
+  metadata: Metadata;
+} & T;

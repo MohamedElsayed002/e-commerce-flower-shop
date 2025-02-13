@@ -9,6 +9,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+          sm: "2rem",
+          lg: "4rem",
+          xl: "5rem",
+          "2xl": "6rem",
+          "custom-x": "80.5px",
+        },
+      },
       fontFamily: {
         inter: ["var(--font-inter)", "sans-serif"],
         roboto: ["var(--font-roboto)", "sans-serif"],
@@ -113,18 +124,8 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      container: {
-        padding: {
-          DEFAULT: "1rem",
-          sm: "2rem",
-          lg: "4rem",
-          xl: "5rem",
-          "2xl": "6rem",
-          "custom-x": "80.5px",
-        },
-      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;

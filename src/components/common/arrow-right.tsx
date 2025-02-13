@@ -1,5 +1,5 @@
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
 
 export default function ArrowRight() {
-  return <FaArrowRightLong className="rtl:-scale-x-100" />;
+  return <FaArrowRight className="rtl:-scale-x-100" />;
 }

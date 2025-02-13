@@ -21,7 +21,7 @@ export default function AboutUsContent() {
   ];
 
   return (
-    <div className="about flex flex-col w-[657px] gap-6">
+    <div className="flex flex-col gap-6">
       {/* Section title */}
       <h6
         className="text-[17px] font-bold uppercase text-custom-rose-900"
