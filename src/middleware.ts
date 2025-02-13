@@ -36,6 +36,8 @@ export default async function middleware(req: NextRequest) {
 
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
+  return handleI18nRouting(req);
+
   // If the user is navigating to a public page check if they are authenticated or not
   if (isPublicPage) {
     // Otherwise, let them navigate

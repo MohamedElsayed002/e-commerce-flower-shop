@@ -1,4 +1,4 @@
-import ArrowRight from "@/components/common/arrow-right";
+import ArrowRight from "@/components/common/arrow-long-right";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
