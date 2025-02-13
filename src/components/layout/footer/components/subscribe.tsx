@@ -38,7 +38,7 @@ export default function Subscribe() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center">
-      <div className="flex relative text-[14px font-semibold] text-blue-gray-500 ">
+      <div className="flex relative text-sm font-semibold text-blue-gray-500 ">
         {/* Input */}
         <Input
           id="email"

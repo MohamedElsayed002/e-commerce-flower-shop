@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className=" container m-auto   flex items-center  justify-between pl-[80px] pr-[80px]">
+      <div className=" container m-auto   flex items-center  justify-between ps-20">
         {/* Logo */}
         <Image
           src="/assets/images/logo.png"
@@ -26,7 +26,7 @@ export default function Header() {
         />
 
         {/* Navigation Links */}
-        <div className="flex gap-[24px] text-[16px] font-medium text-[#160E4B]">
+        <div className="flex gap-6 text-base font-medium text-[#160E4B]">
           <Link href="#" className="transition-colors text-custom-rose-900">
             {t("home")}
           </Link>
@@ -43,9 +43,9 @@ export default function Header() {
 
         {/* Icons */}
         <div className="flex gap-5">
-          <IoSearch className="w-[20px] h-[21px] text-custom-rose-900" />
-          <FaRegHeart className="w-[20px] h-[21px] text-custom-rose-900" />
-          <IoLockClosedOutline className="w-[30px] h-[21px] text-custom-rose-900" />
+          <IoSearch className="w-5 h-5 text-custom-rose-900" />
+          <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
+          <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
           <LocaleToggle />
         </div>
       </div>

@@ -1,4 +1,3 @@
-import react from "react";
 import FooterInput from "@/components/layout/footer/components/subscribe";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -24,7 +23,7 @@ export default function Footer() {
       {/* Content */}
       <div className="flex flex-col justify-center items-center gap-10 ">
         {/* Footer Header Contents */}
-        <div className="flex gap-[80px] justify-center pt-10 pr-[80px] text-[16px] pl-[80px] font-bold">
+        <div className="flex gap-20 justify-center pt-10 ps-20 text-base font-bold">
           <p>{t("about-us")}</p>
           <p>{t("store-location")}</p>
           <p>{t("contact")}</p>
@@ -34,7 +33,7 @@ export default function Footer() {
         </div>
 
         {/* Subscribe */}
-        <div className=" text-center flex flex-col gap-[8px]">
+        <div className=" text-center flex flex-col gap-2">
           {/* Discount Part */}
 
           {/* Headline */}
