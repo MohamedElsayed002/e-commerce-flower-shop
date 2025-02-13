@@ -5,10 +5,12 @@ import { fetchCategories } from "@/lib/apis/category.api";
 import Categories from "./_components/categories";
 
 export default async function Home() {
-  const data = await fetchCategories();
+  // Variables
+  const payload = await fetchCategories();
+
   return (
     <>
-      <Categories data={data} />
+      <Categories categories={payload?.categories || []} />
       <GallerySection />
       <TestimonialSection />
       <CompaniesSection />

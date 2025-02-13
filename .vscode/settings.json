@@ -1,16 +1,7 @@
 {
-<<<<<<< HEAD
   "i18n-ally.localesPaths": [
-    "src/i18n",
-    "src/i18n/messages"
+      "src/i18n",
+      "src/i18n/messages"
   ],
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "flat"
 }
-=======
-    "i18n-ally.localesPaths": [
-        "src/i18n",
-        "src/i18n/messages"
-    ],
-    "i18n-ally.keystyle": "nested"
-}
->>>>>>> 8d0091a82b7d662e601717bbbaa0cb73718dec9f
