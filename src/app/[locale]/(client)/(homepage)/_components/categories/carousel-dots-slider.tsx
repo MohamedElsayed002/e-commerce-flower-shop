@@ -43,7 +43,7 @@ export default function CarouselDotsSlider() {
   return (
     <div className="grid grid-cols-12 gap-5">
       {/* Card */}
-      <div className="col-span-3 relative rounded-[.9rem] overflow-hidden flex flex-col justify-end rtl:mr-2 ">
+      <div className="col-span-3 relative rounded-[.9rem] overflow-hidden flex flex-col justify-end ">
         {/* Image */}
         <Image
           className="object-cover"
@@ -82,7 +82,7 @@ export default function CarouselDotsSlider() {
       <Carousel
         opts={{ align: "start", loop: true }}
         setApi={setApi}
-        className="overflow-hidden  rounded-[.9rem] col-span-9 mr-2 rtl:ml-2"
+        className="overflow-hidden rounded-[.9rem] col-span-9 w-full "
       >
         <CarouselContent>
           {/* Map for img slider  */}
@@ -145,7 +145,7 @@ export default function CarouselDotsSlider() {
             dotClassName={(index) =>
               cn(
                 "w-2 h-2 rounded-full transition-all  rtl:m-2 ",
-                current === index ? "bg-custom-rose-900 w-5  " : "bg-custom-rose-900 "
+                current === index ? "bg-custom-rose-900 w-5  " : "bg-custom-rose-900 ",
               )
             }
           />

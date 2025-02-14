@@ -64,7 +64,7 @@ export default function Categories({ categories }: CategoriesPropes) {
       {/* Section Features */}
       <div className="bg-custom-rose-50 mt-12 grid grid-cols-4 p-10 rounded-[.9rem]  ">
         {/* Feature 1 */}
-        <div className="flex items-center space-x-3 col-span-1">
+        <div className="flex items-center col-span-1 gap-3">
           <div className="bg-custom-rose-900 p-3 rounded-full ">
             {/* Icon */}
             <BsTruck className="w-6 h-6 text-white" />
@@ -78,7 +78,7 @@ export default function Categories({ categories }: CategoriesPropes) {
         </div>
 
         {/* Feature 2 */}
-        <div className="flex items-center space-x-3 col-span-1">
+        <div className="flex items-center col-span-1 gap-3">
           <div className="bg-custom-rose-900 p-3 rounded-full">
             {/* Icon */}
             <TfiReload className="w-6 h-6 text-white " />
@@ -93,7 +93,7 @@ export default function Categories({ categories }: CategoriesPropes) {
         </div>
 
         {/* Feature 3 */}
-        <div className="flex items-center space-x-3 col-span-1">
+        <div className="flex items-center col-span-1 gap-3">
           <div className="bg-custom-rose-900 p-3 rounded-full ">
             {/* Icon */}
             <LuWalletMinimal className="w-6 h-6  text-white" />
@@ -107,7 +107,7 @@ export default function Categories({ categories }: CategoriesPropes) {
         </div>
 
         {/* Feature 4 */}
-        <div className="flex items-center space-x-3 col-span-1">
+        <div className="flex items-center col-span-1 gap-3">
           <div className="bg-custom-rose-900 p-3 rounded-full ">
             {/* Icon */}
             <BsHeadset className="w-6 h-6  text-white" />
