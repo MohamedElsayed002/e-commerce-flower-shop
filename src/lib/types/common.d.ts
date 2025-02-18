@@ -1,11 +1,12 @@
 declare type SearchParams = { [key: string]: string | string[] | undefined };
 
-declare type BaseParams = {
+declare type RouteProps = {
   params: { locale: "en" | "ar" };
   searchParams: SearchParams;
 };
 
-declare type Translations<T> = {
-  language: "ar" | "en";
-  data: T;
-};
+declare type LayoutProps = {
+  children: React.ReactNode;
+} & Pick<RouteProps, "params">;
+
+declare type SkeletonProps = JSX.IntrinsicElements["div"];
