@@ -4,26 +4,22 @@ import { getTranslations } from "next-intl/server";
 import PopularItemsTabs from "./components/popular-items-tabs";
 import PopularItemsGrid from "./components/popular-items-grid";
 
-export default async function PopularItems({ searchParams }: { searchParams: SearchParams }) {
+type PopularItemsProps = {
+  categories: Category[];
+  searchParams: SearchParams;
+};
+
+export default async function PopularItems({ searchParams, categories }: PopularItemsProps) {
   // Translation
   const t = await getTranslations();
-
-  const response = await fetch(`${process.env.NEXT_BASE_URL}/categories`);
-  const data = await response.json();
-
-  // Map the fetched categories data to a simplified format
-  const categories: Category[] = data.categories.map((category: any) => ({
-    id: category._id,
-    name: category.name,
-  }));
 
   // Determine the selected category from search parameters or default to the first category
   const selectedCategory = Array.isArray(searchParams.category)
     ? searchParams.category[0]
-    : searchParams.category || categories[0]?.id;
+    : searchParams.category || categories[0]?._id;
 
   return (
-    <div className="mb-20">
+    <div className="mb-20 container">
       {/* Section header */}
       <div className="flex justify-between items-center mb-6">
         <div className="relative">

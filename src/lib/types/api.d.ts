@@ -35,6 +35,7 @@ import { status } from "./../../../node_modules/next-auth/client/__tests__/helpe
 
 declare type SuccessfulResponse<T> = {
   message: "success";
+<<<<<<< HEAD
   token:"string";
   user:User;
   statusCode: number;
@@ -45,7 +46,26 @@ declare type ErrorResponse = {
   message: "error" | "fail";
   statusCode: number;
   message: "string";
+=======
+} & T;
+
+declare type ErrorResponse = {
+  error: string;
+>>>>>>> e0fe9bfabd088ef89b0f2fe119fd3b1991e05c1d
 };
 
 declare type APIResponse<T> = SuccessfulResponse<T> | ErrorResponse;
 
+<<<<<<< HEAD
+=======
+declare type Metadata = {
+  currentPage: number;
+  limit: number;
+  totalPages: number;
+  totalItems: number;
+};
+
+declare type PaginatedResponse<T> = {
+  metadata: Metadata;
+} & T;
+>>>>>>> e0fe9bfabd088ef89b0f2fe119fd3b1991e05c1d

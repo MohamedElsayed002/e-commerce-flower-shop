@@ -43,11 +43,11 @@ export default function PopularItemsTabs({ tabsData }: PopularItemsTabsProps) {
     <div className="categories">
       {/* Render the list of category tabs */}
       <ul className="list-none flex gap-6 text-xl font-normal text-blue-gray-900 font-inter">
-        {tabsData.map((tab: Category, index: number) => (
+        {tabsData.slice(0, 4).map((tab: Category, index: number) => (
           // Category tab
           <li
             key={index}
-            onClick={() => handleTabClick(index, tab.id)}
+            onClick={() => handleTabClick(index, tab._id)}
             className={`cursor-pointer transition-all rounded-md text-blue-gray-900 capitalize ${
               activeTab === index
                 ? "text-custom-rose-900 underline underline-offset-[10%] decoration-2"

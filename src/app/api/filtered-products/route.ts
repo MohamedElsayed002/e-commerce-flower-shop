@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const sort = searchParams.get("sort"); // Sort parameter
 
   // Construct the base API URL with query parameters
-  const baseUrl = `${process.env.API_BASE_URL}/products?category=${category}&sort=${sort}`;
+  const baseUrl = `${process.env.API}/products?category=${category}&sort=${sort}`;
 
   try {
     // Fetch data from the API
@@ -34,11 +34,10 @@ export async function GET(req: NextRequest) {
     });
   } catch (error: unknown) {
     // Handle unexpected errors
-    console.error('Error fetching products:', error instanceof Error ? error.message : String(error));
-    return NextResponse.json(
-      { error: "An unexpected error occurred" }, 
-      { status: 500 }
+    console.error(
+      "Error fetching products:",
+      error instanceof Error ? error.message : String(error),
     );
+    return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
   }
 }
-
