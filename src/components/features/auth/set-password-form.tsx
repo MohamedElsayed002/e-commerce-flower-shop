@@ -29,7 +29,7 @@ export default function SetPasswordForm() {
   // Translation
   const t = useTranslations();
 
-  // Router
+  // Navigation
   // const router = useRouter(); // TODO
 
   // State
@@ -85,7 +85,7 @@ export default function SetPasswordForm() {
         {/* Form wrapper */}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {/* Password input field */}
+            {/* Password field */}
             <FormField
               control={form.control}
               name="password"
@@ -100,13 +100,13 @@ export default function SetPasswordForm() {
                       style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                     />
                   </FormControl>
-                  {/* Display validation errors for the password field */}
+                  {/* Display validation errors */}
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            {/* Confirm password input field */}
+            {/* Confirm password field */}
             <FormField
               control={form.control}
               name="confirmPassword"
@@ -121,19 +121,19 @@ export default function SetPasswordForm() {
                       style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                     />
                   </FormControl>
-                  {/* Display validation errors for the confirm password field */}
+                  {/* Display validation errors */}
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            {/* Form footer with submit button */}
+            {/* Form footer */}
             <DialogFooter>
+              {/* Submit button */}
               <Button
                 type="submit"
                 className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
               >
-                {/* Display loading or submit text based on the loading state */}
                 {t('set-a-password')}
               </Button>
             </DialogFooter>

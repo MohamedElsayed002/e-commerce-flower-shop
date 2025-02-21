@@ -7,8 +7,6 @@ import PopularItems from "./_components/popular-items";
 import GallerySection from "./_components/gallery";
 import TestimonialSection from "./_components/testimonials";
 import CompaniesSection from "./_components/partner-companies";
-import AuthDialog from "@/components/features/auth/auth-dialog";
-import SetPasswordForm from "@/components/features/auth/set-password-form";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   // Variables
@@ -17,27 +15,25 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
   return (
     <main className="w-full">
       {/* Categories */}
-      {/* <Categories categories={payload?.categories || []} /> */}
+      <Categories categories={payload?.categories || []} />
 
       {/* Best Seller */}
-      {/* <BestSeller /> */}
+      <BestSeller />
 
       {/* Popular Items */}
-      {/* <PopularItems searchParams={searchParams} categories={payload?.categories || []} /> */}
+      <PopularItems searchParams={searchParams} categories={payload?.categories || []} />
 
       {/* About Us */}
-      {/* <AboutUs /> */}
+      <AboutUs />
 
       {/* Gallery */}
-      {/* <GallerySection /> */}
+      <GallerySection />
 
       {/* Testimonials */}
-      {/* <TestimonialSection /> */}
+      <TestimonialSection />
 
       {/* Companies */}
-      {/* <CompaniesSection /> */}
-
-      <SetPasswordForm />
+      <CompaniesSection />
     </main>
   );
 }
