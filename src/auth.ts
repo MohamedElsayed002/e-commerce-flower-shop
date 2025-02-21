@@ -1,30 +1,83 @@
-import { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import { JSON_HEADER } from "./lib/constants/api.constant";
+import { LoginResponse } from "./lib/types/auth";
+import { APIResponse } from "./lib/types/api";
+
 
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
   },
-
   providers: [
-    CredentialsProvider({
+    Credentials({
       name: "Credentials",
+
       credentials: {
         email: {},
         password: {},
       },
-      async authorize() {
-        return { id: "demo" };
+      authorize: async (credentials) => {
+        console.log("cred", credentials);
+
+        const baseUrl = process.env.API + "/auth/signin";
+        console.log("BASEEEE", baseUrl);
+
+        const response = await fetch(baseUrl, {
+          method: "POST",
+          cache: "no-store",
+          body: JSON.stringify({
+            email: credentials?.email,
+            password: credentials?.password,
+          }),
+          headers: {
+            ...JSON_HEADER,
+          },
+        });
+        console.log("RESPONSE", response);
+
+        const payload: APIResponse<LoginResponse> = await response.json();
+        console.log('payload',payload)
+        if (payload.message === "success") {
+          return {
+            token: payload.token,
+            ...payload.user,
+          };
+        }
+        throw new Error(payload.message);
+      
       },
     }),
   ],
-
   callbacks: {
-    jwt: ({ token }) => {
+    jwt: ({ token, user }) => {
+      if (user) {
+        token.firstName = user.firstName;
+        token.lastName = user.lastName;
+        token.email = user.email;
+        token.gender = user.gender;
+        token.phone = user.phone;
+        token.role = user.role;
+        token.addresses = user.addresses;
+        token.id = user.id;
+        token.token = user.token;
+        console.log("jwttoken", token);
+      }
+
       return token;
     },
-    session: ({ session }) => {
+    session: async ({ session, token }) => {
+      session.user.firstName = token.firstName;
+      session.user.lastName = token.lastName;
+      session.user.email = token.email;
+      session.user.gender = token.gender;
+      session.user.phone = token.phone;
+      session.user.role = token.role;
+      session.user.addresses = token.addresses;
+
       return session;
     },
   },
 };
+
+export default NextAuth(authOptions);

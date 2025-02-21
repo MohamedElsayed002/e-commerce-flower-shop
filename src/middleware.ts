@@ -1,55 +1,36 @@
-import { withAuth } from "next-auth/middleware";
-import createMiddleware from "next-intl/middleware";
-import { NextRequest } from "next/server";
-import { LOCALES, routing } from "./i18n/routing";
+import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-const authPages = ["/auth/login", "/auth/register"];
-const publicPages = ["/", ...authPages];
+// Define authentication-related routes
+// const AUTH_PAGES = ["/auth/login", "/auth/register"];
+const PRIVATE_PAGES = ["/card"];
 
-const handleI18nRouting = createMiddleware(routing);
+export default async function middleware(request: NextRequest) {
+  // Retrieve authentication token from the request
+  const token = await getToken({ req: request });
+  console.log("Middleware Token:", token);
 
-const authMiddleware = withAuth(
-  // Note that this callback is only invoked if
-  // the `authorized` callback has returned `true`
-  // and not for pages listed in `pages`.
-  function onSuccess(req) {
-    return handleI18nRouting(req);
-  },
-  {
-    callbacks: {
-      authorized: ({ token }) => token != null,
-    },
-    pages: {
-      signIn: "/auth/login",
-      error: "/auth/login",
-    },
+  // Get the current requested URL path
+  const urlPath = request.nextUrl.pathname;
+
+  // Redirect authenticated users away from auth popup
+  if (token && !PRIVATE_PAGES.includes(urlPath)) {
+    return NextResponse.rewrite(new URL("/card", request.nextUrl.origin));
   }
-);
 
-export default async function middleware(req: NextRequest) {
-  const publicPathnameRegex = RegExp(
-    `^(/(${LOCALES.join("|")}))?(${publicPages
-      .flatMap((p) => (p === "/" ? ["", "/"] : p))
-      .join("|")})/?$`,
-    "i"
-  );
-
-  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
-
-  return handleI18nRouting(req);
-
-  // If the user is navigating to a public page check if they are authenticated or not
-  if (isPublicPage) {
-    // Otherwise, let them navigate
-    return handleI18nRouting(req);
-  } else {
-    // If they are navigating to a private page, authenticate them first
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (authMiddleware as any)(req);
+  // Redirect unauthenticated users away from private pages
+  if (!token && PRIVATE_PAGES.includes(urlPath)) {
+    return NextResponse.rewrite(new URL("/", request.nextUrl.origin));
   }
+
+  // Continue request processing for other routes
+  return NextResponse.next();
 }
 
+//Apply matcher
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
 };

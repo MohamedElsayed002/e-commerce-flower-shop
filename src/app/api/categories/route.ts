@@ -6,9 +6,13 @@ export async function GET(request: Request) {
   // Parse the request URL to extract query parameters
   const { searchParams } = new URL(request.url);
   const categoryId = searchParams.get("category"); // Get the "category" query parameter
-
+  
   // Construct the base API URL for categories
-  const baseUrl = new URL(`${process.env.API_BASE_URL}/categories`);
+  const baseUrl = new URL(`${process.env.API}/categories`);
+  console.log('process.env.API',process.env.API)
+  if (!baseUrl) {
+    throw new Error("BASE_URL is not defined. Check your environment variables.");
+  }
 
   try {
     // Add the "category" query parameter to the API URL if provided

@@ -1,4 +1,11 @@
+import { User } from "./auth";
 declare type SearchParams = { [key: string]: string | string[] | undefined };
+
+declare type DatabaseFields = {
+  _id: string;
+  id: string;
+  createdAt: string;
+};
 
 declare type RouteProps = {
   params: { locale: "en" | "ar" };
