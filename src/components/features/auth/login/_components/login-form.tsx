@@ -31,7 +31,7 @@ export default function LoginForm({ closeModal }: { closeModal: () => void }) {
   return (
     <>
       {/* Toaster for Notifications */}
-      <Toaster position="top-center" className="text-center text-green-500" />
+      <Toaster position="top-center" />
 
       <div className="fixed inset-0 z-[10] bg-black bg-opacity-90 flex items-center justify-center transition-opacity">
         <div>
