@@ -23,7 +23,6 @@ export const authOptions: NextAuthOptions = {
       //Function to handle user authentication
       authorize: async (credentials) => {
         const baseUrl = process.env.API + "/auth/signin";
-        console.log("BASEEEE", baseUrl);
 
         const response = await fetch(baseUrl, {
           method: "POST",
