@@ -4,7 +4,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { LOCALES, routing } from "./i18n/routing";
 
-// Define routes
+// Define public pages,private pages
 const PUBLIC_PAGES = ["/"];
 const PRIVATE_PAGES = ["/cart"];
 
@@ -14,10 +14,12 @@ const handleI18nRouting = createMiddleware(routing);
 // Authentication Middleware
 const authMiddleware = withAuth((req) => handleI18nRouting(req), {
   callbacks: {
-    authorized: ({ token }) => !!token, // Check if user is authenticated
+    // Check if user is authenticated
+    authorized: ({ token }) => !!token,
   },
   pages: {
-    signIn: "/", // Redirect to homepage for authentication
+    // Redirect to homepage for authentication
+    signIn: "/",
   },
 });
 
@@ -32,8 +34,6 @@ export default async function middleware(req: NextRequest) {
     )})/?$`,
     "i",
   ).test(urlPath);
-
-  console.log("Middleware Token:", token, "Path:", urlPath);
 
   // Redirect authenticated users away from public pages
   if (token && PUBLIC_PAGES.includes(urlPath)) {

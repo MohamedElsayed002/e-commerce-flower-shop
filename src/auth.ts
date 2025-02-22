@@ -8,7 +8,7 @@ export const authOptions: NextAuthOptions = {
   // Custom sign-in page
   pages: {
     signIn: "/",
-    error:"/",
+    error: "/",
   },
 
   // Configure one or more authentication providers
@@ -22,8 +22,6 @@ export const authOptions: NextAuthOptions = {
 
       //Function to handle user authentication
       authorize: async (credentials) => {
-        console.log("cred", credentials);
-
         const baseUrl = process.env.API + "/auth/signin";
         console.log("BASEEEE", baseUrl);
 
@@ -37,7 +35,6 @@ export const authOptions: NextAuthOptions = {
             ...JSON_HEADER,
           },
         });
-        console.log("RESPONSE", response);
 
         const payload: APIResponse<LoginResponse> = await response.json();
         console.log("payload", payload);
@@ -63,7 +60,6 @@ export const authOptions: NextAuthOptions = {
         token.addresses = user.addresses;
         token.id = user.id;
         token.token = user.token;
-        console.log("jwttoken", token);
       }
 
       return token;
