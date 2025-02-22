@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 import ArrowRight from "@/components/common/arrow-long-right";
 
 export default function Subscribe() {
-  // Translation
+  // Translationc
   const t = useTranslations();
 
   // Form & Validation

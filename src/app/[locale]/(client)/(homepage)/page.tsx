@@ -15,7 +15,6 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
     <main className="w-full">
       {/* Categories */}
       <Categories categories={payload?.categories || []} />
-
       {/* Best Seller */}
       <BestSeller />
 
