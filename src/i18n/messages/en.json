@@ -78,5 +78,7 @@
   "landing-slider-title": "Choose the perfect <span>gifts</span> from us",
   "gift-box-text": "awesome gifts box <br></br> collectons",
   "best occasion gifts": "best occasion gifts <br></br> collectons",
-  "combo sets gift box": "combo sets gift box <br></br> up to 50% off"
+  "combo sets gift box": "combo sets gift box <br></br> up to 50% off",
+  "invalid-email-or-password": "Invalid email or password",
+  "login-is-successful": "Login is successful!"
 }

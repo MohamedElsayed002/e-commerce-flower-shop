@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoLockClosedOutline } from "react-icons/io5";
@@ -8,8 +8,10 @@ import { IoSearch } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
+import LoginForm from "../features/auth/login/_components/login-form";
 
 export default function Header() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // Translation
   const t = useTranslations();
 
@@ -47,6 +49,14 @@ export default function Header() {
           <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
           <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
           <LocaleToggle />
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className=" w-[52px] bg-[#F82BA9] text-white rounded-lg"
+          >
+            Login
+          </button>
+          {/* Login Modal */}
+          {isModalOpen && <LoginForm closeModal={() => setIsModalOpen(false)} />}
         </div>
       </div>
     </header>

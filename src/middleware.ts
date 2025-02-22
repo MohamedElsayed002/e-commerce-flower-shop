@@ -1,55 +1,60 @@
 import { withAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
-import { NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
+import { getToken } from "next-auth/jwt";
 import { LOCALES, routing } from "./i18n/routing";
 
-const authPages = ["/auth/login", "/auth/register"];
-const publicPages = ["/", ...authPages];
+// Define routes
+const PUBLIC_PAGES = ["/"];
+const PRIVATE_PAGES = ["/cart"];
 
+// Internationalization Middleware
 const handleI18nRouting = createMiddleware(routing);
 
-const authMiddleware = withAuth(
-  // Note that this callback is only invoked if
-  // the `authorized` callback has returned `true`
-  // and not for pages listed in `pages`.
-  function onSuccess(req) {
-    return handleI18nRouting(req);
+// Authentication Middleware
+const authMiddleware = withAuth((req) => handleI18nRouting(req), {
+  callbacks: {
+    authorized: ({ token }) => !!token, // Check if user is authenticated
   },
-  {
-    callbacks: {
-      authorized: ({ token }) => token != null,
-    },
-    pages: {
-      signIn: "/auth/login",
-      error: "/auth/login",
-    },
-  }
-);
+  pages: {
+    signIn: "/", // Redirect to homepage for authentication
+  },
+});
 
 export default async function middleware(req: NextRequest) {
-  const publicPathnameRegex = RegExp(
-    `^(/(${LOCALES.join("|")}))?(${publicPages
-      .flatMap((p) => (p === "/" ? ["", "/"] : p))
-      .join("|")})/?$`,
-    "i"
-  );
+  const token = await getToken({ req }); // Retrieve auth token
+  const urlPath = req.nextUrl.pathname;
 
-  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+  // Check if the requested path is public
+  const isPublicPage = new RegExp(
+    `^(/(${LOCALES.join("|")}))?(${PUBLIC_PAGES.flatMap((p) => (p === "/" ? ["", "/"] : p)).join(
+      "|",
+    )})/?$`,
+    "i",
+  ).test(urlPath);
 
-  return handleI18nRouting(req);
+  console.log("Middleware Token:", token, "Path:", urlPath);
 
-  // If the user is navigating to a public page check if they are authenticated or not
-  if (isPublicPage) {
-    // Otherwise, let them navigate
-    return handleI18nRouting(req);
-  } else {
-    // If they are navigating to a private page, authenticate them first
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (authMiddleware as any)(req);
+  // Redirect authenticated users away from public pages
+  if (token && PUBLIC_PAGES.includes(urlPath)) {
+    return NextResponse.redirect(new URL("/", req.nextUrl.origin));
   }
+
+  // Redirect unauthenticated users away from private pages
+  if (!token && PRIVATE_PAGES.includes(urlPath)) {
+    return NextResponse.redirect(new URL("/cart", req.nextUrl.origin));
+  }
+
+  // Apply i18n middleware for public pages
+  if (isPublicPage) {
+    return handleI18nRouting(req);
+  }
+
+  // Apply authentication middleware for private pages
+  return (authMiddleware as any)(req);
 }
 
+//Apply matchers
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|.*\\..*).*)"], // Exclude API and static files
 };

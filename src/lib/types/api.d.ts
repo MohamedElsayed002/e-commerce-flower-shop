@@ -1,3 +1,5 @@
+import { status } from "./../../../node_modules/next-auth/client/__tests__/helpers/mocks.d";
+
 declare type DatabaseFields = {
   _id: string;
   createdAt: string;
@@ -6,10 +8,16 @@ declare type DatabaseFields = {
 
 declare type SuccessfulResponse<T> = {
   message: "success";
-} & T;
+  token:"string";
+  user:User;
+  statusCode: number;
+  data: T;
+};
 
 declare type ErrorResponse = {
-  error: string;
+  message: "error" | "fail";
+  statusCode: number;
+  message: "string";
 };
 
 declare type APIResponse<T> = SuccessfulResponse<T> | ErrorResponse;
