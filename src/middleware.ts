@@ -23,7 +23,7 @@ const authMiddleware = withAuth(
       signIn: "/auth/login",
       error: "/auth/login",
     },
-  }
+  },
 );
 
 export default async function middleware(req: NextRequest) {
@@ -31,7 +31,7 @@ export default async function middleware(req: NextRequest) {
     `^(/(${LOCALES.join("|")}))?(${publicPages
       .flatMap((p) => (p === "/" ? ["", "/"] : p))
       .join("|")})/?$`,
-    "i"
+    "i",
   );
 
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);

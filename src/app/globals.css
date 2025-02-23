@@ -115,11 +115,26 @@ body {
 /*****************************************************************/
 
 .comments-section {
-  background-image: url('/assets/images/testimonials\ background.png');
+  background-image: url("/assets/images/testimonials\ background.png");
 }
 
 .avatar-frame {
-   background: conic-gradient(transparent 0deg 140deg, #F82BA9 140.2deg 300deg, transparent 300.2deg 360deg);
+  background: conic-gradient(
+    transparent 0deg 140deg,
+    #f82ba9 140.2deg 300deg,
+    transparent 300.2deg 360deg
+  );
 }
 
 /****************************************************************/
+
+/*---break---*/
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
