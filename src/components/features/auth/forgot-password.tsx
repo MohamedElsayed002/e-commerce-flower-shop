@@ -23,11 +23,16 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import useForgotPassword from "./_hooks/use-forgot-password-hook";
+import useResetPassword from "./_hooks/use-reset-password-hook";
+import useVerifyPassword from "./_hooks/use-verify-password-hook";
 
 export default function ForgotPassword() {
   const [emailDialog, setEmailDialog] = useState(true);
   const [codeDialog, setCodeDialog] = useState(false);
   const [confirmPasswordDialog, setConfirmPasswordDialog] = useState(false);
+
+  const { isPending, mutate: ForgotPasswordMutate, error } = useForgotPassword();
 
   const t = useTranslations();
 
@@ -76,6 +81,7 @@ export default function ForgotPassword() {
     setEmailDialog(false);
     setConfirmPasswordDialog(false);
     setCodeDialog(true);
+    ForgotPasswordMutate({ email: values.email });
   }
 
   function CodeSubmit(values: z.infer<typeof codeSchema>) {
@@ -184,7 +190,7 @@ export default function ForgotPassword() {
                       <FormControl>
                         <Input
                           className="w-full border"
-                          type='password'
+                          type="password"
                           placeholder={t("enter-your-password")}
                           {...field}
                         />
@@ -201,7 +207,7 @@ export default function ForgotPassword() {
                       <FormControl>
                         <Input
                           className="w-full border"
-                          type='password'
+                          type="password"
                           placeholder={t("confirm-password")}
                           {...field}
                         />
