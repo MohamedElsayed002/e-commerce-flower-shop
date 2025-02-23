@@ -78,5 +78,19 @@
   "landing-slider-title": "Choose the perfect <span>gifts</span> from us",
   "gift-box-text": "awesome gifts box <br></br> collectons",
   "best occasion gifts": "best occasion gifts <br></br> collectons",
-  "combo sets gift box": "combo sets gift box <br></br> up to 50% off"
+  "combo sets gift box": "combo sets gift box <br></br> up to 50% off",
+  "min-characters-is-6": "Min characters is 6",
+  "forgot-password": "Forgot Password?",
+  "enter-your-email-address": "Enter your email address",
+  "submit": "Submit",
+  "verify-code": "Verify Code",
+  "code": "Code",
+  "enter-code": "Enter Code",
+  "invalid-email": "Invalid Email",
+  "minimum-code-is-6-characters": "minimum code is 6 characters",
+  "minimum-characters-is-8": "Minimum characters is 8",
+  "enter-your-password": "Enter your password",
+  "confirm-password": "Confirm password",
+  "set-a-password": "Set a Password",
+  "passwords-do-not-match": "Passwords do not match"
 }

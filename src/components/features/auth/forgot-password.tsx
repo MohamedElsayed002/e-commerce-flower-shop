@@ -1,220 +1,226 @@
 "use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
-  DialogHeader,
-  DialogTrigger,
   DialogContent,
+  DialogDescription,
+  DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
+import { z } from "zod";
+import { useTranslations } from "next-intl";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 
-// Forgot Password Schema
-const forgotPasswordSchema = z.object({
-  email: z.string().email({ message: "Please enter valid emaill" }),
-});
+export default function ForgotPassword() {
+  const [emailDialog, setEmailDialog] = useState(true);
+  const [codeDialog, setCodeDialog] = useState(false);
+  const [confirmPasswordDialog, setConfirmPasswordDialog] = useState(false);
 
-// Verify code Schema
-const verifyCodeSchema = z.object({
-  code: z.string().min(6, { message: "Code must be at least 6 characters" }),
-});
+  const t = useTranslations();
 
-// create new password
-const createNewPasswordSchema = z
-  .object({
-    password: z.string().min(8, { message: "Password must be at least 8 characters" }),
-    confirmPassword: z.string().min(8, { message: "Password must be at least 8 characters" }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords must match",
-    path: ["confirmPassword"], // This ensures the error appears under confirmPassword
+  const formSchema = z.object({
+    email: z.string().email({ message: t("invalid-email") }),
   });
 
-export default function ForgotPassword() {
-  const [forgotPasswordDialog, setForgotPasswordDialog] = useState(true);
-  const [verifyCodeDialog, setVerifyCodeDialog] = useState(false);
-  const [createNewPassword, setCreateNewPassword] = useState(false);
+  const codeSchema = z.object({
+    code: z.string().min(6, { message: t("minimum-code-is-6-characters") }),
+  });
 
-  const forgotPasswordForm = useForm<z.infer<typeof forgotPasswordSchema>>({
-    resolver: zodResolver(forgotPasswordSchema),
+  const newPasswordSchema = z
+    .object({
+      password: z.string().min(8, { message: t("minimum-characters-is-8") }),
+      confirmPassword: z.string().min(8, { message: t("minimum-characters-is-8") }),
+    })
+    .refine((value) => value.password === value.confirmPassword, {
+      message: t("passwords-do-not-match"),
+      path: ["confirmPassword"],
+    });
+
+  const emailForm = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
     },
   });
 
-  const verifyCodeForm = useForm<z.infer<typeof verifyCodeSchema>>({
-    resolver: zodResolver(verifyCodeSchema),
+  const codeForm = useForm<z.infer<typeof codeSchema>>({
+    resolver: zodResolver(codeSchema),
     defaultValues: {
       code: "",
     },
   });
 
-  const createNewPasswordForm = useForm<z.infer<typeof createNewPasswordSchema>>({
-    resolver: zodResolver(createNewPasswordSchema),
+  const newPasswordForm = useForm<z.infer<typeof newPasswordSchema>>({
+    resolver: zodResolver(newPasswordSchema),
     defaultValues: {
       password: "",
       confirmPassword: "",
     },
   });
 
-  const forgotPasswordSubmit = (data: { email: string }) => {
-    console.log(data.email);
+  function EmailSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+    setEmailDialog(false);
+    setConfirmPasswordDialog(false);
+    setCodeDialog(true);
+  }
 
-    // Open Verify Code Dialog
-    setForgotPasswordDialog(false);
-    setCreateNewPassword(false);
-    setVerifyCodeDialog(true);
-  };
+  function CodeSubmit(values: z.infer<typeof codeSchema>) {
+    console.log(values);
+    setConfirmPasswordDialog(true);
+    setCodeDialog(false);
+    setEmailDialog(false);
+  }
 
-  const verifyCodeSubmit = (data: { code: string }) => {
-    console.log(data.code);
-    setCreateNewPassword(true);
-    setVerifyCodeDialog(false);
-  };
-
-  const createNewPasswordSubmit = (data: { password: string; confirmPassword: string }) => {
-    console.log(data.password);
-    console.log(data.confirmPassword);
-    // Close all dialogs and handle the password reset process
-    setCreateNewPassword(false);
-  };
+  function NewPasswordSubmit(values: z.infer<typeof newPasswordSchema>) {
+    console.log(values);
+  }
 
   return (
     <Dialog>
-      {/* Dialog trigger button  */}
       <DialogTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <Button
+          onClick={() => {
+            setEmailDialog(true);
+            setCodeDialog(false);
+            setConfirmPasswordDialog(false);
+          }}
+        >
+          {t("forgot-password")}
+        </Button>
       </DialogTrigger>
-
-      {/* Forgot Password Dialog */}
-      {forgotPasswordDialog && (
-        <>
-          <DialogContent className="rounded-none">
+      <DialogContent>
+        {emailDialog && (
+          <>
             <DialogHeader>
-              {/* Dialog Title */}
-              <DialogTitle className="font-normal text-3xl rtl:text-start">
-                Forgot your Password?
-              </DialogTitle>
+              <DialogTitle className="rtl:text-start">{t("forgot-password")}</DialogTitle>
             </DialogHeader>
-
-            <Form {...forgotPasswordForm}>
-              <form
-                onSubmit={forgotPasswordForm.handleSubmit(forgotPasswordSubmit)}
-                className="space-y-4"
-              >
+            <Form {...emailForm}>
+              <form onSubmit={emailForm.handleSubmit(EmailSubmit)} className="space-y-4">
                 <FormField
-                  control={forgotPasswordForm.control}
+                  control={emailForm.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input className="w-full" placeholder="Enter Email" {...field} required />
+                        <Input
+                          required
+                          className="w-full"
+                          placeholder={t("enter-your-email-address")}
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <Button
-                  className="w-full rounded-full bg-custom-rose-700 hover:bg-custom-rose-500"
+                  className="w-full bg-custom-rose-700 hover:bg-custom-rose-500"
                   type="submit"
                 >
-                  Submit
+                  {t("submit")}
                 </Button>
               </form>
             </Form>
-          </DialogContent>
-        </>
-      )}
-
-      {verifyCodeDialog && (
-        <>
-          <DialogContent className="rounded-none">
+          </>
+        )}
+        {codeDialog && (
+          <>
             <DialogHeader>
-              {/* Dialog Title */}
-              <DialogTitle className="font-normal text-3xl rtl:text-start">Verify Code</DialogTitle>
+              <DialogTitle className="rtl:text-start">{t("verify-code")}</DialogTitle>
             </DialogHeader>
-
-            <Form {...verifyCodeForm}>
-              <form onSubmit={verifyCodeForm.handleSubmit(verifyCodeSubmit)} className="space-y-4">
+            <Form {...codeForm}>
+              <form onSubmit={codeForm.handleSubmit(CodeSubmit)} className="space-y-4">
                 <FormField
-                  control={verifyCodeForm.control}
+                  control={codeForm.control}
                   name="code"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input className="w-full" placeholder="Enter Code" {...field} required />
+                        <Input className="w-full" placeholder={t("enter-code")} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <Button
-                  className="w-full rounded-full bg-custom-rose-700 hover:bg-custom-rose-500"
+                  className="w-full bg-custom-rose-700 hover:bg-custom-rose-500"
                   type="submit"
                 >
-                  Submit
+                  {t("submit")}
                 </Button>
               </form>
             </Form>
-          </DialogContent>
-        </>
-      )}
-
-      {createNewPassword && (
-        <>
-          <DialogContent className="rounded-none">
+          </>
+        )}
+        {confirmPasswordDialog && (
+          <>
             <DialogHeader>
-              {/* Dialog Title */}
-              <DialogTitle className="font-normal text-3xl rtl:text-start">Create new Password</DialogTitle>
+              <DialogTitle className="rtl:text-start">{t("set-a-password")}</DialogTitle>
             </DialogHeader>
-
-            <Form {...createNewPasswordForm}>
+            <Form {...newPasswordForm}>
               <form
-                onSubmit={createNewPasswordForm.handleSubmit(createNewPasswordSubmit)}
+                onSubmit={newPasswordForm.handleSubmit(NewPasswordSubmit)}
                 className="space-y-4"
               >
                 <FormField
-                  control={createNewPasswordForm.control}
+                  control={newPasswordForm.control}
                   name="password"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input type='password' className="w-full" placeholder="new password" {...field} required />
+                        <Input
+                          className="w-full border"
+                          type='password'
+                          placeholder={t("enter-your-password")}
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <FormField
-                  control={createNewPasswordForm.control}
+                  control={newPasswordForm.control}
                   name="confirmPassword"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <Input type="password" className="w-full" placeholder="confirm new password" {...field} required />
+                        <Input
+                          className="w-full border"
+                          type='password'
+                          placeholder={t("confirm-password")}
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 <Button
-                  className="w-full rounded-full bg-custom-rose-700 hover:bg-custom-rose-500"
+                  className="w-full bg-custom-rose-700 hover:bg-custom-rose-500"
                   type="submit"
                 >
-                  Submit
+                  {t("submit")}
                 </Button>
               </form>
             </Form>
-          </DialogContent>
-        </>
-      )}
+          </>
+        )}
+      </DialogContent>
     </Dialog>
   );
 }

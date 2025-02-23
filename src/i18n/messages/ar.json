@@ -14,7 +14,7 @@
   "email-is-required": "البريد الإلكتروني مطلوب",
   "subscribe-email-invalid": "يرجى إدخال بريد إلكتروني صحيح",
   "enter-your-email": "ادخل بريدك الالكتروني",
-   "please-enter-your-email": "يرجى ادخال بريدك الالكتروني",
+  "please-enter-your-email": "يرجى ادخال بريدك الالكتروني",
   "our-gallery": "معرضنا",
   "let-and-39-s-check-our-photo-gallery": "دعنا نستعرض معرض الصور الخاص بنا",
   "trusted-by-over-less-than-span-classname-text-rose-900-greater-than-4-5k-less-than-span-greater-than-companies": "موثوق بنا من قِبَل أكثر من 4500 شركة",
@@ -75,5 +75,18 @@
   "landing-slider-title": "اختر <span>الهدايا</span> المثالية منّا",
   "gift-box-text": "صندوق هدايا رائع مجموعات",
   "best occasion gifts": "أفضل هدايا المناسبات مجموعات",
-  "combo sets gift box": "مجموعات هدايا كومبو خصم حتي 50%"
+  "combo sets gift box": "مجموعات هدايا كومبو خصم حتي 50%",
+  "min-characters-is-6": "شخصيات دقيقة هي 6",
+  "forgot-password": "هل نسيت كلمة السر؟",
+  "enter-your-email-address": "أدخل عنوان بريدك الإلكتروني",
+  "submit": "يُقدِّم",
+  "verify-code": "تحقق من الكود",
+  "enter-code": "أدخل الرمز",
+  "invalid-email": "بريد إلكتروني غير صالح",
+  "minimum-code-is-6-characters": "الحد الأدنى من الكود هو 6 أحرف",
+  "minimum-characters-is-8": "الحد الأدنى من الأحرف هو 8",
+  "enter-your-password": "أدخل كلمة المرور الخاصة بك",
+  "confirm-password": "تأكيد كلمة المرور",
+  "set-a-password": "اضبط كلمة مرور",
+  "passwords-do-not-match": "كلمات المرور لا تتطابق"
 }
