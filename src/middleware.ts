@@ -35,14 +35,14 @@ export default async function middleware(req: NextRequest) {
     "i",
   ).test(urlPath);
 
-  // Redirect authenticated users away from public pages
-  if (token && PUBLIC_PAGES.includes(urlPath)) {
+  // Redirect authenticated users to public pages
+  if (token && PRIVATE_PAGES.includes(urlPath)) {
     return NextResponse.redirect(new URL("/", req.nextUrl.origin));
   }
 
   // Redirect unauthenticated users away from private pages
-  if (!token && PRIVATE_PAGES.includes(urlPath)) {
-    return NextResponse.redirect(new URL("/cart", req.nextUrl.origin));
+  if (!token &&PRIVATE_PAGES .includes(urlPath)) {
+    return NextResponse.redirect(new URL("/", req.nextUrl.origin));
   }
 
   // Apply i18n middleware for public pages
@@ -58,3 +58,4 @@ export default async function middleware(req: NextRequest) {
 export const config = {
   matcher: ["/((?!api|_next|.*\\..*).*)"], // Exclude API and static files
 };
+
