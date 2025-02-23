@@ -3,7 +3,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Toaster } from "sonner";
 import Link from "next/link";
-import useLogin from "../../../../hooks/use-login-hook";
+import useLogin from "../../../../hooks/auth/use-login";
 
 //Types declration
 type Inputs = {
