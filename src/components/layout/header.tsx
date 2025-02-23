@@ -8,7 +8,7 @@ import { IoSearch } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
-import LoginForm from "../features/auth/login/_components/login-form";
+import LoginForm from "../features/auth/components/login-form";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);

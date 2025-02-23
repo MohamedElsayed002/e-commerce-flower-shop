@@ -3,7 +3,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Toaster } from "sonner";
 import Link from "next/link";
-import useLogin from "../_hooks/use-login-hook";
+import useLogin from "../../../../hooks/use-login-hook";
 
 //Types declration
 type Inputs = {
@@ -19,7 +19,7 @@ export default function LoginForm({ closeModal }: { closeModal: () => void }) {
     formState: { errors },
   } = useForm<Inputs>();
 
-  //Mutation 
+  //Mutation
   const { isPending, error, login } = useLogin();
 
   //Functions
