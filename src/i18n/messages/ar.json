@@ -86,5 +86,10 @@
   "password-uppercase-required": "كلمة المرور الكبيرة المطلوبة",
   "password-number-required": "رقم كلمة المرور المطلوبة",
   "password-min-length": "طول كلمة المرور",
-  "passwords-must-match": "يجب أن تتطابق كلمات المرور"
+  "passwords-must-match": "يجب أن تتطابق كلمات المرور",
+  "setting-new-password": "تعيين كلمة مرور جديدة ...",
+  "set-password": "اضبط كلمة المرور",
+  "email-required": "البريد الإلكتروني المطلوب",
+  "invalid-email-format": "تنسيق بريد إلكتروني غير صالح",
+  "enter-e-mail": "أدخل البريد الإلكتروني"
 }
