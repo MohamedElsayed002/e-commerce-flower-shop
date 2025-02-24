@@ -35,6 +35,9 @@ export default function AuthDialog (){
   return (
     <Dialog onOpenChange={(open)=> setOpen(open)} defaultOpen={open}>
 
+      {/* DialogTitle */}
+      <DialogTitle ></DialogTitle>
+      
       {/* DialogTrigger */}
       <DialogTrigger>
         <Button className="rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800">Login</Button>
