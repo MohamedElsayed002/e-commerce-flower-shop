@@ -6,6 +6,7 @@ import PopularItems from "./_components/popular-items";
 import GallerySection from "./_components/gallery";
 import TestimonialSection from "./_components/testimonials";
 import CompaniesSection from "./_components/partner-companies";
+import RegisterForm from "@/components/features/auth/register-form";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   // Variables
@@ -33,6 +34,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
       {/* Companies */}
       <CompaniesSection />
+      <RegisterForm />
     </main>
   );
 }
