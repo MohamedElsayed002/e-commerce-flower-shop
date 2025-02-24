@@ -92,5 +92,6 @@
   "enter-your-password": "Enter your password",
   "confirm-password": "Confirm password",
   "set-a-password": "Set a Password",
-  "passwords-do-not-match": "Passwords do not match"
+  "passwords-do-not-match": "Passwords do not match",
+  "minimum-password-6-characters": "minimum password 6 characters"
 }

@@ -15,15 +15,13 @@ export default function useForgotPassword() {
       return response;
     },
     onSuccess: (data) => {
-      console.log(data.data.info);
-      toast.success("Code send successfully");
+      toast.success(data.data.info);
     },
-    onError: (error) => {
+    onError: (error: any) => {
       console.error(error);
-      toast.error("Failed to send code");
+      toast.error((error as any)?.response?.data.error || t("error"));
     },
   });
-
   return {
     isPending,
     error,
