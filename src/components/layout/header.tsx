@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoLockClosedOutline } from "react-icons/io5";
@@ -8,10 +8,14 @@ import { IoSearch } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
+import { Button } from "../ui/button";
+import AuthDialog from "../features/auth/auth-dialog";
 
 export default function Header() {
   // Translation
   const t = useTranslations();
+
+  
 
   return (
     <header>
@@ -41,6 +45,8 @@ export default function Header() {
           </Link>
         </div>
 
+       
+
         {/* Icons */}
         <div className="flex gap-5">
           <IoSearch className="w-5 h-5 text-custom-rose-900" />
@@ -48,6 +54,9 @@ export default function Header() {
           <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
           <LocaleToggle />
         </div>
+
+        <AuthDialog/>
+
       </div>
     </header>
   );

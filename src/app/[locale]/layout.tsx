@@ -27,7 +27,9 @@ export default function LocaleLayout({ params: { locale }, children }: LayoutPro
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={cn(inter.variable, roboto.variable, inter.className, "antialiased")}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          </Providers>
       </body>
     </html>
   );

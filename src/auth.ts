@@ -1,7 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions: NextAuthOptions = {
+export const options: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
   },
@@ -13,18 +13,32 @@ export const authOptions: NextAuthOptions = {
         email: {},
         password: {},
       },
-      async authorize() {
-        return { id: "demo" };
+      async authorize(credentials) {
+        const response = await fetch(`#`, {
+          method: "POST",
+          body: JSON.stringify({
+            email: credentials?.email,
+            password: credentials?.password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
       },
     }),
   ],
 
   callbacks: {
-    jwt: ({ token }) => {
+    jwt: ({ token, user }) => {
+      if (user) {
+      }
+
       return token;
     },
-    session: ({ session }) => {
+    session: ({ session, token }) => {
       return session;
     },
   },
 };
+
+
