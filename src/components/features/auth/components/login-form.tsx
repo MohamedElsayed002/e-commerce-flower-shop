@@ -5,24 +5,23 @@ import { Toaster } from "sonner";
 import Link from "next/link";
 import useLogin from "../../../../hooks/auth/use-login";
 
-//Types declration
 type Inputs = {
   email: string;
   password: string;
 };
 
 export default function LoginForm({ closeModal }: { closeModal: () => void }) {
-  //React hook form
+   // Mutation
+   const { isPending, error, login } = useLogin();
+
+  // Form
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
 
-  //Mutation
-  const { isPending, error, login } = useLogin();
-
-  //Functions
+  // Function
   const onSubmit: SubmitHandler<Inputs> = (values) => {
     login(values);
   };

@@ -4,10 +4,10 @@ import { toast } from "sonner";
 import { useTranslations } from "use-intl";
 
 export default function useLogin() {
-  //Translation
+  // Translation
   const t = useTranslations();
 
-  //Mutation
+  // Mutation
   const { isPending, error, mutate } = useMutation({
     mutationFn: async ({ email, password }: { email: string; password: string }) => {
       const response = await signIn("credentials", {
