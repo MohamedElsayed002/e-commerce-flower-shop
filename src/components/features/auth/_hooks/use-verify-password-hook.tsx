@@ -3,24 +3,34 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import axios from "axios";
 
+
+
 export default function useVerifyPassword() {
   const t = useTranslations();
 
   const { error, isPending, mutate } = useMutation({
     mutationFn: async (data: { code: string }) => {
       console.log(data.code);
-      const response = await axios.post(
+
+      const response = await axios.post<VerifyPasswordResponse>(
         "https://flower.elevateegy.com/api/v1/auth/verifyResetCode",
-        { resetCode: data.code },
+        { resetCode: data.code }
       );
-      return response;
+
+      return response.data; // ✅ Extract data from response
     },
     onSuccess: (data) => {
-      toast.success(data.data.status);
+      if ("status" in data && data.status === "Success") {
+        toast.success(t("verification-success")); //  Display a success message
+      } else if ("error" in data) {
+        toast.error(data.error); //  Display API error message
+      } else {
+        toast.error(t("error")); //  Handle unexpected cases
+      }
     },
-    onError: (error) => {
+    onError: (error: any) => {
       console.log(error);
-      toast.error((error as any)?.response?.data.error || t("error"));
+      toast.error(error?.response?.data?.error || t("error")); // Handle API errors
     },
   });
 

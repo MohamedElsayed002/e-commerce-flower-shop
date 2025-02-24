@@ -88,5 +88,6 @@
   "enter-your-password": "أدخل كلمة المرور الخاصة بك",
   "confirm-password": "تأكيد كلمة المرور",
   "set-a-password": "اضبط كلمة مرور",
-  "passwords-do-not-match": "كلمات المرور لا تتطابق"
+  "passwords-do-not-match": "كلمات المرور لا تتطابق",
+  "verification-success": "نجاح التحقق"
 }

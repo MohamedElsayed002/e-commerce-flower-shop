@@ -3,25 +3,31 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import axios from "axios";
 
+
+
 export default function useForgotPassword() {
   const t = useTranslations();
 
   const { isPending, error, mutate } = useMutation({
-    mutationFn: async (data: { email: string }) => {
-      const response = await axios.post(
+    mutationFn: async (values: { email: string }) => {
+      const response = await axios.post<ForgotPasswordResponse>(
         `https://flower.elevateegy.com/api/v1/auth/forgotPassword`,
-        { email: data.email },
+        { email: values.email },
       );
-      return response;
+      return response.data; // ✅ Extract data from response
     },
     onSuccess: (data) => {
-      toast.success(data.data.info);
+      if ("message" in data && data.message === "success") {
+        toast.success(data.info); // ✅ Display success message
+      } else {
+        toast.error(t("error")); // Handle unexpected cases
+      }
     },
     onError: (error: any) => {
-      console.error(error);
-      toast.error((error as any)?.response?.data.error || t("error"));
+      toast.error(error?.response?.data?.error || t("error")); // ✅ Handle API error
     },
   });
+
   return {
     isPending,
     error,
