@@ -5,13 +5,7 @@ import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 // import { Toaster } from "@/components/ui/sonner";
 
@@ -22,17 +16,18 @@ export default function SetPasswordForm() {
   // Form & Validation
   const Schema = z
     .object({
+      email: z.string({ required_error: t("email-required") }).email(t("invalid-email-format")),
       password: z
-        .string({ required_error: t('password-required') })
-        .min(8, t('password-min-length'))
-        .regex(/[0-9]/, t('password-number-required'))
-        .regex(/[a-z]/, t('password-lowercase-required'))
-        .regex(/[A-Z]/, t('password-uppercase-required')),
+        .string({ required_error: t("password-required") })
+        .min(8, t("password-min-length"))
+        .regex(/[0-9]/, t("password-number-required"))
+        .regex(/[a-z]/, t("password-lowercase-required"))
+        .regex(/[A-Z]/, t("password-uppercase-required")),
 
-      confirmPassword: z.string({ required_error: t('confirm-password-required') }),
+      confirmPassword: z.string({ required_error: t("confirm-password-required") }),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      message: t('passwords-must-match'),
+      message: t("passwords-must-match"),
       path: ["confirmPassword"],
     });
 
@@ -54,6 +49,28 @@ export default function SetPasswordForm() {
       {/* Form wrapper */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email field */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    type="email"
+                    {...field}
+                    placeholder={t('enter-e-mail')}
+                    className="w-[528px] h-[52px] rounded-[20px] p-2"
+                    style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
+                  />
+                </FormControl>
+                {/* Display validation errors */}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          
           {/* Password field */}
           <FormField
             control={form.control}
@@ -64,7 +81,7 @@ export default function SetPasswordForm() {
                   <Input
                     type="password"
                     {...field}
-                    placeholder={t('create-password')}
+                    placeholder={t("create-password")}
                     className="w-[528px] h-[52px] rounded-[20px] p-2"
                     style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                   />
@@ -85,7 +102,7 @@ export default function SetPasswordForm() {
                   <Input
                     type="password"
                     {...field}
-                    placeholder={t('re-enter-password')}
+                    placeholder={t("re-enter-password")}
                     className="w-[528px] h-[52px] rounded-[20px] p-2"
                     style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                   />
@@ -100,7 +117,7 @@ export default function SetPasswordForm() {
             type="submit"
             className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
           >
-            {t('set-a-password')}
+            {t("set-a-password")}
           </Button>
         </form>
       </Form>

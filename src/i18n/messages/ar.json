@@ -81,10 +81,13 @@
   "create-password": "إنشاء كلمة المرور",
   "re-enter-password": "إعادة إدخال كلمة المرور",
   "password-required": "كلمة المرور المطلوبة",
-  "confirm-password-required": "تأكيد كلمة المرور المطلوبة",
+  "password-number-required": "رقم كلمة المرور المطلوبة",
   "password-lowercase-required": "كلمة مرور صغيرة مطلوبة",
   "password-uppercase-required": "كلمة المرور الكبيرة المطلوبة",
-  "password-number-required": "رقم كلمة المرور المطلوبة",
+  "confirm-password-required": "تأكيد كلمة المرور المطلوبة",
+  "passwords-must-match": "يجب أن تتطابق كلمات المرور",
   "password-min-length": "طول كلمة المرور",
-  "passwords-must-match": "يجب أن تتطابق كلمات المرور"
+  "email-required": "البريد الإلكتروني المطلوب",
+  "invalid-email-format": "تنسيق بريد إلكتروني غير صالح",
+  "enter-e-mail": "أدخل البريد الإلكتروني"
 }
