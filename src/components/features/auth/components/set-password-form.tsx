@@ -69,7 +69,6 @@ export default function SetPasswordForm() {
               </FormItem>
             )}
           />
-
           
           {/* Password field */}
           <FormField
@@ -112,6 +111,7 @@ export default function SetPasswordForm() {
               </FormItem>
             )}
           />
+          
           {/* Submit button */}
           <Button
             type="submit"
