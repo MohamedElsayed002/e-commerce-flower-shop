@@ -23,13 +23,13 @@ export default function RegisterForm() {
   // Form & Validation
   const Schema = z
     .object({
-      first_name: z
+      firstName: z
         .string({ required_error: t("firstname-required") })
         .min(2, t("first-name-must-be-at-least-2-characters")),
-      last_name: z
+      lastName: z
         .string({ required_error: t("lastname-required") })
         .min(2, t("last-name-must-be-at-least-2-characters")),
-      phone_number: z
+      phone: z
         .string({ required_error: t("phone-number-required") })
         .regex(
           /^\+?\d{1,3}?[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
@@ -43,26 +43,26 @@ export default function RegisterForm() {
         .regex(/[A-Z]/, t("password-must-contain-at-least-one-uppercase-letter"))
         .regex(/[a-z]/, t("password-must-contain-at-least-one-lowercase-letter"))
         .regex(/[0-9]/, t("password-must-contain-at-least-one-number")),
-      confirm_password: z
+      rePassword: z
         .string({ required_error: t("password-confirm-required") })
         .min(1, t("password-confirm-required")),
     })
-    .refine((values) => values.password === values.confirm_password, {
+    .refine((values) => values.password === values.rePassword, {
       message: t("password-confirm-mismatch"),
-      path: ["confirm_password"],
+      path: ["rePassword"],
     });
   type Inputs = z.infer<typeof Schema>;
 
   const form = useForm<Inputs>({
     resolver: zodResolver(Schema),
     defaultValues: {
-      first_name: "",
-      last_name: "",
-      phone_number: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
       email: "",
       gender: "",
       password: "",
-      confirm_password: "",
+      rePassword: "",
     },
   });
 
@@ -78,7 +78,7 @@ export default function RegisterForm() {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {/* First name */}
             <FormField
-              name="first_name"
+              name="firstName"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
@@ -101,7 +101,7 @@ export default function RegisterForm() {
 
             {/* Last name */}
             <FormField
-              name="last_name"
+              name="lastName"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
@@ -124,7 +124,7 @@ export default function RegisterForm() {
 
             {/* Phone number */}
             <FormField
-              name="phone_number"
+              name="phone"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
@@ -223,7 +223,7 @@ export default function RegisterForm() {
 
             {/* Confirm password */}
             <FormField
-              name="confirm_password"
+              name="rePassword"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
