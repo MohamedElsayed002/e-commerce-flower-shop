@@ -1,19 +1,11 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -23,19 +15,18 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import useForgotPassword from "./_hooks/use-forgot-password-hook";
-import useResetPassword from "./_hooks/use-reset-password-hook";
-import useVerifyPassword from "./_hooks/use-verify-password-hook";
 
 export default function ForgotPassword() {
+  // Translation
+  const t = useTranslations();
+
+  // State
+  const [open, setOpen] = useState(false); // State to control dialog visibility
   const [emailDialog, setEmailDialog] = useState(true);
   const [codeDialog, setCodeDialog] = useState(false);
   const [confirmPasswordDialog, setConfirmPasswordDialog] = useState(false);
 
-  const { isPending, mutate: ForgotPasswordMutate, error } = useForgotPassword();
-
-  const t = useTranslations();
-
+  // Form and Validation
   const formSchema = z.object({
     email: z.string().email({ message: t("invalid-email") }),
   });
@@ -44,15 +35,17 @@ export default function ForgotPassword() {
     code: z.string().min(6, { message: t("minimum-code-is-6-characters") }),
   });
 
-  const newPasswordSchema = z
-    .object({
-      password: z.string().min(8, { message: t("minimum-characters-is-8") }),
-      confirmPassword: z.string().min(8, { message: t("minimum-characters-is-8") }),
-    })
-    .refine((value) => value.password === value.confirmPassword, {
-      message: t("passwords-do-not-match"),
-      path: ["confirmPassword"],
-    });
+  const newPasswordSchema = z.object({
+    email: z.string().email({ message: t("invalid-email") }),
+    newPassword: z
+      .string()
+      .min(8, { message: t("minimum-characters-is-8") })
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/, {
+        message: t(
+          "minimum-password-characters-8-contains-lowercase-and-uppercase-and-numbers-and-one-symbol-atleast",
+        ),
+      }),
+  });
 
   const emailForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -71,24 +64,18 @@ export default function ForgotPassword() {
   const newPasswordForm = useForm<z.infer<typeof newPasswordSchema>>({
     resolver: zodResolver(newPasswordSchema),
     defaultValues: {
-      password: "",
-      confirmPassword: "",
+      email: "",
+      newPassword: "",
     },
   });
 
+  // Functions
   function EmailSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    setEmailDialog(false);
-    setConfirmPasswordDialog(false);
-    setCodeDialog(true);
-    ForgotPasswordMutate({ email: values.email });
   }
 
   function CodeSubmit(values: z.infer<typeof codeSchema>) {
     console.log(values);
-    setConfirmPasswordDialog(true);
-    setCodeDialog(false);
-    setEmailDialog(false);
   }
 
   function NewPasswordSubmit(values: z.infer<typeof newPasswordSchema>) {
@@ -96,10 +83,11 @@ export default function ForgotPassword() {
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
           onClick={() => {
+            setOpen(true); // Open dialog when button is clicked
             setEmailDialog(true);
             setCodeDialog(false);
             setConfirmPasswordDialog(false);
@@ -109,9 +97,11 @@ export default function ForgotPassword() {
         </Button>
       </DialogTrigger>
       <DialogContent>
+        {/* First Dialog Forgot Password */}
         {emailDialog && (
           <>
             <DialogHeader>
+              {/* Dialog Title */}
               <DialogTitle className="rtl:text-start">{t("forgot-password")}</DialogTitle>
             </DialogHeader>
             <Form {...emailForm}>
@@ -122,6 +112,7 @@ export default function ForgotPassword() {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
+                        {/* Email Input */}
                         <Input
                           required
                           className="w-full"
@@ -129,10 +120,14 @@ export default function ForgotPassword() {
                           {...field}
                         />
                       </FormControl>
+
+                      {/* Message */}
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
+                {/* Submit Button */}
                 <Button
                   className="w-full bg-custom-rose-700 hover:bg-custom-rose-500"
                   type="submit"
@@ -143,11 +138,14 @@ export default function ForgotPassword() {
             </Form>
           </>
         )}
+        {/* Second Dialog Code Verification */}
         {codeDialog && (
           <>
             <DialogHeader>
+              {/* Dialog Header */}
               <DialogTitle className="rtl:text-start">{t("verify-code")}</DialogTitle>
             </DialogHeader>
+
             <Form {...codeForm}>
               <form onSubmit={codeForm.handleSubmit(CodeSubmit)} className="space-y-4">
                 <FormField
@@ -156,12 +154,17 @@ export default function ForgotPassword() {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
+                        {/* Code Input */}
                         <Input className="w-full" placeholder={t("enter-code")} {...field} />
                       </FormControl>
+
+                      {/* Message */}
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
+                {/* Submit Button */}
                 <Button
                   className="w-full bg-custom-rose-700 hover:bg-custom-rose-500"
                   type="submit"
@@ -172,9 +175,12 @@ export default function ForgotPassword() {
             </Form>
           </>
         )}
+
+        {/* // Third Dialog change password */}
         {confirmPasswordDialog && (
           <>
             <DialogHeader>
+              {/* Dialog Header */}
               <DialogTitle className="rtl:text-start">{t("set-a-password")}</DialogTitle>
             </DialogHeader>
             <Form {...newPasswordForm}>
@@ -184,27 +190,31 @@ export default function ForgotPassword() {
               >
                 <FormField
                   control={newPasswordForm.control}
-                  name="password"
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
+                        {/* Email Input */}
                         <Input
                           className="w-full border"
-                          type="password"
-                          placeholder={t("enter-your-password")}
+                          placeholder={t("enter-your-email-address")}
                           {...field}
                         />
                       </FormControl>
+
+                      {/* Message */}
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   control={newPasswordForm.control}
-                  name="confirmPassword"
+                  name="newPassword"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
+                        {/* New Password Input */}
                         <Input
                           className="w-full border"
                           type="password"
@@ -212,10 +222,14 @@ export default function ForgotPassword() {
                           {...field}
                         />
                       </FormControl>
+
+                      {/* Message */}
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
+                {/* Submit Button */}
                 <Button
                   className="w-full bg-custom-rose-700 hover:bg-custom-rose-500"
                   type="submit"
