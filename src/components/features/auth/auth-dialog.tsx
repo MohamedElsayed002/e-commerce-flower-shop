@@ -42,6 +42,9 @@ export default function AuthDialog() {
       {/* DialogTitle */}
       <DialogTitle></DialogTitle>
 
+      {/* DialogTitle */}
+      <DialogTitle ></DialogTitle>
+      
       {/* DialogTrigger */}
       <DialogTrigger>
         <Button className="rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800">Login</Button>
