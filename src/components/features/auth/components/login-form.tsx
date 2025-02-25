@@ -2,7 +2,7 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Toaster } from "sonner";
-// import Link from "next/link";
+import Link from "next/link";
 import useLogin from "../../../../hooks/auth/use-login";
 
 type Inputs = {
@@ -44,30 +44,30 @@ export default function LoginForm({ closeModal }: { closeModal: () => void }) {
           <div className="flex flex-col gap-[24px]">
             {/* Email Field */}
             <div>
-              {/* <input
+              <input
                   type="email"
                   {...register("email", { required: "Email is required" })}
                   className="w-[528px] h-[52px] text-[#797979] text-[16px] p-[8px] font-normal border rounded-[20px] shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]"
                   placeholder="Email"
-                /> */}
+                />
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
             </div>
 
             {/* Password Field */}
             <div>
-              {/* <input
+               <input
                   type="password"
                   {...register("password", { required: "Password is required" })}
                   className="w-[528px] h-[52px] p-[8px] text-[#797979] text-[16px] font-normal border rounded-[20px] shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]"
                   placeholder="Password"
-                /> */}
+                /> 
               {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
             </div>
           </div>
 
-          {/* <div className="flex flex-col gap-8"> */}
+          <div className="flex flex-col gap-8">
           {/* Remember Me & Forgot Password Section */}
-          {/* <div className="flex justify-between p-2">
+          <div className="flex justify-between p-2">
                 <div className="flex items-center gap-[10px]">
                   <input
                     id="remind-me"
@@ -81,16 +81,16 @@ export default function LoginForm({ closeModal }: { closeModal: () => void }) {
                 <Link href="#" className="text-[#F82BA9] underline font-semibold text-[14px]">
                   Forgot Password
                 </Link>
-              </div> */}
+              </div>
 
           {/* Sign Up Section */}
-          {/* <p className="text-center text-black font-normal">
+          <p className="text-center text-black font-normal">
                 No account?
                 <Link href="#" className="text-[#F82BA9] underline font-semibold text-[14px]">
                   {" "}
                   Create one here
                 </Link>
-              </p> */}
+              </p>
 
           {/* Error Message */}
           {error && (
@@ -98,22 +98,22 @@ export default function LoginForm({ closeModal }: { closeModal: () => void }) {
           )}
 
           {/* Submit Button */}
-          {/* <button
+          <button
                 type="submit"
                 className="w-[528px] h-[50px] bg-[#F82BA9] text-white p-4 font-medium text-[16px] rounded-[30px]"
                 disabled={isPending}
               >
                 {isPending ? "Logging in..." : "Login"}
-              </button> */}
+              </button>
 
           {/* Close Button */}
-          {/* <button
+          <button
                 onClick={closeModal}
                 className="mt-4 text-gray-500 hover:text-black block mx-auto"
               >
                 Close
-              </button> */}
-          {/* </div> */}
+              </button>
+          </div>
         </form>
         {/* </div> */}
       </div>

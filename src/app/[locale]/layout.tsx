@@ -6,6 +6,7 @@ import { Inter, Roboto } from "next/font/google";
 import { cn } from "@/lib/utils/cn";
 import { LayoutProps } from "@/lib/types/common";
 import { Toaster } from "sonner";
+import NextAuthProvider from "@/components/provider/components/next-auth-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,9 +31,11 @@ export default function LocaleLayout({ params: { locale }, children }: LayoutPro
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={cn(inter.variable, roboto.variable, inter.className, "antialiased")}>
         <Providers>
+          <NextAuthProvider>
           {children}
           {/* Toaster */}
           {/* <Toaster/> */}
+          </NextAuthProvider>
           </Providers>
       </body>
     </html>
