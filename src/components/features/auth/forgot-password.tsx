@@ -45,9 +45,14 @@ export default function ForgotPassword() {
 
   const newPasswordSchema = z.object({
     email: z.string().email({ message: t("invalid-email") }),
-    newPassword: z.string().min(6, { message: t("minimum-password-6-characters") }),
+    newPassword: z.string()
+      .min(8, { message: t("minimum-characters-is-8") })
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/, { 
+        message: t("minimum-password-characters-8-contains-lowercase-and-uppercase-and-numbers-and-one-symbol-atleast")
+      }) 
   });
-
+  
+  
   const emailForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
