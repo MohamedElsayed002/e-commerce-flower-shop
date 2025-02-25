@@ -266,6 +266,7 @@ export default function RegisterForm() {
 
             {/* Submit */}
             <button
+              disabled={registerLoading}
               type="submit"
               className="w-[528px] h-[50px] bg-custom-rose-900 text-white rounded-[30px]"
             >
