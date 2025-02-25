@@ -3,34 +3,28 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
 
-
-export default function VerifyOtpForm({ onStateChange}: { onStateChange: (state: AuthFormState) => void;}){
-  
+export default function VerifyOtpForm({
+  onStateChange,
+}: {
+  onStateChange: (state: AuthFormState) => void;
+}) {
   // Translations
   const t = useTranslations();
 
-   // OTP validation schema
+  // OTP validation schema
   const verifyCodeSchema = z.object({
-    code: z
-      .string({ required_error: t("code-reqired") })
-      .min(6, t("code-reqired")),
+    code: z.string({ required_error: t("code-reqired") }).min(6, t("code-reqired")),
   });
 
-// Type Zod 
+  // Type Zod
   type VerifyCode = z.infer<typeof verifyCodeSchema>;
 
-   // Handle OTP submission
+  // Handle OTP submission
   const form = useForm<VerifyCode>({
     resolver: zodResolver(verifyCodeSchema),
     defaultValues: { code: "" },
@@ -48,15 +42,13 @@ export default function VerifyOtpForm({ onStateChange}: { onStateChange: (state:
 
   return (
     <div className="p-6 bg-white rounded-md">
-
-    {/* Title */}
+      {/* Title */}
       <h2 className="text-left mb-4 font-normal text-2xl rtl:text-right">
         {t("verify-code-title")}
       </h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-
-            {/* OTP Input Field */}
+          {/* OTP Input Field */}
           <FormField
             control={form.control}
             name="code"
@@ -91,7 +83,7 @@ export default function VerifyOtpForm({ onStateChange}: { onStateChange: (state:
             </Button>
           </div>
 
-            {/* Button Submit */}
+          {/* Button Submit */}
           <Button
             type="submit"
             className="w-full bg-custom-rose-900 rounded-2xl hover:bg-custom-rose-800"
@@ -103,6 +95,3 @@ export default function VerifyOtpForm({ onStateChange}: { onStateChange: (state:
     </div>
   );
 }
-
-
-

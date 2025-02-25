@@ -9,17 +9,19 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 
-export default function LoginForm ({ onStateChange}: { onStateChange: (state: AuthFormState) => void;}){
-  
+export default function LoginForm({
+  onStateChange,
+}: {
+  onStateChange: (state: AuthFormState) => void;
+}) {
   // Translations
   const t = useTranslations();
 
-  // Login Schema  
+  // Login Schema
   const Schema = z.object({
     email: z
       .string({ required_error: t("email-reqired") })
@@ -28,10 +30,10 @@ export default function LoginForm ({ onStateChange}: { onStateChange: (state: Au
     password: z.string({ required_error: t("password-required") }).min(1, t("password-required")),
   });
 
-  // Type Zod 
+  // Type Zod
   type Inputs = z.infer<typeof Schema>;
-  
-   // Set initial empty values for
+
+  // Set initial empty values for
   const form = useForm<Inputs>({
     defaultValues: {
       email: "",
@@ -42,27 +44,22 @@ export default function LoginForm ({ onStateChange}: { onStateChange: (state: Au
 
   // Form submission handler
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data)
+    console.log(data);
   };
 
   return (
     <Form {...form}>
-      
       {/* Title Login  */}
-      <h2 className="text-left mb-4 font-normal text-2xl  rtl:text-right">
-       {t("login-title")}
-        </h2>
+      <h2 className="text-left mb-4 font-normal text-2xl  rtl:text-right">{t("login-title")}</h2>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
         {/* Email Filed */}
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("email")}</FormLabel>
               <FormControl className="w-full border-none shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
-                <Input type="email" placeholder= {t("enter-email")} {...field} />
+                <Input type="email" placeholder={t("email")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -75,39 +72,38 @@ export default function LoginForm ({ onStateChange}: { onStateChange: (state: Au
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("password")}</FormLabel>
               <FormControl className="w-full border-none  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
-                <Input type="password" placeholder={t("enter-password")} {...field} />
+                <Input type="password" placeholder={t("password")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-       {/* Forget Button */}
-       <div className="flex">
-        <Button
-        variant="link"
-        className="text-custom-rose-900 p-0 underline ml-auto"
-        onClick={() => onStateChange("forgot-password")}>
-    {t("forgot-password")}
-  </Button>
-</div>
-      
-      {/* Login Button */}
+        {/* Forget Button */}
+        <div className="flex">
+          <Button
+            variant="link"
+            className="text-custom-rose-900 p-0 underline ml-auto"
+            onClick={() => onStateChange("forgot-password")}
+          >
+            {t("forgot-password")}
+          </Button>
+        </div>
+
+        {/* Login Button */}
         <Button
           type="submit"
           className="w-full rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800 "
         >
-        {t("login")}
+          {t("login")}
         </Button>
-       
+
         {/* Register link */}
-        <div className="flex flex-col gap-2 text-sm text-center">                
+        <div className="flex flex-col gap-2 text-sm text-center">
           <div className="text-gray-600">
-            {t("dont-have-account")}
-            {" "}
-            <Button 
+            {t("dont-have-account")}{" "}
+            <Button
               variant="link"
               className="text-custom-rose-900 p-0"
               onClick={() => onStateChange("register")}
@@ -119,42 +115,4 @@ export default function LoginForm ({ onStateChange}: { onStateChange: (state: Au
       </form>
     </Form>
   );
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
