@@ -59,7 +59,7 @@ export default function SetPasswordForm() {
                   <Input
                     type="email"
                     {...field}
-                    placeholder={t('enter-e-mail')}
+                    placeholder={t("enter-e-mail")}
                     className="w-[528px] h-[52px] rounded-[20px] p-2"
                     style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                   />
@@ -69,7 +69,7 @@ export default function SetPasswordForm() {
               </FormItem>
             )}
           />
-          
+
           {/* Password field */}
           <FormField
             control={form.control}
@@ -111,7 +111,7 @@ export default function SetPasswordForm() {
               </FormItem>
             )}
           />
-          
+
           {/* Submit button */}
           <Button
             type="submit"
