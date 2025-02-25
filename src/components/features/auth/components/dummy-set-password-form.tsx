@@ -1,9 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 
 // Lazy Loading
-const LoginForm = dynamic(() => import('./dummy-login-form'), {
+const LoginForm = dynamic(() => import("./dummy-login-form"), {
   ssr: false,
   loading: () => <p>Loading...</p>,
 });
@@ -22,7 +22,7 @@ export default function SetPasswordForm() {
   // Translation
   const t = useTranslations();
 
-// State
+  // State
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   // Mutation
@@ -56,15 +56,18 @@ export default function SetPasswordForm() {
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    mutate({ email: data.email, newPassword: data.newPassword }, {
-      onSuccess: () => {
-        toast.success("Password updated successfully");
-        setShowLoginForm(true);
+    mutate(
+      { email: data.email, newPassword: data.newPassword },
+      {
+        onSuccess: () => {
+          toast.success("Password updated successfully");
+          setShowLoginForm(true);
+        },
+        onError: (error) => {
+          toast.error(error.message);
+        },
       },
-      onError: (error) => {
-        toast.error(error.message);
-      },
-    });
+    );
   };
 
   return (
@@ -86,7 +89,7 @@ export default function SetPasswordForm() {
                     <Input
                       type="email"
                       {...field}
-                      placeholder={t('enter-e-mail')}
+                      placeholder={t("enter-e-mail")}
                       className="w-[528px] h-[52px] rounded-[20px] p-2"
                       style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                     />
@@ -145,7 +148,7 @@ export default function SetPasswordForm() {
               disabled={isPending}
               className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
             >
-              {isPending ? t('setting-new-password') : t('set-password')}
+              {isPending ? t("setting-new-password") : t("set-password")}
             </Button>
           </form>
         </Form>
