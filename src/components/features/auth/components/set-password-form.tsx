@@ -70,10 +70,8 @@ export default function SetPasswordForm() {
   return (
     <>
       {showLoginForm ? (
-        // Render the LoginForm if showLoginForm is true
         <LoginForm />
       ) : (
-        // Render the SetPasswordForm if showLoginForm is false
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {/* Email field */}
