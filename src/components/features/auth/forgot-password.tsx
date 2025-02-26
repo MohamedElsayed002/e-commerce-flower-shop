@@ -70,17 +70,11 @@ export default function ForgotPassword() {
   });
 
   // Functions
-  function EmailSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  function EmailSubmit(values: z.infer<typeof formSchema>) {}
 
-  function CodeSubmit(values: z.infer<typeof codeSchema>) {
-    console.log(values);
-  }
+  function CodeSubmit(values: z.infer<typeof codeSchema>) {}
 
-  function NewPasswordSubmit(values: z.infer<typeof newPasswordSchema>) {
-    console.log(values);
-  }
+  function NewPasswordSubmit(values: z.infer<typeof newPasswordSchema>) {}
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
