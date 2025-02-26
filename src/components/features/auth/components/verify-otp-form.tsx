@@ -17,12 +17,13 @@ const SetPasswordForm = dynamic(() => import("./dummy-set-password-form"), {
   loading: () => <p>Loading...</p>,
 });
 
-export default function VerifyOtpForm() {
+export default function VerifyOtpForm({ email }: { email: string }) {
   // State
   const [showSetPasswordForm, setShowSetPasswordForm] = useState(false);
 
   // Mutation
   const { mutate, isPending } = useVerifyOtp();
+  // const { mutate: resendOtp, isPending: isResending } = useForgotPassword();
 
   // NOTE: to be removed when merging
   const Schema = z.object({
@@ -49,9 +50,16 @@ export default function VerifyOtpForm() {
     });
   };
 
-  // const handleResendTP() => {
-  //   // Call useForgotPassword Hook
-  // }
+  const handleResendOtp = () => {
+    // resendOtp({ email }, {
+    //   onSuccess: () => {
+    //     toast.success("OTP resent successfully");
+    //   },
+    //   onError: (error) => {
+    //     toast.error(error.message);
+    //   },
+    // });
+  };
 
   return (
     <>
@@ -82,8 +90,8 @@ export default function VerifyOtpForm() {
             />
 
             {/* Resend Button */}
-            <Button type="button" className="text-custom-rose-900 font-medium text-base">
-              Resend
+            <Button onClick={handleResendOtp}  disabled={isResending} type="button" className="text-custom-rose-900 font-medium text-base">
+            {/* {isResending ? "Resending..." : "Resend OTP"} */}
             </Button>
 
             {/* Submit button */}
