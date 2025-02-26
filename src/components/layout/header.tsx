@@ -61,10 +61,11 @@ export default function Header() {
           )}
 
           {/* Login button and search icon if session isnot exist) */}
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center gap-5">
             {!session && (
               <>
                 <IoSearch className="w-[20px] h-[21px]  text-custom-rose-900" />
+                <LocaleToggle />
                 <Button
                   onClick={() => setIsModalOpen(true)}
                   className="w-[80px] h-[45px] rounded-[30px] pt-[8px] pb-[8px] pr-[20px] pl-[20px] bg-custom-rose-900 text-white"
