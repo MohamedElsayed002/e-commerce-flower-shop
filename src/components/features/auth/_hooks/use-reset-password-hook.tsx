@@ -3,10 +3,11 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import axios from "axios";
 
-
 export default function useResetPassword() {
+  // Translation
   const t = useTranslations();
 
+  // Mutation
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
       const response = await axios.put<ResetPasswordResponse>(
@@ -14,10 +15,10 @@ export default function useResetPassword() {
         {
           email: data.email,
           newPassword: data.password,
-        }
+        },
       );
 
-      return response.data; 
+      return response.data;
     },
     onSuccess: (data) => {
       if ("message" in data) {
@@ -29,7 +30,6 @@ export default function useResetPassword() {
       }
     },
     onError: (error: any) => {
-      console.error(error);
       toast.error(error?.response?.data?.error || t("error")); // Handle API errors
     },
   });
