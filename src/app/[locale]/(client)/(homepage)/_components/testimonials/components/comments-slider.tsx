@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import CommentIcon from "@/../public/assets/images/comments/comment-icon.png";
+import CommentIcon from "@/../Public/assets/images/comments/comment-icon.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { AvatarDemo } from "./comment-avatar";
 import { FaStar } from "react-icons/fa6";

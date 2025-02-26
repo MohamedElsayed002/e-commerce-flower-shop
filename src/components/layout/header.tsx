@@ -8,10 +8,15 @@ import { IoSearch } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
+import ProfileIcon from "../common/profile-icon";
+import { useSession } from "next-auth/react";
+import { Button } from "../ui/button";
 
 export default function Header() {
   // Translation
   const t = useTranslations();
+  // Session
+  const { data: session } = useSession()
 
   return (
     <header>
@@ -47,6 +52,7 @@ export default function Header() {
           <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
           <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
           <LocaleToggle />
+          {session ? <ProfileIcon/> : <Button>{t('Login')}</Button>}
         </div>
       </div>
     </header>
