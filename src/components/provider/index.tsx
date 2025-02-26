@@ -2,8 +2,7 @@
 import { NextIntlClientProvider, useMessages } from "next-intl";
 // import NextAuthProvider from "./components/next-auth-provider";
 import ReactQueryProvider from "./components/react-query-provider";
-import { Toaster } from "../ui/sonner";
-
+import { Toaster } from "sonner";
 type ProvidersProps = {
   children: React.ReactNode;
 };
