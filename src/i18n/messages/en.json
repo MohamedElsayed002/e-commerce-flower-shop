@@ -80,5 +80,6 @@
   "best occasion gifts": "best occasion gifts <br></br> collectons",
   "combo sets gift box": "combo sets gift box <br></br> up to 50% off",
   "invalid-email-or-password": "Invalid email or password",
-  "login-is-successful": "Login is successful!"
+  "login-is-successful": "Login is successful!",
+  "login": "Login"
 }

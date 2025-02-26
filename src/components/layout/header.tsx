@@ -68,9 +68,9 @@ export default function Header() {
                 <LocaleToggle />
                 <Button
                   onClick={() => setIsModalOpen(true)}
-                  className="w-[80px] h-[45px] rounded-[30px] pt-[8px] pb-[8px] pr-[20px] pl-[20px] bg-custom-rose-900 text-white"
+                  className="w-[80px] h-[45px]  font-medium text-[16px] rounded-[30px] pt-[8px] pb-[8px] pr-[20px] pl-[20px] bg-custom-rose-900 text-white"
                 >
-                  Login
+                  {t("login")}
                 </Button>
                 {isModalOpen && <LoginForm closeModal={() => setIsModalOpen(false)} />}
               </>
