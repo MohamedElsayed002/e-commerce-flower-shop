@@ -14,7 +14,6 @@ import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import QuestionMarkRight from "@/components/common/question-mark-right";
-import { Link } from "@/i18n/routing";
 
 export default function RegisterForm() {
   // Translation
@@ -36,7 +35,10 @@ export default function RegisterForm() {
           t("invalid-phone-number-format-must-start-with-a-country-code"),
         ),
       email: z.string({ required_error: t("email-required") }).email(t("invalid-email-format")),
-      gender: z.string({ required_error: t("gender-required") }).min(1, t("gender-required")),
+      gender: z.enum(["male", "female"], {
+        required_error: t("gender-must-be-male-or-female"),
+      }),
+
       password: z
         .string({ required_error: t("password-required") })
         .min(8, t("password-must-be-at-least-8-characters"))
@@ -60,14 +62,16 @@ export default function RegisterForm() {
       lastName: "",
       phone: "",
       email: "",
-      gender: "",
+      gender: undefined,
       password: "",
       rePassword: "",
     },
   });
 
   // Functions
-  const onSubmit: SubmitHandler<Inputs> = (values) => {};
+  const onSubmit: SubmitHandler<Inputs> = (values) => {
+    console.log(values);
+  };
 
   return (
     <div className="flex items-center justify-center">
@@ -253,9 +257,9 @@ export default function RegisterForm() {
               <QuestionMarkRight />
 
               {/* Button */}
-              <Link href={`/auth/login`} className="text-custom-rose-900">
+              <button onClick={() => ""} className="text-custom-rose-900">
                 {t("login")}
-              </Link>
+              </button>
             </p>
 
             {/* Submit */}

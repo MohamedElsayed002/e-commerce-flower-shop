@@ -107,5 +107,6 @@
   "password-must-contain-at-least-one-lowercase-letter": "Password must contain at least one lowercase letter",
   "password-must-contain-at-least-one-number": "Password must contain at least one number",
   "phone-number-required": "phone number required",
-  "invalid-phone-number-format-must-start-with-a-country-code": "invalid phone number format must start with a country code"
+  "invalid-phone-number-format-must-start-with-a-country-code": "invalid phone number format must start with a country code",
+  "gender-must-be-male-or-female": "Gender must be male or female"
 }
