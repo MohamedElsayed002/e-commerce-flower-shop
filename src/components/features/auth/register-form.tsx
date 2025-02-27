@@ -38,7 +38,6 @@ export default function RegisterForm() {
       gender: z.enum(["male", "female"], {
         required_error: t("gender-must-be-male-or-female"),
       }),
-
       password: z
         .string({ required_error: t("password-required") })
         .min(8, t("password-must-be-at-least-8-characters"))
@@ -69,9 +68,7 @@ export default function RegisterForm() {
   });
 
   // Functions
-  const onSubmit: SubmitHandler<Inputs> = (values) => {
-    console.log(values);
-  };
+  const onSubmit: SubmitHandler<Inputs> = (values) => {};
 
   return (
     <div className="flex items-center justify-center">
