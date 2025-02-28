@@ -26,7 +26,7 @@ declare module "next-auth" {
         long: string;
         username: string;
         _id: string;
-      }
+      },
     ];
   }
 
@@ -54,7 +54,7 @@ declare module "next-auth" {
           long: string;
           username: string;
           _id: string;
-        }
+        },
       ];
     };
   }
@@ -86,7 +86,7 @@ declare module "next-auth/jwt" {
         long: string;
         username: string;
         _id: string;
-      }
+      },
     ];
   }
 }

@@ -24,7 +24,8 @@ const authMiddleware = withAuth((req) => handleI18nRouting(req), {
 });
 
 export default async function middleware(req: NextRequest) {
-  const token = await getToken({ req }); // Retrieve auth token
+  // Retrieve auth token
+  const token = await getToken({ req });
   const urlPath = req.nextUrl.pathname;
 
   // Check if the requested path is public
@@ -35,18 +36,15 @@ export default async function middleware(req: NextRequest) {
     "i",
   ).test(urlPath);
 
-  // Redirect authenticated users to public pages
-  if (token && PRIVATE_PAGES.includes(urlPath)) {
-    return NextResponse.redirect(new URL("/", req.nextUrl.origin));
-  }
-
   // Redirect unauthenticated users away from private pages
-  if (!token &&PRIVATE_PAGES .includes(urlPath)) {
+  if (!token && PRIVATE_PAGES.includes(urlPath)) {
     return NextResponse.redirect(new URL("/", req.nextUrl.origin));
   }
 
   // Apply i18n middleware for public pages
   if (isPublicPage) {
+    if (token) {
+    }
     return handleI18nRouting(req);
   }
 
@@ -54,8 +52,7 @@ export default async function middleware(req: NextRequest) {
   return (authMiddleware as any)(req);
 }
 
-//Apply matchers
+// Apply matchers
 export const config = {
   matcher: ["/((?!api|_next|.*\\..*).*)"], // Exclude API and static files
 };
-

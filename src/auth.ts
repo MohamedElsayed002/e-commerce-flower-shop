@@ -1,8 +1,8 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { JSON_HEADER } from "./lib/constants/api.constant";
-import { APIResponse } from "./lib/types/api";
-import { LoginResponse } from "./lib/types/auth";
+// import { APIResponse } from "@/lib/types/api";
+// import { LoginResponse } from "./lib/types/auth";
 
 export const authOptions: NextAuthOptions = {
   // Custom sign-in page
@@ -41,6 +41,7 @@ export const authOptions: NextAuthOptions = {
           return {
             token: payload.token,
             ...payload.user,
+            id:payload.user?._id
           };
         }
         throw new Error(payload.message);

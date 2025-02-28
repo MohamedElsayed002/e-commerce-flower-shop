@@ -14,6 +14,7 @@ export default function useLogin() {
         email,
         password,
         redirect: false,
+        callbackUrl: "/",
       });
 
       // Handle unsuccessful response
@@ -29,7 +30,7 @@ export default function useLogin() {
       toast.success(t("login-is-successful"));
       setTimeout(() => {
         window.location.href = data?.url || "/";
-      }, 1500);
+      }, 2000);
     },
   });
 

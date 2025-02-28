@@ -32,11 +32,13 @@ export default function LocaleLayout({ params: { locale }, children }: LayoutPro
       <body className={cn(inter.variable, roboto.variable, inter.className, "antialiased")}>
         <Providers>
           <NextAuthProvider>
-          {children}
-          {/* Toaster */}
-          {/* <Toaster/> */}
+            {/* Main */}
+            {children}
+
+            {/* Toaster */}
+            <Toaster position="top-center" />
           </NextAuthProvider>
-          </Providers>
+        </Providers>
       </body>
     </html>
   );

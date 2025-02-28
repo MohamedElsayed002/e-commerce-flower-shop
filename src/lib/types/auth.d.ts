@@ -1,6 +1,3 @@
-import { error } from 'console';
-import { Session } from "inspector/promises";
-
 declare type User = {
   firstName: string;
   lastName: string;
@@ -24,11 +21,12 @@ declare type User = {
       long: string;
       username: string;
       _id: string;
-    }
+    },
   ];
 } & DatabaseFields;
 
 declare interface LoginResponse {
+  message: "success";
   token: string;
   user: User;
 }
@@ -41,8 +39,8 @@ declare type RegisterFields = {
   phone: string;
   photo: string;
   role: string;
-  password:string;
-  rePassword:string;
+  password: string;
+  rePassword: string;
   addresses: [
     {
       street: string;
@@ -58,6 +56,6 @@ declare type RegisterFields = {
       long: string;
       username: string;
       _id: string;
-    }
+    },
   ];
 };
