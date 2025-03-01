@@ -14,8 +14,6 @@ export async function setNewPasswordAction(fields: SetPasswordFields) {
       body: JSON.stringify(fields),
     });
 
-    console.log("API:", process.env.API);
-
     const payload: APIResponse<SetPasswordResponse> = await response.json();
 
     if ("message" in payload && payload.message === "success") {
