@@ -7,15 +7,23 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Dialog, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-export default function SetPasswordForm() {
+type SetPasswordProps = {
+  email: string;
+};
+
+export default function SetPasswordForm({ email }: SetPasswordProps) {
   // Translation
   const t = useTranslations();
+
+  // TODO: dummy is pending
+  const isPending = false;
 
   // Form & Validation
   const Schema = z
     .object({
-      password: z
+      newPassword: z
         .string({ required_error: t("password-required") })
         .min(8, t("password-min-length"))
         .regex(/[0-9]/, t("password-number-required"))
@@ -24,7 +32,7 @@ export default function SetPasswordForm() {
 
       confirmPassword: z.string({ required_error: t("confirm-password-required") }),
     })
-    .refine((data) => data.password === data.confirmPassword, {
+    .refine((data) => data.newPassword === data.confirmPassword, {
       message: t("passwords-must-match"),
       path: ["confirmPassword"],
     });
@@ -33,73 +41,82 @@ export default function SetPasswordForm() {
 
   const form = useForm<Inputs>({
     defaultValues: {
-      password: "",
+      newPassword: "",
       confirmPassword: "",
     },
     resolver: zodResolver(Schema),
   });
 
   // Functions
-  const onSubmit: SubmitHandler<Inputs> = async () => {
-    // TODO: Add API integration logic here
+  const onSubmit: SubmitHandler<Inputs> = () => {
+    // TODO: add API integration logic here
   };
 
   return (
-    <>
-      {/* Form wrapper */}
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          {/* Password field */}
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    type="password"
-                    {...field}
-                    placeholder={t("create-password")}
-                    className="w-[528px] h-[52px] rounded-[20px] p-2"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
-                  />
-                </FormControl>
-                {/* Display validation errors */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <>
+          {/* TODO: to be replaced with auth dialog */}
+          <Dialog>
+            {/* Dialog header */}
+            <DialogHeader>
+              <DialogTitle>{t("set-a-password")}</DialogTitle>
+            </DialogHeader>
 
-          {/* Confirm password field */}
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem className="py-4">
-                <FormControl>
-                  <Input
-                    type="password"
-                    {...field}
-                    placeholder={t("re-enter-password")}
-                    className="w-[528px] h-[52px] rounded-[20px] p-2"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
-                  />
-                </FormControl>
-                {/* Display validation errors */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            {/* Form wrapper */}
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                {/* Password field */}
+                <FormField
+                  control={form.control}
+                  name="newPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          {...field}
+                          placeholder={t("create-password")}
+                          className="w-[528px] h-[52px] rounded-[20px] p-2"
+                          style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
+                        />
+                      </FormControl>
+                      {/* Display validation errors */}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-          {/* Submit button */}
-          <Button
-            type="submit"
-            className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
-          >
-            {t("set-a-password")}
-          </Button>
-        </form>
-      </Form>
+                {/* Confirm password field */}
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem className="py-4">
+                      <FormControl>
+                        <Input
+                          type="password"
+                          {...field}
+                          placeholder={t("re-enter-password")}
+                          className="w-[528px] h-[52px] rounded-[20px] p-2"
+                          style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
+                        />
+                      </FormControl>
+                      {/* Display validation errors */}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Submit button */}
+                <Button
+                  type="submit"
+                  disabled={isPending}
+                  className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
+                >
+                  {isPending ? t("setting-new-password") : t("set-password")}
+                </Button>
+              </form>
+            </Form>
+          </Dialog>
     </>
   );
 }

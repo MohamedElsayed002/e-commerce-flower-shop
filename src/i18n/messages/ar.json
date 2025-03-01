@@ -77,6 +77,7 @@
   "best occasion gifts": "أفضل هدايا المناسبات مجموعات",
   "combo sets gift box": "مجموعات هدايا كومبو خصم حتي 50%",
   "set-new-password": "اضبط كلمة مرور جديدة",
+  "setting-new-password": "تعيين كلمة مرور جديدة ...",
   "set-a-password": "اضبط كلمة مرور",
   "create-password": "إنشاء كلمة المرور",
   "re-enter-password": "إعادة إدخال كلمة المرور",
@@ -87,7 +88,6 @@
   "confirm-password-required": "تأكيد كلمة المرور المطلوبة",
   "passwords-must-match": "يجب أن تتطابق كلمات المرور",
   "password-min-length": "طول كلمة المرور",
-  "email-required": "البريد الإلكتروني المطلوب",
-  "invalid-email-format": "تنسيق بريد إلكتروني غير صالح",
-  "enter-e-mail": "أدخل البريد الإلكتروني"
+  "set-password": "اضبط كلمة المرور",
+  "password-updated-successfully": "تم تحديث كلمة المرور بنجاح"
 }

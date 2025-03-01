@@ -80,6 +80,7 @@
   "best occasion gifts": "best occasion gifts <br></br> collectons",
   "combo sets gift box": "combo sets gift box <br></br> up to 50% off",
   "set-new-password": "Set New Password",
+  "setting-new-password": "Setting new Password...",
   "set-a-password": "Set a Password",
   "create-password": "Create Password",
   "re-enter-password": "Re-enter Password",
@@ -90,7 +91,6 @@
   "confirm-password-required": "Confirm Password Required",
   "passwords-must-match": "Passwords must Match",
   "password-min-length": "Password Min Length",
-  "email-required": "Email required",
-  "invalid-email-format": "Invalid email format",
-  "enter-e-mail": "Enter E-mail"
+  "set-password": "Set Password",
+  "password-updated-successfully": "Password updated successfully"
 }
