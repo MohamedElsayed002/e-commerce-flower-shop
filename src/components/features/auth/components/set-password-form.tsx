@@ -7,7 +7,6 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-// import { Toaster } from "@/components/ui/sonner";
 
 export default function SetPasswordForm() {
   // Translation
@@ -16,7 +15,6 @@ export default function SetPasswordForm() {
   // Form & Validation
   const Schema = z
     .object({
-      email: z.string({ required_error: t("email-required") }).email(t("invalid-email-format")),
       password: z
         .string({ required_error: t("password-required") })
         .min(8, t("password-min-length"))
@@ -34,9 +32,11 @@ export default function SetPasswordForm() {
   type Inputs = z.infer<typeof Schema>;
 
   const form = useForm<Inputs>({
+    defaultValues: {
+      password: "",
+      confirmPassword: "",
+    },
     resolver: zodResolver(Schema),
-    mode: "onChange",
-    reValidateMode: "onChange",
   });
 
   // Functions
@@ -49,27 +49,6 @@ export default function SetPasswordForm() {
       {/* Form wrapper */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          {/* Email field */}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    type="email"
-                    {...field}
-                    placeholder={t("enter-e-mail")}
-                    className="w-[528px] h-[52px] rounded-[20px] p-2"
-                    style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
-                  />
-                </FormControl>
-                {/* Display validation errors */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           {/* Password field */}
           <FormField
             control={form.control}
