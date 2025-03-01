@@ -1,9 +1,9 @@
 "use server";
 
-export async function verifyOtp(formData: FormData) {
-  const resetCode = formData.get("resetCode");
+import AppError from "@/lib/utils/app-error";
 
-  if (!resetCode) {
+export async function verifyOtpAction(fields: VerifyOTPFields) {
+  if (!fields.resetCode) {
     return { error: "OTP is required" };
   }
 
@@ -11,13 +11,16 @@ export async function verifyOtp(formData: FormData) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/verifyResetCode`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ resetCode }),
+      body: JSON.stringify(fields),
     });
 
-    if (!response.ok) {
-      const errorPayload = await response.json();
-      return { error: errorPayload.error || "Failed to verify OTP" };
+    const payload: APIResponse<VerifyOTPResponse> = await response.json();
+
+    if ("status" in payload && payload.status === "Success") {
+      return payload.status;
     }
+
+    throw new AppError("Unexpected response format");
   } catch (error) {
     return { error: "An unexpected error occurred" };
   }

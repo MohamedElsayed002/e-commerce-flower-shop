@@ -9,28 +9,37 @@ import { useVerifyOtp } from "@/hooks/auth/use-verify-otp";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "sonner";
+import { useForgotPassword } from "@/hooks/auth/dummy-use-forgot-password";
+import { useTranslations } from "next-intl";
+
+type VerifyOtpProps = {
+  email: string;
+};
 
 // Lazy Loading
 const SetPasswordForm = dynamic(() => import("./dummy-set-password-form"), {
   ssr: false,
-  loading: () => <p>Loading...</p>,
+  loading: () => <i className="fa fa-spinner fa-spin text-custom-rose-800 text-2xl"></i>,
 });
 
-export default function VerifyOtpForm({ email }: { email: string }) {
+export default function VerifyOtpForm({ email }: VerifyOtpProps) {
+// Translation
+const t = useTranslations();
+
   // State
   const [showSetPasswordForm, setShowSetPasswordForm] = useState(false);
 
   // Mutation
-  const { mutate, isPending } = useVerifyOtp();
-  // const { mutate: resendOtp, isPending: isResending } = useForgotPassword();
+  const { verifyOTP, isPending } = useVerifyOtp();
+  const { resendOtp, isPending: isResending } = useForgotPassword();
 
   // NOTE: to be removed when merging
   const Schema = z.object({
-    otp: z.string({ required_error: "Required" }),
+    resetCode: z.string({ required_error: "Required" }),
   });
   type Inputs = z.infer<typeof Schema>;
 
+  // NOTE: to be removed when merging
   const form = useForm<Inputs>({
     resolver: zodResolver(Schema),
     mode: "onChange",
@@ -38,27 +47,13 @@ export default function VerifyOtpForm({ email }: { email: string }) {
   });
 
   // Functions
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    mutate(data.otp, {
-      onSuccess: () => {
-        toast.success("You can reset your password.");
-        setShowSetPasswordForm(true);
-      },
-      onError: (error) => {
-        toast.error(error.message);
-      },
-    });
+  const onSubmit: SubmitHandler<Inputs> = (values) => {
+    verifyOTP(values);
+    setShowSetPasswordForm(true);
   };
 
   const handleResendOtp = () => {
-    // resendOtp({ email }, {
-    //   onSuccess: () => {
-    //     toast.success("OTP resent successfully");
-    //   },
-    //   onError: (error) => {
-    //     toast.error(error.message);
-    //   },
-    // });
+    resendOtp(email);
   };
 
   return (
@@ -71,7 +66,7 @@ export default function VerifyOtpForm({ email }: { email: string }) {
             {/* OTP field */}
             <FormField
               control={form.control}
-              name="otp"
+              name="resetCode"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -90,8 +85,13 @@ export default function VerifyOtpForm({ email }: { email: string }) {
             />
 
             {/* Resend Button */}
-            <Button onClick={handleResendOtp}  disabled={isResending} type="button" className="text-custom-rose-900 font-medium text-base">
-            {/* {isResending ? "Resending..." : "Resend OTP"} */}
+            <Button
+              onClick={handleResendOtp}
+              disabled={isResending}
+              type="button"
+              className="text-custom-rose-900 font-medium text-base"
+            >
+              {isResending ? t("resending") : t("resend")}
             </Button>
 
             {/* Submit button */}

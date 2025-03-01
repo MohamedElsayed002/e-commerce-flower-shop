@@ -94,5 +94,8 @@
   "set-password": "Set Password",
   "email-required": "Email required",
   "invalid-email-format": "Invalid email format",
-  "enter-e-mail": "Enter E-mail"
+  "enter-e-mail": "Enter E-mail",
+  "you-can-reset-your-password": "You can reset your password.",
+  "resending": "Resending...",
+  "resend": "Resend"
 }
