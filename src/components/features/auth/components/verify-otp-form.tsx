@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
+import { DialogTitle } from "@/components/ui/dialog";
 
 export default function VerifyOtpForm({
   onStateChange,
@@ -18,7 +19,7 @@ export default function VerifyOtpForm({
 
   // OTP validation schema
   const verifyCodeSchema = z.object({
-    code: z.string({ required_error: t("code-reqired") }).min(6, t("code-reqired")),
+    code: z.string({ required_error: t("code-reqired") }).regex(/^\d{6}$/, t("code-reqired")),
   });
 
   // Type Zod
@@ -41,13 +42,13 @@ export default function VerifyOtpForm({
   };
 
   return (
-    <div className="p-6 bg-white rounded-md">
-      {/* Title */}
-      <h2 className="text-left mb-4 font-normal text-2xl rtl:text-right">
+    <div className=" my-3">
+      {/* Title Login  */}
+      <DialogTitle className="text-left mb-7 font-normal text-2xl rtl:text-right ms-2 rtl:me-2 ">
         {t("verify-code-title")}
-      </h2>
+      </DialogTitle>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           {/* OTP Input Field */}
           <FormField
             control={form.control}
@@ -64,7 +65,8 @@ export default function VerifyOtpForm({
                     className="w-full h-12 text-left rtl:text-right text-xl  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]"
                   />
                 </FormControl>
-                {/* Handel Error Code  */}
+
+                {/* Message */}
                 <FormMessage />
               </FormItem>
             )}

@@ -1,17 +1,13 @@
 "use client";
+
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { DialogTitle } from "@/components/ui/dialog";
 
 export default function LoginForm({
   onStateChange,
@@ -48,71 +44,76 @@ export default function LoginForm({
   };
 
   return (
-    <Form {...form}>
-      {/* Title Login  */}
-      <h2 className="text-left mb-4 font-normal text-2xl  rtl:text-right">{t("login-title")}</h2>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        {/* Email Filed */}
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl className="w-full border-none shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
-                <Input type="email" placeholder={t("email")} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <div className=" my-3">
+      <Form {...form}>
+        {/* Title Login  */}
+        <DialogTitle className="text-left mb-7 font-normal text-2xl rtl:text-right ms-2 rtl:me-2 ">
+          {t("login-title")}
+        </DialogTitle>
 
-        {/* Email Password*/}
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl className="w-full border-none  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
-                <Input type="password" placeholder={t("password")} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          {/* Email Filed */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl className="w-full border-none shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
+                  <Input type="email" placeholder={t("email")} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Forget Button */}
-        <div className="flex">
-          <Button
-            variant="link"
-            className="text-custom-rose-900 p-0 underline ml-auto"
-            onClick={() => onStateChange("forgot-password")}
-          >
-            {t("forgot-password")}
-          </Button>
-        </div>
+          {/* Email Password*/}
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl className="w-full border-none  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
+                  <Input type="password" placeholder={t("password")} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Login Button */}
-        <Button
-          type="submit"
-          className="w-full rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800 "
-        >
-          {t("login")}
-        </Button>
-
-        {/* Register link */}
-        <div className="flex flex-col gap-2 text-sm text-center">
-          <div className="text-gray-600">
-            {t("dont-have-account")}{" "}
+          {/* Forget Button */}
+          <div className="flex">
             <Button
               variant="link"
-              className="text-custom-rose-900 p-0"
-              onClick={() => onStateChange("register")}
+              className="text-custom-rose-900 p-0 underline ml-auto"
+              onClick={() => onStateChange("forgot-password")}
             >
-              {t("create-account")}
+              {t("forgot-password")}
             </Button>
           </div>
-        </div>
-      </form>
-    </Form>
+
+          {/* Register link */}
+          <div className="flex flex-col gap-2 text-sm text-center mb-5">
+            <div className="text-gray-600">
+              {t("dont-have-account")}{" "}
+              <Button
+                variant="link"
+                className="text-custom-rose-900 p-0  underline"
+                onClick={() => onStateChange("register")}
+              >
+                {t("create-account")}
+              </Button>
+            </div>
+          </div>
+
+          {/* Login Button */}
+          <Button
+            type="submit"
+            className="w-full h-[50px]  rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800  mb-3 "
+          >
+            {t("login")}
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 }
