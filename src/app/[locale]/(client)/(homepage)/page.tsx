@@ -6,7 +6,7 @@ import PopularItems from "./_components/popular-items";
 import GallerySection from "./_components/gallery";
 import TestimonialSection from "./_components/testimonials";
 import CompaniesSection from "./_components/partner-companies";
-import ForgotPassword from "@/components/features/auth/forgot-password";
+import ForgotPassword from "@/components/features/auth/components/forgot-password-form";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   // Variables

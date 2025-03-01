@@ -89,6 +89,6 @@
   "confirm-password": "تأكيد كلمة المرور",
   "set-a-password": "اضبط كلمة مرور",
   "passwords-do-not-match": "كلمات المرور لا تتطابق",
-  "verification-success": "نجاح التحقق",
+  "verification-success": "نجاح التحديد",
   "minimum-password-characters-8-contains-lowercase-and-uppercase-and-numbers-and-one-symbol-atleast": "الحد الأدنى من أحرف كلمة المرور 8 يحتوي على أحرف صغيرة وأعلى وأرقام ورمز واحد على الأقل"
 }
