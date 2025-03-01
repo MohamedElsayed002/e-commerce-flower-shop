@@ -1,24 +1,28 @@
 "use server";
 
-export async function setNewPassword(formData: FormData) {
-  const email = formData.get("email");
-  const newPassword = formData.get("newPassword");
+import AppError from "@/lib/utils/app-error";
 
-  if (!email || !newPassword) {
+export async function setNewPasswordAction(fields: SetPasswordFields) {
+  if (!fields.email || !fields.newPassword) {
     return { error: "Email and new password are required" };
   }
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/resetPassword`, {
+    const response = await fetch(`${process.env.API}/auth/resetPassword`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, newPassword }),
+      body: JSON.stringify(fields),
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      return { error: errorData.message || "Failed to update password" };
+    console.log("API:", process.env.API);
+
+    const payload: APIResponse<SetPasswordResponse> = await response.json();
+
+    if ("message" in payload && payload.message === "success") {
+      return payload.message;
     }
+
+    throw new AppError("Unexpected response format");
   } catch (error) {
     return { error: "An unexpected error occurred" };
   }

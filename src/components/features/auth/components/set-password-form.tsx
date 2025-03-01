@@ -8,17 +8,21 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useSetNewPassword } from "@/hooks/auth/use-set-password";
-import { toast } from "sonner";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { Dialog, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
+type SetPasswordProps = {
+  email: string;
+};
 
 // Lazy Loading
 const LoginForm = dynamic(() => import("./dummy-login-form"), {
   ssr: false,
-  loading: () => <p>Loading...</p>,
+  loading: () => <i className="fa fa-spinner fa-spin text-custom-rose-800 text-2xl"></i>,
 });
 
-export default function SetPasswordForm() {
+export default function SetPasswordForm({ email }: SetPasswordProps) {
   // Translation
   const t = useTranslations();
 
@@ -26,12 +30,11 @@ export default function SetPasswordForm() {
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   // Mutation
-  const { mutate, isPending } = useSetNewPassword();
+  const { setPassword, isPending } = useSetNewPassword();
 
   // Form & Validation
   const Schema = z
     .object({
-      email: z.string({ required_error: t("email-required") }).email(t("invalid-email-format")),
       newPassword: z
         .string({ required_error: t("password-required") })
         .min(8, t("password-min-length"))
@@ -49,25 +52,17 @@ export default function SetPasswordForm() {
   type Inputs = z.infer<typeof Schema>;
 
   const form = useForm<Inputs>({
+    defaultValues: {
+      newPassword: "",
+      confirmPassword: "",
+    },
     resolver: zodResolver(Schema),
-    mode: "onChange",
-    reValidateMode: "onChange",
   });
 
   // Functions
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    mutate(
-      { email: data.email, newPassword: data.newPassword },
-      {
-        onSuccess: () => {
-          toast.success("Password updated successfully");
-          setShowLoginForm(true);
-        },
-        onError: (error) => {
-          toast.error(error.message);
-        },
-      },
-    );
+  const onSubmit: SubmitHandler<Inputs> = (values) => {
+    setPassword({ email, newPassword: values.newPassword });
+    setShowLoginForm(true);
   };
 
   return (
@@ -75,81 +70,71 @@ export default function SetPasswordForm() {
       {showLoginForm ? (
         <LoginForm />
       ) : (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {/* Email field */}
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      {...field}
-                      placeholder={t("enter-e-mail")}
-                      className="w-[528px] h-[52px] rounded-[20px] p-2"
-                      style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
-                    />
-                  </FormControl>
-                  {/* Display validation errors */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <>
+          {/* TODO: to be replaced with auth dialog */}
+          <Dialog>
+            {/* Dialog header */}
+            <DialogHeader>
+              <DialogTitle>{t("set-a-password")}</DialogTitle>
+            </DialogHeader>
 
-            {/* Password field */}
-            <FormField
-              control={form.control}
-              name="newPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      {...field}
-                      placeholder={t("create-password")}
-                      className="w-[528px] h-[52px] rounded-[20px] p-2"
-                      style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
-                    />
-                  </FormControl>
-                  {/* Display validation errors */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {/* Form wrapper */}
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                {/* Password field */}
+                <FormField
+                  control={form.control}
+                  name="newPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          {...field}
+                          placeholder={t("create-password")}
+                          className="w-[528px] h-[52px] rounded-[20px] p-2"
+                          style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
+                        />
+                      </FormControl>
+                      {/* Display validation errors */}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            {/* Confirm password field */}
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem className="py-4">
-                  <FormControl>
-                    <Input
-                      type="password"
-                      {...field}
-                      placeholder={t("re-enter-password")}
-                      className="w-[528px] h-[52px] rounded-[20px] p-2"
-                      style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
-                    />
-                  </FormControl>
-                  {/* Display validation errors */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                {/* Confirm password field */}
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem className="py-4">
+                      <FormControl>
+                        <Input
+                          type="password"
+                          {...field}
+                          placeholder={t("re-enter-password")}
+                          className="w-[528px] h-[52px] rounded-[20px] p-2"
+                          style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
+                        />
+                      </FormControl>
+                      {/* Display validation errors */}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            {/* Submit button */}
-            <Button
-              type="submit"
-              disabled={isPending}
-              className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
-            >
-              {isPending ? t("setting-new-password") : t("set-password")}
-            </Button>
-          </form>
-        </Form>
+                {/* Submit button */}
+                <Button
+                  type="submit"
+                  disabled={isPending}
+                  className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
+                >
+                  {isPending ? t("setting-new-password") : t("set-password")}
+                </Button>
+              </form>
+            </Form>
+          </Dialog>
+        </>
       )}
     </>
   );

@@ -92,7 +92,5 @@
   "passwords-must-match": "Passwords must Match",
   "password-min-length": "Password Min Length",
   "set-password": "Set Password",
-  "email-required": "Email required",
-  "invalid-email-format": "Invalid email format",
-  "enter-e-mail": "Enter E-mail"
+  "password-updated-successfully": "Password updated successfully"
 }
