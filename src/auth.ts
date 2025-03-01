@@ -1,8 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { JSON_HEADER } from "./lib/constants/api.constant";
-// import { APIResponse } from "@/lib/types/api";
-// import { LoginResponse } from "./lib/types/auth";
 
 export const authOptions: NextAuthOptions = {
   // Custom sign-in page
