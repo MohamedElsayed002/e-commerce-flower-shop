@@ -30,7 +30,7 @@ export default function useLogin() {
       toast.success(t("login-is-successful"));
       setTimeout(() => {
         window.location.href = data?.url || "/";
-      }, 2000);
+      }, 1500);
     },
   });
 

@@ -41,7 +41,7 @@ export const authOptions: NextAuthOptions = {
           return {
             token: payload.token,
             ...payload.user,
-            id:payload.user?._id
+            id: payload.user?._id,
           };
         }
         throw new Error(payload.message);

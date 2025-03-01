@@ -26,7 +26,6 @@ declare type User = {
 } & DatabaseFields;
 
 declare interface LoginResponse {
-  message: "success";
   token: string;
   user: User;
 }

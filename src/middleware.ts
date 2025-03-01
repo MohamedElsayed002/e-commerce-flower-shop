@@ -1,84 +1,58 @@
-
-
 import { withAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
-import { NextResponse, NextRequest } from "next/server";
-import { getToken } from "next-auth/jwt";
+import { NextRequest } from "next/server";
 import { LOCALES, routing } from "./i18n/routing";
+import { getToken } from "next-auth/jwt";
 
+// Private pages
+const Privatepages = ["/cart"];
 
-// // Define public and private pages
-const PUBLIC_PAGES = ["/"];
-const PRIVATE_PAGES = ["/cart"];
-
-// // Internationalization Middleware
+// Create middleware for handling internationalization (i18n)
 const handleI18nRouting = createMiddleware(routing);
 
-
-// // Authentication Middleware
-const authMiddleware = withAuth((req) => handleI18nRouting(req), {
- 
-  callbacks: {
-    authorized: ({token}) => token != null
+// Authentication middleware using NextAuth
+const authMiddleware = withAuth(
+  function onSuccess(req) {
+    return handleI18nRouting(req);
   },
-  // callbacks: {
-  //   authorized: ({ token }) => !!token, // Check if user is authenticated
-  // },
-  pages: {
-    // Redirect to home for authentication
-    signIn: "/", 
+  {
+    callbacks: {
+      authorized: ({ token }) => token != null,
+    },
+    pages: {
+      // Redirect to home page if not authenticated
+      signIn: "/",
+      error: "/",
+    },
   },
-});
+);
 
 export default async function middleware(req: NextRequest) {
-  console.log("handle",handleI18nRouting(req) )
-  console.log("routing",routing)
-  // Retrieve authentication token
+  // Retrieve the user's authentication token
   const token = await getToken({ req });
+
+  // Extract the requested path
   const urlPath = req.nextUrl.pathname;
+  const privatePathnameRegex = RegExp(
+    `^(/(${LOCALES.join("|")}))?(${Privatepages.flatMap((p) => (p === "/" ? ["", "/"] : p)).join(
+      "|",
+    )})/?$`,
+    "i",
+  );
 
-  // Check if the requested path is public
-  const isPublicPage = new RegExp(
-    `^(/(${LOCALES.join("|")}))?(${PUBLIC_PAGES.flatMap((p) => (p === "/" ? ["", "/"] : p)).join("|")})/?$`,
-    "i"
-  ).test(urlPath);
+  // Check if the requested page is private
+  const isPrivatePage = privatePathnameRegex.test(req.nextUrl.pathname);
 
-  
-  const pathname = req.nextUrl.pathname;
-  console.log('assmaa',pathname)
-
-
-    if (!token && PRIVATE_PAGES.includes(pathname)) {
-      return NextResponse.redirect(new URL('/', req.url));
-    }
-
-   // Redirect unauthenticated users only when trying to access private pages
-  //  if (!token && PRIVATE_PAGES.some((page) => urlPath.startsWith(page))) {
-  //   return NextResponse.redirect(new URL("/", req.url));
-  // }
-
-  // // Prevent callbackUrl parameter from appearing
-  // if (token && req.nextUrl.searchParams.has("callbackUrl")) {
-  //   return NextResponse.redirect(new URL(urlPath, req.url));
-  // }
-
-  // Apply i18n middleware for public pages
-  if (isPublicPage) {
+  if (isPrivatePage) {
+    // Apply NextAuth authentication for private pages
+    return (authMiddleware as any)(req);
+  } else {
+    // Apply internationalization middleware for public pages
     return handleI18nRouting(req);
   }
-
-  // Apply authentication middleware for private pages
-  // return (authMiddleware as any)(req);
-  // return NextResponse.next();
-  return (authMiddleware as any)(req);
 }
 
-// // Apply matchers
+// Apply matchers
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"], // Exclude API and static files
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
 };
-
-
-
-
-
