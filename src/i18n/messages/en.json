@@ -85,12 +85,12 @@
   "create-password": "Create Password",
   "re-enter-password": "Re-enter Password",
   "password-required": "Password Required",
-  "password-number-required": "Password Number Required",
-  "password-lowercase-required": "Password Lowercase Required",
-  "password-uppercase-required": "Password Uppercase Required",
-  "confirm-password-required": "Confirm Password Required",
+  "password-number-required": "Your password must contain at least 1 number",
+  "password-lowercase-required": "Your password must contain at least 1 lowercase letter",
+  "password-uppercase-required": "Your password must contain at least 1 uppercase letter",
+  "confirm-password-required": "Please confirm your password",
   "passwords-must-match": "Passwords must Match",
-  "password-min-length": "Password Min Length",
+  "password-min-length": "Your password must be at least 8 characters",
   "set-password": "Set Password",
   "password-updated-successfully": "Password updated successfully"
 }

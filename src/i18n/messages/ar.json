@@ -82,12 +82,12 @@
   "create-password": "إنشاء كلمة المرور",
   "re-enter-password": "إعادة إدخال كلمة المرور",
   "password-required": "كلمة المرور المطلوبة",
-  "password-number-required": "رقم كلمة المرور المطلوبة",
-  "password-lowercase-required": "كلمة مرور صغيرة مطلوبة",
-  "password-uppercase-required": "كلمة المرور الكبيرة المطلوبة",
-  "confirm-password-required": "تأكيد كلمة المرور المطلوبة",
   "passwords-must-match": "يجب أن تتطابق كلمات المرور",
-  "password-min-length": "طول كلمة المرور",
-  "set-password": "اضبط كلمة المرور",
-  "password-updated-successfully": "تم تحديث كلمة المرور بنجاح"
+  "set-password": "اضبط كلمةالمرور",
+  "password-updated-successfully": "تم تحديث كلمة المرور بنجاح",
+  "password-min-length": "لابد أن تحتوي كلمة المرور الخاصة بك 8 أحرف على الأقل.",
+  "password-number-required": "لا بد أن تحتوي كلمة المرور على رقمٍ واحدٍ على الأقل.",
+  "password-lowercase-required": "لابد أن تحتوي كلمة المرور الخاصة بك على حرف صغير واحد على الأقل.",
+  "password-uppercase-required": "لابد أن تحتوي كلمة المرور الخاصة بك على حرف كبير واحد على الأقل.",
+  "confirm-password-required": "الرجاء تأكيد كلمة المرور الخاصة بك."
 }
