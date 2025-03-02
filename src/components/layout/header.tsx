@@ -8,6 +8,7 @@ import { IoSearch } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
+import AuthDialog from "../features/auth/auth-dialog";
 
 export default function Header() {
   // Translation
@@ -48,6 +49,7 @@ export default function Header() {
           <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
           <LocaleToggle />
         </div>
+        <AuthDialog/>
       </div>
     </header>
   );
