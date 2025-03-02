@@ -91,6 +91,7 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
+                    {/* Email Input */}
                     <Input
                       required
                       className="w-full"
@@ -102,6 +103,7 @@ export default function ForgotPassword() {
                 </FormItem>
               )}
             />
+            {/* Submit Button */}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>
@@ -119,12 +121,14 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
+                    {/* Code Input */}
                     <Input className="w-full" placeholder={t("enter-code")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            {/* Submit Button */}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>
@@ -142,6 +146,7 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
+                    {/* Email Input */}
                     <Input
                       className="w-full border"
                       placeholder={t("enter-your-email-address")}
@@ -158,6 +163,7 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
+                    {/* New Password Input */}
                     <Input
                       className="w-full border"
                       type="password"
@@ -169,6 +175,7 @@ export default function ForgotPassword() {
                 </FormItem>
               )}
             />
+            {/* Submit Button */}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>
