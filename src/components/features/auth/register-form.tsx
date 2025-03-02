@@ -1,6 +1,13 @@
 "use client";
 
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -61,7 +68,7 @@ export default function RegisterForm() {
       lastName: "",
       phone: "",
       email: "",
-      gender: undefined,
+      gender: "male",
       password: "",
       rePassword: "",
     },
@@ -73,8 +80,6 @@ export default function RegisterForm() {
   return (
     <div className="flex items-center justify-center">
       <div className="shadow-lg rounded-[20px] p-8">
-        {/* Text */}
-        <h2 className="text-2xl mt-6">{t("create-account")}</h2>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {/* First name */}
@@ -83,6 +88,9 @@ export default function RegisterForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
+                  {/* Label */}
+                  <FormLabel className="sr-only">{t("first-name")}</FormLabel>
+
                   {/* Input */}
                   <FormControl>
                     <Input
@@ -106,6 +114,9 @@ export default function RegisterForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
+                  {/* Label */}
+                  <FormLabel className="sr-only">{t("last-name")}</FormLabel>
+
                   <FormControl>
                     {/* Input */}
                     <Input
@@ -129,6 +140,9 @@ export default function RegisterForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
+                  {/* Label */}
+                  <FormLabel className="sr-only">{t("phone-number")}</FormLabel>
+
                   {/* Input */}
                   <FormControl>
                     <Input
@@ -152,6 +166,9 @@ export default function RegisterForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
+                  {/* Label */}
+                  <FormLabel className="sr-only">{t("email")}</FormLabel>
+
                   {/* Input */}
                   <FormControl>
                     <Input
@@ -175,6 +192,9 @@ export default function RegisterForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
+                  {/* Label */}
+                  <FormLabel className="sr-only">{t("gender")}</FormLabel>
+
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     {/* Select */}
                     <FormControl>
@@ -205,6 +225,9 @@ export default function RegisterForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
+                  {/* Label */}
+                  <FormLabel className="sr-only">{t("password")}</FormLabel>
+
                   {/* Input */}
                   <FormControl>
                     <Input
@@ -228,6 +251,9 @@ export default function RegisterForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
+                  {/* Label */}
+                  <FormLabel className="sr-only">{t("confirm-password")}</FormLabel>
+
                   {/* Input */}
                   <FormControl>
                     <Input
