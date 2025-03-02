@@ -9,7 +9,6 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Input } from "@/components/ui/input";
 import { useSetNewPassword } from "@/hooks/auth/use-set-password";
 import dynamic from "next/dynamic";
-import { useState } from "react";
 import { Dialog, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 type SetPasswordProps = {
@@ -26,11 +25,8 @@ export default function SetPasswordForm({ email }: SetPasswordProps) {
   // Translation
   const t = useTranslations();
 
-  // State
-  const [showLoginForm, setShowLoginForm] = useState(false);
-
   // Mutation
-  const { setPassword, isPending } = useSetNewPassword();
+  const { setPassword, isPending, showLoginForm } = useSetNewPassword();
 
   // Form & Validation
   const Schema = z
@@ -61,8 +57,8 @@ export default function SetPasswordForm({ email }: SetPasswordProps) {
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
+    debugger;
     setPassword({ email, newPassword: values.newPassword });
-    setShowLoginForm(true);
   };
 
   return (
