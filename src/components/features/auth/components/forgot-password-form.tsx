@@ -8,6 +8,9 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import useResetPassword from "@/hooks/auth/use-reset-password-hook";
+import useForgotPassword from "@/hooks/auth/use-forgot-password-hook";
+import useVerifyPassword from "@/hooks/auth/use-verify-password-hook";
 
 export default function ForgotPassword() {
   // Translation
@@ -17,6 +20,11 @@ export default function ForgotPassword() {
   const [emailDialog, setEmailDialog] = useState(true);
   const [codeDialog, setCodeDialog] = useState(false);
   const [confirmPasswordDialog, setConfirmPasswordDialog] = useState(false);
+
+  // Mutation
+  const { isPending: ForgotPasswordLoading, mutate: ForgotPasswordMutate } = useForgotPassword();
+  const { isPending: VerifyPasswordLoading, mutate: VerifyPasswordMutate } = useVerifyPassword();
+  const { isPending: ResetPasswordLoading, mutate: ResetPasswordMutate } = useResetPassword();
 
   // Form and Validation
   const formSchema = z.object({
@@ -62,11 +70,56 @@ export default function ForgotPassword() {
   });
 
   // Functions
-  function EmailSubmit(values: z.infer<typeof formSchema>) {}
+  function EmailSubmit(values: z.infer<typeof formSchema>) {
+    ForgotPasswordMutate(
+      { email: values.email },
+      {
+        onError: () => {
+          return;
+        },
+        onSuccess: () => {
+          // to show second dialog. to let user send code verification if the email exists
+          setEmailDialog(false);
+          setConfirmPasswordDialog(false);
+          setCodeDialog(true);
+        },
+      },
+    );
+  }
 
-  function CodeSubmit(values: z.infer<typeof codeSchema>) {}
+  function CodeSubmit(values: z.infer<typeof codeSchema>) {
+    VerifyPasswordMutate(
+      { code: values.code },
+      {
+        onError: () => {
+          return;
+        },
+        onSuccess: () => {
+          // to show third dialog. let user send email address and new password after checking code verification
+          setConfirmPasswordDialog(true);
+          setCodeDialog(false);
+          setEmailDialog(false);
+        },
+      },
+    );
+  }
 
-  function NewPasswordSubmit(values: z.infer<typeof newPasswordSchema>) {}
+  function NewPasswordSubmit(values: z.infer<typeof newPasswordSchema>) {
+    ResetPasswordMutate(
+      { email: values.email, password: values.newPassword },
+      {
+        onError: () => {
+          return;
+        },
+        onSuccess: () => {
+          // Reset all the states and close the dialog
+          setConfirmPasswordDialog(false);
+          setCodeDialog(false);
+          setEmailDialog(false);
+        },
+      },
+    );
+  }
 
   return (
     <>
@@ -91,7 +144,6 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    {/* Email Input */}
                     <Input
                       required
                       className="w-full"
@@ -103,7 +155,6 @@ export default function ForgotPassword() {
                 </FormItem>
               )}
             />
-            {/* Submit Button */}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>
@@ -121,14 +172,12 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    {/* Code Input */}
                     <Input className="w-full" placeholder={t("enter-code")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            {/* Submit Button */}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>
@@ -146,7 +195,6 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    {/* Email Input */}
                     <Input
                       className="w-full border"
                       placeholder={t("enter-your-email-address")}
@@ -163,7 +211,6 @@ export default function ForgotPassword() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    {/* New Password Input */}
                     <Input
                       className="w-full border"
                       type="password"
@@ -175,7 +222,6 @@ export default function ForgotPassword() {
                 </FormItem>
               )}
             />
-            {/* Submit Button */}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>
