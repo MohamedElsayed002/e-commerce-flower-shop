@@ -4,7 +4,6 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import dynamic from "next/dynamic";
-import { useState } from "react";
 import { useVerifyOtp } from "@/hooks/auth/use-verify-otp";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,14 +22,14 @@ const SetPasswordForm = dynamic(() => import("./dummy-set-password-form"), {
 });
 
 export default function VerifyOtpForm({ email }: VerifyOtpProps) {
-// Translation
-const t = useTranslations();
+  // Translation
+  const t = useTranslations();
 
   // State
-  const [showSetPasswordForm, setShowSetPasswordForm] = useState(false);
+  // const [showSetPasswordForm, setShowSetPasswordForm] = useState(false);
 
   // Mutation
-  const { verifyOTP, isPending } = useVerifyOtp();
+  const { verifyOTP, isPending, showSetPasswordForm } = useVerifyOtp();
   const { resendOtp, isPending: isResending } = useForgotPassword();
 
   // NOTE: to be removed when merging
@@ -48,8 +47,9 @@ const t = useTranslations();
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
+    // debugger;
     verifyOTP(values);
-    setShowSetPasswordForm(true);
+    // setShowSetPasswordForm(true);
   };
 
   const handleResendOtp = () => {
