@@ -4,6 +4,9 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Inter, Roboto } from "next/font/google";
 import { cn } from "@/lib/utils/cn";
+import { LayoutProps } from "@/lib/types/common";
+import { Toaster } from "sonner";
+import NextAuthProvider from "@/components/provider/components/next-auth-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +30,15 @@ export default function LocaleLayout({ params: { locale }, children }: LayoutPro
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={cn(inter.variable, roboto.variable, inter.className, "antialiased")}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <NextAuthProvider>
+            {/* Main */}
+            {children}
+
+            {/* Toaster */}
+            <Toaster position="top-center" />
+          </NextAuthProvider>
+        </Providers>
       </body>
     </html>
   );
