@@ -195,8 +195,9 @@ export default function RegisterForm() {
                   {/* Label */}
                   <FormLabel className="sr-only">{t("gender")}</FormLabel>
 
+                  {/* Select */}
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    {/* Select */}
+                    {/* Trigger */}
                     <FormControl>
                       <SelectTrigger
                         className="w-[528px] h-[52px] rounded-[20px]"
