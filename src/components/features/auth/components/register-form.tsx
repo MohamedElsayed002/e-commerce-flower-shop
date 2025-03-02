@@ -15,14 +15,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import QuestionMarkRight from "@/components/common/question-mark-right";
 import { Link } from "@/i18n/routing";
-import useRegister from "./_hooks/use-register-hook";
+import useRegister from "../../../../hooks/auth/use-register-hook";
 
 export default function RegisterForm() {
   // Translation
   const t = useTranslations();
 
-  // Mutation 
-  const {mutate : registerMutation , isPending : registerLoading} = useRegister()
+  // Mutation
+  const { mutate: registerMutation, isPending: registerLoading } = useRegister();
 
   // Form & Validation
   const Schema = z
@@ -72,7 +72,7 @@ export default function RegisterForm() {
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
-    registerMutation(values)
+    registerMutation(values);
   };
 
   return (
