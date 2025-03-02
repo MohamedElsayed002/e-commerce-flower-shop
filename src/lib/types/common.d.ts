@@ -5,6 +5,7 @@ declare type DatabaseFields = {
   id: string;
   createdAt: string;
 };
+
 declare type RouteProps = {
   params: { locale: "en" | "ar" };
   searchParams: SearchParams;
