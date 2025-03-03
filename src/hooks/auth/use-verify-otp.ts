@@ -7,9 +7,13 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export function useVerifyOtp() {
+  // Translation
   const t = useTranslations();
+
+  // Status
   const [showSetPasswordForm, setShowSetPasswordForm] = useState(false);
 
+  // Mutation
   const { mutate, isPending } = useMutation({
     mutationFn: async (fields: VerifyOTPFields) => {
       const result = await verifyOtpAction(fields);
@@ -25,11 +29,7 @@ export function useVerifyOtp() {
       setShowSetPasswordForm(true);
     },
     onError: (error) => {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      } else {
-        toast.error("Something went wrong");
-      }
+      toast.error(error.message);
     },
   });
 
