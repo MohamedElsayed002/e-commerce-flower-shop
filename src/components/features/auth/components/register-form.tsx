@@ -7,7 +7,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { DialogTitle } from "@/components/ui/dialog";
 
 export default function RegisterForm({
   onStateChange,
@@ -45,11 +44,6 @@ export default function RegisterForm({
 
   return (
     <Form {...form}>
-      {/* Title Register */}
-      <DialogTitle className="text-left mb-7 font-normal text-2xl rtl:text-right ms-2 rtl:me-2 ">
-        Create account
-      </DialogTitle>
-
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {/* Email Filed */}
         <FormField

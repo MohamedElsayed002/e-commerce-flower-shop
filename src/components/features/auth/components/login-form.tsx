@@ -7,7 +7,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { DialogTitle } from "@/components/ui/dialog";
 
 export default function LoginForm({
   onStateChange,
@@ -44,13 +43,7 @@ export default function LoginForm({
   };
 
   return (
-    <div className=" my-3">
       <Form {...form}>
-        {/* Title Login  */}
-        <DialogTitle className="text-left mb-7 font-normal text-2xl rtl:text-right ms-2 rtl:me-2 ">
-          {t("login-title")}
-        </DialogTitle>
-
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           {/* Email Filed */}
           <FormField
@@ -103,8 +96,9 @@ export default function LoginForm({
                 {t("create-account")}
               </Button>
             </div>
-        
+
           </div>
+
           {/* Login Button */}
           <Button
             type="submit"
@@ -114,6 +108,5 @@ export default function LoginForm({
           </Button>
         </form>
       </Form>
-    </div>
-  );
+        );
 }

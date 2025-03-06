@@ -6,8 +6,6 @@ import dynamic from "next/dynamic";
 import { DialogDescription, DialogTrigger } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 
 // Dynamically import form components
 const LoginForm = dynamic(() => import("./components/login-form"), {
@@ -54,21 +52,34 @@ export default function AuthDialog() {
 
   return (
     <Dialog onOpenChange={handleOpenChange} open={open}>
+
       {/* DialogTrigger */}
       <DialogTrigger asChild>
         <Button className="rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800 ">
-          {" "}
           {t("login")}
         </Button>
       </DialogTrigger>
 
       {/* Main dialog container */}
       <DialogContent>
-        {/* Server-side Render */}
-        <DialogHeader className="sr-only">
-          <DialogTitle></DialogTitle>
-          <DialogDescription></DialogDescription>
-        </DialogHeader>
+        
+        {/* DialogHeader*/}
+        <DialogHeader >
+
+         {/* DialogTitle*/}
+      <DialogTitle className="text-left font-normal my-3 text-2xl rtl:text-right ms-2 rtl:me-2 ">
+
+        {/* Return Title Base on State*/}
+      {authState === 'login' && t("login-title")}
+            {authState === 'register' && t("register-title")}
+            {authState === 'verify-otp' && t("verify-code-title")}
+            {authState === 'set-password' && t("set-password-title")}
+            {authState === 'forgot-password' && t("forgot-password-title")}
+            </DialogTitle>
+
+              {/* DialogDescriptionr read on server*/}
+            <DialogDescription className="sr-only">DialogDescription</DialogDescription>
+          </DialogHeader>
 
         {/* LoginForm */}
         {authState === "login" && <LoginForm onStateChange={setAuthState} />}
@@ -88,22 +99,6 @@ export default function AuthDialog() {
         {/* {authState === "set-password" && (
           <SetPassword onStateChange={setAuthState}  />
         )} */}
-
-        {/* Server-side Rendered Form */}
-        <div className="grid gap-4 py-4 sr-only">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
-          </div>
-        </div>
       </DialogContent>
     </Dialog>
   );

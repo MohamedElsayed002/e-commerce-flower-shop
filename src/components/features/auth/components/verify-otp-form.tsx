@@ -7,7 +7,6 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
-import { DialogTitle } from "@/components/ui/dialog";
 
 export default function VerifyOtpForm({
   onStateChange,
@@ -42,7 +41,6 @@ export default function VerifyOtpForm({
   };
 
   return (
-    <div className="my-3">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           {/* OTP Input Field */}
@@ -90,6 +88,5 @@ export default function VerifyOtpForm({
           </Button>
         </form>
       </Form>
-    </div>
   );
 }
