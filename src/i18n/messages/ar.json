@@ -94,5 +94,8 @@
   "enter-code": "أدخل الرمز",
   "verify-code-title": "تحقق من الكود",
   "code-reqired": "أدخل رمز صالح",
-  "login-title": "تسجيل الدخول إلى حسابك"
+  "login-title": "تسجيل الدخول إلى حسابك",
+  "forgot-password-title": "نسيت كلمة السر ؟",
+  "set-password-title": "اضبط كلمة مرور\n",
+  "register-title": "إنشاء حساب"
 }
