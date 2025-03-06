@@ -6,17 +6,24 @@ import dynamic from "next/dynamic";
 import { DialogDescription, DialogTrigger } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { ImSpinner3 } from "react-icons/im";
 
 // Dynamically import form components
 const LoginForm = dynamic(() => import("./components/login-form"), {
   ssr: false,
-  loading: () => <p>loading..</p>,
+  loading: () => 
+    <div className="flex justify-center items-center">
+<ImSpinner3 />
+    </div>,
 });
 
 // Dummy component for testing state
 const RegisterForm = dynamic(() => import("./components/register-form"), {
   ssr: false,
-  loading: () => <p>loading..</p>,
+  loading: () => 
+    <div className="flex justify-center items-center">
+      <ImSpinner3 />
+    </div>,
 });
 
 // const ForgetPassword = dynamic(
@@ -29,10 +36,10 @@ const RegisterForm = dynamic(() => import("./components/register-form"), {
 //     import("./components/set-password-form"), { ssr: false ,loading :()=> <p>loading..</p>}
 // );
 
-const VerifyOtpForm = dynamic(() => import("./components/verify-otp-form"), {
-  ssr: false,
-  loading: () => <p>loading..</p>,
-});
+// const VerifyOtpForm = dynamic(() => import("./components/verify-otp-form"), {
+//   ssr: false,
+//   loading: () => <p>loading..</p>,
+// });
 
 export default function AuthDialog() {
   // Translations
@@ -93,7 +100,7 @@ export default function AuthDialog() {
         )} */}
 
         {/* VerifyOtpForm  */}
-        {authState === "verify-otp" && <VerifyOtpForm onStateChange={setAuthState} />}
+        {/* {authState === "verify-otp" && <VerifyOtpForm onStateChange={setAuthState} />} */}
 
         {/* SetPassword  */}
         {/* {authState === "set-password" && (
