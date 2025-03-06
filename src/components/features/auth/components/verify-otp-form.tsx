@@ -42,11 +42,7 @@ export default function VerifyOtpForm({
   };
 
   return (
-    <div className=" my-3">
-      {/* Title Login  */}
-      <DialogTitle className="text-left mb-7 font-normal text-2xl rtl:text-right ms-2 rtl:me-2 ">
-        {t("verify-code-title")}
-      </DialogTitle>
+    <div className="my-3">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           {/* OTP Input Field */}
@@ -74,14 +70,14 @@ export default function VerifyOtpForm({
 
           {/* Resend Code Section */}
           <div className="text-right text-sm">
-            <span className="text-gray-600">{t("receive-code")}</span>
+            <span className="text-gray-600">{t("receive-code")}  {" "}</span>
             <Button
               variant="link"
               className="text-custom-rose-900 hover:text-custom-rose-800 p-0 underline"
               onClick={handleResendCode}
               type="button"
             >
-              {t("resend-code")}
+           {t("resend-code")} 
             </Button>
           </div>
 
