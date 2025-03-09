@@ -11,19 +11,21 @@ import { ImSpinner3 } from "react-icons/im";
 // Dynamically import form components
 const LoginForm = dynamic(() => import("./components/login-form"), {
   ssr: false,
-  loading: () => 
+  loading: () => (
     <div className="flex justify-center items-center">
-<ImSpinner3 />
-    </div>,
+      <ImSpinner3 />
+    </div>
+  ),
 });
 
 // Dummy component for testing state
 const RegisterForm = dynamic(() => import("./components/register-form"), {
   ssr: false,
-  loading: () => 
+  loading: () => (
     <div className="flex justify-center items-center">
       <ImSpinner3 />
-    </div>,
+    </div>
+  ),
 });
 
 // const ForgetPassword = dynamic(
@@ -33,12 +35,16 @@ const RegisterForm = dynamic(() => import("./components/register-form"), {
 
 // const SetPassword = dynamic(
 //   () =>
-//     import("./components/set-password-form"), { ssr: false ,loading :()=> <p>loading..</p>}
-// );
+//     import("./components/set-password-form"), { ssr: false ,loading :()=> <div className="flex justify-center items-center">
+// <ImSpinner3 />
+// </div>,
+// });
 
 // const VerifyOtpForm = dynamic(() => import("./components/verify-otp-form"), {
 //   ssr: false,
-//   loading: () => <p>loading..</p>,
+//   loading: () =>  <div className="flex justify-center items-center">
+// <ImSpinner3 />
+// </div>,
 // });
 
 export default function AuthDialog() {
@@ -59,7 +65,6 @@ export default function AuthDialog() {
 
   return (
     <Dialog onOpenChange={handleOpenChange} open={open}>
-
       {/* DialogTrigger */}
       <DialogTrigger asChild>
         <Button className="rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800 ">
@@ -69,24 +74,20 @@ export default function AuthDialog() {
 
       {/* Main dialog container */}
       <DialogContent>
-        
         {/* DialogHeader*/}
-        <DialogHeader >
-
-         {/* DialogTitle*/}
-      <DialogTitle className="text-left font-normal my-3 text-2xl rtl:text-right ms-2 rtl:me-2 ">
-
-        {/* Return Title Base on State*/}
-      {authState === 'login' && t("login-title")}
-            {authState === 'register' && t("register-title")}
-            {authState === 'verify-otp' && t("verify-code-title")}
-            {authState === 'set-password' && t("set-password-title")}
-            {authState === 'forgot-password' && t("forgot-password-title")}
-            </DialogTitle>
-
-              {/* DialogDescriptionr read on server*/}
-            <DialogDescription className="sr-only">DialogDescription</DialogDescription>
-          </DialogHeader>
+        <DialogHeader>
+          {/* DialogTitle*/}
+          <DialogTitle className="text-left font-normal my-3 text-2xl rtl:text-right ms-2 rtl:me-2 ">
+            {/* Return Title Base on State*/}
+            {authState === "login" && t("login-title")}
+            {authState === "register" && t("register-title")}
+            {authState === "verify-otp" && t("verify-code-title")}
+            {authState === "set-password" && t("set-password-title")}
+            {authState === "forgot-password" && t("forgot-password-title")}
+          </DialogTitle>
+          {/* DialogDescriptionr read on server*/}
+          <DialogDescription className="sr-only">DialogDescription</DialogDescription>
+        </DialogHeader>
 
         {/* LoginForm */}
         {authState === "login" && <LoginForm onStateChange={setAuthState} />}
