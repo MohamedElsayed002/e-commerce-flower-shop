@@ -1,4 +1,5 @@
 'use client'
+
 import { useTranslations } from 'next-intl'
 import React from 'react'
 import {
@@ -18,7 +19,7 @@ export default function ProfileIcon() {
     
     return (
         <DropdownMenu>
-          {/*  Profile Icon */}
+          {/*  Profile icon */}
           <DropdownMenuTrigger><CgProfile className='text-custom-rose-800 w-5 h-5'/></DropdownMenuTrigger>
           {/* Links */}
           <DropdownMenuContent>
