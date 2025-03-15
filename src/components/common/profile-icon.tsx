@@ -25,9 +25,9 @@ export default function ProfileIcon() {
           <DropdownMenuContent>
             {/* Profile page */}
             <Link href="/profile"><DropdownMenuItem className='focus:bg-custom-rose-600 hover:cursor-pointer focus:text-white p-2'>{t("profile")}</DropdownMenuItem></Link>
-            {/* Orders Page */}
+            {/* Orders page */}
             <Link  href="/orders"><DropdownMenuItem className='focus:bg-custom-rose-600 hover:cursor-pointer focus:text-white p-2'>{t("orders-page")}</DropdownMenuItem></Link>
-            {/* Log Out */}
+            {/* Logout */}
             <DropdownMenuItem><Button onClick={() => signOut()} className='text-white bg-custom-rose-800 hover:bg-custom-rose-500 '>{t("signout")}</Button></DropdownMenuItem>
           </DropdownMenuContent>
           </DropdownMenu>
