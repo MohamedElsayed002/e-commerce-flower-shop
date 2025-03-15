@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { useSetNewPassword } from "@/hooks/auth/use-set-password";
 import dynamic from "next/dynamic";
 import { Dialog, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useState } from "react";
 
 type SetPasswordProps = {
   email: string;
@@ -25,8 +26,11 @@ export default function SetPasswordForm({ email }: SetPasswordProps) {
   // Translation
   const t = useTranslations();
 
+  // State
+  const [showLoginForm, setShowLoginForm] = useState<boolean>(false)
+
   // Mutation
-  const { setPassword, isPending, showLoginForm } = useSetNewPassword();
+  const { setPassword, isPending, error } = useSetNewPassword();
 
   // Form & Validation
   const Schema = z
@@ -57,8 +61,11 @@ export default function SetPasswordForm({ email }: SetPasswordProps) {
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
-    debugger;
-    setPassword({ email, newPassword: values.newPassword });
+    setPassword({ email, newPassword: values.newPassword }, {
+      onSuccess: () => {
+        setShowLoginForm(true);
+      },
+    });
   };
 
   return (
@@ -118,6 +125,9 @@ export default function SetPasswordForm({ email }: SetPasswordProps) {
                     </FormItem>
                   )}
                 />
+                
+                {/* Error message */}
+                {error && <p className="text-red-500 text-sm">{error.message}</p>}
 
                 {/* Submit button */}
                 <Button

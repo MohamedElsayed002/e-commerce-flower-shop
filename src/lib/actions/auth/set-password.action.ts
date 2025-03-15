@@ -19,5 +19,5 @@ export async function setNewPasswordAction(fields: SetPasswordFields) {
     return payload.message;
   }
 
-throw new Error(payload.error);
+  return payload;
 }
