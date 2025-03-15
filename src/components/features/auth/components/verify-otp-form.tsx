@@ -10,6 +10,7 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useForgotPassword } from "@/hooks/auth/dummy-use-forgot-password";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 type VerifyOtpProps = {
   email: string;
@@ -26,10 +27,11 @@ export default function VerifyOtpForm({ email }: VerifyOtpProps) {
   const t = useTranslations();
 
   // State
-  // const [showSetPasswordForm, setShowSetPasswordForm] = useState(false);
+  const [showSetPasswordForm, setShowSetPasswordForm] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   // Mutation
-  const { verifyOTP, isPending, showSetPasswordForm } = useVerifyOtp();
+  const { verifyOTP, isPending } = useVerifyOtp();
   const { resendOtp, isPending: isResending } = useForgotPassword();
 
   // NOTE: to be removed when merging
@@ -47,9 +49,15 @@ export default function VerifyOtpForm({ email }: VerifyOtpProps) {
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
-    // debugger;
-    verifyOTP(values);
-    // setShowSetPasswordForm(true);
+    setErrorMessage("");
+    verifyOTP(values, {
+      onSuccess: () => {
+        setShowSetPasswordForm(true);
+      },
+      onError: (error) => {
+        setErrorMessage(error.message);
+      },
+    });
   };
 
   const handleResendOtp = () => {
@@ -83,6 +91,9 @@ export default function VerifyOtpForm({ email }: VerifyOtpProps) {
                 </FormItem>
               )}
             />
+
+            {/* Error message */}
+            {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
 
             {/* Resend Button */}
             <Button
