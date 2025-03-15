@@ -6,23 +6,15 @@ declare type User = {
   phone: string;
   photo: string;
   role: string;
-  addresses: [
-    {
-      street: string;
-      phone: string;
-      city: string;
-      _id: string;
-    },
-    {
-      street: string;
-      phone: string;
-      city: string;
-      lat: string;
-      long: string;
-      username: string;
-      _id: string;
-    },
-  ];
+  addresses: {
+    street: string;
+    phone: string;
+    city: string;
+    _id: string;
+    lat: string;
+    long: string;
+    username: string;
+  }[];
 } & DatabaseFields;
 
 declare interface LoginResponse {
@@ -40,21 +32,13 @@ declare type RegisterFields = {
   role: string;
   password: string;
   rePassword: string;
-  addresses: [
-    {
-      street: string;
-      phone: string;
-      city: string;
-      _id: string;
-    },
-    {
-      street: string;
-      phone: string;
-      city: string;
-      lat: string;
-      long: string;
-      username: string;
-      _id: string;
-    },
-  ];
+  addresses: {
+    street: string;
+    phone: string;
+    city: string;
+    _id: string;
+    lat: string;
+    long: string;
+    username: string;
+  }[];
 };

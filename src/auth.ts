@@ -34,7 +34,6 @@ export const authOptions: NextAuthOptions = {
         });
 
         const payload: APIResponse<LoginResponse> = await response.json();
-        console.log("payload", payload);
         if (payload.message === "success") {
           return {
             token: payload.token,
@@ -77,4 +76,3 @@ export const authOptions: NextAuthOptions = {
 };
 
 export default NextAuth(authOptions);
-

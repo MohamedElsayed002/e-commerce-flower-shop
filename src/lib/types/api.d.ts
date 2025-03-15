@@ -6,9 +6,7 @@ declare type DatabaseFields = {
 
 declare type SuccessfulResponse<T> = {
   message: "success";
-  token: string;
-  user: User;
-};
+} & T;
 
 declare type ErrorResponse = {
   message: "error" | "fail";

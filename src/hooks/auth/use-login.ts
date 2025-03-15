@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
-import { useTranslations } from "use-intl";
+import { useTranslations } from "next-intl";
 
 export default function useLogin() {
   // Translation
