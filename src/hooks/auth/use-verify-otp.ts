@@ -10,13 +10,21 @@ export function useVerifyOtp() {
   const t = useTranslations();
 
   // Mutation
-  const { mutate, isPending } = useMutation({
-    mutationFn: (fields: VerifyOTPFields) => verifyOtpAction(fields),
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: async (fields: VerifyOTPFields) => {
+      const result = await verifyOtpAction(fields);
+
+      if (result?.error) {
+        throw new Error(result.error);
+      }
+
+      return result;
+    },
     
     onSuccess: () => {
-      toast.success(t("you-can-reset-your-password"));
+      toast.success(t('you-can-reset-your-password'));
     }
   });
 
-  return { verifyOTP: mutate, isPending };
+  return { verifyOTP: mutate, isPending, error };
 }

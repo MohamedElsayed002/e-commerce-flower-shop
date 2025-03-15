@@ -16,4 +16,6 @@ export async function verifyOtpAction(fields: VerifyOTPFields) {
   if ("status" in payload && payload.status === "Success") {
     return payload.status;
   }
+
+  return payload;
 }

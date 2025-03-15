@@ -28,10 +28,9 @@ export default function VerifyOtpForm({ email }: VerifyOtpProps) {
 
   // State
   const [showSetPasswordForm, setShowSetPasswordForm] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>("");
 
   // Mutation
-  const { verifyOTP, isPending } = useVerifyOtp();
+  const { verifyOTP, isPending , error} = useVerifyOtp();
   const { resendOtp, isPending: isResending } = useForgotPassword();
 
   // NOTE: to be removed when merging
@@ -49,13 +48,9 @@ export default function VerifyOtpForm({ email }: VerifyOtpProps) {
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
-    setErrorMessage("");
     verifyOTP(values, {
       onSuccess: () => {
         setShowSetPasswordForm(true);
-      },
-      onError: (error) => {
-        setErrorMessage(error.message);
       },
     });
   };
@@ -93,7 +88,7 @@ export default function VerifyOtpForm({ email }: VerifyOtpProps) {
             />
 
             {/* Error message */}
-            {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+            {error && <p className="text-red-500 text-sm">{error.message}</p>}
 
             {/* Resend Button */}
             <Button
