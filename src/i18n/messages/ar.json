@@ -104,5 +104,6 @@
   "password-must-contain-at-least-one-lowercase-letter": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
   "password-must-contain-at-least-one-number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
   "phone-number-required": "رقم الهاتف مطلوب",
-  "invalid-phone-number-format-must-start-with-a-country-code": " رقم الهاتف غير صالح يجب أن يبدأ برمز البلد"
+  "invalid-phone-number-format-must-start-with-a-country-code": " رقم الهاتف غير صالح يجب أن يبدأ برمز البلد",
+  "account-created-successfully": "الحساب الذي تم إنشاؤه بنجاح"
 }

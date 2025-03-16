@@ -22,7 +22,7 @@ export default function RegisterForm() {
   const t = useTranslations();
 
   // Mutation
-  const { mutate: registerMutation, isPending: registerLoading } = useRegister();
+  const { mutate: registerMutation, isPending: registerLoading, error } = useRegister();
 
   // Form & Validation
   const Schema = z
@@ -263,7 +263,11 @@ export default function RegisterForm() {
                 {t("login")}
               </Link>
             </p>
-
+            {error && (
+              <p>
+                {error.message}
+              </p>
+            )}
             {/* Submit */}
             <button
               disabled={registerLoading}
