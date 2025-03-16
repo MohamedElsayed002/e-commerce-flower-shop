@@ -84,5 +84,8 @@
   "enter-your-email-address": "أدخل عنوان بريدك الإلكتروني",
   "submit": "يُقدِّم",
   "enter-code": "أدخل الرمز",
-  "confirm-password": "تأكيد كلمة المرور"
+  "confirm-password": "تأكيد كلمة المرور",
+  "passwords-do-not-match": "كلمة المرور لا تتطابق",
+  "enter-new-password": "أدخل كلمة مرور جديدة",
+  "confirm-new-password": "تأكيد كلمة مرور جديدة"
 }

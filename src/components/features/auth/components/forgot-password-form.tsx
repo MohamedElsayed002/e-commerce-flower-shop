@@ -27,17 +27,22 @@ export default function ForgotPassword() {
     code: z.string().min(6, { message: t("minimum-code-is-6-characters") }),
   });
 
-  const newPasswordSchema = z.object({
-    email: z.string().email({ message: t("invalid-email") }),
-    newPassword: z
-      .string()
-      .min(8, { message: t("minimum-characters-is-8") })
-      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/, {
-        message: t(
-          "minimum-password-characters-8-contains-lowercase-and-uppercase-and-numbers-and-one-symbol-atleast",
-        ),
-      }),
-  });
+  const newPasswordSchema = z
+    .object({
+      newPassword: z
+        .string()
+        .min(8, { message: t("minimum-characters-is-8") })
+        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/, {
+          message: t(
+            "minimum-password-characters-8-contains-lowercase-and-uppercase-and-numbers-and-one-symbol-atleast",
+          ),
+        }),
+      rePassword: z.string(),
+    })
+    .refine((data) => data.newPassword === data.rePassword, {
+      message: t("passwords-do-not-match"),
+      path: ["rePassword"], // The error will be associated with the "rePassword" field
+    });
 
   const emailForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -56,8 +61,8 @@ export default function ForgotPassword() {
   const newPasswordForm = useForm<z.infer<typeof newPasswordSchema>>({
     resolver: zodResolver(newPasswordSchema),
     defaultValues: {
-      email: "",
       newPassword: "",
+      rePassword: "",
     },
   });
 
@@ -142,14 +147,15 @@ export default function ForgotPassword() {
           <form onSubmit={newPasswordForm.handleSubmit(NewPasswordSubmit)} className="space-y-4">
             <FormField
               control={newPasswordForm.control}
-              name="email"
+              name="newPassword"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    {/* Email Input */}
+                    {/* New Password Input */}
                     <Input
                       className="w-full border"
-                      placeholder={t("enter-your-email-address")}
+                      type="password"
+                      placeholder={t("enter-new-password")}
                       {...field}
                     />
                   </FormControl>
@@ -159,7 +165,7 @@ export default function ForgotPassword() {
             />
             <FormField
               control={newPasswordForm.control}
-              name="newPassword"
+              name="rePassword"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -167,7 +173,7 @@ export default function ForgotPassword() {
                     <Input
                       className="w-full border"
                       type="password"
-                      placeholder={t("confirm-password")}
+                      placeholder={t("confirm-new-password")}
                       {...field}
                     />
                   </FormControl>

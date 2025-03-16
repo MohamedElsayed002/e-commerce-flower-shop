@@ -87,5 +87,8 @@
   "enter-your-email-address": "Enter your email address",
   "submit": "Submit",
   "enter-code": "Enter Code",
-  "confirm-password": "Confirm Password"
+  "confirm-password": "Confirm Password",
+  "passwords-do-not-match": "Password does not match",
+  "enter-new-password": "Enter new Password",
+  "confirm-new-password": "Confirm new Password"
 }
