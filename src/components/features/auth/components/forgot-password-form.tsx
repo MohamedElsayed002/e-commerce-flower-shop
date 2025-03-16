@@ -17,15 +17,27 @@ export default function ForgotPassword() {
   const t = useTranslations();
 
   // State
+  const [savedUserEmail,setSavedUserEmail] = useState('')
   const [emailDialog, setEmailDialog] = useState(true);
   const [codeDialog, setCodeDialog] = useState(false);
   const [confirmPasswordDialog, setConfirmPasswordDialog] = useState(false);
 
   // Mutation
-  const { isPending: ForgotPasswordLoading, mutate: ForgotPasswordMutate } = useForgotPassword();
-  const { isPending: VerifyPasswordLoading, mutate: VerifyPasswordMutate } = useVerifyPassword();
-  const { isPending: ResetPasswordLoading, mutate: ResetPasswordMutate } = useResetPassword();
-
+  const {
+    isPending: ForgotPasswordLoading,
+    mutate: ForgotPasswordMutate,
+    error: ForgotPasswordError,
+  } = useForgotPassword();
+  const {
+    isPending: VerifyPasswordLoading,
+    mutate: VerifyPasswordMutate,
+    error: VerifyCodeError,
+  } = useVerifyPassword();
+  const {
+    isPending: ResetPasswordLoading,
+    mutate: ResetPasswordMutate,
+    error: ResetPasswordError,
+  } = useResetPassword();
   // Form and Validation
   const formSchema = z.object({
     email: z.string().email({ message: t("invalid-email") }),
@@ -35,17 +47,23 @@ export default function ForgotPassword() {
     code: z.string().min(6, { message: t("minimum-code-is-6-characters") }),
   });
 
-  const newPasswordSchema = z.object({
-    email: z.string().email({ message: t("invalid-email") }),
+  const newPasswordSchema = z
+  .object({
     newPassword: z
       .string()
       .min(8, { message: t("minimum-characters-is-8") })
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/, {
         message: t(
-          "minimum-password-characters-8-contains-lowercase-and-uppercase-and-numbers-and-one-symbol-atleast",
+          "minimum-password-characters-8-contains-lowercase-and-uppercase-and-numbers-and-one-symbol-atleast"
         ),
       }),
+    rePassword: z.string(),
+  })
+  .refine((data) => data.newPassword === data.rePassword, {
+    message: t("passwords-do-not-match"),
+    path: ["rePassword"], // The error will be associated with the "rePassword" field
   });
+
 
   const emailForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -64,49 +82,45 @@ export default function ForgotPassword() {
   const newPasswordForm = useForm<z.infer<typeof newPasswordSchema>>({
     resolver: zodResolver(newPasswordSchema),
     defaultValues: {
-      email: "",
       newPassword: "",
+      rePassword: ""
     },
   });
 
   // Functions
   function EmailSubmit(values: z.infer<typeof formSchema>) {
-    ForgotPasswordMutate(
-      { email: values.email },
-      {
-        onError: () => {
-          return;
-        },
-        onSuccess: () => {
-          // to show second dialog. to let user send code verification if the email exists
-          setEmailDialog(false);
-          setConfirmPasswordDialog(false);
-          setCodeDialog(true);
-        },
+    ForgotPasswordMutate(values.email, {
+      onError: () => {
+        return;
       },
-    );
+      onSuccess: () => {
+        // to show second dialog. to let user send code verification if the email exists
+        setEmailDialog(false);
+        setConfirmPasswordDialog(false);
+        setCodeDialog(true);
+        // to save the email of the user
+        setSavedUserEmail(values.email)
+      },
+    });
   }
 
   function CodeSubmit(values: z.infer<typeof codeSchema>) {
-    VerifyPasswordMutate(
-      { code: values.code },
-      {
-        onError: () => {
-          return;
-        },
-        onSuccess: () => {
-          // to show third dialog. let user send email address and new password after checking code verification
-          setConfirmPasswordDialog(true);
-          setCodeDialog(false);
-          setEmailDialog(false);
-        },
+    VerifyPasswordMutate(values.code, {
+      onError: () => {
+        return;
       },
-    );
+      onSuccess: () => {
+        // to show third dialog. let user send email address and new password after checking code verification
+        setConfirmPasswordDialog(true);
+        setCodeDialog(false);
+        setEmailDialog(false);
+      },
+    });
   }
 
   function NewPasswordSubmit(values: z.infer<typeof newPasswordSchema>) {
     ResetPasswordMutate(
-      { email: values.email, password: values.newPassword },
+      { email: savedUserEmail, password: values.newPassword },
       {
         onError: () => {
           return;
@@ -155,6 +169,9 @@ export default function ForgotPassword() {
                 </FormItem>
               )}
             />
+            {ForgotPasswordError && (
+              <p className="text-red-500 text-sm">{ForgotPasswordError.message}</p>
+            )}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>
@@ -178,6 +195,7 @@ export default function ForgotPassword() {
                 </FormItem>
               )}
             />
+            {VerifyCodeError && <p className="text-red-500 text-sm">{VerifyCodeError.message}</p>}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>
@@ -189,22 +207,6 @@ export default function ForgotPassword() {
       {confirmPasswordDialog && (
         <Form {...newPasswordForm}>
           <form onSubmit={newPasswordForm.handleSubmit(NewPasswordSubmit)} className="space-y-4">
-            <FormField
-              control={newPasswordForm.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      className="w-full border"
-                      placeholder={t("enter-your-email-address")}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={newPasswordForm.control}
               name="newPassword"
@@ -222,6 +224,26 @@ export default function ForgotPassword() {
                 </FormItem>
               )}
             />
+                        <FormField
+              control={newPasswordForm.control}
+              name="rePassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      className="w-full border"
+                      type="password"
+                      placeholder={t('enter-repassword')}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {ResetPasswordError && (
+              <p className="text-red-500 text-sm">{ResetPasswordError.message}</p>
+            )}
             <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
               {t("submit")}
             </Button>

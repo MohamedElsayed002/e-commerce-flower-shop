@@ -3,25 +3,18 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { resetPasswordAction } from "@/lib/actions/auth/reset-password-action";
 
-
 export default function useResetPassword() {
   // Translation
   const t = useTranslations();
 
   // Mutation
-  const { isPending, error, mutate } = useMutation<
-    ResetPasswordResponse,
-    ResetPasswordError,
-    { email: string; password: string }
-  >({
-    mutationFn: async ({ email, password }) => resetPasswordAction(email, password),
-    onSuccess: (data) => {
-      if ("message" in data && data.message === "success") {
-        toast.success(data.message);
-      }
+  const { isPending, error, mutate } = useMutation({
+    mutationFn: async ({ email, password }: { email: string; password: string }) => {
+      const result = await resetPasswordAction({ email, password });
+      return result;
     },
-    onError: (error) => {
-      toast.error(error.error || t("error"));
+    onSuccess: (data) => {
+      toast.success(t('password-changed-you-can-login-now'));
     },
   });
 

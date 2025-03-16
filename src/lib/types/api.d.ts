@@ -13,11 +13,9 @@ declare type ErrorResponse = {
 };
 
 declare type SuccessfulForgotPassword = {
-    message : "success"
     info : string
 }
 
-declare type ForgotPasswordResponse = SuccessfulForgotPassword | ErrorResponse
 declare type APIResponse<T> = SuccessfulResponse<T> | ErrorResponse;
 
 declare type Metadata = {

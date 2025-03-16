@@ -82,8 +82,14 @@
   "minimum-characters-is-8": "الحد الأدنى للشخصية هو 8",
   "minimum-password-characters-8-contains-lowercase-and-uppercase-and-numbers-and-one-symbol-atleast": "الحد الأدنى من كلمة المرور 8 أحرف ويجب أن يحتوي على رمز واحد أقل و 1 على الأقل على الأقل",
   "enter-your-email-address": "أدخل عنوان بريدك الإلكتروني",
-  "submit": "يُقدِّم",
+  "submit": "تسجيل",
   "enter-code": "أدخل الرمز",
   "confirm-password": "تأكيد كلمة المرور",
-  "forgot-password": "هل نسيت كلمة السر"
+  "forgot-password": "هل نسيت كلمة السر",
+  "passwords-do-not-match": "لا تتطابق كلمات المرور",
+  "enter-repassword": "قم بتأكيد كلمة المرور الجديدة",
+  "otp-sent-to-your-email": "أرسل OTP إلى بريدك الإلكتروني",
+  "verification-successed": "نجح التحقق",
+  "password-changed-you-can-login-now": "تم تغيير كلمة المرور. \nيمكنك تسجيل الدخول الآن",
+  "verification-succeed": "تحقق التحقق"
 }

@@ -87,6 +87,11 @@
   "enter-your-email-address": "Enter your email address",
   "submit": "Submit",
   "enter-code": "Enter Code",
-  "confirm-password": "Confirm Password",
-  "forgot-password": "Forgot Password"
+  "confirm-password": "Enter New Password",
+  "forgot-password": "Forgot Password",
+  "passwords-do-not-match": "Passwords do not matches",
+  "enter-repassword": "Confirm the new Password",
+  "otp-sent-to-your-email": "OTP sent to your email",
+  "verification-succeed": "Verification Succeed",
+  "password-changed-you-can-login-now": "Password changed. you can login now"
 }

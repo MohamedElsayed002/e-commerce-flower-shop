@@ -3,25 +3,18 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { forgotPasswordAction } from "@/lib/actions/auth/forgot-password-action";
 
-
 export default function useForgotPassword() {
   // Translation
   const t = useTranslations();
 
   // Mutation using fetch
-  const { isPending, error, mutate } = useMutation<
-    ForgotPasswordResponse,
-    ErrorResponse,
-    { email: string }
-  >({
-    mutationFn: async (values) => forgotPasswordAction(values.email),
-    onSuccess: (data) => {
-      if ("message" in data && data.message === "success") {
-        toast.success(data.info); // Display success message
-      }
+  const { isPending, error, mutate } = useMutation({
+    mutationFn: async (email: string) => {
+      const result = await forgotPasswordAction(email);
+      return result;
     },
-    onError: (error) => { 
-        toast.error(error.error || t('error')); // Handle API error
+    onSuccess: (data) => {
+      toast.success(t('otp-sent-to-your-email'));
     },
   });
 

@@ -1,6 +1,6 @@
 "use server";
 
-export async function forgotPasswordAction(email: string) {
+export async function forgotPasswordAction(email : string) {
     const response = await fetch(`${process.env.API}/auth/forgotPassword`, {
         method: "POST",
         headers: {
@@ -9,13 +9,7 @@ export async function forgotPasswordAction(email: string) {
         body: JSON.stringify({ email }),
     });
 
-    const data: ForgotPasswordResponse = await response.json();
-
-    if (!response.ok) {
-        if ("error" in data) {
-            throw new Error(data.error)
-        }
-    }
-
-    return data as SuccessfulForgotPassword;
+    const payload: APIResponse<SuccessfulForgotPassword> = await response.json();
+    if ("error" in payload) throw new Error(payload.error);
+    return payload
 }
