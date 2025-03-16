@@ -13,7 +13,7 @@ export default function useRegister() {
       const result = await registerUserAction(values);
     },
     onSuccess: () => {
-        toast.success(t("account-created-successfully")); // Use translations for toast messages
+      toast.success(t("account-created-successfully")); // Use translations for toast messages
     },
   });
 

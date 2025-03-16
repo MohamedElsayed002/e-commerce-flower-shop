@@ -263,11 +263,7 @@ export default function RegisterForm() {
                 {t("login")}
               </Link>
             </p>
-            {error && (
-              <p>
-                {error.message}
-              </p>
-            )}
+            {error && <p>{error.message}</p>}
             {/* Submit */}
             <button
               disabled={registerLoading}
