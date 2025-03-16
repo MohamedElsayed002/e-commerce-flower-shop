@@ -108,6 +108,6 @@
   "password-must-contain-at-least-one-number": "Password must contain at least one number",
   "phone-number-required": "phone number required",
   "invalid-phone-number-format-must-start-with-a-country-code": "invalid phone number format must start with a country code",
-  "account-created-successfully": "account created successfully",
+  "account-created-successfully": "Account Created Successfully",
   "registration-failed": "Registration Failed"
 }
