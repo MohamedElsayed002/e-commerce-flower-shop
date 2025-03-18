@@ -2,7 +2,6 @@ import { withAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
 import { NextRequest } from "next/server";
 import { LOCALES, routing } from "./i18n/routing";
-import { getToken } from "next-auth/jwt";
 
 // Private pages
 const Privatepages = ["/cart"];
@@ -28,11 +27,7 @@ const authMiddleware = withAuth(
 );
 
 export default async function middleware(req: NextRequest) {
-  // Retrieve the user's authentication token
-  const token = await getToken({ req });
-
-  // Extract the requested path
-  const urlPath = req.nextUrl.pathname;
+  // Private pathname regex
   const privatePathnameRegex = RegExp(
     `^(/(${LOCALES.join("|")}))?(${Privatepages.flatMap((p) => (p === "/" ? ["", "/"] : p)).join(
       "|",
