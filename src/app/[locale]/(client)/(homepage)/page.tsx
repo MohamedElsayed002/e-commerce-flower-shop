@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { fetchCategories } from "@/lib/apis/category.api";
 import AboutUs from "./_components/about-us";
 import BestSeller from "./_components/best-seller";
@@ -6,6 +7,7 @@ import PopularItems from "./_components/popular-items";
 import GallerySection from "./_components/gallery";
 import TestimonialSection from "./_components/testimonials";
 import CompaniesSection from "./_components/partner-companies";
+import SetPasswordForm from "@/components/features/auth/components/set-password-form";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   // Variables

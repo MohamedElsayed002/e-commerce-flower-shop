@@ -28,25 +28,6 @@ const RegisterForm = dynamic(() => import("./components/register-form"), {
   ),
 });
 
-// const ForgetPassword = dynamic(
-//   () =>
-//     import("./components/forgot-password-form"), { ssr: false ,loading :()=> <p>loading..</p>}
-// );
-
-// const SetPassword = dynamic(
-//   () =>
-//     import("./components/set-password-form"), { ssr: false ,loading :()=> <div className="flex justify-center items-center">
-// <ImSpinner3 />
-// </div>,
-// });
-
-// const VerifyOtpForm = dynamic(() => import("./components/verify-otp-form"), {
-//   ssr: false,
-//   loading: () =>  <div className="flex justify-center items-center">
-// <ImSpinner3 />
-// </div>,
-// });
-
 export default function AuthDialog() {
   // Translations
   const t = useTranslations();
@@ -94,19 +75,6 @@ export default function AuthDialog() {
 
         {/* RegisterForm */}
         {authState === "register" && <RegisterForm onStateChange={setAuthState} />}
-
-        {/* ForgetPassword */}
-        {/* {authState === "forgot-password" && (
-          <ForgetPassword onStateChange={setAuthState}  />
-        )} */}
-
-        {/* VerifyOtpForm  */}
-        {/* {authState === "verify-otp" && <VerifyOtpForm onStateChange={setAuthState} />} */}
-
-        {/* SetPassword  */}
-        {/* {authState === "set-password" && (
-          <SetPassword onStateChange={setAuthState}  />
-        )} */}
       </DialogContent>
     </Dialog>
   );
