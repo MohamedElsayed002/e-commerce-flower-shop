@@ -7,9 +7,7 @@ import { IoLockClosedOutline, IoSearch } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
-import { useSession } from "next-auth/react";
-import { Button } from "../ui/button";
-import LoginForm from "../features/login-form";
+import AuthDialog from "../features/auth/auth-dialog";
 
 export default function Header() {
   // Translation
@@ -77,6 +75,7 @@ export default function Header() {
             )}
           </div>
         </div>
+        <AuthDialog/>
       </div>
     </header>
   );
