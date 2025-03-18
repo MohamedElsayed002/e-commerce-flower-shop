@@ -7,14 +7,12 @@ import { IoLockClosedOutline, IoSearch } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
+import { useSession } from "next-auth/react";
 import AuthDialog from "../features/auth/auth-dialog";
 
 export default function Header() {
   // Translation
   const t = useTranslations();
-
-  // State
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Hooks
   const { data: session } = useSession();
@@ -64,19 +62,13 @@ export default function Header() {
               <>
                 <IoSearch className="w-[20px] h-[21px]  text-custom-rose-900" />
                 <LocaleToggle />
-                <Button
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-[80px] h-[45px]  font-medium text-[16px] rounded-[30px] pt-[8px] pb-[8px] pr-[20px] pl-[20px] bg-custom-rose-900 text-white"
-                >
-                  {t("login")}
-                </Button>
-                {isModalOpen && <LoginForm closeModal={() => setIsModalOpen(false)} />}
+                <AuthDialog />
               </>
             )}
           </div>
         </div>
-        <AuthDialog/>
       </div>
     </header>
   );
 }
+

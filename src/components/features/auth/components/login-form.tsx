@@ -7,14 +7,19 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import useLogin from "@/hooks/auth/use-login";
 
 export default function LoginForm({
   onStateChange,
 }: {
   onStateChange: (state: AuthFormState) => void;
 }) {
+  
   // Translations
   const t = useTranslations();
+
+  // Mutation
+  const {error, login } = useLogin();
 
   // Login Schema
   const Schema = z.object({
@@ -37,9 +42,9 @@ export default function LoginForm({
     resolver: zodResolver(Schema),
   });
 
-  // Form submission handler
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
+  // Functions
+  const onSubmit: SubmitHandler<Inputs> = (values) => {
+    login(values);
   };
 
   return (
@@ -96,6 +101,12 @@ export default function LoginForm({
               {t("create-account")}
             </Button>
           </div>
+        </div>
+        <div className="flex flex-col gap-8">
+          {/* Error Message */}
+          {error && (
+            <p className="text-red-500 text-sm font-semibold text-center">{error.message}</p>
+          )}
         </div>
 
         {/* Login Button */}

@@ -4,7 +4,6 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Inter, Roboto } from "next/font/google";
 import { cn } from "@/lib/utils/cn";
-import { LayoutProps } from "@/lib/types/common";
 import { Toaster } from "sonner";
 import NextAuthProvider from "@/components/provider/components/next-auth-provider";
 
