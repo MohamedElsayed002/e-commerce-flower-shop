@@ -14,12 +14,9 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
   // Variables
   const payload = await fetchCategories();
 
-  const email: string = "mariemmohamed1421@gmail.com" 
-
   return (
     <main className="w-full">
       <Toaster />
-      <VerifyOtpForm email={email} />
       {/* Categories */}
       <Categories categories={payload?.categories || []} />
 

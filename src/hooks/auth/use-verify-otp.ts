@@ -14,16 +14,16 @@ export function useVerifyOtp() {
     mutationFn: async (fields: VerifyOTPFields) => {
       const result = await verifyOtpAction(fields);
 
-      if (result?.error) {
+      if ("error" in result) {
         throw new Error(result.error);
       }
 
       return result;
     },
-    
+
     onSuccess: () => {
-      toast.success(t('you-can-reset-your-password'));
-    }
+      toast.success(t("you-can-reset-your-password"));
+    },
   });
 
   return { verifyOTP: mutate, isPending, error };
