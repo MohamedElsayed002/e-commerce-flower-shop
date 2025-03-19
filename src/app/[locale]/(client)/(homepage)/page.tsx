@@ -8,6 +8,7 @@ import GallerySection from "./_components/gallery";
 import TestimonialSection from "./_components/testimonials";
 import CompaniesSection from "./_components/partner-companies";
 import { Toaster } from "sonner";
+
 import SetPasswordForm from "@/components/features/auth/components/set-password-form";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
