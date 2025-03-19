@@ -2,7 +2,7 @@
 
 import AppError from "@/lib/utils/app-error";
 
-export async function setNewPasswordAction(fields: SetPassword) {
+export async function setNewPasswordAction(fields: SetPasswordFields) {
   if (!fields.email || !fields.newPassword) {
     throw new AppError("Email and new password are required");
   }
@@ -13,11 +13,12 @@ export async function setNewPasswordAction(fields: SetPassword) {
     body: JSON.stringify(fields),
   });
 
-  const payload:APIResponse<SetPasswordResponse> = await response.json();
+  const payload: SetPasswordResponse = await response.json();
+  console.log("Payload", payload);
 
-  if ("message" in payload && payload.message) {
-    return payload.message;
-  }
+  // if ("message" in payload && payload.message) {
+  //   return payload.message;
+  // }
 
   return payload;
 }
