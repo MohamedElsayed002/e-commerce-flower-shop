@@ -13,12 +13,7 @@ export async function setNewPasswordAction(fields: SetPasswordFields) {
     body: JSON.stringify(fields),
   });
 
-  const payload: SetPasswordResponse = await response.json();
-  console.log("Payload", payload);
-
-  // if ("message" in payload && payload.message) {
-  //   return payload.message;
-  // }
+  const payload: APIResponse<SetPasswordResponse> = await response.json();
 
   return payload;
 }
