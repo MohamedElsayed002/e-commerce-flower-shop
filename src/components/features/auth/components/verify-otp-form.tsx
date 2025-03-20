@@ -69,63 +69,63 @@ export default function VerifyOtpForm({
 
   return (
     <>
-    {showSetPasswordForm ? (
-      // NOTE: to be replaced with SetPasswordForm when merging
-      <SetPasswordForm />
-    ) : (
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-{/* OTP Input Field */}
-          <FormField
-            control={form.control}
-            name="code"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                <Input
-                  {...field}
-                  type="text"
-                  inputMode="numeric"
-                  maxLength={6}
-                  placeholder={t("enter-code")}
-                  className="w-full h-12 text-left rtl:text-right text-xl  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]"
-                />
-                </FormControl>
+      {showSetPasswordForm ? (
+        // NOTE: to be replaced with SetPasswordForm when merging
+        <SetPasswordForm />
+      ) : (
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            {/* OTP Input Field */}
+            <FormField
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={6}
+                      placeholder={t("enter-code")}
+                      className="w-full h-12 text-left rtl:text-right text-xl  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]"
+                    />
+                  </FormControl>
 
-                {/* Message */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  {/* Message */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          {/* Error message */}
-          {error && <p className="text-red-500 text-sm">{error.message}</p>}
+            {/* Error message */}
+            {error && <p className="text-red-500 text-sm">{error.message}</p>}
 
-          {/* Resend Code Section */}
-          <div className="text-right text-sm">
-          <span className="text-gray-600">{t("receive-code")} </span>
-          <Button
-           variant="link"
-            className="text-custom-rose-900 hover:text-custom-rose-800 p-0 underline"
-            onClick={handleResendOtp}
-            type="button"
-            disabled={isResending}
-          >
-            {isResending ? t("resending") : t("resend-code")}
-          </Button>
-          </div>
+            {/* Resend Code Section */}
+            <div className="text-right text-sm">
+              <span className="text-gray-600">{t("receive-code")} </span>
+              <Button
+                variant="link"
+                className="text-custom-rose-900 hover:text-custom-rose-800 p-0 underline"
+                onClick={handleResendOtp}
+                type="button"
+                disabled={isResending}
+              >
+                {isResending ? t("resending") : t("resend-code")}
+              </Button>
+            </div>
 
-          {/* Submit button */}
-          <Button
-            className="w-full bg-custom-rose-900 rounded-2xl hover:bg-custom-rose-800"
-            type="submit"
-            disabled={isPending}
-          >
-            {isPending ? t('verifying-otp') : t("verify-code")}
-          </Button>
-        </form>
-      </Form>
-    )}
-  </>
+            {/* Submit button */}
+            <Button
+              className="w-full bg-custom-rose-900 rounded-2xl hover:bg-custom-rose-800"
+              type="submit"
+              disabled={isPending}
+            >
+              {isPending ? t("verifying-otp") : t("verify-code")}
+            </Button>
+          </form>
+        </Form>
+      )}
+    </>
   );
 }
