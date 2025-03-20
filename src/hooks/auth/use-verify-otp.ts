@@ -12,13 +12,13 @@ export function useVerifyOtp() {
   // Mutation
   const { mutate, isPending, error } = useMutation({
     mutationFn: async (fields: VerifyOTPFields) => {
-      const result = await verifyOtpAction(fields);
+      const payload = await verifyOtpAction(fields);
 
-      if ("error" in result) {
-        throw new Error(result.error);
+      if ("error" in payload) {
+        throw new Error(payload.error);
       }
 
-      return result;
+      return payload;
     },
 
     onSuccess: () => {

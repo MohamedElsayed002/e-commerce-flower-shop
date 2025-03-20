@@ -11,11 +11,7 @@ export async function verifyOtpAction(fields: VerifyOTPFields) {
     body: JSON.stringify(fields),
   });
 
-  const payload: VerifyOTPResponse = await response.json();
-
-  // if ("status" in payload && payload.status === "Success") {
-  //   return payload.status;
-  // }
+  const payload: APIResponse<VerifyOTPResponse> = await response.json();
 
   return payload;
 }
