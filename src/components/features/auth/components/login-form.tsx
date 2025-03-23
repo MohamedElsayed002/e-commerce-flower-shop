@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import useLogin from "@/hooks/auth/use-login";
 
 export default function LoginForm({
   onStateChange,
@@ -23,7 +24,10 @@ export default function LoginForm({
   // Translations
   const t = useTranslations();
 
-  // Form & Validation
+  // Mutation
+  const { error, login } = useLogin();
+
+  // Login Schema
   const Schema = z.object({
     email: z
       .string({ required_error: t("email-reqired") })
@@ -42,8 +46,8 @@ export default function LoginForm({
   });
 
   // Functions
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (values) => {
+    login(values);
   };
 
   return (
@@ -102,6 +106,12 @@ export default function LoginForm({
               {t("create-account")}
             </Button>
           </div>
+        </div>
+        <div className="flex flex-col gap-8">
+          {/* Error Message */}
+          {error && (
+            <p className="text-red-500 text-sm font-semibold text-center">{error.message}</p>
+          )}
         </div>
 
         {/* Login Button */}
