@@ -5,7 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import useLogin from "@/hooks/auth/use-login";
 
@@ -14,12 +21,11 @@ export default function LoginForm({
 }: {
   onStateChange: (state: AuthFormState) => void;
 }) {
-  
   // Translations
   const t = useTranslations();
 
   // Mutation
-  const {error, login } = useLogin();
+  const { error, login } = useLogin();
 
   // Login Schema
   const Schema = z.object({
@@ -29,11 +35,8 @@ export default function LoginForm({
       .email(t("email-invalid")),
     password: z.string({ required_error: t("password-required") }).min(1, t("password-required")),
   });
-
-  // Type Zod
   type Inputs = z.infer<typeof Schema>;
 
-  // Set initial empty values for
   const form = useForm<Inputs>({
     defaultValues: {
       email: "",
@@ -56,6 +59,7 @@ export default function LoginForm({
           name="email"
           render={({ field }) => (
             <FormItem>
+              <FormLabel className="sr-only">{t("email")}</FormLabel>
               <FormControl className="w-full border-none shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
                 <Input type="email" placeholder={t("email")} {...field} />
               </FormControl>
@@ -70,6 +74,7 @@ export default function LoginForm({
           name="password"
           render={({ field }) => (
             <FormItem>
+              <FormLabel className="sr-only">{t("password")}</FormLabel>
               <FormControl className="w-full border-none  shadow-[0px_1px_10px_0px_rgba(0,0,0,0.1)]">
                 <Input type="password" placeholder={t("password")} {...field} />
               </FormControl>
