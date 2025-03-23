@@ -43,13 +43,13 @@ export default function Header() {
         </div>
 
         {/* Icons */}
-        <div className="flex gap-5">
+        <div className="flex gap-5 items-center">
           <IoSearch className="w-5 h-5 text-custom-rose-900" />
           <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
           <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
           <LocaleToggle />
+          <AuthDialog />
         </div>
-        <AuthDialog/>
       </div>
     </header>
   );
