@@ -17,7 +17,7 @@ type SetPasswordProps = {
 };
 
 // Lazy Loading
-const LoginForm = dynamic(() => import("./dummy-login-form"), {
+const LoginForm = dynamic(() => import("./login-form"), {
   ssr: false,
   loading: () => <i className="fa fa-spinner fa-spin text-custom-rose-800 text-2xl"></i>,
 });
