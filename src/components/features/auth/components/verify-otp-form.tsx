@@ -1,27 +1,20 @@
 "use client";
 
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import dynamic from "next/dynamic";
 import { useVerifyOtp } from "@/hooks/auth/use-verify-otp";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useForgotPassword } from "@/hooks/auth/dummy-use-forgot-password";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
-
-// type VerifyOtpProps = {
-//   email: string;
-// };
-
-// NOTE: to be replaced with SetPasswordForm when merging
-// Lazy Loading
-const SetPasswordForm = dynamic(() => import("./dummy-set-password-form"), {
-  ssr: false,
-  loading: () => <i className="fa fa-spinner fa-spin text-custom-rose-800 text-2xl"></i>,
-});
 
 export default function VerifyOtpForm({
   onStateChange,
@@ -31,22 +24,16 @@ export default function VerifyOtpForm({
   // Translations
   const t = useTranslations();
 
-  // State
-  const [showSetPasswordForm, setShowSetPasswordForm] = useState<boolean>(false);
-
   // Mutation
   const { verifyOTP, isPending, error } = useVerifyOtp();
   const { resendOtp, isPending: isResending } = useForgotPassword();
 
-  // OTP validation schema
+  // Form & Validation
   const verifyCodeSchema = z.object({
     code: z.string({ required_error: t("code-reqired") }).regex(/^\d{6}$/, t("code-reqired")),
   });
-
-  // Type Zod
   type VerifyCode = z.infer<typeof verifyCodeSchema>;
 
-  // Handle OTP submission
   const form = useForm<VerifyCode>({
     resolver: zodResolver(verifyCodeSchema),
     defaultValues: { code: "" },
@@ -56,7 +43,7 @@ export default function VerifyOtpForm({
   const onSubmit: SubmitHandler<VerifyCode> = (values) => {
     verifyOTP(values, {
       onSuccess: () => {
-        setShowSetPasswordForm(true);
+        onStateChange("set-password");
       },
     });
   };
@@ -69,11 +56,7 @@ export default function VerifyOtpForm({
 
   return (
     <>
-      {showSetPasswordForm ? (
-        // NOTE: to be replaced with SetPasswordForm when merging
-        <SetPasswordForm />
-      ) : (
-        <Form {...form}>
+            <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             {/* OTP Input Field */}
             <FormField
@@ -125,7 +108,6 @@ export default function VerifyOtpForm({
             </Button>
           </form>
         </Form>
-      )}
     </>
   );
 }
