@@ -112,5 +112,7 @@
   "login-title": "تسجيل الدخول إلى حسابك",
   "forgot-password-title": "نسيت كلمة السر ؟",
   "set-password-title": "اضبط كلمة مرور",
-  "register-title": "إنشاء حساب"
+  "register-title": "إنشاء حساب",
+  "user-register-successfully": "سجل المستخدم بنجاح",
+  "server-error": "خطأ الخادم"
 }
