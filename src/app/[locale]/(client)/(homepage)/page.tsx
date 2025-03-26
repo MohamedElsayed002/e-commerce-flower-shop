@@ -14,10 +14,9 @@ import SetPasswordForm from "@/components/features/auth/components/set-password-
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   // Variables
   const payload = await fetchCategories();
-  const email: string = "mariemmohamed1421@gmail.com"
+  
   return (
     <main className="w-full">
-      <SetPasswordForm email={email} />
       {/* Categories */}
       <Categories categories={payload?.categories || []} />
 

@@ -28,6 +28,16 @@ const RegisterForm = dynamic(() => import("./components/register-form"), {
   ),
 });
 
+// Set password state
+const SetPasswordForm = dynamic(() => import("./components/set-password-form"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex justify-center items-center">
+      <ImSpinner3 />
+    </div>
+  ),
+});
+
 export default function AuthDialog() {
   // Translations
   const t = useTranslations();
@@ -75,6 +85,9 @@ export default function AuthDialog() {
 
         {/* RegisterForm */}
         {authState === "register" && <RegisterForm onStateChange={setAuthState} />}
+
+        {/* Set password form */}
+        {authState === "set-password" && <SetPasswordForm email="mariemm" onStateChange={setAuthState} />}
       </DialogContent>
     </Dialog>
   );
