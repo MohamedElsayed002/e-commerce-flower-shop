@@ -92,6 +92,8 @@
   "email-invalid": "الرجاء إدخال بريد إلكتروني صالح",
   "password-required": "كلمة المرور مطلوبة",
   "login": "تسجيل الدخول",
+  "invalid-email-or-password": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+  "login-is-successful": "تم تسجيل الدخول بنجاح!",
   "email-reqired": "",
   "enter-email": "أدخل بريدك الإلكتروني",
   "enter-password": "أدخل كلمة المرور الخاصة بك",

@@ -22,7 +22,6 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
   // Mutation
   const { setPassword, isPending, error } = useSetNewPassword();
 
-
   // Form & Validation
   const Schema = z
     .object({
