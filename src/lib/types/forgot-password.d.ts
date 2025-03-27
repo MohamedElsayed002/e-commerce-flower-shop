@@ -1,11 +1,11 @@
 
 declare type SuccessfulForgotPassword = {
-    message: "success"
-    info : string
-  }
-  
-  declare type ErrorResponse = {
-    error: string
-  }
+  message: "success"
+  info: string
+}
 
-  declare type ForgotPasswordResponse<T> = SuccessfulResponse<T> | ErrorResponse;
+declare type ForgotErrorResponse = {
+  error: string
+}
+
+declare type ForgotPasswordResponse = SuccessfulForgotPassword | ForgotErrorResponse;

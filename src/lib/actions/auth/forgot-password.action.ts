@@ -7,7 +7,6 @@ export async function forgotPasswordAction(email:string) {
         body: JSON.stringify({email})
     })
 
-    const payload: ForgotPasswordResponse<SuccessfulForgotPassword> = await response.json()
-
+    const payload: ForgotPasswordResponse = await response.json()
     return payload
 }

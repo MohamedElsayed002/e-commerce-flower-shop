@@ -10,12 +10,13 @@ export function useForgotPassword() {
     // Translation
     const t = useTranslations();
 
+    // Mutation
     const { mutate, isPending, error } = useMutation({
         mutationFn: async (email: string) => {
             const payload = await forgotPasswordAction(email)
 
-            if ("error" in payload) {
-                throw new Error(typeof payload.error === "string" ? payload.error : t('an-unknown-error-occurred'))
+            if("error" in payload) {
+                throw new Error(payload.error)
             }
 
             return payload
