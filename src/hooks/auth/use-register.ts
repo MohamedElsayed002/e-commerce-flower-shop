@@ -15,7 +15,7 @@ export function useRegister() {
             const payload = await registerAction(fields)
 
             if("error" in payload) {
-                throw new Error(String(payload.error) || t('server-error'))
+                throw new Error(payload.error)
             }
 
             return payload

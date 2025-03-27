@@ -25,6 +25,14 @@ declare type User = {
 
 // Type for a successful response
 declare type RegisterSuccess = {
+    message : "success"
     user: User
     token: string
 };
+
+declare type RegisterErrorResponse = {
+    error: string
+}
+
+declare type RegisterResponse = RegisterSuccess| RegisterErrorResponse;
+

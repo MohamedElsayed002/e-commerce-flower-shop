@@ -9,7 +9,7 @@ export async function registerAction(values: RegisterForm) {
         body: JSON.stringify(values)
     })
 
-    const payload : APIResponse<RegisterSuccess> = await response.json()
+    const payload : RegisterResponse = await response.json()
 
     return payload
 }
