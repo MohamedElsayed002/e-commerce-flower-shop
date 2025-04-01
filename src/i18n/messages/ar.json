@@ -139,5 +139,8 @@
   "set-password-title": "اضبط كلمة مرور",
   "register-title": "إنشاء حساب",
   "user-register-successfully": "سجل المستخدم بنجاح",
-  "server-error": "خطأ الخادم"
+  "server-error": "خطأ الخادم",
+  "invalid-email": "بريد إلكتروني غير صالح",
+  "enter-your-email-address": "أدخل عنوان بريدك الإلكتروني",
+  "recover-password": "استعادة كلمة المرور"
 }
