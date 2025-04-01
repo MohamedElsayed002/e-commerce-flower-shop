@@ -7,8 +7,6 @@ import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { ImSpinner3 } from "react-icons/im";
-// import { Session } from "inspector/promises";
-import { useSession } from "next-auth/react";
 
 // Dynamically import form components
 const LoginForm = dynamic(() => import("./components/login-form"), {
@@ -63,7 +61,6 @@ export default function AuthDialog() {
   // State
   const [authState, setAuthState] = useState<AuthFormState>("login");
   const [open, setOpen] = useState(false);
-  const { data: session } = useSession();
 
   // Function
   const handleOpenChange = (newOpen: boolean) => {
@@ -107,7 +104,7 @@ export default function AuthDialog() {
         {authState === "forgot-password" && <ForgotPasswordForm onStateChange={setAuthState} />}
 
         {/* Set password form */}
-        {authState === "set-password" && <SetPasswordForm onStateChange={setAuthState} />}
+        {authState === "set-password" && <SetPasswordForm email="" onStateChange={setAuthState} />}
 
         {/* Verify OTP form */}
         {authState === "verify-otp" && <VerifyOTPForm />}

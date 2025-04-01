@@ -33,7 +33,7 @@ export default function ForgotPasswordForm({
 
   return (
     <Form {...emailForm}>
-      <form onSubmit={emailForm.handleSubmit(handleSubmit)} className="space-y-4">
+      <form onSubmit={emailForm.handleSubmit(handleSubmit)} className="space-y-4 min-w-96">
         <FormField
           control={emailForm.control}
           name="email"
@@ -41,17 +41,13 @@ export default function ForgotPasswordForm({
             <FormItem>
               <FormControl>
                 {/* Email Input */}
-                <Input
-                  required
-                  className="w-full"
-                  placeholder={t("enter-your-email-address")}
-                  {...field}
-                />
+                <Input className="w-full" placeholder={t("enter-your-email-address")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+
         {/* Submit Button */}
         <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
           {t("recover-password")}
