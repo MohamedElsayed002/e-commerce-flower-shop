@@ -5,14 +5,23 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
+import { useForgotPassword } from "@/hooks/auth/use-forgot-password";
+import FeedbackMessage from "@/components/common/feedback-message";
 
-export default function ForgotPasswordForm({
-  onStateChange,
-}: {
+type ForgotPasswordFormProps = {
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
   onStateChange: (state: AuthFormState) => void;
-}) {
+};
+
+export default function ForgotPasswordForm({ setEmail, onStateChange }: ForgotPasswordFormProps) {
   // Translations
   const t = useTranslations();
+
+  const {
+    mutate: forgotPasswordMutate,
+    isPending: forgotPasswordLoading,
+    error: forgotPasswordError,
+  } = useForgotPassword();
 
   // Form and Validation
   const formSchema = z.object({
@@ -28,7 +37,12 @@ export default function ForgotPasswordForm({
 
   // Functions
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    forgotPasswordMutate(values.email, {
+      onSuccess: () => {
+        onStateChange("verify-otp");
+        setEmail(values.email);
+      },
+    });
   };
 
   return (
@@ -48,8 +62,15 @@ export default function ForgotPasswordForm({
           )}
         />
 
+        {/* Feedback */}
+        <FeedbackMessage message={forgotPasswordError?.message} />
+
         {/* Submit Button */}
-        <Button className="w-full bg-custom-rose-700 hover:bg-custom-rose-500" type="submit">
+        <Button
+          disabled={forgotPasswordLoading}
+          className="w-full bg-custom-rose-700 hover:bg-custom-rose-500"
+          type="submit"
+        >
           {t("recover-password")}
         </Button>
       </form>

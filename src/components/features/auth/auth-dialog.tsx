@@ -61,6 +61,7 @@ export default function AuthDialog() {
   // State
   const [authState, setAuthState] = useState<AuthFormState>("login");
   const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
 
   // Function
   const handleOpenChange = (newOpen: boolean) => {
@@ -101,13 +102,15 @@ export default function AuthDialog() {
         {authState === "register" && <RegisterForm onStateChange={setAuthState} />}
 
         {/* Forgot password form */}
-        {authState === "forgot-password" && <ForgotPasswordForm onStateChange={setAuthState} />}
+        {authState === "forgot-password" && (
+          <ForgotPasswordForm onStateChange={setAuthState} setEmail={setEmail} />
+        )}
+
+        {/* Verify OTP form */}
+        {authState === "verify-otp" && <VerifyOTPForm email={email} />}
 
         {/* Set password form */}
         {authState === "set-password" && <SetPasswordForm email="" onStateChange={setAuthState} />}
-
-        {/* Verify OTP form */}
-        {authState === "verify-otp" && <VerifyOTPForm />}
       </DialogContent>
     </Dialog>
   );

@@ -8,6 +8,7 @@ declare type SuccessfulResponse<T> = {
   message: "success";
 } & T;
 
+
 declare type ErrorResponse = {
   message: "error" | "fail";
   statusCode: number;

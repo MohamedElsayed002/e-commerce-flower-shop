@@ -142,5 +142,6 @@
   "server-error": "خطأ الخادم",
   "invalid-email": "بريد إلكتروني غير صالح",
   "enter-your-email-address": "أدخل عنوان بريدك الإلكتروني",
-  "recover-password": "استعادة كلمة المرور"
+  "recover-password": "استعادة كلمة المرور",
+  "otp-sent-success": "تم إرسال رمز OTP إلى حسابك"
 }

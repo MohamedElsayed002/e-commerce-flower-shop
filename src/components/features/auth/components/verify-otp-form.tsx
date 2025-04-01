@@ -14,10 +14,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslations } from "next-intl";
+import { useForgotPassword } from "@/hooks/auth/use-forgot-password";
+import { toast } from "sonner";
 
-export default function VerifyOtpForm() {
+type VerifyOtpFormProps = {
+  email: string;
+};
+
+export default function VerifyOtpForm({ email }: VerifyOtpFormProps) {
   // Translations
   const t = useTranslations();
+
+  // Mutations
+  const { mutate: forgotPasswordMutate, isPending: forgotPasswordLoading } = useForgotPassword();
 
   // Form & Validation
   const verifyCodeSchema = z.object({
@@ -35,13 +44,9 @@ export default function VerifyOtpForm() {
     console.log("Verification code:", data.code);
   };
 
-  const handleResendCode = () => {
-    console.log("Resending verification code...");
-  };
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 min-w-96">
         {/* Input field */}
         <FormField
           control={form.control}
@@ -72,9 +77,14 @@ export default function VerifyOtpForm() {
         <div className="text-right text-sm">
           <span className="text-gray-600">{t("receive-code")} </span>
           <Button
+            disabled={forgotPasswordLoading}
             variant="link"
             className="text-custom-rose-900 hover:text-custom-rose-800 p-0 underline"
-            onClick={handleResendCode}
+            onClick={() =>
+              forgotPasswordMutate(email, {
+                onError: (error) => toast.error(error.message),
+              })
+            }
             type="button"
           >
             {t("resend-code")}

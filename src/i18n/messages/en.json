@@ -147,6 +147,8 @@
   "login-title": "Login to your account",
   "set-password-title": "Set a Password",
   "forgot-password-title": "Forgot Your Password ?",
+  "otp-sent-success": "Code send to your Email address",
+  "an-unknown-error-occurred": "An unknown error occurred",
   "user-register-successfully": "User register successfully",
   "server-error": "Server Error",
   "register-title": "Create account",
