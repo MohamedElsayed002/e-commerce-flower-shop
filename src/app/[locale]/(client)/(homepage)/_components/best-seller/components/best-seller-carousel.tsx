@@ -12,7 +12,7 @@ import ProductCard from "@/components/features/product/product-card-component";
 async function fetchProducts() {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/filtered-products?category=673c46fd1159920171827c85&sort=-sold`,
+      `${process.env.NEXT_PUBLIC_API}/filtered-products?category=673c46fd1159920171827c85&sort=-sold`,
     );
     const payload: APIResponse<Product[]> = await response.json();
 

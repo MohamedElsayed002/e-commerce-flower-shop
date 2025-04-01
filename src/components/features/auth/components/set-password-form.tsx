@@ -8,30 +8,19 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useSetNewPassword } from "@/hooks/auth/use-set-password";
-import dynamic from "next/dynamic";
-import { useState } from "react";
-import { Dialog, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import FeedbackMessage from "@/components/common/feedback-message";
 
 type SetPasswordProps = {
   email: string;
+  onStateChange: (state: AuthFormState) => void;
 };
 
-// Lazy Loading
-const LoginForm = dynamic(() => import("./login-form"), {
-  ssr: false,
-  loading: () => <i className="fa fa-spinner fa-spin text-custom-rose-800 text-2xl"></i>,
-});
-
-export default function SetPasswordForm({ email }: SetPasswordProps) {
+export default function SetPasswordForm({ email, onStateChange }: SetPasswordProps) {
   // Translation
   const t = useTranslations();
 
-  // State
-  const [showLoginForm, setShowLoginForm] = useState<boolean>(false)
-
   // Mutation
   const { setPassword, isPending, error } = useSetNewPassword();
-
 
   // Form & Validation
   const Schema = z
@@ -62,88 +51,74 @@ export default function SetPasswordForm({ email }: SetPasswordProps) {
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
-    setPassword({ email, newPassword: values.newPassword }, {
-      onSuccess: () => {
-        setShowLoginForm(true);
+    console.log(values, email);
+    setPassword(
+      { email, newPassword: values.newPassword },
+      {
+        onSuccess: () => {
+          onStateChange("login");
+        },
       },
-    });
+    );
   };
 
   return (
-    <>
-      {showLoginForm ? (
-        <LoginForm />
-      ) : (
-        <>
-          {/* TODO: to be replaced with auth dialog */}
-          <Dialog>
-            {/* Dialog header */}
-            <DialogHeader>
-              <DialogTitle>{t("set-a-password")}</DialogTitle>
-              <DialogDescription className="sr-only">{t("set-a-password")}</DialogDescription>
-            </DialogHeader>
-
-            {/* Form wrapper */}
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                {/* Password field */}
-                <FormField
-                  control={form.control}
-                  name="newPassword"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          {...field}
-                          placeholder={t("create-password")}
-                          className="w-[528px] h-[52px] rounded-[20px] p-2"
-                          style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
-                        />
-                      </FormControl>
-                      {/* Display validation errors */}
-                      <FormMessage />
-                    </FormItem>
-                  )}
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        {/* Password field */}
+        <FormField
+          control={form.control}
+          name="newPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input
+                  type="password"
+                  {...field}
+                  placeholder={t("create-password")}
+                  className="w-[528px] h-[52px] rounded-[20px] p-2"
+                  style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                 />
+              </FormControl>
+              {/* Display validation errors */}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-                {/* Confirm password field */}
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem className="py-4">
-                      <FormControl>
-                        <Input
-                          type="password"
-                          {...field}
-                          placeholder={t("re-enter-password")}
-                          className="w-[528px] h-[52px] rounded-[20px] p-2"
-                          style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
-                        />
-                      </FormControl>
-                      {/* Display validation errors */}
-                      <FormMessage />
-                    </FormItem>
-                  )}
+        {/* Confirm password field */}
+        <FormField
+          control={form.control}
+          name="confirmPassword"
+          render={({ field }) => (
+            <FormItem className="py-4">
+              <FormControl>
+                <Input
+                  type="password"
+                  {...field}
+                  placeholder={t("re-enter-password")}
+                  className="w-[528px] h-[52px] rounded-[20px] p-2"
+                  style={{ boxShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.1)" }}
                 />
-                
-                {/* Error message */}
-                {error && <p className="text-red-500 text-sm">{error.message}</p>}
+              </FormControl>
+              {/* Display validation errors */}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-                {/* Submit button */}
-                <Button
-                  type="submit"
-                  disabled={isPending}
-                  className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
-                >
-                  {isPending ? t("setting-new-password") : t("set-password")}
-                </Button>
-              </form>
-            </Form>
-          </Dialog>
-        </>
-      )}
-    </>
+        {/* Error message */}
+        <FeedbackMessage message={error?.message} />
+
+        {/* Submit button */}
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
+        >
+          {isPending ? t("setting-new-password") : t("set-password")}
+        </Button>
+      </form>
+    </Form>
   );
 }

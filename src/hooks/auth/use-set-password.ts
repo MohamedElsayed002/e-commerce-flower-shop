@@ -10,19 +10,18 @@ export function useSetNewPassword() {
   // Mutation
   const { mutate, isPending, error, isError } = useMutation({
     mutationFn: async (fields: SetPasswordFields) => {
-      const payload  = await setNewPasswordAction(fields);
+      const payload = await setNewPasswordAction(fields);
 
-      if (payload ?.error) {
-        throw new Error(payload .error);
+      if ("error" in payload) {
+        throw new Error(payload.error);
       }
 
-      return payload ;
+      return payload;
     },
     onSuccess: () => {
-      toast.success(t('password-updated-successfully'));
-    }
+      toast.success(t("password-updated-successfully"));
+    },
   });
 
   return { setPassword: mutate, isPending, error, isError };
 }
-
