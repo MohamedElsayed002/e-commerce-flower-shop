@@ -8,8 +8,11 @@ declare type SuccessfulResponse<T> = {
   message: "success";
 } & T;
 
+
 declare type ErrorResponse = {
-  error: string;
+  message: "error" | "fail";
+  statusCode: number;
+  message: string;
 };
 
 declare type APIResponse<T> = SuccessfulResponse<T> | ErrorResponse;

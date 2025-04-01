@@ -3,15 +3,14 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest } from "next/server";
 import { LOCALES, routing } from "./i18n/routing";
 
-const authPages = ["/auth/login", "/auth/register"];
-const publicPages = ["/", ...authPages];
+// Private pages
+const Privatepages = ["/cart"];
 
+// Create middleware for handling internationalization (i18n)
 const handleI18nRouting = createMiddleware(routing);
 
+// Authentication middleware using NextAuth
 const authMiddleware = withAuth(
-  // Note that this callback is only invoked if
-  // the `authorized` callback has returned `true`
-  // and not for pages listed in `pages`.
   function onSuccess(req) {
     return handleI18nRouting(req);
   },
@@ -20,36 +19,37 @@ const authMiddleware = withAuth(
       authorized: ({ token }) => token != null,
     },
     pages: {
-      signIn: "/auth/login",
-      error: "/auth/login",
+      // Redirect to home page if not authenticated
+      signIn: "/",
+      error: "/",
     },
-  }
+  },
 );
 
 export default async function middleware(req: NextRequest) {
-  const publicPathnameRegex = RegExp(
-    `^(/(${LOCALES.join("|")}))?(${publicPages
-      .flatMap((p) => (p === "/" ? ["", "/"] : p))
-      .join("|")})/?$`,
-    "i"
+  // Private pathname regex
+  const privatePathnameRegex = RegExp(
+    `^(/(${LOCALES.join("|")}))?(${Privatepages.flatMap((p) => (p === "/" ? ["", "/"] : p)).join(
+      "|",
+    )})/?$`,
+    "i",
   );
 
-  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+  // Check if the requested page is private
+  const isPrivatePage = privatePathnameRegex.test(req.nextUrl.pathname);
 
-  return handleI18nRouting(req);
-
-  // If the user is navigating to a public page check if they are authenticated or not
-  if (isPublicPage) {
-    // Otherwise, let them navigate
-    return handleI18nRouting(req);
-  } else {
-    // If they are navigating to a private page, authenticate them first
+  if (isPrivatePage) {
+    // Apply NextAuth authentication for private pages
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (authMiddleware as any)(req);
+  } else {
+    // Apply internationalization middleware for public pages
+    return handleI18nRouting(req);
   }
 }
 
+// Apply matchers
 export const config = {
   matcher: ["/((?!api|_next|.*\\..*).*)"],
 };
