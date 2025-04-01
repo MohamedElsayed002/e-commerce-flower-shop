@@ -21,6 +21,8 @@ import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import QuestionMarkRight from "@/components/common/question-mark-right";
+import { useRegister } from "@/hooks/auth/use-register";
+import FeedbackMessage from "@/components/common/feedback-message";
 
 type RegisterFormProps = {
   onStateChange: (state: AuthFormState) => void;
@@ -29,6 +31,9 @@ type RegisterFormProps = {
 export default function RegisterForm({ onStateChange }: RegisterFormProps) {
   // Translation
   const t = useTranslations();
+
+  // Mutation
+  const { error, isPending, register } = useRegister();
 
   // Form & Validation
   const Schema = z
@@ -80,7 +85,11 @@ export default function RegisterForm({ onStateChange }: RegisterFormProps) {
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
-    console.log(values);
+    register(values, {
+      onSuccess: () => {
+        onStateChange("login");
+      },
+    });
   };
 
   return (
@@ -295,8 +304,12 @@ export default function RegisterForm({ onStateChange }: RegisterFormProps) {
             </button>
           </p>
 
+          {/* Feedback */}
+          <FeedbackMessage message={error?.message} />
+
           {/* Submit */}
           <button
+            disabled={isPending}
             type="submit"
             className="h-[50px] w-full bg-custom-rose-900 text-white rounded-[30px]"
           >
