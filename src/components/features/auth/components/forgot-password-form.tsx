@@ -6,12 +6,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { useForgotPassword } from "@/hooks/auth/use-forgot-password";
+import FeedbackMessage from "@/components/common/feedback-message";
 
-export default function ForgotPasswordForm({
-  onStateChange,
-}: {
+type ForgotPasswordFormProps = {
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
   onStateChange: (state: AuthFormState) => void;
-}) {
+};
+
+export default function ForgotPasswordForm({ setEmail, onStateChange }: ForgotPasswordFormProps) {
   // Translations
   const t = useTranslations();
 
@@ -23,7 +25,7 @@ export default function ForgotPasswordForm({
 
   // Form and Validation
   const formSchema = z.object({
-    email: z.string().email({ message: t("email-invalid") }),
+    email: z.string().email({ message: t("invalid-email") }),
   });
 
   const emailForm = useForm<z.infer<typeof formSchema>>({
@@ -38,13 +40,14 @@ export default function ForgotPasswordForm({
     forgotPasswordMutate(values.email, {
       onSuccess: () => {
         onStateChange("verify-otp");
+        setEmail(values.email);
       },
     });
   };
 
   return (
     <Form {...emailForm}>
-      <form onSubmit={emailForm.handleSubmit(handleSubmit)} className="space-y-4">
+      <form onSubmit={emailForm.handleSubmit(handleSubmit)} className="space-y-4 min-w-96">
         <FormField
           control={emailForm.control}
           name="email"
@@ -52,17 +55,15 @@ export default function ForgotPasswordForm({
             <FormItem>
               <FormControl>
                 {/* Email Input */}
-                <Input required className="w-full" placeholder={t("enter-your-email")} {...field} />
+                <Input className="w-full" placeholder={t("enter-your-email-address")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* Error Message from API */}
-        {forgotPasswordError && (
-          <p className="text-red-400 text-sm">{forgotPasswordError.message}</p>
-        )}
+        {/* Feedback */}
+        <FeedbackMessage message={forgotPasswordError?.message} />
 
         {/* Submit Button */}
         <Button
