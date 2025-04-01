@@ -7,6 +7,8 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useSetNewPassword } from "@/hooks/auth/use-set-password";
+import FeedbackMessage from "@/components/common/feedback-message";
 
 type SetPasswordProps = {
   email: string;
@@ -16,6 +18,9 @@ type SetPasswordProps = {
 export default function SetPasswordForm({ email, onStateChange }: SetPasswordProps) {
   // Translation
   const t = useTranslations();
+
+  // Mutation
+  const { setPassword, isPending, error } = useSetNewPassword();
 
   // Form & Validation
   const Schema = z
@@ -45,7 +50,16 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
   });
 
   // Functions
-  const onSubmit: SubmitHandler<Inputs> = () => {};
+  const onSubmit: SubmitHandler<Inputs> = (values) => {
+    setPassword(
+      { email, newPassword: values.newPassword },
+      {
+        onSuccess: () => {
+          onStateChange("login");
+        },
+      },
+    );
+  };
 
   return (
     <Form {...form}>
@@ -92,13 +106,16 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
           )}
         />
 
+        {/* Error message */}
+        <FeedbackMessage message={error?.message} />
+
         {/* Submit button */}
         <Button
           type="submit"
-          // disabled={}
+          disabled={isPending}
           className="bg-custom-rose-900 w-[528px] rounded-[30px] px-[31px] font-medium text-base hover:bg-custom-rose-800"
         >
-          {t("set-password")}
+          {isPending ? t("setting-new-password") : t("set-password")}
         </Button>
       </form>
     </Form>

@@ -91,7 +91,6 @@
   "firstname-required": "firstname required",
   "lastname-required": "lastname required",
   "last-name-must-be-at-least-2-characters": "Last name must be at least 2 characters",
-  "invalid-email-format": "Invalid email format",
   "gender-required": "gender required",
   "password-confirm-required": "password confirm required",
   "password-confirm-mismatch": "password confirm mismatch",
@@ -113,7 +112,6 @@
   "password-uppercase-required": "Your password must contain at least 1 uppercase letter",
   "confirm-password-required": "Please confirm your password",
   "passwords-must-match": "Passwords must Match",
-  "set-password": "Set Password",
   "email-required": "Email required",
   "invalid-email-format": "Invalid email format",
   "enter-e-mail": "Enter E-mail",
@@ -122,6 +120,7 @@
   "resend": "Resend",
   "password-min-length": "Your password must be at least 8 characters",
   "password-updated-successfully": "Password updated successfully",
+  "set-password": "Set Password",
   "email-reqired": " Email is required",
   "email-invalid": "Please enter a valid email\n",
   "email": "Email",
@@ -156,9 +155,9 @@
   "an-unknown-error-occurred": "An unknown error occurred",
   "user-register-successfully": "User register successfully",
   "server-error": "Server Error",
-  "register-title": "Create account",
   "invalid-email": "Invalid Email",
   "enter-your-email-address": "Enter your email address",
   "recover-password": "Recover Password",
-  "verifying-otp": "Verifying OTP..."
+  "verifying-otp": "Verifying OTP...",
+  "register-title": "Create account"
 }

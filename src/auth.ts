@@ -34,14 +34,16 @@ export const authOptions: NextAuthOptions = {
         });
 
         const payload: APIResponse<LoginResponse> = await response.json();
-        if (payload.message === "success") {
-          return {
-            token: payload.token,
-            ...payload.user,
-            id: payload.user?._id,
-          };
+
+        if ("error" in payload) {
+          throw new Error(payload.error);
         }
-        throw new Error(payload.message);
+
+        return {
+          token: payload.token,
+          ...payload.user,
+          id: payload.user?._id,
+        };
       },
     }),
   ],

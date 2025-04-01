@@ -88,8 +88,6 @@
   "firstname-required": "الاسم الاول مطلوب",
   "lastname-required": "اسم  الاخير مطلوب",
   "last-name-must-be-at-least-2-characters": "يجب أن يكون الاسم الأخير على الأقل حرفين",
-  "email-required": "البريد الإلكتروني مطلوب",
-  "invalid-email-format": "تنسيق البريد إلكتروني غير صالح",
   "gender-required": "الجنس مطلوب",
   "password-confirm-required": "تأكيد كلمة المرور مطلوبة",
   "password-confirm-mismatch": " تاكيد كلمة المرور  غير متطابقه ",
@@ -114,8 +112,8 @@
   "resending": "إعادة الإرسال ...",
   "resend": "إعادة الإرسال",
   "passwords-must-match": "يجب أن تتطابق كلمات المرور",
-  "set-password": "اضبط كلمةالمرور",
   "password-updated-successfully": "تم تحديث كلمة المرور بنجاح",
+  "set-password": "اضبط كلمةالمرور",
   "password-min-length": "لابد أن تحتوي كلمة المرور الخاصة بك 8 أحرف على الأقل.",
   "password-number-required": "لا بد أن تحتوي كلمة المرور على رقمٍ واحدٍ على الأقل.",
   "password-lowercase-required": "لابد أن تحتوي كلمة المرور الخاصة بك على حرف صغير واحد على الأقل.",
@@ -143,12 +141,12 @@
   "login-title": "تسجيل الدخول إلى حسابك",
   "forgot-password-title": "نسيت كلمة السر ؟",
   "set-password-title": "اضبط كلمة مرور",
-  "register-title": "إنشاء حساب",
   "user-register-successfully": "سجل المستخدم بنجاح",
   "server-error": "خطأ الخادم",
   "invalid-email": "بريد إلكتروني غير صالح",
   "enter-your-email-address": "أدخل عنوان بريدك الإلكتروني",
   "recover-password": "استعادة كلمة المرور",
   "otp-sent-success": "تم إرسال رمز OTP إلى حسابك",
-  "verifying-otp": "جاري التحقق من الرمز..."
+  "verifying-otp": "جاري التحقق من الرمز...",
+  "register-title": "إنشاء حساب"
 }
