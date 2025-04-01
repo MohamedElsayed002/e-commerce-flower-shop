@@ -148,5 +148,8 @@
   "recover-password": "استعادة كلمة المرور",
   "otp-sent-success": "تم إرسال رمز OTP إلى حسابك",
   "verifying-otp": "جاري التحقق من الرمز...",
-  "register-title": "إنشاء حساب"
+  "register-title": "إنشاء حساب",
+  "confirm": "يتأكد",
+  "data-updated-successfully": "تم تحديث البيانات بنجاح",
+  "failed-to-load-profile-data": "فشل في تحميل بيانات الملف الشخصي"
 }

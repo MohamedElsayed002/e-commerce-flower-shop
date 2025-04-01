@@ -159,5 +159,8 @@
   "enter-your-email-address": "Enter your email address",
   "recover-password": "Recover Password",
   "verifying-otp": "Verifying OTP...",
-  "register-title": "Create account"
+  "register-title": "Create account",
+  "confirm": "Confirm",
+  "data-updated-successfully": "Data updated successfully",
+  "failed-to-load-profile-data": "Failed to load profile data"
 }
