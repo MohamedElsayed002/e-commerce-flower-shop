@@ -27,6 +27,7 @@ const RegisterForm = dynamic(() => import("./components/register-form"), {
   ),
 });
 
+// Forgot password state
 const ForgotPasswordForm = dynamic(() => import("./components/forgot-password-form"), {
   ssr: false,
   loading: () => (
@@ -36,6 +37,7 @@ const ForgotPasswordForm = dynamic(() => import("./components/forgot-password-fo
   ),
 });
 
+// Set password state
 const SetPasswordForm = dynamic(() => import("./components/set-password-form"), {
   ssr: false,
   loading: () => (

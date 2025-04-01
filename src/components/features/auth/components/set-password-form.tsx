@@ -51,7 +51,6 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
 
   // Functions
   const onSubmit: SubmitHandler<Inputs> = (values) => {
-    console.log(values, email);
     setPassword(
       { email, newPassword: values.newPassword },
       {
