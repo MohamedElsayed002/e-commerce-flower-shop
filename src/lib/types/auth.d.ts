@@ -1,3 +1,11 @@
+declare type VerifyOTPFields = {
+  resetCode: string;
+};
+
+declare type VerifyOTPResponse = {
+  status: string;
+};
+
 declare type User = {
   firstName: string;
   lastName: string;

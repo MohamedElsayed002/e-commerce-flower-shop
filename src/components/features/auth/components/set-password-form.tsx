@@ -45,9 +45,7 @@ export default function SetPasswordForm({ email, onStateChange }: SetPasswordPro
   });
 
   // Functions
-  const onSubmit: SubmitHandler<Inputs> = () => {
-    // TODO: add API integration logic here
-  };
+  const onSubmit: SubmitHandler<Inputs> = () => {};
 
   return (
     <Form {...form}>

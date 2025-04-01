@@ -107,7 +107,7 @@ export default function AuthDialog() {
         )}
 
         {/* Verify OTP form */}
-        {authState === "verify-otp" && <VerifyOTPForm email={email} />}
+        {authState === "verify-otp" && <VerifyOTPForm email={email} onStateChange={setAuthState} />}
 
         {/* Set password form */}
         {authState === "set-password" && <SetPasswordForm email="" onStateChange={setAuthState} />}
