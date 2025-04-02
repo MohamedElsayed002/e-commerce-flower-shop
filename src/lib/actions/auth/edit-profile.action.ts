@@ -1,11 +1,11 @@
 "use server";
 
-import { getToken } from "next-auth/jwt";
+import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
 export async function editProfileAction(fields: ProfileFields) {
-  const cookieStore = cookies();
-  const token = await getToken({ req: { cookies: cookieStore } });
+  const tokenCookies = cookies().get("next-auth.session-token")?.value;
+  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
 
   const apiUrl = `${process.env.API}/auth/editProfile`;
 
