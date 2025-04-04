@@ -19,7 +19,7 @@ export function useEditProfile() {
       return payload;
     },
     onSuccess: () => {
-      toast.success(t('data-updated-successfully'));
+      toast.success(t("data-updated-successfully"));
     },
   });
 

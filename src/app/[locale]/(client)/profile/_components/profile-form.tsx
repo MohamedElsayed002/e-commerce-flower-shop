@@ -248,7 +248,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
               hover:bg-custom-rose-800              
               "
             >
-              {t('update-profile')}
+              {t("update-profile")}
               <FaArrowRight />
             </Button>
           </div>
