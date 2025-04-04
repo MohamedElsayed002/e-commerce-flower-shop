@@ -2,9 +2,10 @@ import React from "react";
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 import ProfileForm from "./_components/profile-form";
+import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
 
 async function fetchUserData() {
-  const tokenCookies = cookies().get("next-auth.session-token")?.value;
+  const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
   const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
 
   const apiUrl = `${process.env.API}/auth/profile-data`;
