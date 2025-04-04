@@ -27,6 +27,8 @@ const authMiddleware = withAuth(
 );
 
 export default async function middleware(req: NextRequest) {
+
+
   // Private pathname regex
   const privatePathnameRegex = RegExp(
     `^(/(${LOCALES.join("|")}))?(${Privatepages.flatMap((p) => (p === "/" ? ["", "/"] : p)).join(
