@@ -8,21 +8,19 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 
-
 interface QuantitySelectorProps {
   maxQuantity: number;
   productid: string;
 }
 
 export default function QuantitySelector({ productid, maxQuantity }: QuantitySelectorProps) {
-   // Translations
-    const t = useTranslations();
- 
-   
+  // Translations
+  const t = useTranslations();
+
   // State
   const [quantity, setQuantity] = useState(1);
 
-  //Mutation
+  // Mutation
   const mutation = useMutation({
     mutationFn: async (quantity: number) => {
       const response = addProductToCart(productid, quantity);
@@ -44,7 +42,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
     },
   });
 
-  //Functions
+  // Functions
   const increaseQuantity = () => {
     if (quantity < maxQuantity) setQuantity(quantity + 1);
   };
@@ -58,7 +56,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
       <div className="flex gap-8 items-center  ">
         {/* Quantity selector ui*/}
         <div className="flex flex-col gap-[16px]">
-          <h1 className="text-[16px] font-medium text-blue-gray-500">{t('quantity')}</h1>
+          <h1 className="text-[16px] font-medium text-blue-gray-500">{t("quantity")}</h1>
           <div className="flex items-center ">
             {/* Decrease quantity button */}
             <button
@@ -94,7 +92,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
             <span>
               <IoLockClosedOutline className="w-[14px] h-[16px]" />
             </span>
-            {t('add-to-cart')}
+            {t("add-to-cart")}
           </Button>
         </div>
       </div>
