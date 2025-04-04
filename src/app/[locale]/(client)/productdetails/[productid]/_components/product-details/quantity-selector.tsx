@@ -67,7 +67,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
               <span className="text-custom-rose-900 w-[12.46px] h-[1.4px] rounded-full">−</span>
             </button>
 
-            {/* Input field to display selected quantity */}
+            {/* Quantity */}
             <span className="w-[30.8px] h-[30.8px] text-[16px] font-normal text-custom-rose-900 flex items-center justify-center">
               {quantity}
             </span>
