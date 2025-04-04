@@ -9,7 +9,7 @@ type PopularItemsGridProps = {
 async function fetchProducts(categoryId: string) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_BASE_URL}/filtered-products?category=${categoryId}&sort=-sold`,
+      `${process.env.NEXT_PUBLIC_API}/filtered-products?category=${categoryId}&sort=-sold`,
     );
     const payload: APIResponse<Product[]> = await response.json();
 

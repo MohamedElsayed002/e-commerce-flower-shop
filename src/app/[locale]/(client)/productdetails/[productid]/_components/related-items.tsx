@@ -1,66 +1,49 @@
-
-
-import ProductCard from '@/components/features/product/product-card-component';
-import fetchProductsByCategory from '@/lib/apis/product-details.api';
-import React, { useEffect, useState } from 'react'
+import ProductCard from "@/components/features/product/product-card-component";
+import fetchProductsByCategory from "@/lib/apis/product-details.api";
+import { getTranslations } from "next-intl/server";
 type TProps = {
-    
-        category: string; 
-    
-  };
+  category: string;
+};
 
-//   export const fetchRelatedProducts = async (categoryId: string) => {
-//     try {
-//       // Send request to fetch related products (limit to 4)
-//       const apiUrl = `${process.env.API_BASE_URL}/products?category=${categoryId}`;
-//       const res = await fetch(apiUrl);
+export default async function Relateditems({ category }: TProps) {
+    // Translations
+    const t = await getTranslations();
+  //Variables
+  const categoryId = category;
   
-//       // If the response is not successful, throw an error
-//       if (!res.ok) throw new Error("Failed to fetch related products");
-  
-//       // Parse the response JSON
-//       const data = await res.json();
-//       console.log("related",data)
-//       return data.data; // Assuming the products array is inside `data.data`
-//     } catch (error) {
-//       // Return null in case of an error
-//       return null;
-//     }
-//   };
-export default async function Relateditems({category}: TProps) {
-    // const [products, setProducts] = useState(null);
-    const categoryId = category
-    console.log(categoryId)
-   
-   
-    
-    const products = await fetchProductsByCategory(categoryId);
-  console.log("Ptoducts", products);
-  
-   
-    //  console.log("component",data)
+  //Function
+  const products = await fetchProductsByCategory(categoryId);
+
   return (
     <>
-    
- <div className="grid grid-cols-4 gap-6 justify-start">
-      {/* Show a "Coming Soon" message if no products are available */}
-      {products.length === 0 ? (
-        <div className="col-span-4 min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900">
-         
+    <div className="flex flex-col">
+    <div className="flex justify-between items-center mb-6">
+        <div className="relative">
+          {/* Section title */}
+          <h3 className="text-blue-gray-900 text-[25px] font-bold z-10 font-inter">
+         {t('related-items')}
+          </h3>
+          {/* Underline decoration */}
+          <div className="bg-custom-purple-900 w-[33.4px] h-[3px] z-10"></div>
+          <div
+            className="bg-main-color w-[133.59px] h-[30px] absolute bottom-0 -z-10
+            rounded-e-full rtl:rounded-s-none"
+          ></div>
         </div>
-      ) : (
-      
-        products.map((product: Product, index: number) => (
-          <ProductCard product={product} key={index} />
-        ))
-      )}
+        </div>
+      <div className="grid grid-cols-4 gap-6 justify-start">
+        {/* Show a "Coming Soon" message if no products are available */}
+        {products.length === 0 ? (
+          <div className="col-span-4 min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900"></div>
+        ) : (
+          products.map((product: Product, index: number) => (
+            <ProductCard product={product} key={index} />
+          ))
+        )}
       </div>
 
+    </div>
+  
     </>
-    
-
-  )
+  );
 }
-
-
-

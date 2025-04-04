@@ -7,8 +7,6 @@ import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { ImSpinner3 } from "react-icons/im";
-// import { Session } from "inspector/promises";
-import { useSession } from "next-auth/react";
 
 // Dynamically import form components
 const LoginForm = dynamic(() => import("./components/login-form"), {
@@ -29,6 +27,7 @@ const RegisterForm = dynamic(() => import("./components/register-form"), {
   ),
 });
 
+// Forgot password state
 const ForgotPasswordForm = dynamic(() => import("./components/forgot-password-form"), {
   ssr: false,
   loading: () => (
@@ -38,6 +37,7 @@ const ForgotPasswordForm = dynamic(() => import("./components/forgot-password-fo
   ),
 });
 
+// Set password state
 const SetPasswordForm = dynamic(() => import("./components/set-password-form"), {
   ssr: false,
   loading: () => (
@@ -63,7 +63,7 @@ export default function AuthDialog() {
   // State
   const [authState, setAuthState] = useState<AuthFormState>("login");
   const [open, setOpen] = useState(false);
-  const { data: session } = useSession();
+  const [email, setEmail] = useState("");
 
   // Function
   const handleOpenChange = (newOpen: boolean) => {
@@ -104,13 +104,17 @@ export default function AuthDialog() {
         {authState === "register" && <RegisterForm onStateChange={setAuthState} />}
 
         {/* Forgot password form */}
-        {authState === "forgot-password" && <ForgotPasswordForm onStateChange={setAuthState} />}
-
-        {/* Set password form */}
-        {authState === "set-password" && <SetPasswordForm onStateChange={setAuthState} />}
+        {authState === "forgot-password" && (
+          <ForgotPasswordForm onStateChange={setAuthState} setEmail={setEmail} />
+        )}
 
         {/* Verify OTP form */}
-        {authState === "verify-otp" && <VerifyOTPForm />}
+        {authState === "verify-otp" && <VerifyOTPForm email={email} onStateChange={setAuthState} />}
+
+        {/* Set password form */}
+        {authState === "set-password" && (
+          <SetPasswordForm email={email} onStateChange={setAuthState} />
+        )}
       </DialogContent>
     </Dialog>
   );

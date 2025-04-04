@@ -1,7 +1,9 @@
-import React from "react";
-import QuantitySelector from "@/app/[locale]/(client)/productdetails/[productid]/_components/product-details/quantityselector";
 
-// Define the type for the component's props
+
+import React from "react";
+import QuantitySelector from "@/app/[locale]/(client)/productdetails/[productid]/_components/product-details/quantity-selector";
+import { getTranslations } from "next-intl/server";
+
 type TProps = {
   params: {
     productid: string;
@@ -9,6 +11,8 @@ type TProps = {
 };
 
 export default async function Content({ product }: { product: any }) {
+  // Translations
+  const t = await getTranslations();
   return (
     <>
       <div className=" flex flex-col justify-between w-[550px] ">
@@ -40,11 +44,11 @@ export default async function Content({ product }: { product: any }) {
 
           {/* Stock Status */}
           <li className="text-[16px] font-medium gap-2 text-blue-gray-500">
-            Stock:{" "}
+           {t('stock')}:{" "}
             {product?.product.quantity > 0 ? (
-              <span className=" text-[16px] font-normal text-blue-gray-500">In Stock</span>
+              <span className=" text-[16px] font-normal text-blue-gray-500">{t('in-stock')}</span>
             ) : (
-              <span className="text-red-500">Out of Stock</span>
+              <span className="text-red-500">{t('out-of-stock')}</span>
             )}
           </li>
         </div>
