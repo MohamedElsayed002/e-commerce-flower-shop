@@ -18,7 +18,7 @@ export function FilterStars() {
 
   // Function
   const handleChange = (id: string) => {
-    const newRating = id === selected ? null : id; // Uncheck if clicking the same one again
+    const newRating = id === selected ? null : id; // Check if existing rating
     setSelected(newRating);
 
     // Update the URL query parameters
@@ -35,9 +35,11 @@ export function FilterStars() {
 
   return (
     <div className="mb-2 p-5 rounded-md shadow-md">
+      {/* Title */}
       <h1>{t("rating")}</h1>
       <Separator className="bg-black mt-2" />
       <div className="flex gap-y-3 mt-3 flex-col">
+        {/* Rating numbers array to show */}
         {["5", "4", "3", "2", "1"].map((id, index) => (
           <div key={id} className="flex gap-4">
             <Checkbox id={id} checked={selected === id} onCheckedChange={() => handleChange(id)} />
