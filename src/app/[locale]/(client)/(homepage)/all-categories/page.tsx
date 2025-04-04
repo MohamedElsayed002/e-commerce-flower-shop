@@ -3,7 +3,7 @@ import { FilterStatus } from "./_components/filter-status";
 export default function AllCategoriesPage() {
   return (
     <div>
-      {/* Filter Status */}
+      {/* Filter status */}
       <FilterStatus />
     </div>
   );

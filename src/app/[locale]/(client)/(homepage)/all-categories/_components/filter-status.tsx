@@ -46,7 +46,7 @@ export function FilterStatus() {
       <h1>{t("status")}</h1>
       <Separator className="bg-black mt-2" />
       <div className="flex gap-y-3 mt-3 flex-col">
-        {/* Status Array to Show */}
+        {/* Status array to Show */}
         {["on-sale", "in-stock"].map((status) => (
           <div key={status} className="flex gap-4">
             <Checkbox
