@@ -19,7 +19,7 @@ import { useEditProfile } from "@/hooks/auth/use-edit-profile";
 import FeedbackMessage from "@/components/common/feedback-message";
 import { useState } from "react";
 
-export default function ProfileSettingsForm({ initialData }: { initialData?: User }) {
+export default function ProfileForm({ initialData }: { initialData?: User }) {
   // Translation
   const t = useTranslations();
 
@@ -51,9 +51,9 @@ export default function ProfileSettingsForm({ initialData }: { initialData?: Use
 
   const form = useForm<Inputs>({
     defaultValues: {
-      firstName: initialData?.firstName || "",
-      lastName: initialData?.lastName || "",
-      phone: initialData?.phone || "",
+      firstName: initialData?.firstName,
+      lastName: initialData?.lastName,
+      phone: initialData?.phone,
     },
     resolver: zodResolver(Schema),
   });
@@ -236,8 +236,7 @@ export default function ProfileSettingsForm({ initialData }: { initialData?: Use
               type="submit"
               disabled={!isChanged || isPending}
               className="
-            bg-custom-rose-900 
-              w-[116.98999786376953px] 
+            bg-custom-rose-900  
               h-[49px]
               rounded-[10px] 
               px-5
@@ -249,7 +248,7 @@ export default function ProfileSettingsForm({ initialData }: { initialData?: Use
               hover:bg-custom-rose-800              
               "
             >
-              {t("confirm")}
+              {t('update-profile')}
               <FaArrowRight />
             </Button>
           </div>

@@ -1,0 +1,40 @@
+import React from "react";
+import { decode } from "next-auth/jwt";
+import { cookies } from "next/headers";
+import ProfileForm from "./_components/profile-form";
+
+async function fetchUserData() {
+  const tokenCookies = cookies().get("next-auth.session-token")?.value;
+  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+
+  const apiUrl = `${process.env.API}/auth/profile-data`;
+
+  const response = await fetch(apiUrl, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token?.token}`,
+    },
+    cache: "no-store",
+  });
+  const payload: APIResponse<ProfileResponse> = await response.json();
+
+  if ("error" in payload) {
+    throw new Error(payload.error);
+  }
+
+  return payload.user;
+}
+
+export default async function ProfilePage() {
+  // Variables
+  const userData = (await fetchUserData()) || [];
+
+  return (
+    <>
+      {/* Profile Form */}
+      <ProfileForm initialData={userData} />
+    </>
+  );
+}

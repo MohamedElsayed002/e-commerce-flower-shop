@@ -54,8 +54,8 @@ export default function Header() {
               <LocaleToggle />
               {/* NOTE: to be removed when merging user menu */}
               <div>
-                <Link href="/profile-settings" className="flex items-center gap-2">
-                  Profile Settings
+                <Link href="/profile" className="flex items-center gap-2">
+                  Profile
                 </Link>
               </div>
             </>
