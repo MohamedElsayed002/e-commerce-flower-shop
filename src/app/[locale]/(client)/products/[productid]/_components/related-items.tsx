@@ -1,8 +1,9 @@
 import ProductCard from "@/components/features/product/product-card-component";
-import fetchProductsByCategory from "@/lib/apis/product-details.api";
+import fetchProductsByCategory from "@/lib/apis/related-items.api";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
+
 type TProps = {
   category: string;
 };
@@ -10,6 +11,7 @@ type TProps = {
 export default async function Relateditems({ category }: TProps) {
   // Translations
   const t = await getTranslations();
+
   // Variables
   const categoryId = category;
 
@@ -25,6 +27,7 @@ export default async function Relateditems({ category }: TProps) {
             <h3 className="text-blue-gray-900 text-[25px] font-bold z-10 font-inter">
               {t("related-items")}
             </h3>
+
             {/* Underline decoration */}
             <div className="bg-custom-purple-900 w-[33.4px] h-[3px] z-10"></div>
             <div
@@ -32,6 +35,7 @@ export default async function Relateditems({ category }: TProps) {
             rounded-e-full rtl:rounded-s-none"
             ></div>
           </div>
+
           {/* View more */}
           <div className="flex items-center gap-1">
             <Link
