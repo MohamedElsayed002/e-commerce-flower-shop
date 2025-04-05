@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoLockClosedOutline, IoSearch } from "react-icons/io5";

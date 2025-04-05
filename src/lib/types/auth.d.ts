@@ -1,3 +1,11 @@
+declare type VerifyOTPFields = {
+  resetCode: string;
+};
+
+declare type VerifyOTPResponse = {
+  status: string;
+};
+
 declare type User = {
   firstName: string;
   lastName: string;
@@ -41,4 +49,21 @@ declare type RegisterFields = {
     long: string;
     username: string;
   }[];
+};
+
+declare type AuthFormState =
+  | "login"
+  | "register"
+  | "forgot-password"
+  | "verify-otp"
+  | "set-password";
+
+declare type SetPasswordFields = {
+  email: string;
+  newPassword: string;
+};
+
+declare type SetPasswordResponse = {
+  message: string;
+  token: string;
 };
