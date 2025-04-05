@@ -148,5 +148,7 @@
   "recover-password": "استعادة كلمة المرور",
   "otp-sent-success": "تم إرسال رمز OTP إلى حسابك",
   "verifying-otp": "جاري التحقق من الرمز...",
-  "register-title": "إنشاء حساب"
+  "register-title": "إنشاء حساب",
+  "no-products-available": "لا منتجات متاحة",
+  "no-products-to-show": "لا توجد منتجات لإظهارها"
 }
