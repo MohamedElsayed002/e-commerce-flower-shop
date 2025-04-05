@@ -1,6 +1,8 @@
 import ProductCard from "@/components/features/product/product-card-component";
 import fetchProductsByCategory from "@/lib/apis/product-details.api";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
+import { FaArrowRightLong } from "react-icons/fa6";
 type TProps = {
   category: string;
 };
@@ -29,6 +31,11 @@ export default async function Relateditems({ category }: TProps) {
               className="bg-main-color w-[133.59px] h-[30px] absolute bottom-0 -z-10
             rounded-e-full rtl:rounded-s-none"
             ></div>
+          </div>
+
+          <div className="flex items-center">
+            <Link href={`/products?category=${categoryId}`} className="text-blue-gray-500">view more</Link>
+            <FaArrowRightLong className="w-[14px] h-[14px] text-blue-gray-500"/>
           </div>
         </div>
         <div className="grid grid-cols-4 gap-6 justify-start">

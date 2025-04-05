@@ -1,6 +1,7 @@
 import React from "react";
-import QuantitySelector from "@/app/[locale]/(client)/productdetails/[productid]/_components/product-details/quantity-selector";
+
 import { getTranslations } from "next-intl/server";
+import QuantitySelector from "./quantity-selector";
 
 type TProps = {
   params: {
@@ -31,7 +32,7 @@ export default async function Content({ product }: { product: any }) {
 
             {/* Product discount */}
             <span className="text-red-500 text-[15px] font-medium">
-              <h1>{product.product?.discount}% Off</h1>
+              <h1>{product.product?.discount}{t('off')}</h1>
             </span>
           </div>
 

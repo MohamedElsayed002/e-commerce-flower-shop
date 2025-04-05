@@ -8,10 +8,10 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 
-interface QuantitySelectorProps {
+type QuantitySelectorProps = {
   maxQuantity: number;
   productid: string;
-}
+};
 
 export default function QuantitySelector({ productid, maxQuantity }: QuantitySelectorProps) {
   // Translations

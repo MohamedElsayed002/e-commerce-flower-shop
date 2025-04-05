@@ -151,10 +151,11 @@
   "register-title": "إنشاء حساب",
   "add-to-cart": "اضف الي السله",
   "stock": "المخزون",
-  "in-stock":"متوفر",
+  "in-stock": "متوفر",
   "out-of-stock": "غير متوفر",
   "quantity": "الكميه",
   "related-items": "العناصر ذات الصله",
-   "product-added-to-cart-successfully": "تم اضافه المنتج بنجاح!",
-   "you-must-be-logged-in-to-add-items-to-the-cart":"يجب عليك تسجيل الدخول اولا ."
+  "product-added-to-cart-successfully": "تم اضافه المنتج بنجاح!",
+  "you-must-be-logged-in-to-add-items-to-the-cart": "يجب عليك تسجيل الدخول اولا .",
+  "off": "خصم%"
 }

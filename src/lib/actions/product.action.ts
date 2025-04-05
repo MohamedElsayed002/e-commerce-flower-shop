@@ -12,7 +12,7 @@ export const addProductToCart = async (productid: string, quantity: number) => {
   // Retrieve the token from cookies
   const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
 
-  // Retrieve the token from cookies
+  // Handle case if no token
   if (!tokenCookies) {
     return { success: false, message: "you-must-be-logged-in-to-add-items-to-the-cart" };
   }
