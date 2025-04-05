@@ -32,12 +32,18 @@ export default async function Relateditems({ category }: TProps) {
             rounded-e-full rtl:rounded-s-none"
             ></div>
           </div>
-
-          <div className="flex items-center">
-            <Link href={`/products?category=${categoryId}`} className="text-blue-gray-500">view more</Link>
-            <FaArrowRightLong className="w-[14px] h-[14px] text-blue-gray-500"/>
+          {/* View more */}
+          <div className="flex items-center gap-1">
+            <Link
+              href={`/products?category=${categoryId}`}
+              className="text-blue-gray-500 text-[16px] font-medium"
+            >
+              View More
+            </Link>
+            <FaArrowRightLong className="w-[14px] h-[16px] text-blue-gray-500" />
           </div>
         </div>
+
         <div className="grid grid-cols-4 gap-6 justify-start">
           {/* Show a "Coming Soon" message if no products are available */}
           {products.length === 0 ? (
