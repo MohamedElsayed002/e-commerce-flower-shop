@@ -1,5 +1,4 @@
 import React from "react";
-
 import { getTranslations } from "next-intl/server";
 import QuantitySelector from "./quantity-selector";
 
@@ -32,7 +31,10 @@ export default async function Content({ product }: { product: any }) {
 
             {/* Product discount */}
             <span className="text-red-500 text-[15px] font-medium">
-              <h1>{product.product?.discount}{t('off')}</h1>
+              <h1>
+                {product.product?.discount}
+                {t("off")}
+              </h1>
             </span>
           </div>
 
