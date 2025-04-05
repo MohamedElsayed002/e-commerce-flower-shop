@@ -9,12 +9,13 @@ import { getTranslations } from "next-intl/server";
 export const addProductToCart = async (productid: string, quantity: number) => {
   // Translations
   const t = await getTranslations();
+
   // Retrieve the token from cookies
   const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
 
   // Handle case if no token
   if (!tokenCookies) {
-    return { success: false, message: "you-must-be-logged-in-to-add-items-to-the-cart" };
+    return { success: false, message: "You must be logged in to add items to the cart." };
   }
 
   // Decode the JWT token to extract the payload (user details)
