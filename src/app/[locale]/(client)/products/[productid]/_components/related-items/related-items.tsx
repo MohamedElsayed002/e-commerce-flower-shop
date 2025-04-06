@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 
+// Type
 type TProps = {
   category: string;
 };

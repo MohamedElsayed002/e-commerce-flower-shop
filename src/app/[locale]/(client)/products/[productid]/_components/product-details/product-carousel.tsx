@@ -5,9 +5,14 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-export default function ProductCarousel({ product }: { product: any }) {
+//Type
+type Productprops = {
+  product: Product;
+};
+
+export default function ProductCarousel({ product }: Productprops) {
   //State
-  const [mainImage, setMainImage] = useState(product?.product.imgCover);
+  const [mainImage, setMainImage] = useState(product.imgCover);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     containScroll: "keepSnaps",
     dragFree: true,
@@ -32,7 +37,7 @@ export default function ProductCarousel({ product }: { product: any }) {
       <div className="relative mb-4 w-[526px] h-[480.66px] pr-[23.67px] pl-[23.67px] border rounded-[10px] border-[#00000014] flex justify-center overflow-hidden">
         <Image
           src={mainImage}
-          alt={product?.product.title}
+          alt={product.title}
           fill
           sizes="50vw"
           className="rounded-lg object-cover"
@@ -53,7 +58,7 @@ export default function ProductCarousel({ product }: { product: any }) {
         {/* Thumbnails */}
         <div className="overflow-hidden w-full" ref={emblaRef}>
           <div className="flex gap-[13.6px]">
-            {[...product?.product.images].map((img: string, index: number) => (
+            {[...product.images].map((img: string, index: number) => (
               <div
                 key={index}
                 className="relative flex justify-center w-[120.96px] h-[120.97px] border-2 cursor-pointer rounded-md overflow-hidden border-gray-300 flex-shrink-0"
