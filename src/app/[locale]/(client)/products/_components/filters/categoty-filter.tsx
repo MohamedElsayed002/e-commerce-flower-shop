@@ -1,4 +1,5 @@
 "use client";
+
 import { useForm } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -8,14 +9,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
+
+// Type
 type CategoryFilterProps = {
   categories: Category[];
 };
 
+// validation
 const schema = z.object({
   category: z.string().optional(),
 });
 
+// Type
 type FormData = z.infer<typeof schema>;
 
 export default function CategoryFilter({ categories }: CategoryFilterProps) {
@@ -28,7 +33,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
   //Params
   const searchParams = useSearchParams();
 
-  // Get the initial category from the URL parameters
+  // Get the initial category
   const initialCategory = searchParams.get("category") || "";
 
   // Validation schema using Zod
@@ -57,6 +62,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
   const handleCategoryChange = (value: string) => {
     setValue("category", value);
     const params = new URLSearchParams(window.location.search);
+
     if (value) {
       params.set("category", value);
     } else {
