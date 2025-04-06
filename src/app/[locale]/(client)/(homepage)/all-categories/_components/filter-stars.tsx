@@ -1,9 +1,10 @@
 "use client";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 export function FilterStars() {
   // Translation
@@ -40,17 +41,25 @@ export function FilterStars() {
       <Separator className="bg-black mt-2" />
       <div className="flex gap-y-3 mt-3 flex-col">
         {/* Rating numbers array to show */}
-        {["5", "4", "3", "2", "1"].map((id, index) => (
-          <div key={id} className="flex gap-4">
-            <Checkbox id={id} checked={selected === id} onCheckedChange={() => handleChange(id)} />
-            <label
-              htmlFor={id}
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              {"⭐".repeat(5 - index)}
-            </label>
-          </div>
-        ))}
+        <RadioGroup
+          className="text-custom-900"
+          value={selected || ""}
+          onValueChange={handleChange}
+        >
+          {["5", "4", "3", "2", "1"].map((id, index) => (
+            <div className="flex items-center justify-between w-full" key={index}>
+              <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                <RadioGroupItem value={id} id={id} />
+                <Label
+                  htmlFor={id}
+                  className="text-blue-gray-500 leading-5 text-sm font-inter rtl:text-right"
+                >
+                  {id}
+                </Label>
+              </div>
+            </div>
+          ))}
+        </RadioGroup>
       </div>
     </div>
   );
