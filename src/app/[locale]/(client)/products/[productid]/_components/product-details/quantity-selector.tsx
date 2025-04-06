@@ -31,7 +31,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
       if (!data.success) {
         toast.error(data.message);
       } else {
-        toast.success("{t('product-added-to-cart-successfully')}");
+        toast.success(t("product-added-to-cart-successfully"));
       }
     },
 

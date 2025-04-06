@@ -2,21 +2,23 @@ import React from "react";
 import { getTranslations } from "next-intl/server";
 import QuantitySelector from "./quantity-selector";
 
-type TProps = {
-  params: {
-    productid: string;
-  };
-};
 
-export default async function Content({ product }: { product: any }) {
+// Type
+type ProductProps = {
+  product: Product[];
+};   
+
+export default async function Content({ product }: ProductProps) {
   // Translations
   const t = await getTranslations();
+
   return (
     <>
       <div className=" flex flex-col justify-between w-[550px] ">
         <div className="flex flex-col gap-10">
           {/* Product title */}
           <h2 className="text-[25px] font-semibold">{product.product?.title}</h2>
+
           <div className="flex gap-[5px]  items-center ">
             {/* Product price */}
             <span className="text-gray-600 line-through text-[18px] font-medium">

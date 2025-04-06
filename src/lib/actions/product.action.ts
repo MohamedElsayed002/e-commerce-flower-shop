@@ -13,13 +13,13 @@ export const addProductToCart = async (productid: string, quantity: number) => {
   // Retrieve the token from cookies
   const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
 
-  // Handle case if no token
+  // Retrieve the token from cookies
   if (!tokenCookies) {
-    return { success: false, message: "You must be logged in to add items to the cart." };
+    return { success: false, message: t("you-must-be-logged-in-to-add-items-to-the-cart") };
   }
 
   // Decode the JWT token to extract the payload (user details)
-  const token = await decode({ token: tokenCookies, secret: process.env.AUTH_SECRET! });
+  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
 
   try {
     // Fetch api
