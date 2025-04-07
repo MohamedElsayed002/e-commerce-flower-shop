@@ -9,7 +9,7 @@ type ProductApiResponse = {
 
 // Fetching products from the API
 const fetchProducts = async (): Promise<Product[]> => {
-  const res = await fetch("https://flower.elevateegy.com/api/v1/products");
+  const res = await fetch(`${process.env.API}/products`);
   if (!res.ok) throw new Error("Failed to fetch products");
   const json: ProductApiResponse = await res.json();
   return json.products;
