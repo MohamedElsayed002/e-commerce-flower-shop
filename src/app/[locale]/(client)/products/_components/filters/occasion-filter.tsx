@@ -49,6 +49,7 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   // Handle loading or error
   const { isLoading } = useProducts(occasion);
 
+  // Handle occasion change
   const handleOccasionChange = (value: string) => {
     setValue("occasion", value);
     const params = new URLSearchParams(window.location.search);
