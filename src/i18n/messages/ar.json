@@ -152,5 +152,7 @@
   "price_rating": "تصنيف الأسعار",
   "category": "فئة",
   "occasion": "مناسبات",
-  "loading price": "سعر التحميل"
+  "loading price": "سعر التحميل",
+  "fetch-error": "فشل جلب المنتجات",
+  "price_range_error": "يجب أن يكون سعر الدقيقة أقل من أو يساوي الحد الأقصى"
 }
