@@ -23,7 +23,7 @@ export const addProductToCart = async (productid: string, quantity: number) => {
 
   try {
     // Fetch api
-    const res = await fetch(process.env.API + "/cart", {
+    const Response = await fetch(process.env.API + "/cart", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -36,13 +36,15 @@ export const addProductToCart = async (productid: string, quantity: number) => {
       }),
     });
 
-    // Parse the response JSON from the API
-    const data = await res.json();
-
     // If the response is not ok, return an error message
-    if (!res.ok) {
-      return { success: false, message: data.error || "Failed to add product" };
+    if (!Response.ok) {
+      if (!Response.ok) throw new Error("Product not found");
+      // return { success: false, message: data.error || "Failed to add product" };
     }
+
+    // Parse the response JSON from the API
+    const data: APIResponse<PaginatedResponse<{ product: Product }>> = await Response.json();
+    console.log(data);
 
     // If successful, return a success message
     return { success: true, message: "Product added to cart successfully!" };
