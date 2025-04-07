@@ -159,5 +159,14 @@
   "enter-your-email-address": "Enter your email address",
   "recover-password": "Recover Password",
   "verifying-otp": "Verifying OTP...",
-  "register-title": "Create account"
+  "register-title": "Create account",
+  "categories": {
+    "category": "category"
+  },
+  "price_rating": "Price Rating",
+  "category": "category",
+  "occasion": "occasion",
+  "loading price": "loading price",
+  "fetch-error": "Failed to fetch products",
+  "price_range_error": "Min price must be less than or equal to max"
 }

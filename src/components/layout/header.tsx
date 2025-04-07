@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState } from "react";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoLockClosedOutline, IoSearch } from "react-icons/io5";
@@ -33,7 +34,7 @@ export default function Header() {
           <Link href="/" className="transition-colors text-custom-rose-900">
             {t("home")}
           </Link>
-          <Link href="#" className="transition-colors hover:text-custom-rose-900">
+          <Link href="/products" className="transition-colors hover:text-custom-rose-900">
             {t("all-categories")}
           </Link>
           <Link href="#" className="transition-colors hover:text-custom-rose-900">

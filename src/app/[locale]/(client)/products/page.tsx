@@ -4,14 +4,10 @@ import OccasionFilter from "./_components/filters/occasion-filter";
 export default async function ProductPage() {
   const occasionsData = await fetchOccasions();
 
-  if (!occasionsData) {
-    return <p>Error loading filters.</p>;
-  }
-
   return (
     <div className="p-6 space-y-6">
       {/* Filters */}
-      <OccasionFilter occasions={occasionsData.occasions} />
+      <OccasionFilter occasions={occasionsData?.occasions ?? []} />
     </div>
   );
 }
