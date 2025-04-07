@@ -28,11 +28,11 @@ export default async function fetchProductsByCategory(category: string) {
   });
 
   // Parse the JSON response
-  const payload = await response.json();
+  const payload: APIResponse<PaginatedResponse<{ product: Product[] }>> = await response.json();
 
   // Handle error
   if ("error" in payload) {
     throw new Error(payload.error);
   }
-  return payload.products;
+  return payload;
 }

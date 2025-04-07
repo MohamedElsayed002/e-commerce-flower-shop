@@ -1,9 +1,5 @@
-import { Pagination } from "./_components/_components/pagintion";
+import React from "react";
 
-export default async function ProductsPage() {
-  return (
-    <div>
-      <Pagination />
-    </div>
-  );
+export default function page() {
+  return <h1>page</h1>;
 }
