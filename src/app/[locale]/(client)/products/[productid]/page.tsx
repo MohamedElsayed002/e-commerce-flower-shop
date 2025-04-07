@@ -18,11 +18,11 @@ export default async function ProductPage({ params }: TProps) {
   // Function
   const data = await fetchProductDetails(productid);
 
-  // Variable
-  const catogeryid = data.product.category;
-
   // Handling error
   if (!data) throw new Error("Product not found");
+
+  // Variable
+  const catogeryid = data.product.category;
 
   return (
     <div className="flex flex-col">

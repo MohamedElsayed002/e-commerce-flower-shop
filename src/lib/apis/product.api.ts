@@ -2,13 +2,13 @@
 export const fetchProductDetails = async (productid: string) => {
   try {
     // Send request to fetch product details
-    const res = await fetch(process.env.API + `/products/${productid}`);
+    const Response = await fetch(process.env.API + `/products/${productid}`);
 
     // If the response is not successful, throw an error
-    if (!res.ok) throw new Error("Product not found");
+    if (!Response.ok) throw new Error("Product not found");
 
     // Parse the response JSON
-    const data = await res.json();
+    const data: APIResponse<PaginatedResponse<{ product: Product }>> = await Response.json();
 
     // fetchRelatedProducts(categoryId)
     return data;
