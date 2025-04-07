@@ -5,13 +5,13 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-//Type
+// Type
 type Productprops = {
   product: Product;
 };
 
 export default function ProductCarousel({ product }: Productprops) {
-  //State
+  // State
   const [mainImage, setMainImage] = useState(product.imgCover);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     containScroll: "keepSnaps",
