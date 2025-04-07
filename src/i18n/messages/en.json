@@ -159,5 +159,15 @@
   "enter-your-email-address": "Enter your email address",
   "recover-password": "Recover Password",
   "verifying-otp": "Verifying OTP...",
-  "register-title": "Create account"
+  "register-title": "Create account",
+  "add-to-cart": "Add To Cart",
+  "stock": "Stock",
+  "in-stock": "In Stock",
+  "out-of-stock": "Out of Stock",
+  "quantity": "Quantity",
+  "related-items": "Related Items",
+  "product-added-to-cart-successfully": "Product added to cart successfully!",
+  "you-must-be-logged-in-to-add-items-to-the-cart": "You must be logged in to add items to the cart.",
+  "you-must-be-logged-in-to-add-items-to-the-cart-0": "You must be logged in to add items to the cart.",
+  "you-must-be-logged-in-to-add-items-to-the-cart-1": "You must be logged in to add items to the cart."
 }
