@@ -3,10 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { IoLockClosedOutline } from "react-icons/io5";
-import { addProductToCart } from "@/lib/actions/product.action";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { useAddToCart } from "@/hooks/products/use-add-to-cart";
 
 // Type
 type QuantitySelectorProps = {
@@ -22,26 +20,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
   const [quantity, setQuantity] = useState(1);
 
   // Mutation
-  const mutation = useMutation({
-    mutationFn: async (quantity: number) => {
-      const response = await addProductToCart(productid, quantity);
-      return response;
-    },
-
-    onSuccess: (data) => {
-      if (!data.success) {
-        toast.error(data.message);
-      } else {
-        toast.success(t("product-added-to-cart-successfully"));
-      }
-    },
-
-    // Show error notification
-    onError: (error) => {
-      toast.error("Failed to add product to cart");
-      console.error(error);
-    },
-  });
+  const mutation = useAddToCart(productid);
 
   // Functions
   const increaseQuantity = () => {
