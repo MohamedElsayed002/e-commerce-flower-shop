@@ -53,7 +53,6 @@ export const addProductToCart = async (productid: string, quantity: number) => {
       quantity,
       message: t("product-added-to-cart-successfully", { count: quantity }),
     };
-    
   } catch (error) {
     // Catch any errors during the API call and return an error message
     return { success: false, message: "An error occurred while adding the product." };
