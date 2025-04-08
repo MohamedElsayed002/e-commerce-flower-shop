@@ -7,7 +7,7 @@ type ProductApiResponse = {
   products: Product[];
 };
 
-// Fetching products from the API
+// Fetching products from the API- will be removed later
 const fetchProducts = async (): Promise<Product[]> => {
   const res = await fetch(`${process.env.API}/products`);
   if (!res.ok) throw new Error("Failed to fetch products");
