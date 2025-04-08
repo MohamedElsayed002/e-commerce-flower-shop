@@ -52,7 +52,7 @@ export default function ProductCarousel({ product }: ProductPropes) {
         </Carousel>
       </div>
 
-      {/* Thumbnails Carousel */}
+      {/* Thumbnails carousel */}
       <div className="relative">
         {/* Carousel */}
         <Carousel
@@ -82,7 +82,7 @@ export default function ProductCarousel({ product }: ProductPropes) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {/* Navigation Buttons */}
+          {/* Navigation buttons */}
           <CarouselPrevious className="absolute right-auto rtl:left-[-2.5rem] ms-2 top-1/2" />
           <CarouselNext className="absolute me-2 top-1/2" />
         </Carousel>
