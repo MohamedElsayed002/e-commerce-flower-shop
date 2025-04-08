@@ -1,4 +1,5 @@
 "use client";
+
 import { Separator } from "@/components/ui/separator";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -10,25 +11,25 @@ export function FilterStars() {
   // Translation
   const t = useTranslations();
 
-  // Router and SearchParams
+  // Router
   const router = useRouter();
   const searchParams = useSearchParams();
 
   // State
-  const [selected, setSelected] = useState<string | null>(searchParams.get("rating") || null);
+  const initial = searchParams.get("rateAvg[gte]");
+  const [selected, setSelected] = useState<string | null>(initial);
 
   // Function
-  const handleChange = (id: string) => {
-    const newRating = id === selected ? null : id; // Check if existing rating
-    setSelected(newRating);
+  const handleChange = (value: string) => {
+    const newValue = selected === value ? null : value;
+    setSelected(newValue);
 
-    // Update the URL query parameters
     const params = new URLSearchParams(window.location.search);
 
-    if (newRating) {
-      params.set("rating", newRating);
+    if (newValue) {
+      params.set("rateAvg[gte]", newValue);
     } else {
-      params.delete("rating");
+      params.delete("rateAvg[gte]");
     }
 
     router.push(`?${params.toString()}`, { scroll: false });
@@ -39,28 +40,39 @@ export function FilterStars() {
       {/* Title */}
       <h1>{t("rating")}</h1>
       <Separator className="bg-black mt-2" />
-      <div className="flex gap-y-3 mt-3 flex-col">
-        {/* Rating numbers array to show */}
-        <RadioGroup
-          className="text-custom-900"
-          value={selected || ""}
-          onValueChange={handleChange}
-        >
-          {["5", "4", "3", "2", "1"].map((id, index) => (
-            <div className="flex items-center justify-between w-full" key={index}>
-              <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                <RadioGroupItem value={id} id={id} />
-                <Label
-                  htmlFor={id}
-                  className="text-blue-gray-500 leading-5 text-sm font-inter rtl:text-right"
-                >
-                  {id}
-                </Label>
-              </div>
+
+      {/* Radio Button */}
+      <RadioGroup
+        className="flex flex-col gap-y-3 mt-3"
+        value={selected || ""}
+        onValueChange={handleChange}
+      >
+        {/* Stars */}
+        {["5", "4", "3", "2", "1"].map((id) => (
+          <div
+            key={id}
+            onClick={() => handleChange(id)}
+            className="flex items-center justify-between w-full cursor-pointer"
+          >
+            <div className="flex items-center space-x-2 rtl:space-x-reverse">
+              <RadioGroupItem value={id} id={id} checked={selected === id} />
+              <Label
+                htmlFor={id}
+                className="text-blue-gray-500 leading-5 text-xl font-inter rtl:text-right flex space-x-0.5"
+              >
+                {[...Array(5)].map((_, i) => (
+                  <span
+                    key={i}
+                    className={i < Number(id) ? "text-custom-rose-900" : "text-gray-300"}
+                  >
+                    {i < Number(id) ? "★" : "☆"}
+                  </span>
+                ))}
+              </Label>
             </div>
-          ))}
-        </RadioGroup>
-      </div>
+          </div>
+        ))}
+      </RadioGroup>
     </div>
   );
 }
