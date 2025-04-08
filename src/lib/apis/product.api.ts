@@ -10,7 +10,6 @@ export const fetchProductDetails = async (productid: string) => {
     // Parse the response JSON
     const data: APIResponse<PaginatedResponse<{ product: Product }>> = await Response.json();
 
-    // fetchRelatedProducts(categoryId)
     return data;
   } catch (error) {
     // Return null in case of an error to indicate failure

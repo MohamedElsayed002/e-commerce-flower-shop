@@ -24,7 +24,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
   // Mutation
   const mutation = useMutation({
     mutationFn: async (quantity: number) => {
-      const response = addProductToCart(productid, quantity);
+      const response = await addProductToCart(productid, quantity);
       return response;
     },
 

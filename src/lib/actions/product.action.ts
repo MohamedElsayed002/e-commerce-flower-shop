@@ -36,17 +36,24 @@ export const addProductToCart = async (productid: string, quantity: number) => {
       }),
     });
 
-    // If the response is not ok, return an error message
     if (!Response.ok) {
-      if (!Response.ok) throw new Error("Product not found");
-      // return { success: false, message: data.error || "Failed to add product" };
+      const data = await Response.json();
+      return {
+        success: false,
+        message: data?.error || "Failed to add product",
+      };
     }
 
     // Parse the response JSON from the API
     const data: APIResponse<PaginatedResponse<{ product: Product }>> = await Response.json();
 
     // If successful, return a success message
-    return { success: true, message: "Product added to cart successfully!" };
+    return {
+      success: true,
+      quantity,
+      message: t("product-added-to-cart-successfully", { count: quantity }),
+    };
+    
   } catch (error) {
     // Catch any errors during the API call and return an error message
     return { success: false, message: "An error occurred while adding the product." };
