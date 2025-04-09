@@ -17,14 +17,10 @@ import { Input } from "@/components/ui/input";
 import { FaArrowRight } from "react-icons/fa6";
 import { useEditProfile } from "@/hooks/auth/use-edit-profile";
 import FeedbackMessage from "@/components/common/feedback-message";
-import { useState } from "react";
 
 export default function ProfileForm({ initialData }: { initialData?: User }) {
   // Translation
   const t = useTranslations();
-
-  // State
-  const [isChanged, setIsChanged] = useState<boolean>(false);
 
   // Mutation
   const { editProfile, isPending, error } = useEditProfile();
@@ -58,15 +54,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
     resolver: zodResolver(Schema),
   });
 
-  // Functions
-  const onChange = () => {
-    const currentValues = form.getValues();
-    const hasChanged =
-      currentValues.firstName !== initialData?.firstName ||
-      currentValues.lastName !== initialData?.lastName ||
-      currentValues.phone !== initialData?.phone;
-    setIsChanged(hasChanged);
-  };
+  const { isDirty } = form.formState;
 
   const onSubmit: SubmitHandler<Inputs> = (values) => {
     const updatedFields: Partial<Inputs> = {};
@@ -85,10 +73,10 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
   };
 
   return (
-    <div className="container ml-[80.5px] mt-20 mb-[74px]">
+    <div className="w-[874px] ml-[80.5px] mt-20 mb-[74px]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-2 gap-x-12 gap-y-[16.2px]">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-4">
             {/* First name */}
             <FormField
               name="firstName"
@@ -106,10 +94,6 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
                       type="text"
                       placeholder="First Name"
                       {...field}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        onChange();
-                      }}
                       className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                     />
                   </FormControl>
@@ -137,10 +121,6 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
                       placeholder="Last Name"
                       type="text"
                       {...field}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        onChange();
-                      }}
                       className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                     />
                   </FormControl>
@@ -168,10 +148,6 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
                       placeholder="Phone Number"
                       type="text"
                       {...field}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        onChange();
-                      }}
                       className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                     />
                   </FormControl>
@@ -231,10 +207,10 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
           <FeedbackMessage className="my-3" message={error?.message} />
 
           {/* Submit button */}
-          <div className="flex justify-end mt-[16.2px] w-full">
+          <div className="flex justify-end mt-4 w-full">
             <Button
               type="submit"
-              disabled={!isChanged || isPending}
+              disabled={!isDirty || isPending}
               className="
             bg-custom-rose-900  
               h-[49px]
