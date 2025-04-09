@@ -70,9 +70,9 @@ export default function PriceFilter() {
   };
 
   return (
-    <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-lg space-y-4 rtl:space-x-reverse">
+    <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse">
       {/* Title */}
-      <h3 className="font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0 cupitalize rtl:text-right">
+      <h3 className="font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0  cupitalize rtl:text-right">
         {t("price_rating")}
       </h3>
 
@@ -85,13 +85,14 @@ export default function PriceFilter() {
         <>
           {/* Price range */}
           <div className="flex text-sm text-custom-rose-900 font-bold rtl:flex-row-reverse">
-            <span className="me-1">${priceRange[0].toFixed(2)}</span>-
+            <span className="me-1">${priceRange[0].toFixed(2)}</span>
+            {"-"}
             <span className="ms-1">${priceRange[1].toFixed(2)}</span>
           </div>
 
           {/* Slider */}
           <Slider
-            className="w-[254px] h-[46.16px] text-custom-rose-900 rtl:direction-ltr"
+            className="w-[254px]  h-[16px] text-custom-rose-900 rtl:direction-ltr"
             min={0}
             max={maxPrice}
             step={1}
