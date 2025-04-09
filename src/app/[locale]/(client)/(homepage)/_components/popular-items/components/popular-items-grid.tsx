@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import ProductCard from "@/components/features/product/product-card-component";
 import React from "react";
+import PagePagination from "@/components/common/pagination";
 
 type PopularItemsGridProps = {
   categoryId: string;
@@ -33,6 +34,7 @@ export default async function PopularItemsGrid({
   const searchQuery = new URLSearchParams({
     category: categoryId,
     sort: "-sold",
+    limit: "4",
     ...searchParams,
   });
 
@@ -51,6 +53,7 @@ export default async function PopularItemsGrid({
           <ProductCard product={product} key={index} />
         ))
       )}
+      <PagePagination metadata={payload?.metadata} />
     </div>
   );
 }
