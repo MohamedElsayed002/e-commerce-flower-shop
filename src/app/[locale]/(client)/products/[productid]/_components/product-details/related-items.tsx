@@ -14,11 +14,8 @@ export default async function Relateditems({ category, productid }: TProps) {
   // Translations
   const t = await getTranslations();
 
-  // Variables
-  const categoryId = category;
-
   // Function
-  const products = await fetchProductsByCategory(categoryId);
+  const products = await fetchProductsByCategory(category);
 
   return (
     <>
@@ -41,10 +38,10 @@ export default async function Relateditems({ category, productid }: TProps) {
           {/* View more */}
           <div className="flex items-center gap-1">
             <Link
-              href={`/products?category=${categoryId}`}
+              href={`/products?category=${category}`}
               className="text-blue-gray-500 text-[16px] font-medium"
             >
-              View More
+              {t("view-more")}
             </Link>
             <FaArrowRightLong className="w-[14px] h-[16px] text-blue-gray-500" />
           </div>

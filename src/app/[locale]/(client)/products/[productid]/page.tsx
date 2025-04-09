@@ -1,7 +1,6 @@
 import { fetchProductDetails } from "@/lib/apis/product.api";
-import Productcarousel from "./_components/product-details/product-content/product-carousel";
 import Relateditems from "./_components/product-details/related-items";
-import { Content } from "./_components/product-details/product-content";
+import { Content } from "./_components/product-details/product-content/_components";
 
 // Type
 type TProps = {
@@ -27,8 +26,9 @@ export default async function ProductPage({ params }: TProps) {
   return (
     <div className="flex flex-col">
       <div className="container m-auto flex gap-[40px] py-20">
-        {/* Product image carousel */}
-        <Productcarousel product={data.product} />
+        {/* Product image carousel to put this component*/ }
+        {/* Waiting for merging  */}
+        {/* <Productcarousel product={data.product} /> */}
 
         {/* Product details content */}
         <Content product={data.product} />
@@ -36,7 +36,7 @@ export default async function ProductPage({ params }: TProps) {
 
       {/* Related items */}
       <div className="container m-auto flex gap-[40px] py-20">
-        <Relateditems category={catogeryid} />
+        <Relateditems category={catogeryid} productid={productid} />
       </div>
     </div>
   );

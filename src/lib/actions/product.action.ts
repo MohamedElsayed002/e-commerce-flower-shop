@@ -18,8 +18,17 @@ export const addProductToCart = async (productid: string, quantity: number) => {
     return { success: false, message: t("you-must-be-logged-in-to-add-items-to-the-cart") };
   }
 
-  // Decode the JWT token to extract the payload (user details)
-  const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+  // Handling when happen any fail in decoded
+  let token;
+  try {
+    token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+
+    if (!token) {
+      return { success: false, message: "invalid-or-expired-token" };
+    }
+  } catch (error) {
+    return { success: false, message: "invalid-or-expired-token" };
+  }
 
   try {
     // Fetch api

@@ -1,6 +1,6 @@
 import React from "react";
 
-//Products page
+// Products page
 export default function page() {
   return <h1>Products will appear here</h1>;
 }

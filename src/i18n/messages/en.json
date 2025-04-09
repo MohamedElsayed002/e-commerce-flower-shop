@@ -169,5 +169,6 @@
   "product-added-to-cart-successfully": "Product added to cart successfully!",
   "you-must-be-logged-in-to-add-items-to-the-cart": "You must be logged in to add items to the cart.",
   "off": "% Off",
-  "failed-to-add-product-to-cart": "Failed to add product to cart"
+  "failed-to-add-product-to-cart": "Failed to add product to cart",
+  "view-more": "View More"
 }
