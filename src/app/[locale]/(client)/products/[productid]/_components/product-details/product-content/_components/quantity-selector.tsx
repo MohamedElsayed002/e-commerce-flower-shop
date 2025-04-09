@@ -41,7 +41,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
             {/* Decrease quantity button */}
             <button
               type="button"
-              className=" w-[35px] h-[35px] rounded-[50px]  bg-[#FEEDF7] "
+              className=" w-[35px] h-[35px] rounded-[50px] bg-main-color "
               onClick={decreaseQuantity}
             >
               <span className="text-custom-rose-900 w-[12.46px] h-[1.4px] rounded-full">−</span>
@@ -55,7 +55,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
             {/* Increase quantity button */}
             <button
               type="button"
-              className=" w-[35px] h-[35px] rounded-[50px]  bg-[#FEEDF7]"
+              className=" w-[35px] h-[35px] rounded-[50px] bg-main-color"
               onClick={increaseQuantity}
             >
               <span className="text-custom-rose-900 w-[12.46px] h-[1.4px] rounded-full">+</span>

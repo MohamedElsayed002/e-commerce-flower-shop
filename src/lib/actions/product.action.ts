@@ -24,10 +24,10 @@ export const addProductToCart = async (productid: string, quantity: number) => {
     token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
 
     if (!token) {
-      return { success: false, message: "invalid-or-expired-token" };
+      return { success: false, message: t('invalid-or-expired-token')};
     }
   } catch (error) {
-    return { success: false, message: "invalid-or-expired-token" };
+    return { success: false, message: t('invalid-or-expired-token')};
   }
 
   try {
@@ -49,7 +49,7 @@ export const addProductToCart = async (productid: string, quantity: number) => {
       const data = await Response.json();
       return {
         success: false,
-        message: data?.error || "Failed to add product",
+        message: data?.error || t('failed-to-add-product'),
       };
     }
 
@@ -64,6 +64,6 @@ export const addProductToCart = async (productid: string, quantity: number) => {
     };
   } catch (error) {
     // Catch any errors during the API call and return an error message
-    return { success: false, message: "An error occurred while adding the product." };
+    return { success: false, message: t('an-error-occurred-while-adding-the-product') };
   }
 };
