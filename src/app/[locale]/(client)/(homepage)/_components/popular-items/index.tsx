@@ -41,7 +41,7 @@ export default async function PopularItems({ searchParams, categories }: Popular
       </div>
 
       {/* Grid to display items in the selected category */}
-      <PopularItemsGrid categoryId={selectedCategory} />
+      <PopularItemsGrid categoryId={selectedCategory} searchParams={searchParams} />
     </div>
   );
 }

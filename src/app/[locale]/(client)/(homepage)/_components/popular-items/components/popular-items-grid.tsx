@@ -1,22 +1,23 @@
 import { getTranslations } from "next-intl/server";
 import ProductCard from "@/components/features/product/product-card-component";
 import React from "react";
+import PagePagination from "@/components/common/pagination";
 
 type PopularItemsGridProps = {
   categoryId: string;
+  searchParams: SearchParams;
 };
 
-async function fetchProducts(categoryId: string) {
+async function fetchProducts(categoryId: string, searchParams: string) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/filtered-products?category=${categoryId}&sort=-sold`,
+      `${process.env.NEXT_PUBLIC_API}/filtered-products?${searchParams}`,
     );
-    const payload: APIResponse<Product[]> = await response.json();
+    const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
 
     if ("error" in payload) {
       throw new Error(payload.error);
     }
-
     return payload;
   } catch (error) {
     console.error("Error fetching categories: ", error);
@@ -24,25 +25,35 @@ async function fetchProducts(categoryId: string) {
   }
 }
 
-export default async function PopularItemsGrid({ categoryId }: PopularItemsGridProps) {
+export default async function PopularItemsGrid({
+  categoryId,
+  searchParams,
+}: PopularItemsGridProps) {
   // Translation
   const t = await getTranslations();
+  const searchQuery = new URLSearchParams({
+    category: categoryId,
+    sort: "-sold",
+    limit: "4",
+    ...searchParams,
+  });
 
-  const products = (await fetchProducts(categoryId)) || [];
+  const payload = await fetchProducts(categoryId, searchQuery.toString());
 
   return (
     <div className="grid grid-cols-4 gap-6 justify-start">
       {/* Show a "Coming Soon" message if no products are available */}
-      {products.length === 0 ? (
+      {payload?.products.length === 0 ? (
         <div className="col-span-4 min-h-80 flex items-center justify-center text-center text-xl font-semibold text-blue-gray-900">
           {t("coming-soon")}
         </div>
       ) : (
         // Grid displaying the popular products
-        products.map((product: Product, index: number) => (
+        payload?.products.map((product: Product, index: number) => (
           <ProductCard product={product} key={index} />
         ))
       )}
+      <PagePagination metadata={payload?.metadata} />
     </div>
   );
 }

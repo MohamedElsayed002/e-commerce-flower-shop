@@ -1,159 +1,34 @@
 "use client";
 
-// import { useMemo } from "react";
-// import { cn } from "@/lib/utils";
-// import { HiOutlineDotsHorizontal } from "react-icons/hi";
-// import { GoArrowRight } from "react-icons/go";
-// import { GoArrowLeft } from "react-icons/go";
-
-// interface PaginationProps {
-//   currentPage: number;
-//   totalPages: number;
-//   onPageChange?: (page: number) => void;
-//   className?: string;
-// }
-
-// export default function Pagination({
-//   currentPage,
-//   totalPages,
-//   onPageChange = () => {},
-//   className,
-// }: PaginationProps) {
-//   const isFirstPage = currentPage === 1;
-//   const isLastPage = currentPage === totalPages;
-
-//   const goToPage = (page: number) => {
-//     if (page !== currentPage && page >= 1 && page <= totalPages) {
-//       onPageChange(page);
-//     }
-//   };
-
-//   const paginationItems = useMemo(() => {
-//     const pages: (number | JSX.Element)[] = [];
-
-//     if (totalPages <= 7) {
-//       for (let i = 1; i <= totalPages; i++) {
-//         pages.push(i);
-//       }
-//     } else {
-//       pages.push(1);
-
-//       if (currentPage > 3) {
-//         pages.push(<HiOutlineDotsHorizontal />);
-//       }
-
-//       const start = Math.max(2, currentPage - 1);
-//       const end = Math.min(totalPages - 1, currentPage + 1);
-
-//       for (let i = start; i <= end; i++) {
-//         pages.push(i);
-//       }
-
-//       if (currentPage < totalPages - 2) {
-//         pages.push(<HiOutlineDotsHorizontal />);
-//       }
-
-//       pages.push(totalPages);
-//     }
-
-//     return pages;
-//   }, [currentPage, totalPages]);
-
-//   if (totalPages <= 1) return null;
-
-//   return (
-//     <nav
-//       className={cn("flex items-center justify-center space-x-2", className)}
-//       aria-label="Pagination"
-//     >
-//       {/* Previous */}
-//       <button
-//         onClick={() => goToPage(currentPage - 1)}
-//         disabled={isFirstPage}
-//         className={cn(
-//           "flex h-10 w-10 items-center justify-center rounded-full",
-//           isFirstPage
-//             ? "cursor-not-allowed bg-gray-200 text-gray-500"
-//             : "bg-blue-gray-900 text-white",
-//         )}
-//         aria-label="Previous page"
-//       >
-//         <GoArrowLeft />
-//       </button>
-
-//       {/* Page Items */}
-//       {paginationItems.map((item, index) =>
-//         item === <HiOutlineDotsHorizontal /> ? (
-//           <div
-//             key={`ellipsis-${index}`}
-//             className="flex h-10 w-10 items-center justify-center text-sm text-gray-600"
-//           >
-//             <HiOutlineDotsHorizontal />
-//           </div>
-//         ) : (
-//           <button
-//             key={`page-${item}`}
-//             onClick={() => goToPage(item)}
-//             className={cn(
-//               "flex h-10 w-10 items-center justify-center rounded-full text-sm",
-//               item === currentPage
-//                 ? "bg-custom-rose-900 text-white"
-//                 : "bg-blue-gray-900 text-white",
-//             )}
-//             aria-current={item === currentPage ? "page" : undefined}
-//           >
-//             {item}
-//           </button>
-//         ),
-//       )}
-
-//       {/* Next */}
-//       <button
-//         onClick={() => goToPage(currentPage + 1)}
-//         disabled={isLastPage}
-//         className={cn(
-//           "flex h-10 w-10 items-center justify-center rounded-full",
-//           isLastPage
-//             ? "cursor-not-allowed bg-gray-200 text-gray-500"
-//             : "bg-blue-gray-900 text-white",
-//         )}
-//         aria-label="Next page"
-//       >
-//         <GoArrowRight />
-//       </button>
-//     </nav>
-//   );
-// }
-"use client";
-
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
 } from "@/components/ui/pagination";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import ArrowLeftGo from "@/components/common/go-arrow-left";
+import ArrowRightGo from "@/components/common/go-arrow-right";
 
 type PagePaginationProps = {
-  metadata: Metadata;
-  className?: string;
+  metadata?: Metadata;
 };
 
-export default function PagePagination({ metadata, className }: PagePaginationProps) {
+export default function PagePagination({ metadata }: PagePaginationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  if (!metadata) return null;
 
   const currentPage = metadata.currentPage;
   const totalPages = metadata.totalPages;
 
   const queryString = useMemo(() => new URLSearchParams(searchParams.toString()), [searchParams]);
 
+  // Function to navigate to a new page
   const navigateToPage = useCallback(
     (page: number) => {
       if (page < 1 || page > totalPages || page === currentPage) return;
@@ -164,14 +39,19 @@ export default function PagePagination({ metadata, className }: PagePaginationPr
     [queryString, pathname, router, currentPage, totalPages],
   );
 
+  // Generates an array of page numbers and ellipsis elements
   const generatePages = (): (number | JSX.Element)[] => {
     const pages: (number | JSX.Element)[] = [];
 
+    // Show all if pages are few
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
+      // Always show first page
       pages.push(1);
-      if (currentPage > 3) pages.push(<HiOutlineDotsHorizontal />);
+      // Dots before current range
+      if (currentPage > 1) pages.push(<HiOutlineDotsHorizontal />);
+      // Show 1 page before and after the current page
       for (
         let i = Math.max(2, currentPage - 1);
         i <= Math.min(totalPages - 1, currentPage + 1);
@@ -179,6 +59,7 @@ export default function PagePagination({ metadata, className }: PagePaginationPr
       ) {
         pages.push(i);
       }
+      // Dots after range
       if (currentPage < totalPages - 2) pages.push(<HiOutlineDotsHorizontal />);
       pages.push(totalPages);
     }
@@ -187,27 +68,27 @@ export default function PagePagination({ metadata, className }: PagePaginationPr
   };
 
   return (
-    <Pagination className={className}>
+    <Pagination className="flex items-center justify-center">
       <PaginationContent>
-        {/* Previous Button */}
+        {/* Previous button */}
         <PaginationItem>
-          <PaginationPrevious
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              navigateToPage(currentPage - 1);
-            }}
-            className="bg-[#140046] text-white rounded-full  flex items-center justify-center"
-          />
+          <button
+            onClick={() => navigateToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={`rounded-full flex items-center justify-center w-10 h-10  ${
+              currentPage === 1
+                ? "bg-gray-400 text-white cursor-not-allowed"
+                : "bg-blue-gray-900 text-white"
+            }`}
+          >
+            {/* Icon */}
+            <ArrowLeftGo />
+          </button>
         </PaginationItem>
 
-        {/* Numbered Pages */}
+        {/* Numbered pages */}
         {generatePages().map((page, idx) =>
           typeof page === "number" ? (
-            <PaginationItem key={`ellipsis-${idx}`}>
-              <PaginationEllipsis className="text-white bg-[#140046] rounded-full flex items-center justify-center" />
-            </PaginationItem>
-          ) : (
             <PaginationItem key={`page-${page}`}>
               <PaginationLink
                 href="#"
@@ -215,26 +96,35 @@ export default function PagePagination({ metadata, className }: PagePaginationPr
                   e.preventDefault();
                   navigateToPage(page);
                 }}
-                className={`rounded-full  flex items-center justify-center ${
-                  page === currentPage ? "bg-[#ff00b7] text-white" : "bg-[#140046] text-white"
+                className={`rounded-full  ${
+                  page === currentPage
+                    ? "bg-custom-rose-900 text-white"
+                    : "bg-blue-gray-900   text-white"
                 }`}
               >
                 {page}
               </PaginationLink>
             </PaginationItem>
+          ) : (
+            // Empty item for ellipsis
+            <PaginationItem key={`ellipsis-${idx}`}></PaginationItem>
           ),
         )}
 
-        {/* Next Button */}
+        {/* Next button*/}
         <PaginationItem>
-          <PaginationNext
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              navigateToPage(currentPage + 1);
-            }}
-            className="bg-[#140046] text-white rounded-full w-10 h-10 flex items-center justify-center"
-          />
+          <button
+            onClick={() => navigateToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={`rounded-full flex items-center justify-center w-10 h-10  ${
+              currentPage === totalPages
+                ? "bg-gray-400 text-white cursor-not-allowed"
+                : "bg-blue-gray-900  text-white"
+            }`}
+          >
+            {/* Icon */}
+            <ArrowRightGo />
+          </button>
         </PaginationItem>
       </PaginationContent>
     </Pagination>
