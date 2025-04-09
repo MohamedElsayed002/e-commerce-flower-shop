@@ -33,10 +33,10 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
   const Schema = z.object({
     firstName: z
       .string({ required_error: t("firstname-required") })
-      .min(2, "first-name-must-be-at-least-2-characters"),
+      .min(2, t('first-name-must-be-at-least-2-characters')),
     lastName: z
       .string({ required_error: t("lastname-required") })
-      .min(2, "last-name-must-be-at-least-2-characters"),
+      .min(2, t('last-name-must-be-at-least-2-characters')),
     phone: z
       .string({ required_error: t("phone-number-required") })
       .regex(
@@ -44,7 +44,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
         t("invalid-phone-number-format-must-start-with-a-country-code"),
       ),
     email: z.string().email(t("invalid-email-format")).optional(),
-    gender: z.enum(["male", "female"]).optional(),
+    gender: z.enum([t('male'), t('female')]).optional(),
   });
 
   type Inputs = z.infer<typeof Schema>;
@@ -81,11 +81,11 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
       updatedFields.phone = values.phone;
     }
 
-    editProfile(values);
+    editProfile(updatedFields);
   };
 
   return (
-    <div className="w-[874px] ml-[80.5px] mt-20 mb-[74px]">
+    <div className="container ml-[80.5px] mt-20 mb-[74px]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid grid-cols-2 gap-x-12 gap-y-[16.2px]">
@@ -96,7 +96,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
               render={({ field }) => (
                 <FormItem className="">
                   {/* Label */}
-                  <FormLabel className="text-[16px] font-medium text-[#160E4B] font-roboto">
+                  <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                     {t("first-name")}
                   </FormLabel>
 
@@ -127,7 +127,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
               render={({ field }) => (
                 <FormItem>
                   {/* Label */}
-                  <FormLabel className="text-[16px] font-medium text-[#160E4B] font-roboto">
+                  <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                     {t("last-name")}
                   </FormLabel>
 
@@ -158,7 +158,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
               render={({ field }) => (
                 <FormItem>
                   {/* Label */}
-                  <FormLabel className="text-[16px] font-medium text-[#160E4B] font-roboto">
+                  <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                     {t("phone-number")}
                   </FormLabel>
 
@@ -185,7 +185,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
             {/* Email */}
             <FormItem>
               {/* Label */}
-              <FormLabel className="text-[16px] font-medium text-[#160E4B] font-roboto">
+              <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                 {t("email")}
               </FormLabel>
 
@@ -207,7 +207,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
             {/* Gender */}
             <FormItem>
               {/* Label */}
-              <FormLabel className="text-[16px] font-medium text-[#160E4B] font-roboto">
+              <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                 {t("gender")}
               </FormLabel>
 
