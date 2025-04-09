@@ -1,24 +1,25 @@
+"use server"
+
 export async function fetchProducts({ rating, status }: { rating?: string; status?: string[] }) {
     try {
         const params = new URLSearchParams();
 
-        // Add rating filter if available
-        if (rating) {
-            params.set("rateAvg[gte]", rating);
-        }
+        const filterMap: { [key: string]: string | null } = {
+            "rateAvg[gte]": rating ?? null,
+            "priceAfterDiscount[gt]": status?.includes("on-sale") ? "0" : null,
+            "quantity[gt]": status?.includes("in-stock") ? "0" : null
+        };
 
-        // Add status filters dynamically
-        if (status?.includes("on-sale")) {
-            params.set("priceAfterDiscount[gt]", "0");
-        }
-        if (status?.includes("in-stock")) {
-            params.set("quantity[gt]", "0");
-        }
+        Object.entries(filterMap).forEach(([key, value]) => {
+            if (value) {
+                params.set(key, value);
+            }
+        });
 
         const response = await fetch(`${process.env.API}/products?${params.toString()}`, {
             cache: "no-cache"
         });
-        
+
         if (!response.ok) {
             throw new Error("Failed to fetch products");
         }

@@ -161,5 +161,9 @@
   "verifying-otp": "Verifying OTP...",
   "register-title": "Create account",
   "no-products-available": "No Products Available",
-  "no-products-to-show": "No Products To show"
+  "no-products-to-show": "No Products To show",
+  "out-of-stock": "Out of Stock",
+  "new": "New",
+  "error-loading-products": "Error loading products",
+  "no-products-available-0": "No Products Available"
 }
