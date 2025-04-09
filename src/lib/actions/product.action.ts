@@ -54,10 +54,11 @@ export const addProductToCart = async (productid: string, quantity: number) => {
     }
 
     // Parse the response JSON from the API
-    const data: APIResponse<PaginatedResponse<{ product: Product }>> = await Response.json();
+    const data: APIResponse<PaginatedResponse<{ product: Product[] }>> = await Response.json();
 
     // If successful, return a success message
     return {
+      data,
       success: true,
       quantity,
       message: t("product-added-to-cart-successfully", { count: quantity }),
