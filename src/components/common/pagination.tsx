@@ -43,24 +43,33 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
   const generatePages = (): (number | JSX.Element)[] => {
     const pages: (number | JSX.Element)[] = [];
 
-    // Show all if pages are few
-    if (totalPages <= 5) {
+    // If total pages are 3 or fewer, display all pages
+    if (totalPages <= 3) {
       for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
       // Always show first page
       pages.push(1);
-      // Dots before current range
-      if (currentPage > 1) pages.push(<HiOutlineDotsHorizontal />);
-      // Show 1 page before and after the current page
-      for (
-        let i = Math.max(2, currentPage - 1);
-        i <= Math.min(totalPages - 1, currentPage + 1);
-        i++
-      ) {
+
+      // Show leading dots if current page is beyond page 3
+      if (currentPage > 3) {
+        pages.push(<HiOutlineDotsHorizontal />);
+      }
+
+      // Center current page with one before/after
+      const start = Math.max(2, currentPage - 1);
+      const end = Math.min(totalPages - 1, currentPage + 1);
+
+      // Add the middle page numbers
+      for (let i = start; i <= end; i++) {
         pages.push(i);
       }
-      // Dots after range
-      if (currentPage < totalPages - 2) pages.push(<HiOutlineDotsHorizontal />);
+
+      // Show trailing dots if current page is not close to the end
+      if (currentPage < totalPages - 2) {
+        pages.push(<HiOutlineDotsHorizontal />);
+      }
+
+      // Always show last page
       pages.push(totalPages);
     }
 
@@ -96,18 +105,22 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
                   e.preventDefault();
                   navigateToPage(page);
                 }}
-                className={`rounded-full  ${
+                className={`rounded-full w-10 h-10 flex items-center justify-center ${
                   page === currentPage
                     ? "bg-custom-rose-900 text-white"
-                    : "bg-blue-gray-900   text-white"
+                    : "bg-blue-gray-900 text-white"
                 }`}
               >
                 {page}
               </PaginationLink>
             </PaginationItem>
           ) : (
-            // Empty item for ellipsis
-            <PaginationItem key={`ellipsis-${idx}`}></PaginationItem>
+            <PaginationItem key={`ellipsis-${idx}`}>
+              {/* Icon dots */}
+              <div className="w-10 h-10 rounded-full bg-blue-gray-900 text-white flex items-center justify-center">
+                <HiOutlineDotsHorizontal className="w-5 h-5" />
+              </div>
+            </PaginationItem>
           ),
         )}
 

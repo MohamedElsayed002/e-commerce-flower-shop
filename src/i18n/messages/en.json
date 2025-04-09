@@ -167,7 +167,5 @@
   "quantity": "Quantity",
   "related-items": "Related Items",
   "product-added-to-cart-successfully": "Product added to cart successfully!",
-  "you-must-be-logged-in-to-add-items-to-the-cart": "You must be logged in to add items to the cart.",
-  "you-must-be-logged-in-to-add-items-to-the-cart-0": "You must be logged in to add items to the cart.",
-  "you-must-be-logged-in-to-add-items-to-the-cart-1": "You must be logged in to add items to the cart."
+  "you-must-be-logged-in-to-add-items-to-the-cart": "You must be logged in to add items to the cart."
 }
