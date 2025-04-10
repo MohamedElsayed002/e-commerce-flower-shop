@@ -10,6 +10,7 @@ export async function fetchProducts({ rating, status }: { rating?: string; statu
             "quantity[gt]": status?.includes("in-stock") ? "0" : null
         };
 
+
         Object.entries(filterMap).forEach(([key, value]) => {
             if (value) {
                 params.set(key, value);
