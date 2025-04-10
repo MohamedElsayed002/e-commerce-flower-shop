@@ -24,15 +24,15 @@ export const addProductToCart = async (productid: string, quantity: number) => {
     token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
 
     if (!token) {
-      return { success: false, message: t('invalid-or-expired-token')};
+      return { success: false, message: t("invalid-or-expired-token") };
     }
   } catch (error) {
-    return { success: false, message: t('invalid-or-expired-token')};
+    return { success: false, message: t("invalid-or-expired-token") };
   }
 
   try {
     // Fetch api
-    const Response = await fetch(process.env.API + "/cart", {
+    const response = await fetch(process.env.API + "/cart", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -45,16 +45,16 @@ export const addProductToCart = async (productid: string, quantity: number) => {
       }),
     });
 
-    if (!Response.ok) {
-      const data = await Response.json();
+    if (!response.ok) {
+      const data = await response.json();
       return {
         success: false,
-        message: data?.error || t('failed-to-add-product'),
+        message: data?.error || t("failed-to-add-product"),
       };
     }
 
     // Parse the response JSON from the API
-    const data: APIResponse<PaginatedResponse<{ product: Product[] }>> = await Response.json();
+    const data: APIResponse<PaginatedResponse<{ product: Product[] }>> = await response.json();
 
     // If successful, return a success message
     return {
@@ -65,6 +65,6 @@ export const addProductToCart = async (productid: string, quantity: number) => {
     };
   } catch (error) {
     // Catch any errors during the API call and return an error message
-    return { success: false, message: t('an-error-occurred-while-adding-the-product') };
+    return { success: false, message: t("an-error-occurred-while-adding-the-product") };
   }
 };
