@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-export function useProducts(occasion?: string) {
+export function useOccaison(occasion?: string) {
   return useQuery({
     queryKey: ["products", occasion],
     queryFn: async () => {

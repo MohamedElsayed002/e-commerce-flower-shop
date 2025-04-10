@@ -9,7 +9,7 @@ import * as z from "zod";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
-import { useProducts } from "@/hooks/filters-hook/use-occaison";
+import { useOccaison } from "@/hooks/filters-hook/use-occaison";
 
 // Types
 type OccasionFilterProps = {
@@ -47,7 +47,7 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   const occasion = watch("occasion");
 
   // Handle loading or error
-  const { isLoading } = useProducts(occasion);
+  const { isLoading } = useOccaison(occasion);
 
   // Handle occasion change
   const handleOccasionChange = (value: string) => {
