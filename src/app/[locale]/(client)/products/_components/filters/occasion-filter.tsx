@@ -3,13 +3,12 @@
 import { useForm } from "react-hook-form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
-import { useOccasions } from "@/hooks/filters-hook/use-occaison";
+import { usePathname, useRouter } from "@/i18n/routing";
 
 // Types
 type OccasionFilterProps = {
@@ -21,18 +20,16 @@ const schema = z.object({
   occasion: z.string().optional(),
 });
 
-// Type for form data
 type FormData = z.infer<typeof schema>;
 
 export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   // Translation
   const t = useTranslations();
 
-  // Router
+  // Variables
   const router = useRouter();
-
-  // Params
   const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   // Get the initial occasion
   const initialOccasion = searchParams.get("occasion") || "";
@@ -46,9 +43,6 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   // Watch the occasion value
   const occasion = watch("occasion");
 
-  // Handle loading or error
-  const { isLoading } = useOccasions();
-
   // Handle occasion change
   const handleOccasionChange = (value: string) => {
     setValue("occasion", value);
@@ -59,7 +53,7 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
       params.delete("occasion");
     }
     // Update the URL
-    router.replace(`?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -69,40 +63,33 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
         {t("occasion")}
       </h3>
 
-      {/* Loading state */}
-      {isLoading ? (
-        <div className="flex justify-center items-center h-16">
-          <Loader2 className="animate-spin w-6 h-6 text-custom-rose-700" />
-        </div>
-      ) : (
-        // Radio
-        <RadioGroup
-          className=" text-custom-rose-900 "
-          value={occasion || ""}
-          onValueChange={handleOccasionChange}
-        >
-          {/* Map occasions */}
-          {occasions.map((occ) => (
-            <div key={occ._id} className="flex items-center justify-between w-full">
-              <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                {/* Radio button */}
-                <RadioGroupItem value={occ._id} id={`occasion-${occ._id}`} />
+      {/* Radio */}
+      <RadioGroup
+        className=" text-custom-rose-900 "
+        value={occasion || ""}
+        onValueChange={handleOccasionChange}
+      >
+        {/* Map occasions */}
+        {occasions.map((occ) => (
+          <div key={occ._id} className="flex items-center justify-between w-full">
+            <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+              {/* Radio button */}
+              <RadioGroupItem value={occ._id} id={`occasion-${occ._id}`} />
 
-                {/* Label */}
-                <Label
-                  htmlFor={`occasion-${occ._id}`}
-                  className="text-blue-gray-500 leading-5 text-sm font-inter rtl:text-right"
-                >
-                  {occ.name}
-                </Label>
-              </div>
-
-              {/* Count */}
-              <span className="text-blue-gray-500">({occ.productsCount})</span>
+              {/* Label */}
+              <Label
+                htmlFor={`occasion-${occ._id}`}
+                className="text-blue-gray-500 leading-5 text-sm font-inter rtl:text-right flex-1 capitalize"
+              >
+                {occ.name}
+              </Label>
             </div>
-          ))}
-        </RadioGroup>
-      )}
+
+            {/* Count Product*/}
+            <span className="text-blue-gray-500">({occ.productsCount})</span>
+          </div>
+        ))}
+      </RadioGroup>
     </Card>
   );
 }
