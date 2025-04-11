@@ -71,7 +71,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
         <div className="space-y-3">
           {/* Map categories */}
           {categories.map((cat) => (
-            <div key={cat._id} className="flex items-center justify-between w-full pb-3">
+            <div key={cat._id} className="flex items-center justify-between w-full ">
               <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
                 {/* Radio button */}
                 <RadioGroupItem value={cat._id} id={`category-${cat._id}`} />
