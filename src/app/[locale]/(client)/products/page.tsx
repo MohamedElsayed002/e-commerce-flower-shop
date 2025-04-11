@@ -6,8 +6,7 @@ export default async function ProductPage() {
 
   return (
     <div className="p-6 space-y-6">
-      {/* Filters */}
-      <OccasionFilter occasions={occasionsData?.occasions ?? []} />
+      <OccasionFilter occasions={occasionsData ?? []} />
     </div>
   );
 }

@@ -9,7 +9,7 @@ import * as z from "zod";
 import { useTranslations } from "next-intl";
 import { Card } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
-import { useOccaison } from "@/hooks/filters-hook/use-occaison";
+import { useOccasions } from "@/hooks/filters-hook/use-occaison";
 
 // Types
 type OccasionFilterProps = {
@@ -47,7 +47,7 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   const occasion = watch("occasion");
 
   // Handle loading or error
-  const { isLoading } = useOccaison(occasion);
+  const { isLoading } = useOccasions();
 
   // Handle occasion change
   const handleOccasionChange = (value: string) => {
@@ -106,3 +106,94 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
     </Card>
   );
 }
+// components/filters/OccasionFilter.tsx
+// src/app/[locale]/(client)/products/_components/filters/occasion-filter.tsx
+// src/app/[locale]/(client)/products/_components/filters/occasion-filter.tsx
+// src/app/[locale]/(client)/products/_components/filters/occasion-filter.tsx
+
+// "use client";
+
+// import { useForm } from "react-hook-form";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// import { Label } from "@/components/ui/label";
+// import { useRouter, useSearchParams } from "next/navigation";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import * as z from "zod";
+// import { useTranslations } from "next-intl";
+// import { Card } from "@/components/ui/card";
+// import { Loader2 } from "lucide-react";
+
+// // تعريف نوع البيانات المتوقع للمناسبات
+// type Occasion = {
+//   _id: string;
+//   name: string;
+//   productsCount: number;
+// };
+
+// // تعريف الخصائص التي يستقبلها المكوّن
+// type OccasionFilterProps = {
+//   occasions: Occasion[];
+// };
+
+// // تعريف مخطط التحقق من صحة البيانات
+// const schema = z.object({
+//   occasion: z.string().optional(),
+// });
+
+// // تعريف نوع بيانات النموذج
+// type FormData = z.infer<typeof schema>;
+
+// // المكوّن العميل
+// export default function OccasionFilter({ occasions }: OccasionFilterProps) {
+//   const t = useTranslations();
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+//   const initialOccasion = searchParams.get("occasion") || "";
+
+//   const { setValue, watch } = useForm<FormData>({
+//     resolver: zodResolver(schema),
+//     defaultValues: { occasion: initialOccasion },
+//   });
+
+//   const occasion = watch("occasion");
+
+//   // التعامل مع تغيير المناسبة
+//   const handleOccasionChange = (value: string) => {
+//     setValue("occasion", value);
+//     const params = new URLSearchParams(window.location.search);
+//     if (value) params.set("occasion", value);
+//     else params.delete("occasion");
+//     router.replace(`?${params.toString()}`);
+//   };
+
+//   return (
+//     <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse">
+//       {/* العنوان */}
+//       <h3 className="font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0 capitalize rtl:text-right">
+//         {t("occasion")}
+//       </h3>
+
+//       {/* عرض قائمة المناسبات */}
+//       <RadioGroup
+//         className="text-custom-rose-900"
+//         value={occasion || ""}
+//         onValueChange={handleOccasionChange}
+//       >
+//         {occasions.map((occ) => (
+//           <div key={occ._id} className="flex items-center justify-between w-full">
+//             <div className="flex items-center space-x-2 rtl:space-x-reverse">
+//               <RadioGroupItem value={occ._id} id={`occasion-${occ._id}`} />
+//               <Label
+//                 htmlFor={`occasion-${occ._id}`}
+//                 className="text-blue-gray-500 leading-5 text-sm font-inter rtl:text-right"
+//               >
+//                 {occ.name}
+//               </Label>
+//             </div>
+//             <span className="text-blue-gray-500">({occ.productsCount})</span>
+//           </div>
+//         ))}
+//       </RadioGroup>
+//     </Card>
+//   );
+// }
