@@ -1,8 +1,6 @@
-export async function fetchCategories() {
+export async function fetchCategories(category?: string) {
   try {
-    const response = await fetch(process.env.API + "/categories", {
-      cache: "no-store",
-    });
+    const response = await fetch(process.env.API + "/categories");
 
     if (!response.ok) {
       throw new Error("Failed to fetch categories");
