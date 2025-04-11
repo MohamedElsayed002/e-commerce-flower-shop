@@ -8,6 +8,7 @@ import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
 import { useSession } from "next-auth/react";
 import AuthDialog from "../features/auth/auth-dialog";
+import { Button } from "../ui/button";
 
 export default function Header() {
   // Translation
@@ -61,7 +62,11 @@ export default function Header() {
               <>
                 <IoSearch className="w-[20px] h-[21px]  text-custom-rose-900" />
                 <LocaleToggle />
-                <AuthDialog />
+                <AuthDialog>
+                  <Button className="rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800 ">
+                    {t("login")}
+                  </Button>
+                </AuthDialog>
               </>
             )}
           </div>

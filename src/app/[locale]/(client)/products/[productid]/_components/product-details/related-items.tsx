@@ -1,16 +1,16 @@
 import ProductCard from "@/components/features/product/product-card-component";
-import fetchProductsByCategory from "@/lib/apis/related-items.api";
+import fetchProductsByCategory from "@/lib/apis/product.api";
+
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-// Type
 type TProps = {
   category: string;
   productid: string;
 };
 
-export default async function Relateditems({ category, productid }: TProps) {
+export default async function RelatedItems({ category, productid }: TProps) {
   // Translations
   const t = await getTranslations();
 
@@ -20,6 +20,7 @@ export default async function Relateditems({ category, productid }: TProps) {
   return (
     <>
       <div className="flex flex-col">
+        {/* Items details */}
         <div className="flex justify-between items-center mb-6">
           <div className="relative">
             {/* Section title */}
@@ -47,6 +48,7 @@ export default async function Relateditems({ category, productid }: TProps) {
           </div>
         </div>
 
+        {/* Display products */}
         <div className="grid grid-cols-4 gap-6 justify-start">
           {/* Show a "Coming Soon" message if no products are available */}
           {products.length === 0 ? (

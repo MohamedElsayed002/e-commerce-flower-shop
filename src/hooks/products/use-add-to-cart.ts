@@ -15,7 +15,8 @@ export const useAddToCart = (productid: string) => {
       const response = await addProductToCart(productid, quantity);
       return response;
     },
-
+    
+    // Handling success
     onSuccess: (data) => {
       if (!data.success) {
         toast.error(data.message);
@@ -23,7 +24,8 @@ export const useAddToCart = (productid: string) => {
         toast.success(data.message);
       }
     },
-
+    
+    // Handling error
     onError: (error) => {
       toast.error(t("failed-to-add-product-to-cart"));
       console.error(error);

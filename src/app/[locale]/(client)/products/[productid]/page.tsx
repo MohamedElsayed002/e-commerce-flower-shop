@@ -1,8 +1,7 @@
 import { fetchProductDetails } from "@/lib/apis/product.api";
-import Relateditems from "./_components/product-details/related-items";
 import Content from "./_components/product-details/product-content/_components/content";
+import RelatedItems from "./_components/product-details/related-items";
 
-// Type
 type TProps = {
   params: {
     productid: string;
@@ -36,7 +35,7 @@ export default async function ProductPage({ params }: TProps) {
 
       {/* Related items */}
       <div className="container m-auto flex gap-[40px] py-20">
-        <Relateditems category={catogeryid} productid={productid} />
+        <RelatedItems category={catogeryid} productid={productid} />
       </div>
     </div>
   );
