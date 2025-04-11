@@ -13,7 +13,7 @@ export const fetchProductDetails = async (productid: string) => {
     if (!response.ok) throw new Error(t("product-not-found"));
 
     // Parse the response JSON
-    const data: APIResponse<PaginatedResponse<{ product: Product[] }>> = await response.json();
+    const data: APIResponse<PaginatedResponse<{ product: Product }>> = await response.json();
 
     return data;
   } catch (error) {

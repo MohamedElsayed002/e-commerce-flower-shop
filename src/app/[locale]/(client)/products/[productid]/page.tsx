@@ -5,6 +5,7 @@ import RelatedItems from "./_components/product-details/related-items";
 type TProps = {
   params: {
     productid: string;
+    product:Product
   };
 };
 
