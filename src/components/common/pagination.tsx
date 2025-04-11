@@ -17,16 +17,16 @@ type PagePaginationProps = {
 };
 
 export default function PagePagination({ metadata }: PagePaginationProps) {
+  if (!metadata) return null;
+  // Navigation
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  if (!metadata) return null;
-
   const currentPage = metadata.currentPage;
   const totalPages = metadata.totalPages;
 
-  const queryString = useMemo(() => new URLSearchParams(searchParams.toString()), [searchParams]);
+  const queryString = new URLSearchParams(searchParams);
 
   // Function to navigate to a new page
   const navigateToPage = useCallback(
@@ -34,7 +34,7 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
       if (page < 1 || page > totalPages || page === currentPage) return;
 
       queryString.set("page", page.toString());
-      router.push(`${pathname}?${queryString.toString()}`);
+      router.push(`${pathname}?${queryString.toString()}`, { scroll: false });
     },
     [queryString, pathname, router, currentPage, totalPages],
   );
@@ -90,7 +90,6 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
                 : "bg-blue-gray-900 text-white"
             }`}
           >
-            {/* Icon */}
             <ArrowLeftGo />
           </button>
         </PaginationItem>
@@ -107,8 +106,8 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
                 }}
                 className={`rounded-full w-10 h-10 flex items-center justify-center ${
                   page === currentPage
-                    ? "bg-custom-rose-900 text-white"
-                    : "bg-blue-gray-900 text-white"
+                    ? "bg-custom-rose-900 text-white hover:bg-custom-rose-900 hover:text-white"
+                    : "bg-blue-gray-900 text-white hover:bg-blue-gray-900 hover:text-white"
                 }`}
               >
                 {page}
@@ -116,8 +115,7 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
             </PaginationItem>
           ) : (
             <PaginationItem key={`ellipsis-${idx}`}>
-              {/* Icon dots */}
-              <div className="w-10 h-10 rounded-full bg-blue-gray-900 text-white flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full text-blue-gray-900 flex items-center justify-center">
                 <HiOutlineDotsHorizontal className="w-5 h-5" />
               </div>
             </PaginationItem>
@@ -135,7 +133,6 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
                 : "bg-blue-gray-900  text-white"
             }`}
           >
-            {/* Icon */}
             <ArrowRightGo />
           </button>
         </PaginationItem>
