@@ -167,5 +167,12 @@
   "quantity": "Quantity",
   "related-items": "Related Items",
   "product-added-to-cart-successfully": "Product added to cart successfully!",
-  "you-must-be-logged-in-to-add-items-to-the-cart": "You must be logged in to add items to the cart."
+  "you-must-be-logged-in-to-add-items-to-the-cart": "You must be logged in to add items to the cart.",
+  "off": "Off",
+  "failed-to-add-product-to-cart": "Failed to add product to cart",
+  "view-more": "View More",
+  "product-not-found": "Product not found",
+  "invalid-or-expired-token": "invalid-or-expired-token",
+  "failed-to-add-product": "Failed to add product",
+  "an-error-occurred-while-adding-the-product": "An error occurred while adding the product."
 }

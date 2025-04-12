@@ -156,5 +156,12 @@
   "quantity": "الكميه",
   "related-items": "العناصر ذات الصله",
   "product-added-to-cart-successfully": "تم اضافه المنتج بنجاح!",
-  "you-must-be-logged-in-to-add-items-to-the-cart": "يجب عليك تسجيل الدخول اولا ."
+  "you-must-be-logged-in-to-add-items-to-the-cart": "يجب عليك تسجيل الدخول اولا .",
+  "off": "خصم",
+  "view-more": "عرض المزيد",
+  "failed-to-add-product-to-cart": "خطا في اضافه المنتج الي السله",
+  "product-not-found": "المنتج غير موجود",
+  "invalid-or-expired-token": "التوكن غير صالح او منتهي الصلاحيه",
+  "failed-to-add-product": "خطا في اضافه المنتج",
+  "an-error-occurred-while-adding-the-product": "حدث خطأ اثناء اضافه المنتج."
 }

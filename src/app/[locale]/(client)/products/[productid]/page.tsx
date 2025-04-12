@@ -1,9 +1,12 @@
 import { fetchProductDetails } from "@/lib/apis/product.api";
-import ProductCarousel from "./_components/product-details/product-carousel";
+import Content from "./_components/product-details/product-content/_components/content";
+import RelatedItems from "./_components/product-details/related-items";
+import ProductCarousel from "./_components/product-details/product-content/_components/product-carousel";
 
 type TProps = {
   params: {
     productid: string;
+    product: Product;
   };
 };
 
@@ -13,18 +16,30 @@ export default async function ProductPage({ params }: TProps) {
   const { productid } = params;
 
   // Function
-  const payload = await fetchProductDetails(productid);
-  const catogeryid = payload.product.category;
-  console.log("catId", catogeryid);
+  const data = await fetchProductDetails(productid);
 
   // Handling error
-  if (!payload) throw new Error("Product not found");
+  if (!data) throw new Error("Product not found");
+
+  // Variable
+  const catogeryid = data.product.category;
 
   return (
     <div className="flex flex-col">
       <div className="container m-auto flex gap-[40px] py-20">
-        {/* Product image carousel */}
-        <ProductCarousel product={payload?.product || []} />
+        {/* Product image carousel to put this component*/}
+        {/* Waiting for merging  */}
+
+        {/* Product carousel */}
+        <ProductCarousel product={data?.product || []} />
+
+        {/* Product details content */}
+        <Content product={data.product} />
+      </div>
+
+      {/* Related items */}
+      <div className="container m-auto flex gap-[40px] py-20">
+        <RelatedItems category={catogeryid} productid={productid} />
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
@@ -5,14 +7,20 @@ import { BsHandbag } from "react-icons/bs";
 import { FaRegEye, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa6";
 import { useFormatter } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { useAddToCart } from "@/hooks/products/use-add-to-cart";
 
+// Type
 type ProductCardProps = {
   product: Product;
+  productid: string;
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, productid }: ProductCardProps) {
   // Translation
   const format = useFormatter();
+
+  // Mutation
+  const mutation = useAddToCart(product._id);
 
   return (
     <Card className="rounded-[20px]" key={product.id}>
@@ -34,7 +42,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="absolute inset-0 flex justify-center items-center gap-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
           {/* TODO: View Product Button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
-            <FaRegEye />
+            <Link href={`/products/${product._id}`}>
+              <FaRegEye />
+            </Link>
           </Button>
 
           {/* TODO:Add to wishlist button */}
@@ -46,7 +56,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product details */}
       <CardContent className="px-4">
-        <Link href={`/products/${product._id}`} className="flex justify-between items-center">
+        <div className="flex justify-between items-center">
           {/* Product information */}
           <div className="flex flex-col justify-start gap-[9px]">
             {/* Product title */}
@@ -83,10 +93,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {/* TODO:Add to cart button */}
-          <Button className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800">
+          <Button
+            className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+            onClick={() => mutation.mutate(1)}
+          >
             <BsHandbag />
           </Button>
-        </Link>
+        </div>
       </CardContent>
     </Card>
   );

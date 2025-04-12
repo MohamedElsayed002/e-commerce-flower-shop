@@ -83,8 +83,8 @@ export default function ProductCarousel({ product }: ProductPropes) {
             ))}
           </CarouselContent>
           {/* Navigation buttons */}
-          <CarouselPrevious className="absolute right-auto rtl:left-[-2.5rem] ms-2 top-1/2" />
-          <CarouselNext className="absolute me-2 top-1/2" />
+          <CarouselPrevious className="absolute right-auto rtl:left-[-2.5rem] ms-2 top-1/2 bg-custom-rose-900 text-white" />
+          <CarouselNext className="absolute me-2 top-1/2 bg-custom-rose-900 text-white" />
         </Carousel>
       </div>
     </div>
