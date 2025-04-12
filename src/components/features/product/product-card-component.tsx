@@ -8,8 +8,9 @@ import { FaRegEye, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa6";
 import { useFormatter } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useAddToCart } from "@/hooks/products/use-add-to-cart";
+import { useSession } from "next-auth/react";
+import AuthDialog from "../auth/auth-dialog";
 
-// Type
 type ProductCardProps = {
   product: Product;
   productid: string;
@@ -19,8 +20,11 @@ export default function ProductCard({ product, productid }: ProductCardProps) {
   // Translation
   const format = useFormatter();
 
+  // Hooks
+  const { data: session } = useSession();
+
   // Mutation
-  const mutation = useAddToCart(product._id);
+  const { mutate: addtoCart, isPending } = useAddToCart(product._id);
 
   return (
     <Card className="rounded-[20px]" key={product.id}>
@@ -93,12 +97,25 @@ export default function ProductCard({ product, productid }: ProductCardProps) {
           </div>
 
           {/* TODO:Add to cart button */}
-          <Button
-            className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
-            onClick={() => mutation.mutate(1)}
-          >
-            <BsHandbag />
-          </Button>
+          {session ? (
+            <Button
+              className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+              disabled={isPending}
+              onClick={() => addtoCart(1)}
+            >
+              <BsHandbag />
+            </Button>
+          ) : (
+            <AuthDialog>
+              <Button
+                className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+                disabled={isPending}
+                onClick={() => addtoCart(1)}
+              >
+                <BsHandbag />
+              </Button>
+            </AuthDialog>
+          )}
         </div>
       </CardContent>
     </Card>

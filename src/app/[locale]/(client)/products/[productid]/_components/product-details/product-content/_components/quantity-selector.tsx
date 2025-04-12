@@ -17,11 +17,11 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
   // Translations
   const t = useTranslations();
 
-  // Hooks
-  const { data: session } = useSession();
-
   // State
   const [quantity, setQuantity] = useState(1);
+
+  // Hooks
+  const { data: session } = useSession();
 
   // Mutation
   const { mutate: addtoCart, isPending } = useAddToCart(productid);

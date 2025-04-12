@@ -13,11 +13,6 @@ export const addProductToCart = async (productid: string, quantity: number) => {
   // Retrieve the token from cookies
   const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
 
-  // Retrieve the token from cookies
-  if (!tokenCookies) {
-    return { success: false, message: t("you-must-be-logged-in-to-add-items-to-the-cart") };
-  }
-
   // Handling when happen any fail in decoded
   let token;
   try {
