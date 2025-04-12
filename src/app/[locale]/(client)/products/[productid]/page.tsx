@@ -31,7 +31,7 @@ export default async function ProductPage({ params }: TProps) {
         <ProductCarousel product={data?.product || []} />
 
         {/* Product details content */}
-        <Content product={data.product} />
+        <Content product={data?.product || []} />
       </div>
 
       {/* Related items */}
