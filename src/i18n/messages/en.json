@@ -160,5 +160,7 @@
   "recover-password": "Recover Password",
   "verifying-otp": "Verifying OTP...",
   "register-title": "Create account",
-  "status": "Status"
+  "status": "Status",
+  "on-sale" : "On sale",
+  "in-stock": "In stock"
 }

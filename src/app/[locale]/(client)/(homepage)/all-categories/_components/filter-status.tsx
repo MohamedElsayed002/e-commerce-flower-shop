@@ -1,4 +1,5 @@
 "use client";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { useTranslations } from "next-intl";
@@ -55,7 +56,7 @@ export function FilterStatus() {
               onCheckedChange={() => handleStatusChange(status)}
             />
             <label htmlFor={status} className="text-sm font-medium leading-none">
-              {status.replace("-", " ")}
+              {t(status)}
             </label>
           </div>
         ))}
