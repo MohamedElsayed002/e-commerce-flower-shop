@@ -26,7 +26,7 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   // Translation
   const t = useTranslations();
 
-  // Variables
+  // Navigation
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
