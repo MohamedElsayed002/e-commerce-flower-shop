@@ -27,9 +27,6 @@ export default async function ProductPage({ params }: TProps) {
   return (
     <div className="flex flex-col">
       <div className="container m-auto flex gap-[40px] py-20">
-        {/* Product image carousel to put this component*/}
-        {/* Waiting for merging  */}
-
         {/* Product carousel */}
         <ProductCarousel product={data?.product || []} />
 
