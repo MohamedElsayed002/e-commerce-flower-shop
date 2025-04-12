@@ -26,7 +26,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
   // Translation
   const t = useTranslations();
 
-  // variables
+  // Navigation
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -64,22 +64,22 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
       </h3>
       {/* Radio */}
       <RadioGroup
-        className="text-custom-rose-900"
+        className="text-custom-rose-900 "
         value={category || ""}
         onValueChange={handleCategoryChange}
       >
         <div className="space-y-3">
           {/* Map categories */}
           {categories.map((cat) => (
-            <div key={cat._id} className="flex items-center justify-between w-full ">
-              <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+            <div key={cat.id} className="flex items-center justify-between w-full ">
+              <div className="flex items-center space-x-2 w-full">
                 {/* Radio button */}
                 <RadioGroupItem value={cat._id} id={`category-${cat._id}`} />
 
                 {/* Label */}
                 <Label
                   htmlFor={`category-${cat._id}`}
-                  className="capitalize text-blue-gray-500 leading-5 text-sm font-inter rtl:text-right flex-1"
+                  className="capitalize text-blue-gray-500 leading-5 text-sm font-inter flex-1 rtl:ps-2"
                 >
                   {cat.name}
                 </Label>
