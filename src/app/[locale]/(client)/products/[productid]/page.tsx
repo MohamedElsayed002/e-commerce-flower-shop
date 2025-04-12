@@ -1,4 +1,4 @@
-import { fetchProductDetails } from "@/lib/apis/product-details.api";
+import { fetchProductDetails } from "@/lib/apis/product.api";
 import ProductCarousel from "./_components/product-details/product-carousel";
 
 type TProps = {
