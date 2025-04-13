@@ -1,11 +1,13 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
-import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+
+const ratings = ["5", "4", "3", "2", "1"];
 
 export function FilterStars() {
   // Translation
@@ -14,25 +16,24 @@ export function FilterStars() {
   // Router
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname()
 
   // State
-  const initial = searchParams.get("rateAvg[gte]");
-  const [selected, setSelected] = useState<string | null>(initial);
+  const [selected, setSelected] = useState<string | null>(searchParams.get("rateAvg[gte]"));
 
   // Function
   const handleChange = (value: string) => {
-    const newValue = selected === value ? null : value;
-    setSelected(newValue);
+    const params = new URLSearchParams(pathname);
 
-    const params = new URLSearchParams(window.location.search);
-
-    if (newValue) {
-      params.set("rateAvg[gte]", newValue);
-    } else {
+    if (value === "all") {
       params.delete("rateAvg[gte]");
+    } else {
+      params.set("rateAvg[gte]", value);
     }
 
-    router.push(`?${params.toString()}`, { scroll: false });
+    setSelected(value);
+    console.log(params.toString())
+    router.push(`?${params.toString()}`);
   };
 
   return (
@@ -48,14 +49,15 @@ export function FilterStars() {
         onValueChange={handleChange}
       >
         {/* Stars */}
-        {["5", "4", "3", "2", "1"].map((id) => (
-          <div
-            key={id}
-            onClick={() => handleChange(id)}
-            className="flex items-center justify-between w-full cursor-pointer"
-          >
+        {ratings.map((id) => (
+          <div key={id} className="flex items-center justify-between w-full cursor-pointer">
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
-              <RadioGroupItem value={id} id={id} checked={selected === id} />
+              <RadioGroupItem
+                onClick={() => handleChange(id)}
+                value={id}
+                id={id}
+                checked={selected === id}
+              />
               <Label
                 htmlFor={id}
                 className="text-blue-gray-500 leading-5 text-xl font-inter rtl:text-right flex space-x-0.5"
@@ -72,6 +74,20 @@ export function FilterStars() {
             </div>
           </div>
         ))}
+        <div className="flex items-center space-x-2 rtl:space-x-reverse">
+          <RadioGroupItem
+            onClick={() => handleChange("all")}
+            value={"all"}
+            id={"all"}
+            checked={selected === "all"}
+          />
+          <Label
+            htmlFor={"all"}
+            className="text-blue-gray-500 leading-5 text-xl font-inter rtl:text-right flex space-x-0.5"
+          >
+            {t('all-products')}
+          </Label>
+        </div>
       </RadioGroup>
     </div>
   );
