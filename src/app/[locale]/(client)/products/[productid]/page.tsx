@@ -5,7 +5,7 @@ import RelatedItems from "./_components/product-details/related-items";
 type TProps = {
   params: {
     productid: string;
-    product:Product
+    product: Product;
   };
 };
 
@@ -31,7 +31,7 @@ export default async function ProductPage({ params }: TProps) {
         {/* <Productcarousel product={data.product} /> */}
 
         {/* Product details content */}
-        <Content product={data.product} />
+        <Content product={data?.product || []} />
       </div>
 
       {/* Related items */}
