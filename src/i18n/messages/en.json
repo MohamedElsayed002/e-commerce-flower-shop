@@ -165,5 +165,6 @@
   "out-of-stock": "Out of Stock",
   "new": "New",
   "error-loading-products": "Error loading products",
-  "no-products-available-0": "No Products Available"
+  "no-products-available-0": "No Products Available",
+  "no-products-available-1": "No Products Available"
 }

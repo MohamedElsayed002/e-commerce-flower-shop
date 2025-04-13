@@ -154,5 +154,6 @@
   "out-of-stock": "إنتهى من المخزن",
   "new": "جديد",
   "error-loading-products": "خطأ في تحميل المنتجات",
-  "no-products-available-0": "لا منتجات متاحة"
+  "no-products-available-0": "لا منتجات متاحة",
+  "no-products-available-1": "لا منتجات متاحة"
 }
