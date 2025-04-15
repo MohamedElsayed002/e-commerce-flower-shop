@@ -71,7 +71,7 @@ export default function PriceFilter() {
       </h3>
 
       {/* Price range */}
-      <div className="flex text-sm text-custom-rose-900 font-bold rtl:flex-row-reverse">
+      <div className="flex text-sm text-custom-rose-900 font-bold rtl:text-right">
         <span className="me-1">${priceRange[0].toFixed(2)}</span>
         {"-"}
         <span className="ms-1">${priceRange[1].toFixed(2)}</span>
@@ -79,7 +79,7 @@ export default function PriceFilter() {
 
       {/* Slider */}
       <Slider
-        className="w-[254px]  h-[16px] text-custom-rose-900 rtl:direction-ltr"
+        className="w-[254px]  h-[16px] text-custom-rose-900"
         min={0}
         max={maxPrice}
         step={10}
