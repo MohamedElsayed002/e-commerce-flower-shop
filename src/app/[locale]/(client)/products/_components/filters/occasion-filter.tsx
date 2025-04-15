@@ -69,6 +69,24 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
         value={occasion || ""}
         onValueChange={handleOccasionChange}
       >
+        {/* All Option */}
+        <div className="flex items-center justify-between w-full">
+          <div className="flex items-center space-x-2 w-full">
+            <RadioGroupItem value="" id="occ-all" />
+            <Label
+              htmlFor="occ-all"
+              className="capitalize text-blue-gray-500 leading-5 text-sm font-inter flex-1 rtl:ps-2"
+            >
+              All Occasions
+            </Label>
+          </div>
+
+          {/* Count Product*/}
+          <span className="text-blue-gray-500">
+            ({occasions.reduce((acc, occ) => acc + occ.productsCount, 0)})
+          </span>
+        </div>
+
         {/* Map occasions */}
         {occasions.map((occ) => (
           <div key={occ._id} className="flex items-center justify-between w-full">
