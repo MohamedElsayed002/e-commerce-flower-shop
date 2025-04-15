@@ -23,6 +23,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function CategoryFilter({ categories }: CategoryFilterProps) {
+  console.log("categories", categories);
   // Translation
   const t = useTranslations();
 
@@ -69,9 +70,27 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
         onValueChange={handleCategoryChange}
       >
         <div className="space-y-3">
+          {/* "All" Option */}
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center space-x-2 w-full">
+              <RadioGroupItem value="" id="category-all" />
+              <Label
+                htmlFor="category-all"
+                className="capitalize text-blue-gray-500 leading-5 text-sm font-inter flex-1 rtl:ps-2"
+              >
+                All Categories
+              </Label>
+            </div>
+
+            {/* Products count */}
+            <span className="text-blue-gray-500">
+              ({categories.reduce((acc, cat) => acc + cat.productsCount, 0)})
+            </span>
+          </div>
+
           {/* Map categories */}
           {categories.map((cat) => (
-            <div key={cat.id} className="flex items-center justify-between w-full ">
+            <div key={cat._id} className="flex items-center justify-between w-full ">
               <div className="flex items-center space-x-2 w-full">
                 {/* Radio button */}
                 <RadioGroupItem value={cat._id} id={`category-${cat._id}`} />
