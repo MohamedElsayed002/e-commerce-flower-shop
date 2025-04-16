@@ -46,7 +46,7 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   // Handle occasion change
   const handleOccasionChange = (value: string) => {
     setValue("occasion", value);
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParams.toString());
     if (value) {
       params.set("occasion", value);
     } else {
@@ -59,7 +59,7 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
   return (
     <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse">
       {/* Title */}
-      <h3 className="font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0 capitalize rtl:text-right">
+      <h3 className="capitalize text-blue-gray-600 leading-5 font-semibold font-inter flex-1 rtl:ps-2">
         {t("occasion")}
       </h3>
 
@@ -70,21 +70,14 @@ export default function OccasionFilter({ occasions }: OccasionFilterProps) {
         onValueChange={handleOccasionChange}
       >
         {/* All Option */}
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center space-x-2 w-full">
-            <RadioGroupItem value="" id="occ-all" />
-            <Label
-              htmlFor="occ-all"
-              className="capitalize text-blue-gray-500 leading-5 text-sm font-inter flex-1 rtl:ps-2"
-            >
-              All Occasions
-            </Label>
-          </div>
-
-          {/* Count Product*/}
-          <span className="text-blue-gray-500">
-            ({occasions.reduce((acc, occ) => acc + occ.productsCount, 0)})
-          </span>
+        <div className="flex items-center space-x-2 w-full">
+          <RadioGroupItem value="" id="occ-all" />
+          <Label
+            htmlFor="occ-all"
+            className="capitalize text-blue-gray-600 leading-5 font-semibold font-inter flex-1 rtl:ps-2"
+          >
+            {t("all-occasions")}
+          </Label>
         </div>
 
         {/* Map occasions */}
