@@ -1,8 +1,7 @@
-"use server";
-
 export async function fetchCategories() {
   try {
     const response = await fetch(`${process.env.API}/categories`, {
+      method: "GET",
       cache: "no-store",
     });
 

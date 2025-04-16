@@ -1,13 +1,10 @@
-import { fetchCategories } from "@/lib/apis/category.api";
-import CategoryFilter from "./_components/filters/categoty-filter";
+import CategoryFilterWrapper from "./_components/category-filter-wrapper";
 
 export default async function ProductPage() {
-  const categoriesData = await fetchCategories();
-
   return (
     <div className="p-6 space-y-6">
       {/* Filters */}
-      <CategoryFilter categories={categoriesData?.categories ?? []} />
+      <CategoryFilterWrapper />
     </div>
   );
 }

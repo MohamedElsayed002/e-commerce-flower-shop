@@ -23,7 +23,6 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function CategoryFilter({ categories }: CategoryFilterProps) {
-  console.log("categories", categories);
   // Translation
   const t = useTranslations();
 
@@ -47,7 +46,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
   // Handle category change
   const handleCategoryChange = (value: string) => {
     setValue("category", value);
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParams.toString());
     if (value) {
       params.set("category", value);
     } else {
@@ -76,16 +75,11 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
               <RadioGroupItem value="" id="category-all" />
               <Label
                 htmlFor="category-all"
-                className="capitalize text-blue-gray-500 leading-5 text-sm font-inter flex-1 rtl:ps-2"
+                className="capitalize text-blue-gray-600 leading-5 font-semibold font-inter flex-1 rtl:ps-2"
               >
                 All Categories
               </Label>
             </div>
-
-            {/* Products count */}
-            <span className="text-blue-gray-500">
-              ({categories.reduce((acc, cat) => acc + cat.productsCount, 0)})
-            </span>
           </div>
 
           {/* Map categories */}
