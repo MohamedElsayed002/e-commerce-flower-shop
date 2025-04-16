@@ -70,16 +70,14 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
       >
         <div className="space-y-3">
           {/* "All" Option */}
-          <div className="flex items-center justify-between w-full">
-            <div className="flex items-center space-x-2 w-full">
-              <RadioGroupItem value="" id="category-all" />
-              <Label
-                htmlFor="category-all"
-                className="capitalize text-blue-gray-600 leading-5 font-semibold font-inter flex-1 rtl:ps-2"
-              >
-                All Categories
-              </Label>
-            </div>
+          <div className="flex items-center space-x-2 w-full">
+            <RadioGroupItem value="" id="category-all" />
+            <Label
+              htmlFor="category-all"
+              className="capitalize text-blue-gray-600 leading-5 font-semibold font-inter flex-1 rtl:ps-2"
+            >
+              {t("all-categories")}
+            </Label>
           </div>
 
           {/* Map categories */}
