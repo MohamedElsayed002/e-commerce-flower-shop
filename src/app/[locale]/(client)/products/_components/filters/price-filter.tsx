@@ -24,7 +24,7 @@ export default function PriceFilter() {
     priceRange: z
       .tuple([z.number().nonnegative(), z.number().nonnegative()])
       .refine(([min, max]) => min <= max, {
-        message: t("price_range_error"),
+        message: t("price-range-error"),
       }),
   });
   type PriceFilterFormType = z.infer<typeof priceFilterSchema>;
@@ -67,7 +67,7 @@ export default function PriceFilter() {
     <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse">
       {/* Title */}
       <h3 className="font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0  cupitalize rtl:text-right">
-        {t("price_rating")}
+        {t("price-rating")}
       </h3>
 
       {/* Price range */}
