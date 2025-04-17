@@ -13,6 +13,7 @@ export default async function Content({ product }: Productprops) {
 
   return (
     <div className=" flex flex-col  w-[550px] ">
+    <div className=" flex flex-col w-[550px] ">
       <div className="flex flex-col ">
         {/* Product title */}
         <h2 className="text-[25px] font-semibold">{product.title}</h2>
