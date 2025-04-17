@@ -68,5 +68,6 @@ export default async function Content({ product }: Productprops) {
         )}
       </div>
     </div>
+    </div>
   );
 }

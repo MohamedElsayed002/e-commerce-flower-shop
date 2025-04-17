@@ -39,7 +39,7 @@ export default function QuantitySelector({ productid, maxQuantity }: QuantitySel
     <div className="flex gap-8 items-center  ">
       {/* Quantity selector ui*/}
       <div className="flex flex-col gap-[16px]">
-        <p className="text-[16px] font-medium text-blue-gray-500 ms-3">{t("quantity")}</p>
+        <p className="text-[16px] font-medium text-blue-gray-500 ">{t("quantity")}</p>
         <div className="flex items-center ">
           {/* Decrease quantity button */}
           <button

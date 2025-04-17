@@ -1,7 +1,7 @@
 import { fetchProductDetails } from "@/lib/apis/product.api";
 import Content from "./_components/product-details/product-content/_components/content";
 import RelatedItems from "./_components/product-details/related-items";
-import ProductCarousel from "./_components/product-details/product-content/_components/product-carousel";
+import ProductCarousel from "./_components/product-details/product-carousel";
 
 type TProps = {
   params: {
