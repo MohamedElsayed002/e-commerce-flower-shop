@@ -14,11 +14,15 @@ import AuthDialog from "../auth/auth-dialog";
 type ProductCardProps = {
   product: Product;
   productid: string;
+  width?: string;
+  height?: string;
 };
 
-export default function ProductCard({ product, productid }: ProductCardProps) {
+export default function ProductCard({ product, productid, width, height }: ProductCardProps) {
   // Translation
   const format = useFormatter();
+
+  const isFixedSize = width && height;
 
   // Hooks
   const { data: session } = useSession();

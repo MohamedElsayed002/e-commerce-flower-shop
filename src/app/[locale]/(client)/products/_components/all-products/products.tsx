@@ -1,6 +1,7 @@
 import ProductCard from "@/components/features/product/product-card-component";
 import { searchParamsToString } from "@/lib/utils/convert-search-params";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 async function fetchProducts(searchParams: SearchParams) {
   const response = await fetch(
@@ -31,7 +32,12 @@ export default async function Products({ searchParams }: { searchParams: SearchP
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
       {payload.products.map((product) => {
-        return <ProductCard width="400" height="400" key={product._id} product={product} />;
+        return (
+          <Link href={`/products/${product._id}`}>
+           <ProductCard width="400" height="400" key={product._id} product={product}  productid={product._id} />
+        </Link>
+
+        )
       })}
       {payload.products.length === 0 && <h1>{t("no-products-available-1")}</h1>}
     </div>
