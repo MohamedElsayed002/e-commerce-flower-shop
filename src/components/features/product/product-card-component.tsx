@@ -37,21 +37,25 @@ export default function ProductCard({ product, productid }: ProductCardProps) {
         <Image
           src={product.imgCover}
           alt={product.title}
-          fill
-          sizes="(max-width: 640px) 100px, (max-width: 1024px) 150px, 222px"
+          {...(isFixedSize
+            ? { width: Number(width), height: Number(height) }
+            : {
+                fill: true,
+                sizes: "(max-width: 640px) 100px, (max-width: 1024px) 150px, 222px",
+              })}
           className="object-cover group-hover:opacity-70 transition-opacity duration-300"
         />
 
         {/* Action buttons */}
         <div className="absolute inset-0 flex justify-center items-center gap-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-          {/* TODO: View Product Button */}
+          {/*View Product Button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
             <Link href={`/products/${product._id}`}>
               <FaRegEye />
             </Link>
           </Button>
 
-          {/* TODO:Add to wishlist button */}
+          {/* Add to wishlist button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
             <FaRegHeart />
           </Button>
@@ -68,8 +72,8 @@ export default function ProductCard({ product, productid }: ProductCardProps) {
               {product.title}
             </h6>
 
-            {/* TODO: Product rating */}
-            <div className="flex text-rate-color">
+            {/* Product rating */}
+            <div className="flex text-xl text-rate-color">
               {[...Array(5)].map((_, index) => (
                 <span key={index}>
                   {index < (product?.rating || 4) ? <FaStar /> : <FaRegStar />}
