@@ -12,7 +12,7 @@ export default async function Content({ product }: Productprops) {
   const format = await getFormatter();
 
   return (
-    <div className=" flex flex-col justify-between w-[550px] ">
+    <div className=" flex flex-col  w-[550px] ">
       <div className="flex flex-col ">
         {/* Product title */}
         <h2 className="text-[25px] font-semibold">{product.title}</h2>
