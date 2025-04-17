@@ -163,5 +163,5 @@
   "occasion": "occasion",
   "fetch-error": "Failed to fetch products",
   "all-occasions": "  All Occasions",
-  "error-occasions": "Error fetching occasions"
+  "error-occasions": "Error fetching occasions\n"
 }

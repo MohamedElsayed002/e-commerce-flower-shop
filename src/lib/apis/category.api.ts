@@ -1,4 +1,4 @@
-export async function fetchCategories(category?: string) {
+export async function fetchCategories() {
   try {
     const response = await fetch(process.env.API + "/categories");
 
