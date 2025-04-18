@@ -26,19 +26,14 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
 
   const [currentPage, setCurrentPage] = useState<number>(metadata?.currentPage ?? 1);
 
-  // Sync currentPage from metadata when it changes
-  useEffect(() => {
-    if (metadata?.currentPage) {
-      setCurrentPage(metadata.currentPage);
-    }
-  }, [metadata?.currentPage]);
-
   const queryString = new URLSearchParams(searchParams);
 
   // Function to navigate to a new page
   const navigateToPage = useCallback(
     (page: number) => {
       if (page < 1 || page > totalPages || page === currentPage) return;
+
+      setCurrentPage(page);
 
       queryString.set("page", page.toString());
       router.push(`${pathname}?${queryString.toString()}`, { scroll: false });
