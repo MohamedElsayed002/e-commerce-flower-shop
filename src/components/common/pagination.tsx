@@ -7,7 +7,7 @@ import {
   PaginationLink,
 } from "@/components/ui/pagination";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import ArrowLeftGo from "@/components/common/go-arrow-left";
 import ArrowRightGo from "@/components/common/go-arrow-right";
@@ -17,14 +17,21 @@ type PagePaginationProps = {
 };
 
 export default function PagePagination({ metadata }: PagePaginationProps) {
-  if (!metadata) return null;
   // Navigation
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentPage = metadata.currentPage;
-  const totalPages = metadata.totalPages;
+  const totalPages = metadata?.totalPages ?? 1;
+
+  const [currentPage, setCurrentPage] = useState<number>(metadata?.currentPage ?? 1);
+
+  // Sync currentPage from metadata when it changes
+  useEffect(() => {
+    if (metadata?.currentPage) {
+      setCurrentPage(metadata.currentPage);
+    }
+  }, [metadata?.currentPage]);
 
   const queryString = new URLSearchParams(searchParams);
 
