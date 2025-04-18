@@ -73,9 +73,19 @@ export default function PriceFilter() {
 
       {/* Price range */}
       <div className="flex text-sm text-custom-rose-900 font-bold rtl:text-right">
-        <span className="me-1">{formatter.number(priceRange[0])}</span>
+        <span className="me-1">
+          {formatter.number(priceRange[0], {
+            style: "currency",
+            currency: "USD",
+          })}
+        </span>
         {" - "}
-        <span className="ms-1">{formatter.number(priceRange[1])}</span>
+        <span className="ms-1">
+          {formatter.number(priceRange[1], {
+            style: "currency",
+            currency: "USD",
+          })}
+        </span>
       </div>
       {/* Slider */}
       <Slider
