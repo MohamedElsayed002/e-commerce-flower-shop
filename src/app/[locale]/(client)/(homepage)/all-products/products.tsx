@@ -1,25 +1,6 @@
 import ProductCard from "@/components/features/product/product-card-component";
-import { searchParamsToString } from "@/lib/utils/convert-search-params";
+import { fetchProducts } from "@/lib/apis/product.api";
 import { getTranslations } from "next-intl/server";
-
-async function fetchProducts(searchParams: SearchParams) {
-  const response = await fetch(
-    `${process.env.API}/products?${searchParamsToString(searchParams)}`,
-    {
-      cache: "no-cache",
-    },
-  );
-
-  const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
-
-  if ("error" in payload || !response.ok) {
-    if ("error" in payload) {
-      throw new Error(payload.error);
-    }
-    throw new Error("Failed to fetch Products");
-  }
-  return payload;
-}
 
 export default async function Products({ searchParams }: { searchParams: SearchParams }) {
   // Translation

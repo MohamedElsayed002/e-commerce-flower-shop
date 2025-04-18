@@ -1,7 +1,4 @@
-import { useTranslations } from "next-intl";
-import { searchParamsToString } from "@/lib/utils/convert-search-params";
 import { getTranslations } from "next-intl/server";
-import ProductCard from "@/components/features/product/product-card-component";
 import { Suspense } from "react";
 import Products from "./products";
 import ProductSkeleton from "@/components/skeletons/product/product.skeleton";
