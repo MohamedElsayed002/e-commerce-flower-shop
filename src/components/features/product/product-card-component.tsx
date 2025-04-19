@@ -41,10 +41,12 @@ export default function ProductCard({ product, width, height }: ProductCardProps
         {/* Action buttons */}
         <div className="absolute inset-0 flex justify-center items-center gap-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
           {/*View Product Button */}
-          <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
+          <Link
+            href={`/products/${product._id}`}
+            className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800"
+          >
             <FaRegEye />
-          </Button>
-
+          </Link>
           {/* Add to wishlist button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
             <FaRegHeart />
