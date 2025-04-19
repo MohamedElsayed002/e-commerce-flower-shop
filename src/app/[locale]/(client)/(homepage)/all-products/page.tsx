@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
-import Products from "./products";
+import Products from "./_components/all-products";
 import ProductSkeleton from "@/components/skeletons/product/product.skeleton";
 
 export default async function AllCategoriesPage({ searchParams }: RouteProps) {
