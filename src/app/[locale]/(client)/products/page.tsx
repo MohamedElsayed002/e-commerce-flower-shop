@@ -1,17 +1,4 @@
-// import PriceFilter from "./_components/filters/price-filter";
-
-// export default async function ProductPage() {
-//   return (
-//     <div className="p-6 space-y-6">
-//       {/* Filters */}
-//       <PriceFilter />
-//     </div>
-//   );
-// }
-// import PriceFilter from "./_components/filters/price-filter";
-import dynamic from "next/dynamic";
-
-const PriceFilter = dynamic(() => import("./_components/filters/price-filter"), { ssr: false });
+import PriceFilter from "./_components/filters/price-filter";
 
 export default async function ProductPage() {
   return (
