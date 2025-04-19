@@ -1,4 +1,4 @@
-import { FilterStatus } from "./_components/filter-status";
+import { FilterStatus } from "./_components/filters/filter-status";
 
 export default function AllCategoriesPage() {
   return (
