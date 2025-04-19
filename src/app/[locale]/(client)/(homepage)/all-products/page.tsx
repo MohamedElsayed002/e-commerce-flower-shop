@@ -1,4 +1,4 @@
-import { FilterStars } from "./_components/filter-stars";
+import { FilterStars } from "./_components/filters/filter-stars";
 
 export default function AllCategoriesPage() {
   return (
