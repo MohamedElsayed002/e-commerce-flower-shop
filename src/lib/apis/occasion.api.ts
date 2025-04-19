@@ -1,4 +1,3 @@
-"use server";
 export async function fetchOccasions() {
   try {
     const response = await fetch(`${process.env.API}/occasions`, {
