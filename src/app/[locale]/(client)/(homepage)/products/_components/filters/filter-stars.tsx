@@ -2,10 +2,11 @@
 
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { usePathname, useRouter } from "@/i18n/routing";
 
 const ratings = ["5", "4", "3", "2", "1"];
 
@@ -16,7 +17,7 @@ export function FilterStars() {
   // Router
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   // State
   const [selected, setSelected] = useState<string | null>(searchParams.get("rateAvg[gte]"));
@@ -32,8 +33,7 @@ export function FilterStars() {
     }
 
     setSelected(value);
-    console.log(params.toString())
-    router.push(`?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -85,7 +85,7 @@ export function FilterStars() {
             htmlFor={"all"}
             className="text-blue-gray-500 leading-5 text-xl font-inter rtl:text-right flex space-x-0.5"
           >
-            {t('all-products')}
+            {t("all-products")}
           </Label>
         </div>
       </RadioGroup>
