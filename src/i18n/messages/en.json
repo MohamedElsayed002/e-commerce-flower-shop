@@ -160,7 +160,10 @@
   "recover-password": "Recover Password",
   "verifying-otp": "Verifying OTP...",
   "register-title": "Create account",
+  "rating": "Rating",
+  "all-products": "All Products",
   "status": "Status",
-  "on-sale" : "On Sale",
-  "in-stock": "In Stock"
+  "in-stock": "In Stock",
+  "on-sale": "On Sale",
+  "no-products-available-1": "No Products Available"
 }

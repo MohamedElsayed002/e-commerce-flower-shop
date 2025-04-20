@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Products from "./_components/all-products";
 import AllProductsSkeleton from "./_components/all-products-skeleton";
 import { FilterStatus } from "./_components/filters/filter-status";
+import { FilterStars } from "./_components/filters/filter-stars";
 
 export default async function AllCategoriesPage({ searchParams }: RouteProps) {
   return (
@@ -9,6 +10,7 @@ export default async function AllCategoriesPage({ searchParams }: RouteProps) {
       {/* Status Filter */}
       <div>
         <FilterStatus/>
+        <FilterStars/>
       </div>
 
       {/* Products */}

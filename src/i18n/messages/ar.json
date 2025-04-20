@@ -149,7 +149,10 @@
   "otp-sent-success": "تم إرسال رمز OTP إلى حسابك",
   "verifying-otp": "جاري التحقق من الرمز...",
   "register-title": "إنشاء حساب",
+  "rating": "تصنيف",
+  "all-products": "جميع المنتجات",
   "status": "حالة",
-    "on-sale" : "خصم",
-  "in-stock": "في المخزن"
+  "in-stock": "في المخزن",
+  "on-sale": "الخصم",
+  "no-products-available-1": "لا منتجات متاحة"
 }
