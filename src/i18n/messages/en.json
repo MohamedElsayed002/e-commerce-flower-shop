@@ -162,11 +162,13 @@
   "register-title": "Create account",
   "price-rating": "Price Rating",
   "loading-price": "loading price",
-  "fetch-error": "Failed to fetch products",
   "price-range-error": "Min price must be less than or equal to max price",
   "data-updated-successfully": "Data updated successfully",
   "failed-to-load-profile-data": "Failed to load profile data",
   "update-profile": "Update Profile",
   "category": "category",
-  "occasion": "occasion"
+  "occasion": "occasion",
+  "fetch-error": "Failed to fetch products",
+  "all-occasions": "  All Occasions",
+  "error-occasions": "Error fetching occasions"
 }

@@ -1,5 +1,6 @@
 import PriceFilter from "./_components/filters/price-filter";
 import CategoryFilterWrapper from "./_components/category-filter-wrapper";
+import OccasionFilterWrapper from "./_components/filters/occasion-flter-wrapper";
 
 export default async function ProductPage() {
   return (
@@ -7,6 +8,7 @@ export default async function ProductPage() {
       {/* Filters */}
       <PriceFilter />
       <CategoryFilterWrapper />
+      <OccasionFilterWrapper />
     </div>
   );
 }

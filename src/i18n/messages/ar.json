@@ -157,5 +157,7 @@
   "price_rating": "تصنيف الأسعار",
   "category": "فئة",
   "occasion": "مناسبات",
-  "fetch-error": "فشل جلب المنتجات"
+  "fetch-error": "فشل جلب المنتجات",
+  "all-occasions": "جميع المناسبات",
+  "error-occasions": "خطأ جلب المناسبات"
 }

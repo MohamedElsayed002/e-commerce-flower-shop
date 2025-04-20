@@ -31,7 +31,7 @@ export default function Header() {
 
         {/* Navigation Links */}
         <div className="flex gap-6 text-base font-medium text-[#160E4B]">
-          <Link href="/" className="transition-colors text-custom-rose-900">
+          <Link href="/" className="transition-colors text-custom-rose-900 ">
             {t("home")}
           </Link>
           <Link href="/products" className="transition-colors hover:text-custom-rose-900">
