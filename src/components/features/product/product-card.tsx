@@ -8,11 +8,15 @@ import { Link } from "@/i18n/routing";
 
 type ProductCardProps = {
   product: Product;
+  width?: string;
+  height?: string;
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, width, height }: ProductCardProps) {
   // Translation
   const format = useFormatter();
+
+  const isFixedSize = width && height;
 
   return (
     <Card className="rounded-[20px]" key={product.id}>
@@ -25,19 +29,25 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Image
           src={product.imgCover}
           alt={product.title}
-          fill
-          sizes="(max-width: 640px) 100px, (max-width: 1024px) 150px, 222px"
+          {...(isFixedSize
+            ? { width: Number(width), height: Number(height) }
+            : {
+                fill: true,
+                sizes: "(max-width: 640px) 100px, (max-width: 1024px) 150px, 222px",
+              })}
           className="object-cover group-hover:opacity-70 transition-opacity duration-300"
         />
 
         {/* Action buttons */}
         <div className="absolute inset-0 flex justify-center items-center gap-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-          {/* TODO: View Product Button */}
-          <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
+          {/*View Product Button */}
+          <Link
+            href={`/products/${product._id}`}
+            className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800"
+          >
             <FaRegEye />
-          </Button>
-
-          {/* TODO:Add to wishlist button */}
+          </Link>
+          {/* Add to wishlist button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
             <FaRegHeart />
           </Button>
@@ -54,8 +64,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               {product.title}
             </h6>
 
-            {/* TODO: Product rating */}
-            <div className="flex text-rate-color">
+            {/* Product rating */}
+            <div className="flex text-xl text-rate-color">
               {[...Array(5)].map((_, index) => (
                 <span key={index}>
                   {index < (product?.rating || 4) ? <FaStar /> : <FaRegStar />}
@@ -82,7 +92,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </p>
           </div>
 
-          {/* TODO:Add to cart button */}
+          {/* cart button */}
           <Button className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800">
             <BsHandbag />
           </Button>
