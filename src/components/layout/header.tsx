@@ -53,6 +53,12 @@ export default function Header() {
               <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
               <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
               <LocaleToggle />
+              {/* NOTE: to be removed when merging user menu */}
+              <div>
+                <Link href="/profile" className="flex items-center gap-2">
+                  Profile
+                </Link>
+              </div>
             </>
           )}
 

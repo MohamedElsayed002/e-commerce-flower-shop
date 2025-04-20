@@ -151,4 +151,7 @@
   "register-title": "إنشاء حساب",
   "price-rating": "تصنيف الأسعار",
   "price-range-error": "يجب أن يكون سعر الدقيقة أقل من أو يساوي أقصى سعر"
+  "data-updated-successfully": "تم تحديث البيانات بنجاح",
+  "failed-to-load-profile-data": "فشل في تحميل بيانات الملف الشخصي",
+  "update-profile": "تحديث الملف الشخصي"
 }
