@@ -159,5 +159,7 @@
   "occasion": "مناسبات",
   "fetch-error": "فشل جلب المنتجات",
   "all-occasions": "جميع المناسبات",
-  "error-occasions": "خطأ جلب المناسبات"
+  "error-occasions": "خطأ جلب المناسبات",
+  "rating": "تصنيف",
+  "all-products": "جميع المنتجات"
 }
