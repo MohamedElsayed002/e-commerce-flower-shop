@@ -172,5 +172,8 @@
   "all-occasions": "  All Occasions",
   "error-occasions": "Error fetching occasions",
   "rating": "Rating",
-  "all-products": "All Products"
+  "all-products": "All Products",
+  "status": "Status",
+  "on-sale" : "On sale",
+  "in-stock": "In stock"
 }

@@ -161,5 +161,9 @@
   "all-occasions": "جميع المناسبات",
   "error-occasions": "خطأ جلب المناسبات",
   "rating": "تصنيف",
-  "all-products": "جميع المنتجات"
+  "all-products": "جميع المنتجات",
+  "status": "حالة",
+  "on-sale": "معروض للبيع",
+  "in-stock": "متوفر في المخزون"
 }
+
