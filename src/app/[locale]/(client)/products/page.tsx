@@ -6,11 +6,11 @@ import { FilterStars } from "./_components/filters/filter-stars";
 
 export default async function AllCategoriesPage({ searchParams }: RouteProps) {
   return (
-    <div className="p-10 grid grid-cols-1 md:grid-cols-[1fr_4fr] gap-5 container">
+    <div className="p-10 grid grid-cols-1 gap-5 md:grid-cols-[1fr_4fr] container">
       {/* Status Filter */}
       <div>
-        <FilterStatus/>
-        <FilterStars/>
+        <FilterStatus />
+        <FilterStars />
       </div>
 
       {/* Products */}

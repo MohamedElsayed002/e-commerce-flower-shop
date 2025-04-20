@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
@@ -5,18 +7,28 @@ import { BsHandbag } from "react-icons/bs";
 import { FaRegEye, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa6";
 import { useFormatter } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { useAddToCart } from "@/hooks/products/use-add-to-cart";
+import { useSession } from "next-auth/react";
+import AuthDialog from "../auth/auth-dialog";
 
 type ProductCardProps = {
   product: Product;
+  productid: string;
   width?: string;
   height?: string;
 };
 
-export default function ProductCard({ product, width, height }: ProductCardProps) {
+export default function ProductCard({ product, productid, width, height }: ProductCardProps) {
   // Translation
   const format = useFormatter();
 
   const isFixedSize = width && height;
+
+  // Hooks
+  const { data: session } = useSession();
+
+  // Mutation
+  const { mutate: addtoCart, isPending } = useAddToCart(product._id);
 
   return (
     <Card className="rounded-[20px]" key={product.id}>
@@ -47,6 +59,7 @@ export default function ProductCard({ product, width, height }: ProductCardProps
           >
             <FaRegEye />
           </Link>
+
           {/* Add to wishlist button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
             <FaRegHeart />
@@ -56,7 +69,7 @@ export default function ProductCard({ product, width, height }: ProductCardProps
 
       {/* Product details */}
       <CardContent className="px-4">
-        <Link href={`/products/${product._id}`} className="flex justify-between items-center">
+        <div className="flex justify-between items-center">
           {/* Product information */}
           <div className="flex flex-col justify-start gap-[9px]">
             {/* Product title */}
@@ -92,11 +105,27 @@ export default function ProductCard({ product, width, height }: ProductCardProps
             </p>
           </div>
 
-          {/* cart button */}
-          <Button className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800">
-            <BsHandbag />
-          </Button>
-        </Link>
+          {/* TODO:Add to cart button */}
+          {session ? (
+            <Button
+              className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+              disabled={isPending}
+              onClick={() => addtoCart(1)}
+            >
+              <BsHandbag />
+            </Button>
+          ) : (
+            <AuthDialog>
+              <Button
+                className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+                disabled={isPending}
+                onClick={() => addtoCart(1)}
+              >
+                <BsHandbag />
+              </Button>
+            </AuthDialog>
+          )}
+        </div>
       </CardContent>
     </Card>
   );

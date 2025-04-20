@@ -35,6 +35,7 @@
     "react-icons": "^5.4.0",
     "sharp": "^0.33.5",
     "sonner": "^2.0.1",
+    "swiper": "^11.2.6",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "ui": "shadcn/ui",
