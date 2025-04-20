@@ -149,11 +149,7 @@
   "otp-sent-success": "تم إرسال رمز OTP إلى حسابك",
   "verifying-otp": "جاري التحقق من الرمز...",
   "register-title": "إنشاء حساب",
-  "no-products-available": "لا منتجات متاحة",
-  "no-products-to-show": "لا توجد منتجات لإظهارها",
-  "out-of-stock": "إنتهى من المخزن",
-  "new": "جديد",
-  "error-loading-products": "خطأ في تحميل المنتجات",
-  "no-products-available-0": "لا منتجات متاحة",
-  "no-products-available-1": "لا منتجات متاحة"
+  "status": "حالة",
+    "on-sale" : "خصم",
+  "in-stock": "في المخزن"
 }
