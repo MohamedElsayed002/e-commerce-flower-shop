@@ -7,9 +7,9 @@ export default async function ProfilePage() {
   const userData = (await fetchUserData()) || [];
 
   return (
-    <>
+    <div className="my-20 container">
       {/* Profile Form */}
       <ProfileForm initialData={userData} />
-    </>
+    </div>
   );
 }

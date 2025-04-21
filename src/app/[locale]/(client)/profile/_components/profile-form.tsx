@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -14,9 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useEditProfile } from "@/hooks/auth/use-edit-profile";
 import FeedbackMessage from "@/components/common/feedback-message";
+import { Locale } from "@/i18n/routing";
 
 export default function ProfileForm({ initialData }: { initialData?: User }) {
   // Translation
@@ -72,8 +73,11 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
     editProfile(updatedFields);
   };
 
+  // Variables
+  const locale = useLocale() as Locale;
+
   return (
-    <div className="w-[874px] ml-[80.5px] mt-20 mb-[74px]">
+    <div className="w-[874px]">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid grid-cols-2 gap-x-12 gap-y-4">
@@ -225,7 +229,7 @@ export default function ProfileForm({ initialData }: { initialData?: User }) {
               "
             >
               {t("update-profile")}
-              <FaArrowRight />
+              {locale === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
             </Button>
           </div>
         </form>
