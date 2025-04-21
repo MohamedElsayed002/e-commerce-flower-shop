@@ -194,5 +194,8 @@
   "no-products-available": "No Products Available",
   "no-products-to-show": "No Products To show",
   "new": "New",
-  "error-loading-products": "Error loading products"
+  "error-loading-products": "Error loading products",
+  "profile": "Profile",
+  "orders": "Orders",
+  "sign-out": "Sign Out"
 }

@@ -183,5 +183,8 @@
   "no-products-available": "لا منتجات متاحة",
   "no-products-to-show": "لا توجد منتجات لإظهارها",
   "new": "جديد",
-  "error-loading-products": "خطأ في تحميل المنتجات"
+  "error-loading-products": "خطأ في تحميل المنتجات",
+  "profile": "حساب تعريفي",
+  "orders": "طلبات",
+  "sign-out": "تسجيل الخروج"
 }
