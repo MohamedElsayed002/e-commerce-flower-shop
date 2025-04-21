@@ -159,5 +159,9 @@
   "enter-your-email-address": "Enter your email address",
   "recover-password": "Recover Password",
   "verifying-otp": "Verifying OTP...",
-  "register-title": "Create account"
+  "register-title": "Create account",
+  "name": "name",
+  "your-message": "your message",
+  "message-sent-successfully": "message-sent-successfully",
+  "firstname-required-0": "firstname-required"
 }
