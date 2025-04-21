@@ -19,8 +19,10 @@ export default function DeliveryContent() {
           <h4 className="text-[26px] font-semibold mb-2 text-blue-gray-900">
             {t("shipping-times")}
           </h4>
+
           {/* Description */}
           <p className="text-xl">{t("shipping-times-paragraph")}</p>
+
           {/* Notes */}
           <ul className="list-disc list-inside mt-2 text-xl">
             <li>{t("standard-shipping")}</li>
@@ -35,8 +37,10 @@ export default function DeliveryContent() {
           <h4 className="text-[26px] font-semibold mb-2 text-blue-gray-900">
             {t("delivery-zones-availability")}
           </h4>
+
           {/* Description */}
           <p className="text-xl">{t("delivery-zones-paragraph")}</p>
+
           {/* Notes */}
           <ul className="list-disc list-inside mt-2 text-xl">
             <li>{t("united-states-and-canada")}</li>
@@ -52,6 +56,7 @@ export default function DeliveryContent() {
           <h4 className="text-[26px] font-semibold mb-2 text-blue-gray-900">
             {t("shipping-fees")}
           </h4>
+
           {/* Notes */}
           <ul className="list-disc list-inside mt-2 text-xl">
             <li>{t("shipping-fees-note-one")}</li>
@@ -66,6 +71,7 @@ export default function DeliveryContent() {
           <h4 className="text-[26px] font-semibold mb-2 text-blue-gray-900">
             {t("missed-delivery")}
           </h4>
+
           {/* Notes */}
           <ul className="list-disc list-inside mt-2 text-xl">
             <li>{t("missed-delivery-note-one")}</li>

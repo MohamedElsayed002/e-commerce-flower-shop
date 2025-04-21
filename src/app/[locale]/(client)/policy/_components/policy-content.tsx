@@ -19,6 +19,7 @@ export default function PolicyContent() {
           <h4 className="text-[26px] font-semibold mb-4 text-blue-gray-900">
             {t("terms-and-conditions")}
           </h4>
+
           {/* Description */}
           <ol className="list-decimal list-inside space-y-2">
             <li>{t("terms-rule-one")}</li>
@@ -33,6 +34,7 @@ export default function PolicyContent() {
           <h4 className="text-[26px] font-semibold mb-4 text-blue-gray-900">
             {t("privacy-policy")}
           </h4>
+
           {/* Description */}
           <ol className="list-decimal list-inside space-y-2">
             <li>{t("privacy-rule-one")}</li>
@@ -47,6 +49,7 @@ export default function PolicyContent() {
           <h4 className="text-[26px] font-semibold mb-4 text-blue-gray-900">
             {t("cookies-and-data")}
           </h4>
+          
           {/* Description */}
           <ol className="list-decimal list-inside space-y-2">
             <li>{t("cookies-rule-one")}</li>
