@@ -44,6 +44,13 @@ export default function AddressForm() {
 
   const form = useForm<Inputs>({
     resolver: zodResolver(Schema),
+    defaultValues: {
+      street: "",
+      phone: "",
+      city: "",
+      lat: "",
+      long: "",
+    },
   });
 
   const onSubmit: SubmitHandler<Inputs> = (values) => {
