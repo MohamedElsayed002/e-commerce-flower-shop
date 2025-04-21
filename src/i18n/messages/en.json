@@ -203,5 +203,8 @@
   "returns-title": "How do I return a product?",
   "returns-answer": "You can return unused items within 14 days for a full refund or exchange. Please ensure the product is in its original packaging.",
   "product-title": "How do I know if a product is in stock?",
-  "product-answer": "All product availability is displayed on the product page. If an item is out of stock, you will be notified and can choose to be alerted when it&#39;s back in stock."
+  "product-answer": "All product availability is displayed on the product page. If an item is out of stock, you will be notified and can choose to be alerted when it&#39;s back in stock.",
+  "profile": "Profile",
+  "orders": "Orders",
+  "sign-out": "Sign Out"
 }

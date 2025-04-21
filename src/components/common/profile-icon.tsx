@@ -24,11 +24,11 @@ export default function ProfileIcon() {
           {/* Links */}
           <DropdownMenuContent>
             {/* Profile page */}
-            <Link href="/profile"><DropdownMenuItem className='focus:bg-custom-rose-600 hover:cursor-pointer focus:text-white p-2'>{t("profile")}</DropdownMenuItem></Link>
+            <Link href="/profile"><DropdownMenuItem className='focus:bg-custom-rose-600 hover:cursor-pointer focus:text-white p-2'>{t('profile')}</DropdownMenuItem></Link>
             {/* Orders page */}
-            <Link  href="/orders"><DropdownMenuItem className='focus:bg-custom-rose-600 hover:cursor-pointer focus:text-white p-2'>{t("orders-page")}</DropdownMenuItem></Link>
+            <Link  href="/orders"><DropdownMenuItem className='focus:bg-custom-rose-600 hover:cursor-pointer focus:text-white p-2'>{t('orders')}</DropdownMenuItem></Link>
             {/* Logout */}
-            <DropdownMenuItem><Button onClick={() => signOut()} className='text-white bg-custom-rose-800 hover:bg-custom-rose-500 '>{t("signout")}</Button></DropdownMenuItem>
+            <DropdownMenuItem><Button onClick={() => signOut()} className='text-white bg-custom-rose-800 hover:bg-custom-rose-500 '>{t('sign-out')}</Button></DropdownMenuItem>
           </DropdownMenuContent>
           </DropdownMenu>
     )

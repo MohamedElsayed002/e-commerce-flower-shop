@@ -53,10 +53,11 @@ export default function Header() {
               <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
               <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
               <LocaleToggle />
+              <ProfileIcon />          
             </>
           )}
 
-          {/* Login button and search icon if session isnot exist) */}
+          {/* Login button and search icon if session is not exist) */}
           <div className="flex items-center gap-5">
             {!session && (
               <>
@@ -66,11 +67,10 @@ export default function Header() {
               </>
             )}
           </div>
-          <IoSearch className="w-5 h-5 text-custom-rose-900" />
+          {/* <IoSearch className="w-5 h-5 text-custom-rose-900" />
           <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
           <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
-          <LocaleToggle />
-          <ProfileIcon />          
+          <LocaleToggle /> */}
         </div>
       </div>
     </header>

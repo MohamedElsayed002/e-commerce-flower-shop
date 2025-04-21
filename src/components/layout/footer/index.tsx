@@ -1,4 +1,5 @@
 import FooterInput from "@/components/layout/footer/components/subscribe";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -27,9 +28,9 @@ export default function Footer() {
           <p>{t("about-us")}</p>
           <p>{t("store-location")}</p>
           <p>{t("contact")}</p>
-          <p>{t("delivery")} </p>
-          <p>{t("policy")}</p>
-          <p>{t("faqs")}</p>
+          <p><Link href="/delivery"> {t("delivery")}</Link> </p>
+          <p><Link href="/policy">{t("policy")}</Link></p>
+          <p><Link href="/faq">{t("faqs")}</Link></p>
         </div>
 
         {/* Subscribe */}
