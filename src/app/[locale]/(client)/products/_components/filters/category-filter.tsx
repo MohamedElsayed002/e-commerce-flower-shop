@@ -58,8 +58,8 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
 
   return (
     <Card className="w-[302px] p-6 rounded-[20px] bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.05)] space-y-4 rtl:space-x-reverse">
-      {/*Titel */}
-      <h3 className="capitalize font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0 rtl:text-right">
+      {/*Title */}
+      <h3 className="font-bold text-blue-gray-900 leading-[44px] border-b pb-3 last:border-b-0 capitalize ">
         {t("category")}
       </h3>
       {/* Radio */}
@@ -69,7 +69,7 @@ export default function CategoryFilter({ categories }: CategoryFilterProps) {
         onValueChange={handleCategoryChange}
       >
         <div className="space-y-3">
-          {/* "All" Option */}
+          {/* All option */}
           <div className="flex items-center space-x-2 w-full">
             <RadioGroupItem value="" id="category-all" />
             <Label
