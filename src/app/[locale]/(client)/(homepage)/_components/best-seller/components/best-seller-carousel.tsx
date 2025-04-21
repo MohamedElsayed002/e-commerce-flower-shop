@@ -14,7 +14,7 @@ async function fetchProducts() {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API}/filtered-products?category=673c46fd1159920171827c85&sort=-sold`,
     );
-    const payload: APIResponse<Product[]> = await response.json();
+    const payload: APIResponse<PaginatedResponse<{ products: Product[] }>> = await response.json();
 
     if ("error" in payload) {
       throw new Error(payload.error);
@@ -32,12 +32,12 @@ export default async function BestSellerCarousel() {
   const t = await getTranslations();
 
   // Variables
-  const products = (await fetchProducts()) || [];
+  const payload = await fetchProducts();
 
   return (
     <div className="overflow-hidden flex justify-center items-center col-span-3">
       {/* Show a "Coming Soon" message if no products are available */}
-      {products.length === 0 ? (
+      {payload?.products.length === 0 ? (
         <div className="col-span-4 min-h-80 text-center text-xl font-semibold text-blue-gray-900">
           {t("coming-soon")}
         </div>
@@ -53,7 +53,7 @@ export default async function BestSellerCarousel() {
         >
           {/* Carousel content */}
           <CarouselContent>
-            {products.map((product: Product, index: number) => (
+            {payload?.products.map((product: Product, index: number) => (
               <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
                 <ProductCard product={product} key={index} />
               </CarouselItem>
