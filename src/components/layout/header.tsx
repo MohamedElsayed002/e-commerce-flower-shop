@@ -8,6 +8,7 @@ import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
 import { useSession } from "next-auth/react";
 import AuthDialog from "../features/auth/auth-dialog";
+import ProfileIcon from "../common/profile-icon";
 
 export default function Header() {
   // Translation
@@ -65,6 +66,11 @@ export default function Header() {
               </>
             )}
           </div>
+          <IoSearch className="w-5 h-5 text-custom-rose-900" />
+          <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
+          <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
+          <LocaleToggle />
+          <ProfileIcon />          
         </div>
       </div>
     </header>
