@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoLockClosedOutline, IoSearch } from "react-icons/io5";
@@ -9,7 +8,7 @@ import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
 import { useSession } from "next-auth/react";
 import AuthDialog from "../features/auth/auth-dialog";
-import { Button } from "../ui/button";
+import ProfileIcon from "../common/profile-icon";
 
 export default function Header() {
   // Translation
@@ -32,10 +31,10 @@ export default function Header() {
 
         {/* Navigation Links */}
         <div className="flex gap-6 text-base font-medium text-[#160E4B]">
-          <Link href="/" className="transition-colors text-custom-rose-900 ">
+          <Link href="/" className="transition-colors text-custom-rose-900">
             {t("home")}
           </Link>
-          <Link href="/products" className="transition-colors hover:text-custom-rose-900">
+          <Link href="#" className="transition-colors hover:text-custom-rose-900">
             {t("all-categories")}
           </Link>
           <Link href="#" className="transition-colors hover:text-custom-rose-900">
@@ -54,26 +53,17 @@ export default function Header() {
               <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
               <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
               <LocaleToggle />
-              {/* NOTE: to be removed when merging user menu */}
-              <div>
-                <Link href="/profile" className="flex items-center gap-2">
-                  Profile
-                </Link>
-              </div>
+              <ProfileIcon />
             </>
           )}
 
-          {/* Login button and search icon if session isnot exist) */}
+          {/* Login button and search icon if session is not exist) */}
           <div className="flex items-center gap-5">
             {!session && (
               <>
                 <IoSearch className="w-[20px] h-[21px]  text-custom-rose-900" />
                 <LocaleToggle />
-                <AuthDialog>
-                  <Button className="rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800 ">
-                    {t("login")}
-                  </Button>
-                </AuthDialog>
+                <AuthDialog />
               </>
             )}
           </div>
