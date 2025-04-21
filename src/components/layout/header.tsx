@@ -53,7 +53,7 @@ export default function Header() {
               <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
               <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
               <LocaleToggle />
-              <ProfileIcon />          
+              <ProfileIcon />
             </>
           )}
 
