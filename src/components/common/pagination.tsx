@@ -6,8 +6,9 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useCallback, useState } from "react";
+import { usePathname, useRouter } from "@/i18n/routing";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import ArrowLeftGo from "@/components/common/go-arrow-left";
 import ArrowRightGo from "@/components/common/go-arrow-right";
