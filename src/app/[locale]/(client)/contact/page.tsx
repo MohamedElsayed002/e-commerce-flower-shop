@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 
 // Contact Main Page
 export default function page() {
+  // Translation
   const t = useTranslations();
   return (
     <>
