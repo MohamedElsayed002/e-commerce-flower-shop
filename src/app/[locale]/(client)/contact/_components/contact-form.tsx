@@ -68,7 +68,7 @@ export default function ContactForm() {
                 <Input
                   placeholder={t("name")}
                   {...field}
-                  className="w-[690px] placeholder:text-custom-rose-900 h-[50px]  focus:outline-none focus:ring-0 rounded-[10px] border-custom-rose-900 border-[1px]"
+                  className="w-[690px] placeholder:text-custom-rose-900 h-[50px] focus:outline-none focus:ring-0 rounded-[10px] border-custom-rose-900 border-[1px]"
                 />
               </FormControl>
               <FormMessage />
