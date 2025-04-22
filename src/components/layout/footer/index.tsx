@@ -1,6 +1,7 @@
 import FooterInput from "@/components/layout/footer/components/subscribe";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   // Translation
@@ -23,10 +24,10 @@ export default function Footer() {
       {/* Content */}
       <div className="flex flex-col justify-center items-center gap-10 ">
         {/* Footer Header Contents */}
-        <div className="flex gap-20 justify-center pt-10 ps-20 text-base font-bold">
+        <div className="flex gap-20 justify-center pt-10 ps-20 text-blue-gray-900 font-bold">
           <p>{t("about-us")}</p>
           <p>{t("store-location")}</p>
-          <p>{t("contact")}</p>
+          <Link href="/contact">{t("contact")}</Link>
           <p>{t("delivery")} </p>
           <p>{t("policy")}</p>
           <p>{t("faqs")}</p>
@@ -49,7 +50,7 @@ export default function Footer() {
             {t("by-subscribe-our-newsletter")}
           </p>
         </div>
-        
+
         {/* Subscribe Input */}
         <FooterInput />
       </div>

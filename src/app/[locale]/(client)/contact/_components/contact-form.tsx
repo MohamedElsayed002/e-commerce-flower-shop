@@ -58,7 +58,6 @@ export default function ContactForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-6 pl-5 pt-9 w-[750px] my-16 h-[440px] rounded-[10px] shadow-[0px_1px_30px_0px_rgba(248,43,169,0.1)] ml-5 bg-[#FFFFFF]"
       >
-        
         {/* Name Field */}
         <FormField
           name="name"
@@ -106,7 +105,7 @@ export default function ContactForm() {
                 <Input
                   placeholder={t("phone")}
                   {...field}
-                  className="w-[690px] h-[50px] rounded-[10px] border-custom-rose-900 border-[1px]"
+                  className="w-[690px]  h-[50px] rounded-[10px] border-custom-rose-900 border-[1px]"
                 />
               </FormControl>
               <FormMessage />
