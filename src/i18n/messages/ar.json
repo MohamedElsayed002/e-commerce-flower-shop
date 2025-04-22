@@ -165,5 +165,6 @@
   "phone-number-is-required": "رقم الهاتف مطلوب",
   "invalid-phone-number-format-it-must-start-with-a-country-code": "تنسيق رقم الهاتف غير صالح. يجب أن يبدأ برمز الدولة",
   "message-must-be-at-least-10-characters": "يجب أن تحتوي الرسالة على 10 أحرف على الأقل",
-  "message-is-required": "الرسالة مطلوبة"
+  "message-is-required": "الرسالة مطلوبة",
+   "contact-us": "تواصل معنا"
 }

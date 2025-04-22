@@ -180,5 +180,6 @@
   "email-is-required": "Email is required",
   "message-must-be-at-least-10-characters": "Message must be at least 10 characters",
   "message-is-required": "Message is required",
-  "message-sent-successfully-0": "Message Sent Successfully"
+  "message-sent-successfully-0": "Message Sent Successfully",
+  "contact-us": "CONTACT US"
 }
