@@ -25,12 +25,12 @@ export default function Footer() {
       <div className="flex flex-col justify-center items-center gap-10 ">
         {/* Footer Header Contents */}
         <div className="flex gap-20 justify-center pt-10 ps-20 text-blue-gray-900 font-bold">
-          <p>{t("about-us")}</p>
-          <p>{t("store-location")}</p>
+          <Link href="#">{t("about-us")}</Link>
+          <Link href="#">{t("store-location")}</Link>
           <Link href="/contact">{t("contact")}</Link>
-          <p>{t("delivery")} </p>
-          <p>{t("policy")}</p>
-          <p>{t("faqs")}</p>
+          <Link href="#">{t("delivery")} </Link>
+          <Link href="#">{t("policy")}</Link>
+          <Link href="#">{t("faqs")}</Link>
         </div>
 
         {/* Subscribe */}
@@ -38,7 +38,7 @@ export default function Footer() {
           {/* Discount Part */}
 
           {/* Headline */}
-          <p className="text-[30px] font-bold">
+          <p className="text-[30px] font-bold text-blue-gray-900">
             {t.rich("discount-offer", {
               discount,
               span: (v) => <span className="text-custom-rose-900">{v}</span>,
