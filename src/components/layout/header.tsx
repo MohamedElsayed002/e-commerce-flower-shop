@@ -42,6 +42,13 @@ export default function Header() {
           <Link href="#" className="transition-colors hover:text-custom-rose-900">
             {t("contact")}
           </Link>
+
+          <Link href="/paymant" className="transition-colors hover:text-custom-rose-900">
+            paymant
+          </Link>
+          <Link href="/orders" className="transition-colors hover:text-custom-rose-900">
+            orders
+          </Link>
         </div>
 
         <div className="flex gap-5">
