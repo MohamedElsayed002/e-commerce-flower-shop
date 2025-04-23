@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import React from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   Accordion,
@@ -21,10 +21,16 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { useLocation } from "@/hooks/use-location";
+import { toast } from "sonner";
+
 
 export default function AddressForm() {
   // Translation
   const t = useTranslations();
+
+// Queries
+  const { isLoading, error, refetchCurrentLocation } = useLocation();
 
   // Form & Validation
   const Schema = z.object({
@@ -53,7 +59,20 @@ export default function AddressForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (values) => {
+  
+  // Functions
+  const handleDetectLocation = async () => {
+    const locationData = await refetchCurrentLocation();
+    if (locationData.data) {
+      form.setValue("lat", locationData.data.latitude.toString());
+      form.setValue("long", locationData.data.longitude.toString());
+      toast.success("Location detected successfully");
+    } else if (locationData.data === null) {
+      toast.error(error?.message || "Error detecting location");   
+    }
+  };
+
+  const onSubmit = (values: Inputs) => {
     const payload = {
       shippingAddress: {
         ...values,
@@ -78,7 +97,7 @@ export default function AddressForm() {
             {/* Billing form */}
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="font-roboto">
-                <div className="grid grid-cols-2 gap-x-12 gap-y-4">
+                <div className="grid grid-cols-3 gap-x-4 gap-y-4 mb-4">
                   {/* Street */}
                   <FormField
                     name="street"
@@ -96,7 +115,7 @@ export default function AddressForm() {
                             type="text"
                             placeholder={t("street")}
                             {...field}
-                            className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                            className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                           />
                         </FormControl>
 
@@ -123,7 +142,7 @@ export default function AddressForm() {
                             placeholder={t("phone")}
                             type="text"
                             {...field}
-                            className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                            className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                           />
                         </FormControl>
 
@@ -150,7 +169,7 @@ export default function AddressForm() {
                             placeholder={t("city")}
                             type="text"
                             {...field}
-                            className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                            className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                           />
                         </FormControl>
 
@@ -159,29 +178,28 @@ export default function AddressForm() {
                       </FormItem>
                     )}
                   />
+                </div>
 
+                {/* Location */}
+                <div className="flex justify-between items-end">
                   {/* Latitude */}
                   <FormField
                     name="lat"
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>
-                        {/* Label */}
                         <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                           {t("latitude")}
                         </FormLabel>
-
                         <FormControl>
-                          {/* Input */}
                           <Input
                             placeholder={t("latitude")}
                             type="text"
+                            readOnly
                             {...field}
-                            className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                            className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                           />
                         </FormControl>
-
-                        {/* Message */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -193,29 +211,44 @@ export default function AddressForm() {
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>
-                        {/* Label */}
                         <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                           {t("longitude")}
                         </FormLabel>
-
                         <FormControl>
-                          {/* Input */}
                           <Input
                             placeholder={t("longitude")}
                             type="text"
+                            readOnly
                             {...field}
-                            className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                            className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                           />
                         </FormControl>
-
-                        {/* Message */}
                         <FormMessage />
                       </FormItem>
                     )}
                   />
+
+                  {/* Detect location */}
+                  <Button
+                    type="button"
+                    onClick={handleDetectLocation}
+                    disabled={isLoading}
+                    className=" bg-custom-rose-900  
+                    h-[49px]
+                    rounded-[10px] 
+                    w-[280px]
+                    font-medium 
+                    text-base
+                    text-center 
+                    shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
+                    hover:bg-custom-rose-800              "
+                  >
+                    {isLoading ? "Detecting" : "Detect"}
+                  </Button>
                 </div>
 
-                {/* Submit button */}
+
+                {/* NOTE: to be removed when merging */}
                 <div className="flex justify-end mt-4 w-full">
                   <Button
                     type="submit"

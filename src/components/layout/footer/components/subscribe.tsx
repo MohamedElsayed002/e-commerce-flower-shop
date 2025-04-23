@@ -51,7 +51,7 @@ export default function Subscribe() {
         {/* Subscribe */}
         <Button
           type="submit"
-          className="bg-custom-rose-900  rounded-[30px] absolute ltr:right-1 rtl:left-1   top-1/2  w-[131px] h-[90%] -translate-y-1/2 text-[16px] font-medium "
+          className="bg-custom-rose-900  rounded-[30px] absolute ltr:right-1 rtl:left-1   top-1/2  w-[131px] h-[90%] -translate-y-1/2 text-base font-medium "
         >
           {/* Text */}
           {t("Subscribe")}
