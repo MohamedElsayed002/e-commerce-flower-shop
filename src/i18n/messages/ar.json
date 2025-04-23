@@ -161,5 +161,9 @@
   "latitude": "خط العرض",
   "longitude": "خط الطول",
   "back-to-cart": "العودة إلى العربة",
-  "next-step": "الخطوة التالية"
+  "next-step": "الخطوة التالية",
+  "location-detected-successfully": "تم اكتشاف الموقع بنجاح",
+  "error-detecting-location": "خطأ في اكتشاف الموقع",
+  "detecting-location": "اكتشاف الموقع ...",
+  "detect-location": "اكتشف الموقع"
 }

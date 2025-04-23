@@ -24,13 +24,12 @@ import {
 import { useLocation } from "@/hooks/use-location";
 import { toast } from "sonner";
 
-
 export default function AddressForm() {
   // Translation
   const t = useTranslations();
 
-// Queries
-  const { isLoading, error, refetchCurrentLocation } = useLocation();
+  // Queries
+  const { isLoading, refetchCurrentLocation } = useLocation();
 
   // Form & Validation
   const Schema = z.object({
@@ -59,16 +58,15 @@ export default function AddressForm() {
     },
   });
 
-  
   // Functions
   const handleDetectLocation = async () => {
     const locationData = await refetchCurrentLocation();
     if (locationData.data) {
       form.setValue("lat", locationData.data.latitude.toString());
       form.setValue("long", locationData.data.longitude.toString());
-      toast.success("Location detected successfully");
+      toast.success(t('location-detected-successfully'));
     } else if (locationData.data === null) {
-      toast.error(error?.message || "Error detecting location");   
+      toast.error(t('error-detecting-location'));
     }
   };
 
@@ -79,6 +77,7 @@ export default function AddressForm() {
       },
     };
 
+    {/* NOTE: to be removed when merging */}
     console.log("Payload to send:", payload);
   };
 
@@ -188,10 +187,13 @@ export default function AddressForm() {
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>
+                        {/* Label */}
                         <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                           {t("latitude")}
                         </FormLabel>
+
                         <FormControl>
+                          {/* Input */}
                           <Input
                             placeholder={t("latitude")}
                             type="text"
@@ -200,6 +202,8 @@ export default function AddressForm() {
                             className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                           />
                         </FormControl>
+
+                        {/* Message */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -211,10 +215,13 @@ export default function AddressForm() {
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>
+                        {/* Label */}
                         <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
                           {t("longitude")}
                         </FormLabel>
+
                         <FormControl>
+                          {/* Input */}
                           <Input
                             placeholder={t("longitude")}
                             type="text"
@@ -223,6 +230,8 @@ export default function AddressForm() {
                             className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
                           />
                         </FormControl>
+
+                        {/* Message */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -243,10 +252,9 @@ export default function AddressForm() {
                     shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
                     hover:bg-custom-rose-800              "
                   >
-                    {isLoading ? "Detecting" : "Detect"}
+                    {isLoading ? t('detecting-location') : t('detect-location')}
                   </Button>
                 </div>
-
 
                 {/* NOTE: to be removed when merging */}
                 <div className="flex justify-end mt-4 w-full">

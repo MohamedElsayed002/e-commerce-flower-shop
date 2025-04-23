@@ -172,5 +172,9 @@
   "latitude": "Latitude",
   "longitude": "Longitude",
   "back-to-cart": "back to cart",
-  "next-step": "next step"
+  "next-step": "next step",
+  "location-detected-successfully": "Location detected successfully",
+  "error-detecting-location": "Error detecting location",
+  "detecting-location": "Detecting Location...",
+  "detect-location": "Detect Location"
 }
