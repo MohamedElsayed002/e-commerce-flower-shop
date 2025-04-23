@@ -70,15 +70,13 @@ export default function AddressForm() {
     }
   };
 
+  {/* NOTE: to be removed when merging */}
   const onSubmit = (values: Inputs) => {
     const payload = {
       shippingAddress: {
         ...values,
       },
     };
-
-    {/* NOTE: to be removed when merging */}
-    console.log("Payload to send:", payload);
   };
 
   return (
