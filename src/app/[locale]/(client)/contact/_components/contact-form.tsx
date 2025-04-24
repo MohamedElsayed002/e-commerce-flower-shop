@@ -136,7 +136,7 @@ export default function ContactForm() {
         <div className="flex justify-end ">
           <Button
             type="submit"
-            className="bg-gradient-to-r my-5 text-[16px] font-medium from-custom-rose-900 to-pink-500 text-white w-[96px] h-[45px] rounded-[30px]"
+            className="bg-gradient-to-r my-5 text-base font-medium from-custom-rose-900 to-pink-500 text-white w-[96px] h-[45px] rounded-[30px]"
             disabled={isPending}
           >
             {t("send")}
