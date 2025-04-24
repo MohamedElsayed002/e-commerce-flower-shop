@@ -1,19 +1,39 @@
-declare type Product = {
+declare type CartItem = {
   _id: string;
-  title: string;
-  price: number;
-  imgCover: string;
+  product: {
+    _id: string;
+    title: string;
+    price: number;
+    priceAfterDiscount: number;
+    discount?: number;
+    imgCover: string;
+  };
+  quantity: number;
 };
 
-declare type OrderItem = {
-  quantity: number;
-  price: number;
+declare type Cart = {
   _id: string;
-} & { product: Product };
-
-declare type Order = {
-  _id: string;
+  user: string;
+  cartItems: CartItem[];
   totalPrice: number;
-  paymentType: string;
+  totalPriceAfterDiscount: number;
+  discount: number;
   createdAt: string;
-} & { orderItems: OrderItem[] };
+  updatedAt: string;
+  __v: number;
+};
+
+declare type ShippingAddress = {
+  street: string;
+  phone: string;
+  city: string;
+  lat: string;
+  long: string;
+};
+
+declare type FormValues = {
+  name: string;
+  number: string;
+  expiry: string;
+  ccv: string;
+};

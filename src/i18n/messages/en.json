@@ -168,6 +168,10 @@
   "free": "Free",
   "taxes": "Taxes:",
   "total": "Total:",
-  "order-confirmation-title": " Your order has been confirmed!\n",
-  "order-confirmation-message": "An email has been sent to your mail address: \n"
+  "order-confirmation-title": " Your order has been confirmed!",
+  "order-confirmation-message": "An email has been sent to your mail address:",
+  "completed": "completed",
+  "pending": "pending",
+  "quantity:": "Quantity:",
+  "pay-now": " Pay Now \n"
 }

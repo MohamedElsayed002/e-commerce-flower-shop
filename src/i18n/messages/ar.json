@@ -158,5 +158,9 @@
   "taxes": "الضرائب :",
   "total": "المجموع:",
   "order-confirmation-title": "تم تأكيد طلبك!",
-  "order-confirmation-message": "تم إرسال بريد إلكتروني إلى عنوان البريد الخاص بك:"
+  "order-confirmation-message": "تم إرسال بريد إلكتروني إلى عنوان البريد الخاص بك:",
+  "completed": "مكتمل",
+  "pending": "قيد الانتظار",
+  "quantity:": "كمية:",
+  "pay-now": "ادفع الآن"
 }

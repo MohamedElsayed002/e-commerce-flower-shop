@@ -17,7 +17,7 @@ export async function fetchOrders() {
     throw new Error("Invalid authentication token");
   }
 
-  const response = await fetch(process.env.API + "/orders", {
+  const response = await fetch(process.env.API + "/cart", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -26,9 +26,9 @@ export async function fetchOrders() {
     cache: "no-store",
   });
 
-  if (!response.ok) {
-    throw new Error(`Failed to fetch orders: ${response.status}`);
+  const data = await response.json();
+  if ("error" in data) {
+    throw new Error(data.error);
   }
-
-  return await response.json();
+  return data;
 }
