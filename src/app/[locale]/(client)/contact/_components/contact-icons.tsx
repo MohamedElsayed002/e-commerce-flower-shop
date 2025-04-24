@@ -20,7 +20,7 @@ export default function ContactIcons() {
 
         {/* Info */}
         <div className="flex flex-col gap-2">
-          <p className="text-5 font-bold text-custom-rose-900">{t("call-anytime")} </p>
+          <p className="text-xl font-bold text-custom-rose-900">{t("call-anytime")} </p>
           <p className="text-base font-medium text-[#111111]">241-373-2123</p>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function ContactIcons() {
 
         {/* Info */}
         <div className="flex flex-col gap-2">
-          <p className="text-5 font-bold text-custom-rose-900">{t("send-email")}</p>
+          <p className="text-xl font-bold text-custom-rose-900">{t("send-email")}</p>
           <p className="text-base font-medium text-[#111111]">{t("dwight63-gmail-com")}</p>
         </div>
       </div>
@@ -48,7 +48,7 @@ export default function ContactIcons() {
 
         {/* Info */}
         <div className="flex flex-col">
-          <p className="text-5 font-bold text-custom-rose-900">{t("visit-us")}</p>
+          <p className="text-xl font-bold text-custom-rose-900">{t("visit-us")}</p>
           <p className="text-base font-medium text-[#111111]">
             {t("20-island-park-road")}
             <br />
