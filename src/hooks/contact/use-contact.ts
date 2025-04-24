@@ -19,12 +19,12 @@ export function UseContact() {
       });
     },
 
-    // Handel Success
+    // Handel success
     onSuccess: () => {
-      toast(t('message-sent-successfully'));
+      toast(t("message-sent-successfully"));
     },
 
-    // Handel Error
+    // Handel error
     onError: () => {
       toast(t("something-went-wrong-please-try-again"));
     },

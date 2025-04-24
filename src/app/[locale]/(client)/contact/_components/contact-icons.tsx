@@ -11,7 +11,7 @@ export default function ContactIcons() {
 
   return (
     <div className="w-[348px] h-[440px] shadow-[0px_1px_30px_0px_rgba(248,43,169,0.1)] rounded-[20px] pl-6 pt-10 flex flex-col gap-[69px] ">
-      {/* Call Part */}
+      {/* Call */}
       <div className="flex gap-[16px]">
         {/* Icon */}
         <div className="w-[70px] h-[70px] border-[1px] rounded-[10px] border-custom-rose-900 flex justify-center items-center ">
@@ -25,7 +25,7 @@ export default function ContactIcons() {
         </div>
       </div>
 
-      {/* Email Part */}
+      {/* Email */}
       <div className="flex gap-[16px]">
         {/* Icon */}
         <div className="w-[70px] h-[70px] border-[1px] rounded-[10px] border-custom-rose-900 flex justify-center items-center ">

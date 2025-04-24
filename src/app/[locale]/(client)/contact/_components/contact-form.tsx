@@ -58,7 +58,7 @@ export default function ContactForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-6 pl-5 pt-9 w-[750px] my-16 h-[440px] rounded-[10px] shadow-[0px_1px_30px_0px_rgba(248,43,169,0.1)] ml-5 bg-[#FFFFFF]"
       >
-        {/* Name Field */}
+        {/* Name field */}
         <FormField
           name="name"
           control={form.control}
@@ -76,7 +76,7 @@ export default function ContactForm() {
           )}
         />
 
-        {/* Email Field */}
+        {/* Email field */}
         <FormField
           name="email"
           control={form.control}
@@ -95,7 +95,7 @@ export default function ContactForm() {
           )}
         />
 
-        {/* Phone Field */}
+        {/* Phone field */}
         <FormField
           name="phone"
           control={form.control}
@@ -113,7 +113,7 @@ export default function ContactForm() {
           )}
         />
 
-        {/* Message Field */}
+        {/* Message field */}
         <FormField
           name="message"
           control={form.control}
@@ -132,7 +132,7 @@ export default function ContactForm() {
           )}
         />
 
-        {/* Send Button */}
+        {/* Send button */}
         <div className="flex justify-end ">
           <Button
             type="submit"
