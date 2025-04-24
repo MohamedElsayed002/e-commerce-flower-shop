@@ -3,6 +3,7 @@ import Orders from "./_components/orders/order";
 
 // The main order page component
 export default async function Page() {
+  // Function
   const payload = await fetchOrders();
 
   return (
