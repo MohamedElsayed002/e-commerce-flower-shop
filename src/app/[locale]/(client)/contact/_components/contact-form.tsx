@@ -15,14 +15,15 @@ export default function ContactForm() {
   // Translation
   const t = useTranslations();
 
-  type ContactFormInputs = z.infer<typeof contactSchema>;
-
   // Mutation
   const { mutate, isPending } = UseContact();
 
   const onSubmit = (data: ContactFormInputs) => {
     mutate(data);
   };
+
+  // Form inputs
+  type ContactFormInputs = z.infer<typeof contactSchema>;
 
   // Validation
   const contactSchema = z.object({

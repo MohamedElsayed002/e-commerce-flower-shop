@@ -23,7 +23,7 @@ export default function Footer() {
 
       {/* Content */}
       <div className="flex flex-col justify-center items-center gap-10 ">
-        {/* Footer Header Contents */}
+        {/* Footer header contents */}
         <div className="flex gap-20 justify-center pt-10 ps-20 text-blue-gray-900 font-bold">
           <Link href="#">{t("about-us")}</Link>
           <Link href="#">{t("store-location")}</Link>
@@ -35,7 +35,7 @@ export default function Footer() {
 
         {/* Subscribe */}
         <div className=" text-center flex flex-col gap-2">
-          {/* Discount Part */}
+          {/* Discount part */}
 
           {/* Headline */}
           <p className="text-[30px] font-bold text-blue-gray-900">
@@ -51,7 +51,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Subscribe Input */}
+        {/* Subscribe input */}
         <FooterInput />
       </div>
     </footer>
