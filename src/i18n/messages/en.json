@@ -159,5 +159,12 @@
   "enter-your-email-address": "Enter your email address",
   "recover-password": "Recover Password",
   "verifying-otp": "Verifying OTP...",
-  "register-title": "Create account"
+  "register-title": "Create account",
+  "order-number": "Order Number",
+  "order-state": "Order state",
+  "payment-method": "Payment method",
+  "order-date": "Order date",
+  "total-price": "Total price",
+  "continue-shopping": "Continue Shopping",
+  "view-cart": "View Cart"
 }
