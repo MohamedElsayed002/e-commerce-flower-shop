@@ -4,6 +4,8 @@ import { LuWalletMinimal } from "react-icons/lu";
 import { TfiReload } from "react-icons/tfi";
 
 export default async function SectionFeatures() {
+
+  // Translations
   const t = await getTranslations();
 
   return (
