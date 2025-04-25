@@ -155,5 +155,7 @@
   "order-date": "تاريخ الطلب",
   "total-price": "إجمالي السعر",
   "continue-shopping": "مواصلة التسوق",
-  "view-cart": "عرض العربة"
+  "view-cart": "عرض العربة",
+  "quantity": "كمية",
+  "price": "سعر"
 }

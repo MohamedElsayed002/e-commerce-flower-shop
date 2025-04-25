@@ -166,5 +166,7 @@
   "order-date": "order date",
   "total-price": "total price",
   "continue-shopping": "continue shopping",
-  "view-cart": "view cart"
+  "view-cart": "view cart",
+  "quantity": "Quantity",
+  "price": "Price"
 }

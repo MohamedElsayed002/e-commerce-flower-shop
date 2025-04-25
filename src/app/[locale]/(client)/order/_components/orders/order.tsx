@@ -22,7 +22,7 @@ export default function Orders({ orders }: OrdersPropes) {
       {orders.map((order) => (
         <div
           key={order._id}
-          className="p-4 border  border-custom-rose-900 rounded-xl shadow-sm bg-white space-y-4"
+          className="p-4 border border-custom-rose-900 rounded-xl shadow-sm bg-white space-y-4"
         >
           {/* Order number */}
           <div className="flex justify-between items-center">
@@ -30,51 +30,75 @@ export default function Orders({ orders }: OrdersPropes) {
               {t("order-number")}: {order.orderNumber}
             </h2>
 
-            {/* Order status */}
-            <div className="text-sm  flex gap-3">
-              <span className="text-custom-rose-900 border border-custom-rose-900  rounded-xl p-2">
-                {t("order-state")}: {order.state}
-              </span>
-
-              {/* payment type */}
-              <span className="text-custom-rose-900 border border-custom-rose-900  rounded-xl p-2">
-                {t("payment-method")}: {order.paymentType}
-              </span>
+            {/* Order data */}
+            <div className="text-sm text-blue-gray-500">
+              {t("order-date")}:{" "}
+              {new Date(order.createdAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
             </div>
           </div>
 
-          {/* Order date */}
-          <div className="text-sm text-blue-gray-500">
-            {t("order-date")}:{" "}
-            {new Date(order.createdAt).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </div>
-
           {/* Products */}
-          <div className="space-y-2">
-            {order.orderItems.map((item) => (
-              <div key={item._id} className="flex items-center gap-4 ">
-                <Image
-                  src={item.product.imgCover}
-                  alt={item.product.title}
-                  width={80}
-                  height={80}
-                  className="rounded-md object-cover cursor-pointer"
+          <div className="flex ">
+            <div className="flex flex-col mt-4">
+              {order.orderItems.map((item) => (
+                <div
+                  key={item._id}
+                  className="flex flex-col items-center gap-2 cursor-pointer"
+                  // OnClick to navigate to the product page
                   onClick={() => router.push(`/products/${item.product._id}`)}
-                />
+                >
+                  {/* Product Image */}
+                  <Image
+                    src={item.product.imgCover}
+                    alt={item.product.title}
+                    width={100}
+                    height={100}
+                    className="rounded-lg object-cover"
+                  />
 
-                {/* Product title */}
-                <span className="font-medium text-blue-gray-800">{item.product.title}</span>
-              </div>
-            ))}
-          </div>
+                  {/* Product Title */}
+                  <span className="font-medium text-blue-gray-800">
+                    {item.product.title.split(" ").splice(0, 3).join(" ")}
+                  </span>
+                </div>
+              ))}
+            </div>
 
-          {/* Order total price */}
-          <div className="text-right font-semibold text-custom-rose-900">
-            {t("total-price")}: ${order.totalPrice}
+            <div className="flex flex-col items-end ml-auto gap-4 rtl:ml-0 rtl:mr-auto">
+              {/* payment type */}
+              <span className="text-custom-rose-900">
+                {t("payment-method")}: {order.paymentType}
+              </span>
+
+              {/* Order status */}
+              <span className="text-custom-rose-900">
+                {t("order-state")}: {order.state}
+              </span>
+
+              {/* Map for Orderitems */}
+              {order.orderItems.map((item) => (
+                <div key={item._id} className="flex flex-col items-end gap-2">
+                  {/* Orderitems price */}
+                  <span className="text-custom-rose-900">
+                    {t("price")}: ${item.price}
+                  </span>
+
+                  {/* Orderitems quantity */}
+                  <span className="text-custom-rose-900">
+                    {t("quantity")}: {item.quantity}
+                  </span>
+                </div>
+              ))}
+
+              {/* Order total price */}
+              <span className="border border-custom-rose-900 font-semibold text-custom-rose-900 p-2 rounded-lg">
+                {t("total-price")}: ${order.totalPrice}
+              </span>
+            </div>
           </div>
         </div>
       ))}
