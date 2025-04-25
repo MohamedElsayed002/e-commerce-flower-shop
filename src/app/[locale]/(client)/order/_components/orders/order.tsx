@@ -51,7 +51,7 @@ export default function Orders({ orders }: OrdersPropes) {
                   // OnClick to navigate to the product page
                   onClick={() => router.push(`/products/${item.product._id}`)}
                 >
-                  {/* Product Image */}
+                  {/* Product image */}
                   <Image
                     src={item.product.imgCover}
                     alt={item.product.title}
@@ -60,7 +60,7 @@ export default function Orders({ orders }: OrdersPropes) {
                     className="rounded-lg object-cover"
                   />
 
-                  {/* Product Title */}
+                  {/* Product title */}
                   <span className="font-medium text-blue-gray-800">
                     {item.product.title.split(" ").splice(0, 3).join(" ")}
                   </span>
@@ -69,7 +69,7 @@ export default function Orders({ orders }: OrdersPropes) {
             </div>
 
             <div className="flex flex-col items-end ml-auto gap-4 rtl:ml-0 rtl:mr-auto">
-              {/* payment type */}
+              {/* Payment type */}
               <span className="text-custom-rose-900">
                 {t("payment-method")}: {order.paymentType}
               </span>
@@ -79,10 +79,10 @@ export default function Orders({ orders }: OrdersPropes) {
                 {t("order-state")}: {order.state}
               </span>
 
-              {/* Map for Orderitems */}
+              {/* Map for order items */}
               {order.orderItems.map((item) => (
                 <div key={item._id} className="flex flex-col items-end gap-2">
-                  {/* Orderitems price */}
+                  {/* Order items price */}
                   <span className="text-custom-rose-900">
                     {t("price")}: ${item.price}
                   </span>
@@ -104,7 +104,7 @@ export default function Orders({ orders }: OrdersPropes) {
       ))}
 
       <div className="flex justify-between">
-        {/* Button navigates to the products page */}
+        {/* Button */}
         <Link
           href={`/`}
           className="w-fit flex items-center gap-2 px-5 py-3 bg-custom-rose-900 text-white rounded-lg"
@@ -112,7 +112,7 @@ export default function Orders({ orders }: OrdersPropes) {
           {t("continue-shopping")}
         </Link>
 
-        {/* Button navigates to the cart page */}
+        {/* Button */}
         <Link
           href={`/cart`}
           className="w-fit flex items-center gap-2 px-8 py-2 bg-custom-rose-900 text-white rounded-lg"
