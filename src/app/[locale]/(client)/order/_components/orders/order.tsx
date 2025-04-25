@@ -42,7 +42,7 @@ export default function Orders({ orders }: OrdersPropes) {
           </div>
 
           {/* Products */}
-          <div className="flex m ">
+          <div className="flex">
             <div className="flex flex-col mt-4">
               {order.orderItems.map((item) => (
                 <div
