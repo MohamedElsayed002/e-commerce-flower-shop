@@ -22,7 +22,7 @@ export default function Orders({ orders }: OrdersPropes) {
       {orders.map((order) => (
         <div
           key={order._id}
-          className="p-4 border border-custom-rose-900 rounded-xl shadow-sm bg-white space-y-4"
+          className="p-4 border border-custom-rose-900 rounded-xl shadow-sm bg-white space-y-4 "
         >
           {/* Order number */}
           <div className="flex justify-between items-center">
@@ -42,7 +42,7 @@ export default function Orders({ orders }: OrdersPropes) {
           </div>
 
           {/* Products */}
-          <div className="flex ">
+          <div className="flex m ">
             <div className="flex flex-col mt-4">
               {order.orderItems.map((item) => (
                 <div
