@@ -65,16 +65,16 @@ export default async function OurTeamSection() {
       </div>
 
       {/* Cards */}
-      <div className="container flex gap-5 justify-center flex-wrap">
+      <div className="container flex gap-5 mt-10 justify-center flex-wrap">
         {dataPerson.map((item) => {
           return (
             <Card
               key={item.id}
-              className="group border flex flex-col p-2 rounded-md text-center hover:shadow-lg transition-shadow duration-300"
+              className="group border flex flex-col p-5 rounded-md text-center hover:shadow-lg transition-shadow duration-300"
             >
               {/* Image */}
               <CardHeader className="p-0">
-                <div className="w-full aspect-[254/274] relative rounded-t-md overflow-hidden">
+                <div className="w-full aspect-[254/274] relative rounded-t-lg overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.alt}

@@ -12,7 +12,7 @@ export default async function InstagramSection() {
         <p
           className={`text-blue-gray-900 font-inter font-bold text-[20px] md:text-[30px] leading-[24.2px] md:leading-[30.31px] relative z-10`}
         >
-          {t("instagram")}
+          {t("instagram")} <span className="font-light text-custom-rose-900">{t('rose')}</span>
         </p>
 
         {/* The Decorate Line */}
@@ -39,3 +39,4 @@ export default async function InstagramSection() {
     </div>
   );
 }
+

@@ -3,7 +3,7 @@ import CompaniesSection from "../(homepage)/_components/partner-companies";
 import TestimonialSection from "../(homepage)/_components/testimonials";
 import InstagramSection from "./_components/instagram-section";
 import OurTeamSection from "./_components/our-team-section";
-import SectionFeatures from "./_components/section-features";
+import SectionFeatures from "./_components/features-section";
 
 export default function AboutPage() {
     return (

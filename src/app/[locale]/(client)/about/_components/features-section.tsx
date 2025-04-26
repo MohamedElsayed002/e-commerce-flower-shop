@@ -4,7 +4,6 @@ import { LuWalletMinimal } from "react-icons/lu";
 import { TfiReload } from "react-icons/tfi";
 
 export default async function SectionFeatures() {
-
   // Translations
   const t = await getTranslations();
 
@@ -19,8 +18,8 @@ export default async function SectionFeatures() {
 
         {/* Text */}
         <p className="text-gray-500">
-          <span className="font-bold text-gray-800">{t("free-delivery")}</span>
-          <br /> <span className="text-sm"> {t("orders-over-120")}</span>
+          <span className="font-bold text-gray-800 block">{t("free-delivery")}</span>
+          <span className="text-sm"> {t("orders-over-120")}</span>
         </p>
       </div>
 
@@ -33,8 +32,7 @@ export default async function SectionFeatures() {
 
         {/* Text */}
         <p className="text-gray-500">
-          <span className="font-bold text-gray-800">{t("get-refund")}</span>
-          <br />
+          <span className="font-bold text-gray-800 block">{t("get-refund")}</span>
           <span className="text-sm"> {t("within-30-days-returns")}</span>
         </p>
       </div>
@@ -48,8 +46,8 @@ export default async function SectionFeatures() {
 
         {/* Text */}
         <p className="text-gray-500">
-          <span className="font-bold text-gray-800">{t("safe-payment")}</span>
-          <br /> <span className="text-sm"> {t("100-secure-payment")}</span>
+          <span className="font-bold text-gray-800 block">{t("safe-payment")}</span>
+          <span className="text-sm"> {t("100-secure-payment")}</span>
         </p>
       </div>
 
@@ -62,8 +60,8 @@ export default async function SectionFeatures() {
 
         {/* Text */}
         <p className="text-gray-500">
-          <span className="font-bold text-gray-800">{t("24-7-support")}</span>
-          <br /> <span className="text-sm"> {t("feel-free-to-call-us")}</span>
+          <span className="font-bold text-gray-800 block">{t("24-7-support")}</span>
+          <span className="text-sm"> {t("feel-free-to-call-us")}</span>
         </p>
       </div>
     </div>
