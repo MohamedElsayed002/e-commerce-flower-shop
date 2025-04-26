@@ -39,7 +39,7 @@ export default function ContactIcons() {
         </div>
       </div>
 
-      {/* Location */}
+      {/* Location part */}
       <div className="flex gap-4">
         {/* Icon */}
         <div className="w-[70px] h-[70px] border-[1px] rounded-[10px] border-custom-rose-900 flex justify-center items-center ">
