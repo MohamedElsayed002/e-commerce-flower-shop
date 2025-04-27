@@ -168,5 +168,6 @@
   "continue-shopping": "continue shopping",
   "view-cart": "view cart",
   "quantity": "Quantity",
-  "price": "Price"
+  "price": "Price",
+  "you-do-not-have-an-order": "You do not have an order"
 }

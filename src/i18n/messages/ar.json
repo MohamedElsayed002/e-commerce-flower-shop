@@ -157,5 +157,6 @@
   "continue-shopping": "مواصلة التسوق",
   "view-cart": "عرض العربة",
   "quantity": "كمية",
-  "price": "سعر"
+  "price": "سعر",
+  "you-do-not-have-an-order": "ليس لديك طلب"
 }
