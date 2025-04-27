@@ -22,12 +22,6 @@ export default function Orders({ orders }: OrdersPropes) {
       {orders.length === 0 ? (
         <div className="text-center py-20 text-blue-gray-800 space-y-4 border border-custom-rose-900 rounded-lg ">
           <p className="text-sm">{t("you-do-not-have-an-order")}</p>
-          <Link
-            href={`/`}
-            className="inline-block mt-6 px-6 py-3 bg-custom-rose-900 text-white rounded-lg"
-          >
-            {t("continue-shopping")}
-          </Link>
         </div>
       ) : (
         orders.map((order) => (
@@ -114,25 +108,23 @@ export default function Orders({ orders }: OrdersPropes) {
         ))
       )}
 
-      {orders.length > 0 && (
-        <div className="flex justify-between">
-          {/* Button */}
-          <Link
-            href={`/`}
-            className="w-fit flex items-center gap-2 px-5 py-3 bg-custom-rose-900 text-white rounded-lg"
-          >
-            {t("continue-shopping")}
-          </Link>
+      <div className="flex justify-between">
+        {/* Button */}
+        <Link
+          href={`/`}
+          className="w-fit flex items-center gap-2 px-5 py-3 bg-custom-rose-900 text-white rounded-lg"
+        >
+          {t("continue-shopping")}
+        </Link>
 
-          {/* Button */}
-          <Link
-            href={`/cart`}
-            className="w-fit flex items-center gap-2 px-8 py-2 bg-custom-rose-900 text-white rounded-lg"
-          >
-            {t("view-cart")}
-          </Link>
-        </div>
-      )}
+        {/* Button */}
+        <Link
+          href={`/cart`}
+          className="w-fit flex items-center gap-2 px-8 py-2 bg-custom-rose-900 text-white rounded-lg"
+        >
+          {t("view-cart")}
+        </Link>
+      </div>
     </div>
   );
 }
