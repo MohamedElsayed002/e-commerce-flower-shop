@@ -37,3 +37,16 @@ declare type FormValues = {
   expiry: string;
   ccv: string;
 };
+
+declare type Order = {
+  user: string;
+  orderItems: [{ product: Product; price: string; quantity: string; _id: string }];
+  totalPrice: string;
+  paymentType: string;
+  isPaid: boolean;
+  isDelivered: boolean;
+  totalPriceAfterDiscount: string;
+  state: string;
+  createdAt: string;
+  orderNumber: string;
+} & DatabaseFields;

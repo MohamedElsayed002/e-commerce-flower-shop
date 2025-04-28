@@ -1,11 +1,9 @@
-"use server";
-
-import { cookies } from "next/headers";
+import { JSON_HEADER } from "@/lib/constants/api.constant";
 import { decode } from "next-auth/jwt";
+import { cookies } from "next/headers";
 import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
 
-// fetch Cart Order
-export async function fetchOrders() {
+export async function fetchLatestOrder() {
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
 
   if (!tokenCookie) {
@@ -18,7 +16,7 @@ export async function fetchOrders() {
     throw new Error("Invalid authentication token");
   }
 
-  const response = await fetch(process.env.API + "/cart", {
+  const response = await fetch(process.env.API + `/orders`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -27,10 +25,11 @@ export async function fetchOrders() {
     cache: "no-store",
   });
 
-  const data = await response.json();
-  console.log("data1", data.cartItems);
-  if ("error" in data) {
-    throw new Error(data.error);
+  const payload: APIResponse<PaginatedResponse<{ orders: Order[] }>> = await response.json();
+
+  if ("error" in payload) {
+    throw new Error(payload.error);
   }
-  return data;
+
+  return payload.orders[0];
 }

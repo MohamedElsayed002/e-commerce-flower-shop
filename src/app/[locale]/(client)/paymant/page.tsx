@@ -10,7 +10,7 @@ export default async function Page() {
   try {
     const response = await fetchOrders();
 
-    console.log("Orders data:", response);
+    // console.log("Orders data:", response);
 
     if (!session?.user || !response.cart || response.cart.cartItems.length === 0) {
       redirect("/");

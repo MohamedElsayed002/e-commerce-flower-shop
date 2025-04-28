@@ -2,8 +2,12 @@
 import { cookies } from "next/headers";
 import { decode } from "next-auth/jwt";
 import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
+import { getTranslations } from "next-intl/server";
 
 async function getAuthenticatedToken() {
+  // Translation
+  const t = await getTranslations();
+
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
   if (!tokenCookie) {
     throw new Error("Authentication required");
@@ -20,10 +24,11 @@ async function getAuthenticatedToken() {
 
   return token.token;
 }
-// Stripe
+// heckoutWithStripe
+// const payload: APIResponse<PaginatedResponse<{ categories: Category[] }>> =
+
 export async function checkoutWithStripe(shippingAddress: ShippingAddress) {
   const token = await getAuthenticatedToken();
-  console.log("ShippingAddress:", shippingAddress);
 
   const res = await fetch(
     `https://flower.elevateegy.com/api/v1/orders/checkout?url=http://localhost:3000`,
@@ -39,20 +44,23 @@ export async function checkoutWithStripe(shippingAddress: ShippingAddress) {
 
   if ("error" in res) {
     const errorData = await res.json();
-    throw new Error(errorData.error || "Failed to create Stripe session");
-  }
+    throw new Error(errorData.error || "Failed to create order");
 
+    // throw new Error(errorData.error || {t("error-order")} );
+  }
   const data = await res.json();
-  if ("error" in data) {
-    throw new Error(data.error);
-  }
-  return data.sessionUrl;
-}
 
+  if (!data?.session?.url) {
+    throw new Error("Payment gateway URL not provided by server");
+  }
+
+  return data.session.url;
+}
+// CashOrder
 export async function createCashOrder(shippingAddress: ShippingAddress) {
   const token = await getAuthenticatedToken();
 
-  const orderRes = await fetch(process.env.API + "/orders", {
+  const res = await fetch(process.env.API + "/orders", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -60,14 +68,13 @@ export async function createCashOrder(shippingAddress: ShippingAddress) {
     },
     body: JSON.stringify({
       shippingAddress,
-      paymentMethod: "cash",
     }),
   });
 
-  if ("error" in orderRes) {
-    const errorData = await orderRes.json();
+  if ("error" in res) {
+    const errorData = await res.json();
     throw new Error(errorData.error || "Failed to create order");
   }
 
-  return await orderRes.json();
+  return await res.json();
 }

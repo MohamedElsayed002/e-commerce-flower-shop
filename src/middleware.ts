@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 import { LOCALES, routing } from "./i18n/routing";
 
 // Private pages
-const Privatepages = ["/cart"];
+const privatePages = ["/cart", "/checkout", "/orders", "/paymant"];
 
 // Create middleware for handling internationalization (i18n)
 const handleI18nRouting = createMiddleware(routing);
@@ -29,9 +29,9 @@ const authMiddleware = withAuth(
 export default async function middleware(req: NextRequest) {
   // Private pathname regex
   const privatePathnameRegex = RegExp(
-    `^(/(${LOCALES.join("|")}))?(${Privatepages.flatMap((p) => (p === "/" ? ["", "/"] : p)).join(
-      "|",
-    )})/?$`,
+    `^(/(${LOCALES.join("|")}))?(${privatePages
+      .flatMap((p) => (p === "/" ? ["", "/"] : p))
+      .join("|")})/?$`,
     "i",
   );
 
