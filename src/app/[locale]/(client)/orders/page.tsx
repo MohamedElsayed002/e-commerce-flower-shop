@@ -1,5 +1,5 @@
 import { fetchOrders } from "@/lib/apis/orders.api";
-import Orders from "./_components/orders/order";
+import Orders from "./_components/order";
 
 export default async function Page() {
   // Function
