@@ -1,4 +1,3 @@
-// hooks/usePayment.ts
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
