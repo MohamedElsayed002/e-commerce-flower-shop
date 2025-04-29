@@ -24,7 +24,7 @@ async function getAuthenticatedToken() {
 
   return token.token;
 }
-// heckoutWithStripe
+// checkoutWithStripe
 
 export async function checkoutWithStripe(shippingAddress: ShippingAddress) {
   const token = await getAuthenticatedToken();
@@ -48,7 +48,6 @@ export async function checkoutWithStripe(shippingAddress: ShippingAddress) {
   if (!data?.session?.url) {
     throw new Error("Payment gateway URL not provided by server");
   }
-
   return data.session.url;
 }
 // CashOrder

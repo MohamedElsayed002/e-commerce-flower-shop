@@ -27,7 +27,7 @@ export async function fetchOrders() {
     cache: "no-store",
   });
 
-  const data: APIResponse<PaginatedResponse<{ cart: Cart[] }>> = await response.json();
+  const data = await response.json();
   if ("error" in data) {
     throw new Error(data.error);
   }
