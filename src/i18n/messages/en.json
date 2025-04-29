@@ -192,7 +192,7 @@
   "your-payment-info": "Your Payment Info",
   "order-placed-successfully": "Order Placed Successfully",
   "error-order": "Failed to create Stripe session",
-  "payment-failed": "Application submission failed\n",
+  "payment-failed": "Application submission failed",
   "name-card": "Card Holder Name",
   "card-name": " Name on Card",
   "card-num": " Card Number\n",
@@ -203,5 +203,8 @@
   "nunmer-schema": " Card number must be 16 digits\n",
   "expiry-schema": "Expiry date must be in MM/YYYY format\n",
   "ccv-schema": "CCV must be 3 or 4 digits",
-  "back-home": "Continue shopping"
+  "back-home": "Continue shopping",
+  "checkout-now": "Checkout Now",
+  "free": "Free\n",
+  "order-number": "OrderNumber"
 }

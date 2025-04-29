@@ -25,28 +25,23 @@ async function getAuthenticatedToken() {
   return token.token;
 }
 // heckoutWithStripe
-// const payload: APIResponse<PaginatedResponse<{ categories: Category[] }>> =
 
 export async function checkoutWithStripe(shippingAddress: ShippingAddress) {
   const token = await getAuthenticatedToken();
 
-  const res = await fetch(
-    `https://flower.elevateegy.com/api/v1/orders/checkout?url=http://localhost:3000`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ shippingAddress }),
+  const res = await fetch(`${process.env.API}/orders/checkout`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-  );
+    cache: "no-store",
+    body: JSON.stringify({ shippingAddress }),
+  });
 
   if ("error" in res) {
     const errorData = await res.json();
     throw new Error(errorData.error || "Failed to create order");
-
-    // throw new Error(errorData.error || {t("error-order")} );
   }
   const data = await res.json();
 
@@ -66,6 +61,7 @@ export async function createCashOrder(shippingAddress: ShippingAddress) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
+    cache: "no-store",
     body: JSON.stringify({
       shippingAddress,
     }),

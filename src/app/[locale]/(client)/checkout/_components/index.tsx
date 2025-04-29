@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useLocale, useTranslations } from "next-intl";
 import { Locale } from "@/i18n/routing";
-import { PaymentForm } from "../../paymant/_component/paymant";
 import SummaryWrapper from "./cart-summary-wrapper";
+import { PaymentForm } from "../../payment/_component/paymant";
 
 export default function CheckoutContent() {
   // Translation
@@ -15,12 +15,12 @@ export default function CheckoutContent() {
   const locale = useLocale() as Locale;
 
   return (
-    <div className="container mx-auto grid grid-cols-2 lg:grid-cols-3 gap-8 my-10 px-4">
+    <div className="container grid grid-cols-2 lg:grid-cols-3 gap-8 my-10 px-4">
       <div className="lg:col-span-2 flex flex-col space-y-8">
-        <div className="my-">
+        <div className="my-2">
           <AddressForm />
         </div>
-        <div className="">
+        <div>
           <PaymentForm />
         </div>
 

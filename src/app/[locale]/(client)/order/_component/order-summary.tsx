@@ -7,17 +7,34 @@ import { useRouter } from "@/i18n/routing";
 import { useFormatter, useTranslations } from "next-intl";
 import Image from "next/image";
 
+// Type
 type OrderDetailsProps = {
   order: Order;
 };
 
 export default function OrderDetails({ order }: OrderDetailsProps) {
-  console.log("order", order);
-  console.log("orderitem", order.orderItems);
-
+  // Translations
   const t = useTranslations();
+
+  // Formatter
   const formatter = useFormatter();
+
+  // Navgation
   const router = useRouter();
+
+  // Calculate subtotal
+  const subtotal = order.orderItems.reduce(
+    (sum, item) => sum + Number(item.price) * Number(item.quantity),
+    0,
+  );
+
+  // Calculate total
+  const total = order.orderItems.reduce(
+    (sum, item) => sum + Number(item.product.priceAfterDiscount) * Number(item.quantity),
+    0,
+  );
+  // Calculate discount
+  const discount = subtotal - total;
 
   return (
     <div className="max-w-3xl mx-auto py-2 px-4">
@@ -27,14 +44,13 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
           <CardContent className="p-6">
             {/* Order Header */}
             <div className="flex justify-between items-start mb-4">
+              {/* Date order and Number*/}
               <div>
-                {/* Order Date */}
                 <p className="text-sm text-blue-gray-500">
                   {formatter.dateTime(new Date(order.createdAt), {
                     dateStyle: "medium",
                   })}
                 </p>
-                {/* Order Number */}
                 {order.orderNumber && (
                   <p className="text-sm text-blue-gray-500 mt-1">
                     {t("order-number")}: {order.orderNumber}
@@ -44,103 +60,99 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
             </div>
 
             {/* Order Items */}
-            {/* Order Items */}
             <div className="mb-6">
               <h5 className="font-bold mb-3 text-blue-gray-900">{t("order-items")}</h5>
               <div className="space-y-4">
-                {order.orderItems.map((item) => (
-                  <div key={item._id} className="flex items-start gap-4 py-3 cursor-pointer">
-                    {/* Product Image */}
-                    <div className="relative w-16 h-16 rounded-md overflow-hidden border border-gray-200">
-                      <Image
-                        src={item.product.imgCover}
-                        alt={item.product.title}
-                        fill
-                        className="object-cover"
-                        sizes="64px"
-                      />
-                    </div>
+                {order.orderItems.map((item) => {
+                  const itemTotal = Number(item.product.priceAfterDiscount) * Number(item.quantity);
 
-                    {/* Product Details */}
-                    <div className="flex-1 space-y-1">
-                      {/* Product Title */}
-                      <h6 className="font-medium text-gray-900">{item.product.title}</h6>
-
+                  return (
+                    <div key={item._id} className="flex items-start gap-4 py-3 cursor-pointer">
+                      {/* <Image */}
+                      <div className="relative w-16 h-16 rounded-md overflow-hidden border border-gray-200">
+                        <Image
+                          src={item.product.imgCover}
+                          alt={item.product.title}
+                          fill
+                          className="object-cover"
+                          sizes="64px"
+                        />
+                      </div>
                       {/* Quantity */}
-                      <p className="text-sm text-gray-500">
-                        {t("quantity")}: {item.quantity}
-                      </p>
-
-                      {/* Price Before Discount */}
-                      <p className="text-sm text-gray-500">
-                        <span className="line-through text-gray-400">
-                          {formatter.number(Number(item.price), {
-                            style: "currency",
-                            currency: "USD",
-                          })}
-                        </span>{" "}
-                        <span className=" text-red-400">
-                          {formatter.number(Number(item.product.priceAfterDiscount), {
+                      <div className="flex-1 space-y-1">
+                        <h6 className="font-medium text-gray-900">{item.product.title}</h6>
+                        <p className="text-sm text-gray-500">
+                          {t("quantity:")} {item.quantity}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          <span className="line-through text-gray-400">
+                            {formatter.number(Number(item.price), {
+                              style: "currency",
+                              currency: "USD",
+                            })}
+                          </span>{" "}
+                          {/* PriceAfterDiscount */}
+                          <span className="text-red-400">
+                            {formatter.number(Number(item.product.priceAfterDiscount), {
+                              style: "currency",
+                              currency: "USD",
+                            })}
+                          </span>
+                        </p>
+                      </div>
+                      {/* ItemTota */}
+                      <div className="text-right">
+                        <span className="text-sm font-medium">
+                          {formatter.number(itemTotal, {
                             style: "currency",
                             currency: "USD",
                           })}
                         </span>
-                      </p>
+                      </div>
                     </div>
-
-                    {/* Total Price */}
-                    <div className="text-right">
-                      <span className="text-sm font-medium">
-                        {formatter.number(Number(item.price) * Number(item.quantity), {
-                          style: "currency",
-                          currency: "USD",
-                        })}
-                      </span>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
             {/* Order Summary */}
+
             <div className="border-t border-gray-200 pt-4">
+              {/* Cart Summary */}
               <h5 className="mb-3 text-blue-gray-900 font-bold">{t("cart-summary")}</h5>
               <div className="space-y-2 text-sm">
-                {/* Subtotal */}
                 <div className="flex justify-between">
+                  {/* 	Subtotal */}
                   <span className="text-blue-gray-900 font-bold">{t("subtotal")}</span>
                   <span className="text-custom-gray">
-                    {formatter.number(Number(order.totalPrice), {
+                    {formatter.number(subtotal, {
                       style: "currency",
                       currency: "USD",
                     })}
                   </span>
                 </div>
+                {/* Discount */}
                 <div className="flex justify-between mb-2">
                   <span className="text-blue-gray-900 font-bold">{t("discount")}</span>
                   <span className="text-red-600 font-semibold">
-                    -
-                    {formatter.number(
-                      Number(order.totalPrice) - Number(order.totalPriceAfterDiscount),
-                      {
-                        style: "currency",
-                        currency: "USD",
-                      },
-                    )}
+                    {"-"}
+                    {formatter.number(discount, {
+                      style: "currency",
+                      currency: "USD",
+                    })}
                   </span>
                 </div>
 
-                {/* Shipping */}
+                {/* Shipping	 */}
                 <div className="flex justify-between">
                   <span className="text-blue-gray-900 font-bold">{t("shipping")}</span>
                   <span className="text-custom-gray">{t("free")}</span>
                 </div>
-
-                {/* Total */}
+                {/* Total Price */}
                 <div className="flex justify-between pt-2 border-t border-gray-200">
                   <span className="text-blue-gray-900 font-bold">{t("total")}</span>
                   <span className="text-custom-rose-900 font-bold">
-                    {formatter.number(Number(order.totalPrice), {
+                    {formatter.number(total, {
                       style: "currency",
                       currency: "USD",
                     })}
@@ -151,6 +163,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
           </CardContent>
         </Card>
       </div>
+      {/* Button Continue shopping	 */}
       <div className="w-full">
         <Button className="bg-custom-rose-900 rounded-xl" onClick={() => router.push("/")}>
           {t("back-home")}

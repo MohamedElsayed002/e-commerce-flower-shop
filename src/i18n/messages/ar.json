@@ -151,8 +151,8 @@
   "register-title": "إنشاء حساب",
   "order-items": "عناصر الطلبات",
   "cart-summary": "ملخص العربة",
-  "subtotal": "إجمالي النطاق:",
-  "discount": "إجمالي النطاق:",
+  "subtotal": "إجمالي المبلغ",
+  "discount": "الخصم",
   "shipping": "شحن",
   "free": "مجانا",
   "taxes": "الضرائب :",
@@ -196,5 +196,7 @@
   "nunmer-schema": "يجب أن يكون رقم البطاقة 16 رقمًا",
   "expiry-schema": "يجب أن يكون تاريخ انتهاء الصلاحية بتنسيق MM/Yyyy",
   "ccv-schema": "يجب أن يكون CCV 3 أو 4 أرقام",
-  "back-home": "مواصلة التسوق"
+  "back-home": "مواصلة التسوق",
+  "checkout-now": "الخروج الآن",
+  "order-number": "رقم الطلب"
 }
