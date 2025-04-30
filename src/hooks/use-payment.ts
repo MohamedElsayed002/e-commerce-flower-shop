@@ -1,10 +1,10 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { checkoutWithStripe, createCashOrder } from "@/lib/apis/paymant.api";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import { checkoutWithStripe, createCashOrder } from "@/lib/apis/payment.api";
 
 export function usePayment() {
   // Translations
@@ -24,12 +24,12 @@ export function usePayment() {
     },
   });
 
-  // CashMutation
+  // Cash mutation
   const cashMutation = useMutation({
     mutationFn: createCashOrder,
     onSuccess: () => {
       toast.success(t("order-placed-successfully"));
-      router.replace("/orders");
+      router.replace("/order");
     },
     onError: (error) => {
       toast.error(error.message || t("payment-failed"));

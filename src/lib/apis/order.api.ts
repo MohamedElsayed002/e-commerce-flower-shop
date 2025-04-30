@@ -5,7 +5,7 @@ import { decode } from "next-auth/jwt";
 import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
 
 // Fetch cart order
-export async function fetchOrders() {
+export async function fetchCartOrders() {
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
 
   if (!tokenCookie) {

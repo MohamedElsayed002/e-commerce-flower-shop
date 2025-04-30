@@ -6,11 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useFormatter, useTranslations } from "next-intl";
 
 // Type
-type OrderSummaryProps = {
+type CartProps = {
   cart: Cart;
 };
 
-export default function CartSummary({ cart }: OrderSummaryProps) {
+export default function CartSummary({ cart }: CartProps) {
   // Translations
   const t = useTranslations();
 
@@ -45,7 +45,7 @@ export default function CartSummary({ cart }: OrderSummaryProps) {
             <div className="mb-6">
               <h5 className="mb-3 text-blue-gray-900 font-bold">{t("cart-summary")}</h5>
             </div>
-
+            {/* Subtotal */}
             <div className="border-t border-gray-200 pt-4">
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -57,6 +57,7 @@ export default function CartSummary({ cart }: OrderSummaryProps) {
                     })}
                   </span>
                 </div>
+                {/* Discount */}
                 <div className="flex justify-between">
                   <span className="text-blue-gray-900 font-bold">{t("discount")}</span>
                   <span className="text-red-600">
