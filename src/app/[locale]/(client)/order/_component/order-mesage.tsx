@@ -7,7 +7,8 @@ import { getTranslations } from "next-intl/server";
 export default async function OrderMessage() {
   // Translations
   const t = await getTranslations();
-  // Fetching session
+
+  // GetSession
   const session = await getServerSession(authOptions);
 
   // User email

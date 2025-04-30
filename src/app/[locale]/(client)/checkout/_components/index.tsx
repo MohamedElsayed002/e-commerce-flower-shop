@@ -5,7 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useLocale, useTranslations } from "next-intl";
 import { Locale } from "@/i18n/routing";
 import SummaryWrapper from "./cart-summary-wrapper";
-import { PaymentForm } from "../../payment/_component/paymant";
+import { PaymentForm } from "../../payment/_component/payment";
 
 export default function CheckoutContent() {
   // Translation

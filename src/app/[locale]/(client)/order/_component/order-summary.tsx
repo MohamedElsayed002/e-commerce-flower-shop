@@ -91,7 +91,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                               currency: "USD",
                             })}
                           </span>{" "}
-                          {/* PriceAfterDiscount */}
+                          {/* Price after discount */}
                           <span className="text-red-400">
                             {formatter.number(Number(item.product.priceAfterDiscount), {
                               style: "currency",
@@ -148,7 +148,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                   <span className="text-blue-gray-900 font-bold">{t("shipping")}</span>
                   <span className="text-custom-gray">{t("free")}</span>
                 </div>
-                {/* Total Price */}
+                {/* Total price */}
                 <div className="flex justify-between pt-2 border-t border-gray-200">
                   <span className="text-blue-gray-900 font-bold">{t("total")}</span>
                   <span className="text-custom-rose-900 font-bold">

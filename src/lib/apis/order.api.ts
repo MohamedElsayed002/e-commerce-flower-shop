@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { decode } from "next-auth/jwt";
 import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
 
-// fetch Cart Order
+// Fetch cart order
 export async function fetchOrders() {
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
 
@@ -34,7 +34,7 @@ export async function fetchOrders() {
   return data;
 }
 
-// fetchLatestOrder
+// fetch latest order
 
 export async function fetchLatestOrder() {
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
