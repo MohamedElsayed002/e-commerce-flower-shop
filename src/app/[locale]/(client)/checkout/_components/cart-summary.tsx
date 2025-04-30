@@ -17,21 +17,9 @@ export default function CartSummary({ cart }: CartProps) {
   // Formatter
   const formatter = useFormatter();
 
-  // Calculate subtotal
-
-  const subtotal = cart.cartItems.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0,
-  );
-
-  // Calculate total
-
-  const total = cart.cartItems.reduce(
-    (sum, item) => sum + item.product.priceAfterDiscount * item.quantity,
-    0,
-  );
-  // Calculate discount
-
+  //  Calculating values
+  const subtotal = cart.totalPrice;
+  const total = cart.totalPriceAfterDiscount;
   const discount = subtotal - total;
 
   return (
@@ -41,13 +29,14 @@ export default function CartSummary({ cart }: CartProps) {
         <Card>
           <CardContent className="p-6">
             {/* Cart Header */}
-
             <div className="mb-6">
               <h5 className="mb-3 text-blue-gray-900 font-bold">{t("cart-summary")}</h5>
             </div>
-            {/* Subtotal */}
+
+            {/* Cart Summary */}
             <div className="border-t border-gray-200 pt-4">
               <div className="space-y-2 text-sm">
+                {/* Subtotal */}
                 <div className="flex justify-between">
                   <span className="text-blue-gray-900 font-bold">{t("subtotal")}</span>
                   <span className="text-custom-gray">
@@ -57,6 +46,7 @@ export default function CartSummary({ cart }: CartProps) {
                     })}
                   </span>
                 </div>
+
                 {/* Discount */}
                 <div className="flex justify-between">
                   <span className="text-blue-gray-900 font-bold">{t("discount")}</span>
@@ -74,6 +64,7 @@ export default function CartSummary({ cart }: CartProps) {
                   <span className="text-blue-gray-900 font-bold">{t("shipping")}</span>
                   <span className="text-custom-gray">{t("free")}</span>
                 </div>
+
                 {/* Total */}
                 <div className="flex justify-between pt-2 border-t border-gray-200">
                   <span className="text-blue-gray-900 font-bold">{t("total")}</span>
@@ -88,6 +79,7 @@ export default function CartSummary({ cart }: CartProps) {
             </div>
           </CardContent>
         </Card>
+
         {/* Checkout Button */}
         <Button className="bg-custom-rose-900 rounded-xl mt-4">
           {t("checkout-now")}

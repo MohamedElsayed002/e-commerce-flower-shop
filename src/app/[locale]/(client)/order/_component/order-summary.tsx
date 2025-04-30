@@ -19,21 +19,15 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
   // Formatter
   const formatter = useFormatter();
 
-  // Navgation
+  // Navigation
   const router = useRouter();
 
-  // Calculate subtotal
+  //  Calculating values
   const subtotal = order.orderItems.reduce(
     (sum, item) => sum + Number(item.price) * Number(item.quantity),
     0,
   );
-
-  // Calculate total
-  const total = order.orderItems.reduce(
-    (sum, item) => sum + Number(item.product.priceAfterDiscount) * Number(item.quantity),
-    0,
-  );
-  // Calculate discount
+  const total = Number(order.totalPrice);
   const discount = subtotal - total;
 
   return (
@@ -64,11 +58,11 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
               <h5 className="font-bold mb-3 text-blue-gray-900">{t("order-items")}</h5>
               <div className="space-y-4">
                 {order.orderItems.map((item) => {
-                  const itemTotal = Number(item.product.priceAfterDiscount) * Number(item.quantity);
+                  const itemTotal = Number(item.price) * Number(item.quantity);
 
                   return (
                     <div key={item._id} className="flex items-start gap-4 py-3 cursor-pointer">
-                      {/* <Image */}
+                      {/* Image */}
                       <div className="relative w-16 h-16 rounded-md overflow-hidden border border-gray-200">
                         <Image
                           src={item.product.imgCover}
@@ -85,22 +79,13 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                           {t("quantity:")} {item.quantity}
                         </p>
                         <p className="text-sm text-gray-500">
-                          <span className="line-through text-gray-400">
-                            {formatter.number(Number(item.price), {
-                              style: "currency",
-                              currency: "USD",
-                            })}
-                          </span>{" "}
-                          {/* Price after discount */}
-                          <span className="text-red-400">
-                            {formatter.number(Number(item.product.priceAfterDiscount), {
-                              style: "currency",
-                              currency: "USD",
-                            })}
-                          </span>
+                          {formatter.number(Number(item.price), {
+                            style: "currency",
+                            currency: "USD",
+                          })}
                         </p>
                       </div>
-                      {/* ItemTota */}
+                      {/* ItemTotal */}
                       <div className="text-right">
                         <span className="text-sm font-medium">
                           {formatter.number(itemTotal, {
@@ -116,13 +101,12 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
             </div>
 
             {/* Order Summary */}
-
             <div className="border-t border-gray-200 pt-4">
               {/* Cart Summary */}
               <h5 className="mb-3 text-blue-gray-900 font-bold">{t("cart-summary")}</h5>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  {/* 	Subtotal */}
+                  {/* Subtotal */}
                   <span className="text-blue-gray-900 font-bold">{t("subtotal")}</span>
                   <span className="text-custom-gray">
                     {formatter.number(subtotal, {
@@ -143,7 +127,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                   </span>
                 </div>
 
-                {/* Shipping	 */}
+                {/* Shipping */}
                 <div className="flex justify-between">
                   <span className="text-blue-gray-900 font-bold">{t("shipping")}</span>
                   <span className="text-custom-gray">{t("free")}</span>
@@ -163,7 +147,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
           </CardContent>
         </Card>
       </div>
-      {/* Button Continue shopping	 */}
+      {/* Button Continue shopping */}
       <div className="w-full">
         <Button className="bg-custom-rose-900 rounded-xl" onClick={() => router.push("/")}>
           {t("back-home")}

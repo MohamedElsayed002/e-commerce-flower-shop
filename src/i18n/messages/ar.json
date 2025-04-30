@@ -197,6 +197,6 @@
   "expiry-schema": "يجب أن يكون تاريخ انتهاء الصلاحية بتنسيق MM/Yyyy",
   "ccv-schema": "يجب أن يكون CCV 3 أو 4 أرقام",
   "back-home": "مواصلة التسوق",
-  "checkout-now": "الخروج الآن",
+  "checkout-now": "ادفع الآن",
   "order-number": "رقم الطلب"
 }
