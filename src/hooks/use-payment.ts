@@ -13,7 +13,7 @@ export function usePayment() {
   // Navgation
   const router = useRouter();
 
-  // StripeMutation
+  // Stripe mutation
   const stripeMutation = useMutation({
     mutationFn: checkoutWithStripe,
     onSuccess: (url: string) => {
@@ -39,7 +39,5 @@ export function usePayment() {
   return {
     checkoutWithStripe: stripeMutation.mutate,
     createCashOrder: cashMutation.mutate,
-    isStripeLoading: stripeMutation.isPending,
-    isCashLoading: cashMutation.isPending,
   };
 }
