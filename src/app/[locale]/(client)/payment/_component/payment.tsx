@@ -30,11 +30,7 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { usePayment } from "@/hooks/use-payment";
 
-type PaymentFormProps = {
-  shippingAddress: ShippingAddress | null;
-};
-
-export function PaymentForm({ shippingAddress }: PaymentFormProps) {
+export function PaymentForm() {
   // Translation
   const t = useTranslations();
 
@@ -75,9 +71,9 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
   const { checkoutWithStripe, createCashOrder } = usePayment();
   const onSubmit = () => {
     if (paymentType === "card") {
-      checkoutWithStripe(shippingAddress);
+      checkoutWithStripe(dummyShippingAddress);
     } else {
-      createCashOrder(shippingAddress);
+      createCashOrder(dummyShippingAddress);
     }
   };
 

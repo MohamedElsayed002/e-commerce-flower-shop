@@ -6,11 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useFormatter, useTranslations } from "next-intl";
 
 // Type
-type CartProps = {
+type CartType = {
   cart: Cart;
 };
 
-export default function CartSummary({ cart }: CartProps) {
+export default function CartSummary({ cart }: CartType) {
   // Translations
   const t = useTranslations();
 

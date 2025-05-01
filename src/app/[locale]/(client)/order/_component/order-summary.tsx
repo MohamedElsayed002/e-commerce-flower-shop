@@ -85,7 +85,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                           })}
                         </p>
                       </div>
-                      {/* ItemTotal */}
+                      {/* Item total*/}
                       <div className="text-right">
                         <span className="text-sm font-medium">
                           {formatter.number(itemTotal, {

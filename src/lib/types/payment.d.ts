@@ -1,19 +1,17 @@
 declare type Cart = {
   user: string;
-  cartItems: [
-    {
-      product: {
-        _id: string;
-        title: string;
-        price: number;
-        priceAfterDiscount: number;
-        discount?: number;
-        imgCover: string;
-      };
-      quantity: number;
+  cartItems: {
+    product: {
       _id: string;
-    },
-  ];
+      title: string;
+      price: number;
+      priceAfterDiscount: number;
+      discount?: number;
+      imgCover: string;
+    };
+    quantity: number;
+    _id: string;
+  }[];
   quantity: number;
   totalPrice: number;
   totalPriceAfterDiscount: number;

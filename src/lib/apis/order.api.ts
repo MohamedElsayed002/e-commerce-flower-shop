@@ -27,11 +27,11 @@ export async function fetchCartOrders() {
     cache: "no-store",
   });
 
-  const data = await response.json();
-  if ("error" in data) {
-    throw new Error(data.error);
+  const payload: APIResponse<{ cart: Cart }> = await response.json();
+  if ("error" in payload) {
+    throw new Error(payload.error);
   }
-  return data;
+  return payload;
 }
 
 // fetch latest order

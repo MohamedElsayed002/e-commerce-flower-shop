@@ -184,7 +184,7 @@
   "card": "ادفع ببطاقة الائتمان",
   "your-payment-info": "معلومات الدفع الخاصة بك",
   "order-placed-successfully": "تم تقديم الطلب بنجاح",
-  "error-order": "فشل في إنشاء جلسة شريطية",
+  "error-order": "فشل الدفع",
   "payment-failed": " فشل تقديم الطلب",
   "name-card": "اسم حامل البطاقة",
   "card-name": "اسم على البطاقة",
