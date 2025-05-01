@@ -169,5 +169,6 @@
   "view-cart": "view cart",
   "quantity": "Quantity",
   "price": "Price",
-  "you-do-not-have-an-order": "You do not have an order"
+  "you-do-not-have-an-order": "You do not have an order",
+  "discount": "discount"
 }

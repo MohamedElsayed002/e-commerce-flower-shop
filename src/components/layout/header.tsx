@@ -51,7 +51,7 @@ export default function Header() {
             <>
               <IoSearch className="w-5 h-5 text-custom-rose-900" />
               <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
-              <Link href="/order">
+              <Link href="/orders">
                 <BsCartCheck className="w-5 h-5 text-custom-rose-900" />
               </Link>
               <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />

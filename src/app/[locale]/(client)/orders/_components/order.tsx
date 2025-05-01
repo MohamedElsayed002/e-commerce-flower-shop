@@ -29,8 +29,8 @@ export default function Orders({ orders }: OrdersPropes) {
             key={order._id}
             className="p-4 border border-custom-rose-900  rounded-lg shadow-sm bg-white space-y-4"
           >
-            {/* Order number */}
             <div className="flex justify-between items-center">
+              {/* Order number */}
               <h2 className="text-lg font-semibold text-blue-gray-800">
                 {t("order-number")}: {order.orderNumber}
               </h2>
@@ -89,6 +89,11 @@ export default function Orders({ orders }: OrdersPropes) {
                     {/* Order items price */}
                     <span className="text-custom-rose-900">
                       {t("price")}: ${item.price}
+                    </span>
+
+                    {/* Orderitems discount */}
+                    <span className="text-custom-rose-900">
+                      {t("discount")}: ${item.product.discount}
                     </span>
 
                     {/* Orderitems quantity */}
