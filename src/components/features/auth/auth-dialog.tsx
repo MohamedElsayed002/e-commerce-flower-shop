@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import dynamic from "next/dynamic";
 import { DialogTrigger } from "@radix-ui/react-dialog";
-import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { ImSpinner3 } from "react-icons/im";
 
@@ -56,7 +55,7 @@ const VerifyOTPForm = dynamic(() => import("./components/verify-otp-form"), {
   ),
 });
 
-export default function AuthDialog() {
+export default function AuthDialog({ children }: { children: React.ReactNode }) {
   // Translations
   const t = useTranslations();
 
@@ -76,11 +75,7 @@ export default function AuthDialog() {
   return (
     <Dialog onOpenChange={handleOpenChange} open={open}>
       {/* DialogTrigger */}
-      <DialogTrigger asChild>
-        <Button className="rounded-3xl bg-custom-rose-900 hover:bg-custom-rose-800 ">
-          {t("login")}
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
 
       {/* Main dialog container */}
       <DialogContent>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
@@ -5,19 +7,32 @@ import { BsHandbag } from "react-icons/bs";
 import { FaRegEye, FaRegHeart, FaRegStar, FaStar } from "react-icons/fa6";
 import { useFormatter } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { useAddToCart } from "@/hooks/products/use-add-to-cart";
+import { useSession } from "next-auth/react";
+import AuthDialog from "../auth/auth-dialog";
 
 type ProductCardProps = {
   product: Product;
+  width?: string;
+  height?: string;
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, width, height }: ProductCardProps) {
   // Translation
   const format = useFormatter();
 
+  const isFixedSize = width && height;
+
+  // Hooks
+  const { data: session } = useSession();
+
+  // Mutation
+  const { mutate: addtoCart, isPending } = useAddToCart(product._id);
+
   return (
-    <Card className="rounded-[20px]" key={product.id}>
+    <Card className="rounded-[20px] flex-col flex " key={product.id}>
       {/* Card header */}
-      <CardHeader className="group min-h-60 bg-main-color rounded-[20px] flex justify-center items-center mb-4 overflow-hidden relative">
+      <CardHeader className="group min-h-60 bg-main-color rounded-[20px] flex justify-center items-center mb-4 overflow-hidden relative flex-grow">
         {/* Image overlay */}
         <div className="absolute inset-0 bg-custom-rose-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[20px]"></div>
 
@@ -25,19 +40,26 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Image
           src={product.imgCover}
           alt={product.title}
-          fill
-          sizes="(max-width: 640px) 100px, (max-width: 1024px) 150px, 222px"
+          {...(isFixedSize
+            ? { width: Number(width), height: Number(height) }
+            : {
+                fill: true,
+                sizes: "(max-width: 640px) 100px, (max-width: 1024px) 150px, 222px",
+              })}
           className="object-cover group-hover:opacity-70 transition-opacity duration-300"
         />
 
         {/* Action buttons */}
         <div className="absolute inset-0 flex justify-center items-center gap-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-          {/* TODO: View Product Button */}
-          <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
+          {/*View Product Button */}
+          <Link
+            href={`/products/${product._id}`}
+            className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800"
+          >
             <FaRegEye />
-          </Button>
+          </Link>
 
-          {/* TODO:Add to wishlist button */}
+          {/* Add to wishlist button */}
           <Button className="bg-custom-rose-900 text-2xl w-10 h-10 rounded-full flex justify-center items-center text-white hover:bg-custom-rose-800">
             <FaRegHeart />
           </Button>
@@ -46,7 +68,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product details */}
       <CardContent className="px-4">
-        <Link href={`/products/${product._id}`} className="flex justify-between items-center">
+        <div className="flex justify-between items-center">
           {/* Product information */}
           <div className="flex flex-col justify-start gap-[9px]">
             {/* Product title */}
@@ -54,8 +76,8 @@ export default function ProductCard({ product }: ProductCardProps) {
               {product.title}
             </h6>
 
-            {/* TODO: Product rating */}
-            <div className="flex text-rate-color">
+            {/* Product rating */}
+            <div className="flex text-xl text-rate-color">
               {[...Array(5)].map((_, index) => (
                 <span key={index}>
                   {index < (product?.rating || 4) ? <FaStar /> : <FaRegStar />}
@@ -83,10 +105,26 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {/* TODO:Add to cart button */}
-          <Button className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800">
-            <BsHandbag />
-          </Button>
-        </Link>
+          {session ? (
+            <Button
+              className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+              disabled={isPending}
+              onClick={() => addtoCart(1)}
+            >
+              <BsHandbag />
+            </Button>
+          ) : (
+            <AuthDialog>
+              <Button
+                className="text-white bg-custom-purple-900 w-[42px] h-[42px] rounded-full flex justify-center items-center hover:bg-custom-purple-800"
+                disabled={isPending}
+                onClick={() => addtoCart(1)}
+              >
+                <BsHandbag />
+              </Button>
+            </AuthDialog>
+          )}
+        </div>
       </CardContent>
     </Card>
   );

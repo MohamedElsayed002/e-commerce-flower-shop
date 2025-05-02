@@ -8,6 +8,8 @@ import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
 import { useSession } from "next-auth/react";
 import AuthDialog from "../features/auth/auth-dialog";
+import ProfileIcon from "../common/profile-icon";
+import { Button } from "../ui/button";
 
 export default function Header() {
   // Translation
@@ -33,13 +35,13 @@ export default function Header() {
           <Link href="/" className="transition-colors text-custom-rose-900">
             {t("home")}
           </Link>
-          <Link href="#" className="transition-colors hover:text-custom-rose-900">
-            {t("all-categories")}
+          <Link href="/products" className="transition-colors hover:text-custom-rose-900">
+            {t("all-products")}
           </Link>
-          <Link href="#" className="transition-colors hover:text-custom-rose-900">
+          <Link href="/about" className="transition-colors hover:text-custom-rose-900">
             {t("about-us")}
           </Link>
-          <Link href="#" className="transition-colors hover:text-custom-rose-900">
+          <Link href="/contact" className="transition-colors hover:text-custom-rose-900">
             {t("contact")}
           </Link>
         </div>
@@ -52,16 +54,24 @@ export default function Header() {
               <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
               <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
               <LocaleToggle />
+              <ProfileIcon />
             </>
           )}
 
-          {/* Login button and search icon if session isnot exist) */}
+          {/* Login button and search icon if session is not exist) */}
           <div className="flex items-center gap-5">
             {!session && (
               <>
                 <IoSearch className="w-[20px] h-[21px]  text-custom-rose-900" />
                 <LocaleToggle />
-                <AuthDialog />
+                <AuthDialog>
+                  <Button
+                    variant="outline"
+                    className="text-custom-rose-900 hover:bg-custom-rose-900 hover:text-white"
+                  >
+                    {t("login")}
+                  </Button>
+                </AuthDialog>
               </>
             )}
           </div>
