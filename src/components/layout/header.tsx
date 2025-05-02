@@ -31,8 +31,8 @@ export default function Header() {
           className="p-2"
         />
 
-        {/* Navigation Links */}
-        <div className="flex gap-6 text-base font-medium text-[#160E4B]">
+        {/* Navigation links */}
+        <div className="flex gap-6 text-base font-medium text-blue-gray-900">
           <Link href="/" className="transition-colors text-custom-rose-900">
             {t("home")}
           </Link>
