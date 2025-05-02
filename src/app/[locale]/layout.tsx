@@ -6,6 +6,7 @@ import { Inter, Roboto } from "next/font/google";
 import { cn } from "@/lib/utils/cn";
 import { Toaster } from "sonner";
 import NextAuthProvider from "@/components/provider/components/next-auth-provider";
+import AuthDialog from "@/components/features/auth/auth-dialog";
 
 const inter = Inter({
   subsets: ["latin"],

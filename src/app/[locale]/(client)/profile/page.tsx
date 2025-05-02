@@ -1,7 +1,15 @@
-import React from 'react'
+import React from "react";
+import ProfileForm from "./_components/profile-form";
+import { fetchUserData } from "@/lib/apis/auth/profile.api";
 
-export default function Page() {
+export default async function ProfilePage() {
+  // Variables
+  const userData = (await fetchUserData()) || [];
+
   return (
-    <div>Page</div>
-  )
+    <div className="my-20 container">
+      {/* Profile Form */}
+      <ProfileForm initialData={userData} />
+    </div>
+  );
 }

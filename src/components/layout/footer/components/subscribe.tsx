@@ -15,9 +15,9 @@ export default function Subscribe() {
   // Form & Validation
   const Schema = z.object({
     email: z
-      .string({ required_error: t('please-enter-your-email')})
+      .string({ required_error: t("please-enter-your-email") })
       .email(t("subscribe-email-invalid"))
-      .nonempty(t('please-enter-your-email')),
+      .nonempty(t("please-enter-your-email")),
   });
 
   type Inputs = z.infer<typeof Schema>;
@@ -51,7 +51,7 @@ export default function Subscribe() {
         {/* Subscribe */}
         <Button
           type="submit"
-          className="bg-custom-rose-900  rounded-[30px] absolute ltr:right-1 rtl:left-1   top-1/2  w-[131px] h-[90%] -translate-y-1/2 text-[16px] font-medium "
+          className="bg-custom-rose-900  rounded-[30px] absolute ltr:right-1 rtl:left-1   top-1/2  w-[131px] h-[90%] -translate-y-1/2 text-base font-medium "
         >
           {/* Text */}
           {t("Subscribe")}

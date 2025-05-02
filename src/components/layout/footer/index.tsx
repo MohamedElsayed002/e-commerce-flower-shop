@@ -28,17 +28,23 @@ export default function Footer() {
           <p>{t("about-us")}</p>
           <p>{t("store-location")}</p>
           <p>{t("contact")}</p>
-          <p><Link href="/delivery"> {t("delivery")}</Link> </p>
-          <p><Link href="/policy">{t("policy")}</Link></p>
-          <p><Link href="/faq">{t("faqs")}</Link></p>
+          <p>
+            <Link href="/delivery"> {t("delivery")}</Link>{" "}
+          </p>
+          <p>
+            <Link href="/policy">{t("policy")}</Link>
+          </p>
+          <p>
+            <Link href="/faq">{t("faqs")}</Link>
+          </p>
         </div>
 
         {/* Subscribe */}
         <div className=" text-center flex flex-col gap-2">
-          {/* Discount Part */}
+          {/* Discount part */}
 
           {/* Headline */}
-          <p className="text-[30px] font-bold">
+          <p className="text-[30px] font-bold text-blue-gray-900">
             {t.rich("discount-offer", {
               discount,
               span: (v) => <span className="text-custom-rose-900">{v}</span>,
@@ -50,8 +56,8 @@ export default function Footer() {
             {t("by-subscribe-our-newsletter")}
           </p>
         </div>
-        
-        {/* Subscribe Input */}
+
+        {/* Subscribe input */}
         <FooterInput />
       </div>
     </footer>
