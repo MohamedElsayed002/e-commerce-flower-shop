@@ -31,7 +31,7 @@ export default function PriceFilter() {
   type PriceFilterFormType = z.infer<typeof priceFilterSchema>;
 
   // Max price
-  const maxPrice = 30000;
+  const maxPrice = 10000;
 
   // Get initial values from URL
   const initialMin = Number(searchParams.get("price[gte]")) || 0;

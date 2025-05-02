@@ -197,5 +197,20 @@
   "error-loading-products": "Error loading products",
   "profile": "Profile",
   "orders": "Orders",
-  "sign-out": "Sign Out"
+  "sign-out": "Sign Out",
+  "checkout-now": "checkout now",
+  "total": "total",
+  "taxes": "taxes",
+  "free": "free",
+  "shipping": "shipping",
+  "no-discount": "no discount",
+  "discount": "discount",
+  "sub-total": "sub total",
+  "cart-summary": "cart summary",
+  "continue-shopping": "continue shopping",
+  "remove": "remove",
+  "total-0": "total",
+  "price": "price",
+  "name": "name",
+  "image": "image"
 }

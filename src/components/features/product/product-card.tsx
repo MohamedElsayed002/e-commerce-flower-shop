@@ -13,12 +13,11 @@ import AuthDialog from "../auth/auth-dialog";
 
 type ProductCardProps = {
   product: Product;
-  productid: string;
   width?: string;
   height?: string;
 };
 
-export default function ProductCard({ product, productid, width, height }: ProductCardProps) {
+export default function ProductCard({ product, width, height }: ProductCardProps) {
   // Translation
   const format = useFormatter();
 
@@ -31,9 +30,9 @@ export default function ProductCard({ product, productid, width, height }: Produ
   const { mutate: addtoCart, isPending } = useAddToCart(product._id);
 
   return (
-    <Card className="rounded-[20px]" key={product.id}>
+    <Card className="rounded-[20px] flex-col flex " key={product.id}>
       {/* Card header */}
-      <CardHeader className="group min-h-60 bg-main-color rounded-[20px] flex justify-center items-center mb-4 overflow-hidden relative">
+      <CardHeader className="group min-h-60 bg-main-color rounded-[20px] flex justify-center items-center mb-4 overflow-hidden relative flex-grow">
         {/* Image overlay */}
         <div className="absolute inset-0 bg-custom-rose-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[20px]"></div>
 

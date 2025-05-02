@@ -7,7 +7,7 @@ import {
   PaginationLink,
 } from "@/components/ui/pagination";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import ArrowLeftGo from "@/components/common/go-arrow-left";
 import ArrowRightGo from "@/components/common/go-arrow-right";
@@ -26,11 +26,10 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
 
   const [currentPage, setCurrentPage] = useState<number>(metadata?.currentPage ?? 1);
 
-  const queryString = new URLSearchParams(searchParams);
-
   // Function to navigate to a new page
   const navigateToPage = useCallback(
     (page: number) => {
+      const queryString = new URLSearchParams(searchParams);
       if (page < 1 || page > totalPages || page === currentPage) return;
 
       setCurrentPage(page);
@@ -38,7 +37,7 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
       queryString.set("page", page.toString());
       router.push(`${pathname}?${queryString.toString()}`, { scroll: false });
     },
-    [queryString, pathname, router, currentPage, totalPages],
+    [searchParams, pathname, router, currentPage, totalPages],
   );
 
   // Generates an array of page numbers and ellipsis elements

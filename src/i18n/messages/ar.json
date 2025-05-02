@@ -186,5 +186,20 @@
   "error-loading-products": "خطأ في تحميل المنتجات",
   "profile": "حساب تعريفي",
   "orders": "طلبات",
-  "sign-out": "تسجيل الخروج"
+  "sign-out": "تسجيل الخروج",
+  "checkout-now": "الدفع الآن",
+  "total": "المجموع",
+  "taxes": "الضرائب",
+  "free": "مجانا",
+  "shipping": "شحن",
+  "no-discount": "لا خصم",
+  "discount": "خصم",
+  "sub-total": "مجموع",
+  "cart-summary": "ملخص العربة",
+  "continue-shopping": "مواصلة التسوق",
+  "remove": "يزيل",
+  "total-0": "المجموع",
+  "price": "سعر",
+  "name": "اسم",
+  "image": "صورة"
 }
