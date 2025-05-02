@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import AddressForm from "./billing-address-form";
 import { Button } from "@/components/ui/button";

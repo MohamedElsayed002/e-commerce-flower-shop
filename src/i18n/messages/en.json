@@ -206,5 +206,6 @@
   "back-home": "Continue shopping",
   "checkout-now": "Checkout Now",
   "free": "Free",
-  "order-number": "OrderNumber"
+  "order-number": "OrderNumber",
+  "quantity": "Quantity\n"
 }

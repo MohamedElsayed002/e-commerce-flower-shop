@@ -8,6 +8,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import Image from "next/image";
 
 // Type
+
 type OrderDetailsProps = {
   order: Order;
 };
@@ -22,13 +23,15 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
   // Navigation
   const router = useRouter();
 
-  //  Calculating values
+  // Calculate subtotal
   const subtotal = order.orderItems.reduce(
     (sum, item) => sum + Number(item.price) * Number(item.quantity),
     0,
   );
-  const total = Number(order.totalPrice);
-  const discount = subtotal - total;
+
+  const discount = subtotal - order.totalPrice;
+
+  const total = subtotal;
 
   return (
     <div className="max-w-3xl mx-auto py-2 px-4">
@@ -38,7 +41,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
           <CardContent className="p-6">
             {/* Order Header */}
             <div className="flex justify-between items-start mb-4">
-              {/* Date order and Number*/}
+              {/* Date order and Number */}
               <div>
                 <p className="text-sm text-blue-gray-500">
                   {formatter.dateTime(new Date(order.createdAt), {
@@ -65,8 +68,8 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                       {/* Image */}
                       <div className="relative w-16 h-16 rounded-md overflow-hidden border border-gray-200">
                         <Image
-                          src={item.product.imgCover}
-                          alt={item.product.title}
+                          src={item.product.imgCover || "Product Image"}
+                          alt={item.product.title || "Product Image"}
                           fill
                           className="object-cover"
                           sizes="64px"
@@ -74,9 +77,11 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                       </div>
                       {/* Quantity */}
                       <div className="flex-1 space-y-1">
-                        <h6 className="font-medium text-gray-900">{item.product.title}</h6>
+                        <h6 className="font-medium text-gray-900">
+                          {item.product?.title || "Unknown Product"}
+                        </h6>
                         <p className="text-sm text-gray-500">
-                          {t("quantity:")} {item.quantity}
+                          {t("quantity")}: {item.quantity}
                         </p>
                         <p className="text-sm text-gray-500">
                           {formatter.number(Number(item.price), {
@@ -85,7 +90,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                           })}
                         </p>
                       </div>
-                      {/* Item total*/}
+                      {/* Item total */}
                       <div className="text-right">
                         <span className="text-sm font-medium">
                           {formatter.number(itemTotal, {
@@ -100,13 +105,12 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
               </div>
             </div>
 
-            {/* Order Summary */}
+            {/* Cart summary	 */}
             <div className="border-t border-gray-200 pt-4">
-              {/* Cart Summary */}
               <h5 className="mb-3 text-blue-gray-900 font-bold">{t("cart-summary")}</h5>
               <div className="space-y-2 text-sm">
+                {/* Subtotal */}
                 <div className="flex justify-between">
-                  {/* Subtotal */}
                   <span className="text-blue-gray-900 font-bold">{t("subtotal")}</span>
                   <span className="text-custom-gray">
                     {formatter.number(subtotal, {
@@ -115,11 +119,12 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                     })}
                   </span>
                 </div>
+
                 {/* Discount */}
                 <div className="flex justify-between mb-2">
                   <span className="text-blue-gray-900 font-bold">{t("discount")}</span>
                   <span className="text-red-600 font-semibold">
-                    {"-"}
+                    {discount > 0 ? "-" : ""}
                     {formatter.number(discount, {
                       style: "currency",
                       currency: "USD",
@@ -132,7 +137,8 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
                   <span className="text-blue-gray-900 font-bold">{t("shipping")}</span>
                   <span className="text-custom-gray">{t("free")}</span>
                 </div>
-                {/* Total price */}
+
+                {/* 	Total */}
                 <div className="flex justify-between pt-2 border-t border-gray-200">
                   <span className="text-blue-gray-900 font-bold">{t("total")}</span>
                   <span className="text-custom-rose-900 font-bold">
@@ -147,9 +153,13 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
           </CardContent>
         </Card>
       </div>
-      {/* Button Continue shopping */}
+
+      {/* Button Continue Shopping */}
       <div className="w-full">
-        <Button className="bg-custom-rose-900 rounded-xl" onClick={() => router.push("/")}>
+        <Button
+          className="bg-custom-rose-900 rounded-xl flex items-center gap-2"
+          onClick={() => router.push("/")}
+        >
           {t("back-home")}
           <ArrowRight />
         </Button>

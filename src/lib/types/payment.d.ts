@@ -19,17 +19,52 @@ declare type Cart = {
   __v: number;
 } & DatabaseFields;
 
-declare type Order = {
+type Product = {
+  _id?: string;
+  title?: string;
+  slug?: string;
+  description?: string;
+  imgCover?: string;
+  images?: string[];
+  price?: number;
+  quantity?: number;
+  category?: string;
+  occasion?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  sold?: number;
+  discount?: number;
+  rateAvg?: number;
+  rateCount?: number;
+  id?: string;
+};
+
+type Order = {
+  _id: string;
   user: string;
-  orderItems: [{ product: Product; price: string; quantity: string; _id: string }];
-  totalPrice: string;
+  orderItems: {
+    product: Product;
+    price: number;
+    quantity: number;
+    _id: string;
+  }[];
+  totalPrice: number;
   paymentType: string;
   isPaid: boolean;
   isDelivered: boolean;
-  totalPriceAfterDiscount: string;
   state: string;
   createdAt: string;
+  updatedAt: string;
   orderNumber: string;
+  shippingAddress?: {
+    street: string;
+    city: string;
+    phone: string;
+    lat: string;
+    long: string;
+  };
+  paidAt?: string;
+  __v: number;
 } & DatabaseFields;
 
 // payment form

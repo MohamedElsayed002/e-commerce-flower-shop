@@ -198,5 +198,6 @@
   "ccv-schema": "يجب أن يكون CCV 3 أو 4 أرقام",
   "back-home": "مواصلة التسوق",
   "checkout-now": "ادفع الآن",
-  "order-number": "رقم الطلب"
+  "order-number": "رقم الطلب",
+  "quantity": "كمية"
 }
