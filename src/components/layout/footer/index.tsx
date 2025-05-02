@@ -1,7 +1,7 @@
 import FooterInput from "@/components/layout/footer/components/subscribe";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Footer() {
   // Translation
@@ -23,14 +23,20 @@ export default function Footer() {
 
       {/* Content */}
       <div className="flex flex-col justify-center items-center gap-10 ">
-        {/* Footer header contents */}
-        <div className="flex gap-20 justify-center pt-10 ps-20 text-blue-gray-900 font-bold">
-          <Link href="#">{t("about-us")}</Link>
-          <Link href="#">{t("store-location")}</Link>
-          <Link href="/contact">{t("contact")}</Link>
-          <Link href="#">{t("delivery")} </Link>
-          <Link href="#">{t("policy")}</Link>
-          <Link href="#">{t("faqs")}</Link>
+        {/* Footer Header Contents */}
+        <div className="flex gap-20 justify-center pt-10 ps-20 text-base font-bold">
+          <p>{t("about-us")}</p>
+          <p>{t("store-location")}</p>
+          <p>{t("contact")}</p>
+          <p>
+            <Link href="/delivery"> {t("delivery")}</Link>{" "}
+          </p>
+          <p>
+            <Link href="/policy">{t("policy")}</Link>
+          </p>
+          <p>
+            <Link href="/faq">{t("faqs")}</Link>
+          </p>
         </div>
 
         {/* Subscribe */}
