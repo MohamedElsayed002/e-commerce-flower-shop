@@ -24,7 +24,11 @@ import {
 import { useLocation } from "@/hooks/use-location";
 import { toast } from "sonner";
 
-export default function AddressForm() {
+// Type
+type AddressFormProps = {
+  onSubmitAddress: (address: ShippingAddress) => void;
+};
+export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
   // Translation
   const t = useTranslations();
 
@@ -70,15 +74,16 @@ export default function AddressForm() {
     }
   };
 
-  {
-    /* NOTE: to be removed when merging */
-  }
+  //  Handle submission address form
   const onSubmit = (values: Inputs) => {
-    const payload = {
-      shippingAddress: {
-        ...values,
-      },
-    };
+    console.log("Submitting address:", {
+      street: values.street,
+      phone: values.phone,
+      city: values.city,
+      lat: values.lat,
+      long: values.long,
+    });
+    onSubmitAddress?.(values);
   };
 
   return (

@@ -30,7 +30,12 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { usePayment } from "@/hooks/use-payment";
 
-export function PaymentForm() {
+//  Type
+type PaymentFormProps = {
+  shippingAddress: ShippingAddress;
+};
+
+export function PaymentForm({ shippingAddress }: PaymentFormProps) {
   // Translation
   const t = useTranslations();
 
@@ -58,22 +63,13 @@ export function PaymentForm() {
     },
   });
 
-  // DummyShippingAddress
-  const dummyShippingAddress = {
-    street: "123 Flower St",
-    phone: "+1234567890",
-    city: "Cairo",
-    lat: "30.0444",
-    long: "31.2357",
-  };
-
   // HandelSubmit
   const { checkoutWithStripe, createCashOrder } = usePayment();
   const onSubmit = () => {
     if (paymentType === "card") {
-      checkoutWithStripe(dummyShippingAddress);
+      checkoutWithStripe(shippingAddress);
     } else {
-      createCashOrder(dummyShippingAddress);
+      createCashOrder(shippingAddress);
     }
   };
 

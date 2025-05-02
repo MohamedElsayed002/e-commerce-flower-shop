@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddressForm from "./billing-address-form";
 import { Button } from "@/components/ui/button";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
@@ -14,14 +14,31 @@ export default function CheckoutContent() {
   // Variables
   const locale = useLocale() as Locale;
 
+  // Initialize state
+  const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
+    street: "",
+    phone: "",
+    city: "",
+    lat: "",
+    long: "",
+  });
+
+  // Handle address submit
+  const handleAddressSubmit = (address: ShippingAddress) => {
+    setShippingAddress(address);
+  };
+
   return (
     <div className="container grid grid-cols-2 lg:grid-cols-3 gap-8 my-10 px-4">
       <div className="lg:col-span-2 flex flex-col space-y-8">
+        {/* Address form  */}
         <div className="my-2">
-          <AddressForm />
+          <AddressForm onSubmitAddress={handleAddressSubmit} />
         </div>
+
+        {/* Payment form */}
         <div>
-          <PaymentForm />
+          <PaymentForm shippingAddress={shippingAddress} />
         </div>
 
         {/* Buttons */}
@@ -66,6 +83,9 @@ export default function CheckoutContent() {
           </Button>
         </div>
       </div>
+
+      {/*  Summary cat wrapper  */}
+
       <div className="">
         <SummaryWrapper />
       </div>

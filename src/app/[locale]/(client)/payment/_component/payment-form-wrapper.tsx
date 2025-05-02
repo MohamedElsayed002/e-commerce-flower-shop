@@ -15,5 +15,13 @@ export default async function PaymentWrapper() {
     redirect("/");
   }
 
-  return <PaymentForm />;
+  // Default shipping address
+  const defaultShippingAddress = {
+    street: "",
+    phone: "",
+    city: "",
+    lat: "",
+    long: "",
+  };
+  return <PaymentForm shippingAddress={defaultShippingAddress} />;
 }
