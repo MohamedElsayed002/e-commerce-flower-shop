@@ -8,6 +8,7 @@ import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
 import { useSession } from "next-auth/react";
 import AuthDialog from "../features/auth/auth-dialog";
+import { BsCartCheck } from "react-icons/bs";
 import ProfileIcon from "../common/profile-icon";
 import { Button } from "../ui/button";
 
@@ -52,6 +53,9 @@ export default function Header() {
             <>
               <IoSearch className="w-5 h-5 text-custom-rose-900" />
               <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
+              <Link href="/orders">
+                <BsCartCheck className="w-5 h-5 text-custom-rose-900" />
+              </Link>
               <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
               <LocaleToggle />
               <ProfileIcon />
