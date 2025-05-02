@@ -1,9 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import AddressForm from "./billing-address-form";
 import { Button } from "@/components/ui/button";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useLocale, useTranslations } from "next-intl";
 import { Locale } from "@/i18n/routing";
+import SummaryWrapper from "./cart-summary-wrapper";
+import { PaymentForm } from "../../payment/_component/payment";
 
 export default function CheckoutContent() {
   // Translation
@@ -12,13 +16,32 @@ export default function CheckoutContent() {
   // Variables
   const locale = useLocale() as Locale;
 
+  // Initialize state
+  const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
+    street: "",
+    phone: "",
+    city: "",
+    lat: "",
+    long: "",
+  });
+
+  // Handle address submit
+  const handleAddressSubmit = (address: ShippingAddress) => {
+    setShippingAddress(address);
+  };
+
   return (
-    <div className="container grid grid-cols-2 my-20">
-      <div className="w-[874px]">
-        {/* Billing address form */}
-        <AddressForm />
+    <div className="container grid grid-cols-2 lg:grid-cols-3 gap-8 my-10 px-4">
+      <div className="lg:col-span-2 flex flex-col space-y-8">
+        {/* Address form  */}
+        <div className="my-2">
+          <AddressForm onSubmitAddress={handleAddressSubmit} />
+        </div>
 
         {/* Payment form */}
+        <div>
+          <PaymentForm shippingAddress={shippingAddress} />
+        </div>
 
         {/* Buttons */}
         <div className="flex justify-between align-middle mt-10">
@@ -63,7 +86,11 @@ export default function CheckoutContent() {
         </div>
       </div>
 
-      {/* Cart summary */}
+      {/*  Summary cat wrapper  */}
+
+      <div className="">
+        <SummaryWrapper />
+      </div>
     </div>
   );
 }

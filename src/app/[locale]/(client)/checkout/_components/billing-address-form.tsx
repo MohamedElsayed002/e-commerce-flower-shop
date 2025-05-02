@@ -24,7 +24,11 @@ import {
 import { useLocation } from "@/hooks/use-location";
 import { toast } from "sonner";
 
-export default function AddressForm() {
+// Type
+type AddressFormProps = {
+  onSubmitAddress: (address: ShippingAddress) => void;
+};
+export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
   // Translation
   const t = useTranslations();
 
@@ -64,19 +68,22 @@ export default function AddressForm() {
     if (locationData.data) {
       form.setValue("lat", locationData.data.latitude.toString());
       form.setValue("long", locationData.data.longitude.toString());
-      toast.success(t('location-detected-successfully'));
+      toast.success(t("location-detected-successfully"));
     } else if (locationData.data === null) {
-      toast.error(t('error-detecting-location'));
+      toast.error(t("error-detecting-location"));
     }
   };
 
-  {/* NOTE: to be removed when merging */}
+  //  Handle submission address form
   const onSubmit = (values: Inputs) => {
-    const payload = {
-      shippingAddress: {
-        ...values,
-      },
-    };
+    console.log("Submitting address:", {
+      street: values.street,
+      phone: values.phone,
+      city: values.city,
+      lat: values.lat,
+      long: values.long,
+    });
+    onSubmitAddress?.(values);
   };
 
   return (
@@ -250,7 +257,7 @@ export default function AddressForm() {
                     shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
                     hover:bg-custom-rose-800              "
                   >
-                    {isLoading ? t('detecting-location') : t('detect-location')}
+                    {isLoading ? t("detecting-location") : t("detect-location")}
                   </Button>
                 </div>
 

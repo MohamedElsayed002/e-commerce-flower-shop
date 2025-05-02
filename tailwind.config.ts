@@ -102,7 +102,7 @@ const config: Config = {
           "800": "#2D265D",
           "900": "#160E4B",
         },
-        "custom-grey": "#797979",
+        "custom-gray": "#797979",
         "mint-green": {
           "50": "#EBFBF6",
           "100": "#D7F7ED",
@@ -114,6 +114,18 @@ const config: Config = {
           "700": "#61E0B5",
           "800": "#4DDCAC",
           "900": "#39D8A3",
+        },
+        "emerald-leaf": {
+          "50": "#ECFDF5",
+          "100": "#D1FADF",
+          "200": "#A6F4C5",
+          "300": "#6CE9A6",
+          "400": "#32D583",
+          "500": "#12B76A",
+          "600": "#039855",
+          "700": "#027A48",
+          "800": "#05603A",
+          "900": "#054F31",
         },
         flamingo: "#F05454",
         "rate-color": "#FBA707",
@@ -128,20 +140,12 @@ const config: Config = {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
