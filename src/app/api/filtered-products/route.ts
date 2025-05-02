@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const sort = searchParams.get("sort"); // Sort parameter
 
   // Construct the base API URL with query parameters
-  const baseUrl = `${process.env.API}/products?category=${category}&sort=${sort}`;
+  const baseUrl = `${process.env.API}/products?${searchParams.toString()}`;
 
   try {
     // Fetch data from the API
@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
     const data = await response.json();
 
     // Return the products data as a JSON response
-    return new NextResponse(JSON.stringify(data.products), {
+    return new NextResponse(JSON.stringify(data), {
       status: response.status,
       headers: { "Content-Type": "application/json" },
     });

@@ -11,6 +11,7 @@ declare type SuccessfulResponse<T> = {
 declare type ErrorResponse = {
   error: string;
   statusCode: number;
+  product:Product
 };
 
 declare type APIResponse<T> = SuccessfulResponse<T> | ErrorResponse;
