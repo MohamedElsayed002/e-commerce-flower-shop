@@ -102,6 +102,7 @@ const config: Config = {
           "800": "#2D265D",
           "900": "#160E4B",
         },
+        "custom-gray": "#797979",
         "mint-green": {
           "50": "#EBFBF6",
           "100": "#D7F7ED",
@@ -126,7 +127,6 @@ const config: Config = {
           "800": "#05603A",
           "900": "#054F31",
         },
-        "custom-gray": "#797979",
         flamingo: "#F05454",
         "rate-color": "#FBA707",
       },
@@ -140,20 +140,12 @@ const config: Config = {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
