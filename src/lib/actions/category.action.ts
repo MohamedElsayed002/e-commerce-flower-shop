@@ -2,7 +2,6 @@
 import { revalidatePath } from "next/cache";
 
 export async function handleCategorySelect(categoryId: string) {
-
   const params = new URLSearchParams();
   params.set("category", categoryId);
 

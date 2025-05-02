@@ -14,6 +14,7 @@ declare type User = {
   phone: string;
   photo: string;
   role: string;
+  wishlist: any[]; // NOTE: to be changed with actual type
   addresses: {
     street: string;
     phone: string;
@@ -66,4 +67,15 @@ declare type SetPasswordFields = {
 declare type SetPasswordResponse = {
   message: string;
   token: string;
+};
+
+declare type ProfileFields = {
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+};
+
+declare type ProfileResponse = {
+  message: string;
+  user: User;
 };
