@@ -32,10 +32,10 @@ export async function GET(request: Request) {
     return NextResponse.json({ categories }, { status: response.status });
   } catch (error: unknown) {
     // Handle unexpected errors
-    console.error('Error fetching categories:', error instanceof Error ? error.message : String(error));
-    return NextResponse.json(
-      { error: "An unexpected error occurred" }, 
-      { status: 500 }
+    console.error(
+      "Error fetching categories:",
+      error instanceof Error ? error.message : String(error),
     );
+    return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
   }
 }
