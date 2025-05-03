@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import React from "react";
+import { useLocale, useTranslations } from "next-intl";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/accordion";
 import { useLocation } from "@/hooks/use-location";
 import { toast } from "sonner";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { Locale } from "@/i18n/routing";
 
 // Type
 type AddressFormProps = {
@@ -31,6 +33,7 @@ type AddressFormProps = {
 export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
   // Translation
   const t = useTranslations();
+  const locale = useLocale() as Locale;
 
   // Queries
   const { isLoading, refetchCurrentLocation } = useLocation();
@@ -44,9 +47,9 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
         /^\+?\d{1,3}?[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/,
         t("invalid-phone-number-format-must-start-with-a-country-code"),
       ),
-    city: z.string().min(1, t("city-is-required")),
-    lat: z.string().min(1, t("latitude-is-required")),
-    long: z.string().min(1, t("longitude-is-required")),
+    city: z.string().optional(),
+    lat: z.string().optional(),
+    long: z.string().optional(),
   });
 
   type Inputs = z.infer<typeof Schema>;
@@ -62,6 +65,9 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
     },
   });
 
+  // Hooks
+  const [open, setOpen] = useState("billing-address");
+
   // Functions
   const handleDetectLocation = async () => {
     const locationData = await refetchCurrentLocation();
@@ -76,19 +82,18 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
 
   //  Handle submission address form
   const onSubmit = (values: Inputs) => {
-    console.log("Submitting address:", {
-      street: values.street,
-      phone: values.phone,
-      city: values.city,
-      lat: values.lat,
-      long: values.long,
-    });
     onSubmitAddress?.(values);
   };
 
   return (
     <>
-      <Accordion type="single" collapsible className="space-y-4">
+      <Accordion
+        type="single"
+        collapsible
+        className="space-y-4"
+        value={open}
+        onValueChange={setOpen}
+      >
         {/* Billing process */}
         <AccordionItem value="billing-address">
           <AccordionTrigger
@@ -261,24 +266,26 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
                   </Button>
                 </div>
 
-                {/* NOTE: to be removed when merging */}
                 <div className="flex justify-end mt-4 w-full">
                   <Button
-                    type="submit"
+                    type="button"
+                    onClick={() => setOpen("payment-method")}
                     className="
-                  bg-custom-rose-900  
-                    h-[49px]
-                    rounded-[10px] 
-                    px-5
-                    py-[10px]
-                    font-medium 
-                    text-base
-                    text-center 
-                    shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
-                    hover:bg-custom-rose-800              
-                    "
+                        bg-custom-rose-900  
+                          rounded-[10px] 
+                          h-[49px]
+                          px-5
+                          py-[10px]
+                          font-medium 
+                          text-base
+                          text-center 
+                          shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
+                          hover:bg-custom-rose-800   
+                          capitalize           
+                          "
                   >
-                    Submit
+                    {t("next-step")}
+                    {locale === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
                   </Button>
                 </div>
               </form>

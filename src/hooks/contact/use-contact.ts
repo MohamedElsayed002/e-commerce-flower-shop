@@ -13,7 +13,6 @@ export function UseContact() {
     mutationFn: async (data: { email: string; phone: string; message: string; name: string }) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          console.log("Form Submitted:", data);
           resolve(data);
         });
       });

@@ -71,9 +71,9 @@ type Order = {
 declare type ShippingAddress = {
   street: string;
   phone: string;
-  city: string;
-  lat: string;
-  long: string;
+  city?: string;
+  lat?: string;
+  long?: string;
 };
 
 declare type FormValues = {
