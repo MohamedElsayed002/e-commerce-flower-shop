@@ -12,15 +12,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocale, useTranslations } from "next-intl";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
+import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useLocation } from "@/hooks/use-location";
 import { toast } from "sonner";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
@@ -29,8 +24,9 @@ import { Locale } from "@/i18n/routing";
 // Type
 type AddressFormProps = {
   onSubmitAddress: (address: ShippingAddress) => void;
+  setOpen: (value: string) => void;
 };
-export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
+export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormProps) {
   // Translation
   const t = useTranslations();
   const locale = useLocale() as Locale;
@@ -66,7 +62,6 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
   });
 
   // Hooks
-  const [open, setOpen] = useState("billing-address");
 
   // Functions
   const handleDetectLocation = async () => {
@@ -86,173 +81,164 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
   };
 
   return (
-    <>
-      <Accordion
-        type="single"
-        collapsible
-        className="space-y-4"
-        value={open}
-        onValueChange={setOpen}
-      >
-        {/* Billing process */}
-        <AccordionItem value="billing-address">
-          <AccordionTrigger
-            className="text-custom-rose-900 font-inter fw-600 text-base
+    <AccordionItem value="billing-address">
+      <AccordionTrigger
+        className="text-custom-rose-900 font-inter fw-600 text-base
           leading-[19.2px] capitalize border rounded-[5px] py-4 px-5"
-          >
-            {t("your-billing-address")}
-          </AccordionTrigger>
-          <AccordionContent className="mt-4">
-            {/* Billing form */}
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="font-roboto">
-                <div className="grid grid-cols-3 gap-x-4 gap-y-4 mb-4">
-                  {/* Street */}
-                  <FormField
-                    name="street"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem className="">
-                        {/* Label */}
-                        <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                          {t("street")}
-                        </FormLabel>
+      >
+        {t("your-billing-address")}
+      </AccordionTrigger>
+      <AccordionContent className="mt-4">
+        {/* Billing form */}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="font-roboto">
+            <div className="grid grid-cols-3 gap-x-4 gap-y-4 mb-4">
+              {/* Street */}
+              <FormField
+                name="street"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className="">
+                    {/* Label */}
+                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                      {t("street")}
+                    </FormLabel>
 
-                        {/* Input */}
-                        <FormControl>
-                          <Input
-                            type="text"
-                            placeholder={t("street")}
-                            {...field}
-                            className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                          />
-                        </FormControl>
+                    {/* Input */}
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder={t("street")}
+                        {...field}
+                        className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                      />
+                    </FormControl>
 
-                        {/* Message */}
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    {/* Message */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  {/* Phone */}
-                  <FormField
-                    name="phone"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        {/* Label */}
-                        <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                          {t("phone")}
-                        </FormLabel>
+              {/* Phone */}
+              <FormField
+                name="phone"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    {/* Label */}
+                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                      {t("phone")}
+                    </FormLabel>
 
-                        {/* Input */}
-                        <FormControl>
-                          <Input
-                            placeholder={t("phone")}
-                            type="text"
-                            {...field}
-                            className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                          />
-                        </FormControl>
+                    {/* Input */}
+                    <FormControl>
+                      <Input
+                        placeholder={t("phone")}
+                        type="text"
+                        {...field}
+                        className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                      />
+                    </FormControl>
 
-                        {/* Message */}
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    {/* Message */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  {/* City */}
-                  <FormField
-                    name="city"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        {/* Label */}
-                        <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                          {t("city")}
-                        </FormLabel>
+              {/* City */}
+              <FormField
+                name="city"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    {/* Label */}
+                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                      {t("city")}
+                    </FormLabel>
 
-                        <FormControl>
-                          {/* Input */}
-                          <Input
-                            placeholder={t("city")}
-                            type="text"
-                            {...field}
-                            className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                          />
-                        </FormControl>
+                    <FormControl>
+                      {/* Input */}
+                      <Input
+                        placeholder={t("city")}
+                        type="text"
+                        {...field}
+                        className="w-[280px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                      />
+                    </FormControl>
 
-                        {/* Message */}
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                    {/* Message */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-                {/* Location */}
-                <div className="flex justify-between items-end">
-                  {/* Latitude */}
-                  <FormField
-                    name="lat"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        {/* Label */}
-                        <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                          {t("latitude")}
-                        </FormLabel>
+            {/* Location */}
+            <div className="flex justify-between items-end">
+              {/* Latitude */}
+              <FormField
+                name="lat"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    {/* Label */}
+                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                      {t("latitude")}
+                    </FormLabel>
 
-                        <FormControl>
-                          {/* Input */}
-                          <Input
-                            placeholder={t("latitude")}
-                            type="text"
-                            readOnly
-                            {...field}
-                            className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                          />
-                        </FormControl>
+                    <FormControl>
+                      {/* Input */}
+                      <Input
+                        placeholder={t("latitude")}
+                        type="text"
+                        readOnly
+                        {...field}
+                        className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                      />
+                    </FormControl>
 
-                        {/* Message */}
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    {/* Message */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  {/* Longitude */}
-                  <FormField
-                    name="long"
-                    control={form.control}
-                    render={({ field }) => (
-                      <FormItem>
-                        {/* Label */}
-                        <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                          {t("longitude")}
-                        </FormLabel>
+              {/* Longitude */}
+              <FormField
+                name="long"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    {/* Label */}
+                    <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
+                      {t("longitude")}
+                    </FormLabel>
 
-                        <FormControl>
-                          {/* Input */}
-                          <Input
-                            placeholder={t("longitude")}
-                            type="text"
-                            readOnly
-                            {...field}
-                            className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                          />
-                        </FormControl>
+                    <FormControl>
+                      {/* Input */}
+                      <Input
+                        placeholder={t("longitude")}
+                        type="text"
+                        readOnly
+                        {...field}
+                        className="w-[280px] cursor-not-allowed h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
+                      />
+                    </FormControl>
 
-                        {/* Message */}
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    {/* Message */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  {/* Detect location */}
-                  <Button
-                    type="button"
-                    onClick={handleDetectLocation}
-                    disabled={isLoading}
-                    className=" bg-custom-rose-900  
+              {/* Detect location */}
+              <Button
+                type="button"
+                onClick={handleDetectLocation}
+                disabled={isLoading}
+                className=" bg-custom-rose-900  
                     h-[49px]
                     rounded-[10px] 
                     w-[280px]
@@ -261,16 +247,16 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
                     text-center 
                     shadow-[0px_0px_40px_5px_rgba(0, 0, 0, 0.05)]
                     hover:bg-custom-rose-800              "
-                  >
-                    {isLoading ? t("detecting-location") : t("detect-location")}
-                  </Button>
-                </div>
+              >
+                {isLoading ? t("detecting-location") : t("detect-location")}
+              </Button>
+            </div>
 
-                <div className="flex justify-end mt-4 w-full">
-                  <Button
-                    type="button"
-                    onClick={() => setOpen("payment-method")}
-                    className="
+            <div className="flex justify-end mt-4 w-full">
+              <Button
+                type="button"
+                onClick={() => setOpen("payment-method")}
+                className="
                         bg-custom-rose-900  
                           rounded-[10px] 
                           h-[49px]
@@ -283,16 +269,14 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
                           hover:bg-custom-rose-800   
                           capitalize           
                           "
-                  >
-                    {t("next-step")}
-                    {locale === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </>
+              >
+                {t("next-step")}
+                {locale === "ar" ? <FaArrowLeft /> : <FaArrowRight />}
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </AccordionContent>
+    </AccordionItem>
   );
 }
