@@ -4,7 +4,6 @@ import OrderDetails from "./order-summary";
 
 export default async function Ordersummary() {
   const order = await fetchLatestOrder();
-  console.log(order);
   return (
     <div className="container mx-auto p-4">
       <OrderMessage />

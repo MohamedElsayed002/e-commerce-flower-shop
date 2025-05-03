@@ -29,7 +29,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
     0,
   );
 
-  const discount = subtotal - order.totalPrice;
+  const discount = subtotal - Number(order.totalPrice);
 
   const total = subtotal;
 

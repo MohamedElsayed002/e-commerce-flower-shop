@@ -25,15 +25,15 @@ export default function CartSummary({ cart }: CartType) {
   return (
     <div className="w-[304px] h-80 py-2 px-4 bg-main-color rounded-2xl shadow-sm">
       <div key={cart._id}>
-        {/* Cart Card */}
+        {/* Cart card */}
         <Card>
           <CardContent className="p-6">
-            {/* Cart Header */}
+            {/* Cart header */}
             <div className="mb-6">
               <h5 className="mb-3 text-blue-gray-900 font-bold">{t("cart-summary")}</h5>
             </div>
 
-            {/* Cart Summary */}
+            {/* Cart summary */}
             <div className="border-t border-gray-200 pt-4">
               <div className="space-y-2 text-sm">
                 {/* Subtotal */}
@@ -80,7 +80,7 @@ export default function CartSummary({ cart }: CartType) {
           </CardContent>
         </Card>
 
-        {/* Checkout Button */}
+        {/* Checkout button */}
         <Button className="bg-custom-rose-900 rounded-xl mt-4">
           {t("checkout-now")}
           <ArrowRight />

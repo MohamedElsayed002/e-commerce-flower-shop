@@ -29,7 +29,7 @@ export function usePayment() {
     mutationFn: createCashOrder,
     onSuccess: () => {
       toast.success(t("order-placed-successfully"));
-      router.replace("/order");
+      router.replace("/allOrders");
     },
     onError: (error) => {
       toast.error(error.message || t("payment-failed"));

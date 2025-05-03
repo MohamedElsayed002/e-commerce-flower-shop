@@ -17,8 +17,6 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
   // Variables
   const locale = useLocale() as Locale;
 
-  const [open, setOpen] = useState("billing-address");
-
   // Initialize state
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     street: "",
@@ -28,9 +26,13 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
     long: "",
   });
 
+  // State
+  const [open, setOpen] = useState("billing-address");
+
   // Handle address submit
   const handleAddressSubmit = (address: ShippingAddress) => {
     setShippingAddress(address);
+    setOpen("ordring");
   };
 
   return (

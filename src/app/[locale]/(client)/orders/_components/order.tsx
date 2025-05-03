@@ -57,8 +57,8 @@ export default function Orders({ orders }: OrdersPropes) {
                   >
                     {/* Product image */}
                     <Image
-                      src={item.product.imgCover}
-                      alt={item.product.title}
+                      src={item.product.imgCover || "placeholder-image.jpg"}
+                      alt={item.product.title || "placeholder-image.jpg"}
                       width={100}
                       height={100}
                       className="rounded-lg object-cover"
@@ -66,18 +66,13 @@ export default function Orders({ orders }: OrdersPropes) {
 
                     {/* Product title */}
                     <span className="font-medium text-blue-gray-800">
-                      {item.product.title.split(" ").splice(0, 3).join(" ")}
+                      {(item.product.title ?? "").split(" ").splice(0, 3).join(" ")}
                     </span>
                   </div>
                 ))}
               </div>
 
               <div className="flex flex-col items-end ml-auto gap-4 rtl:ml-0 rtl:mr-auto">
-                {/* Payment type */}
-                <span className="text-custom-rose-900">
-                  {t("payment-method")}: {order.paymentType}
-                </span>
-
                 {/* Order status */}
                 <span className="text-custom-rose-900">
                   {t("order-state")}: {order.state}

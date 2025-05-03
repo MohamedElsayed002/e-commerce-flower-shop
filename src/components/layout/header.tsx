@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaRegHeart } from "react-icons/fa6";
-import { IoLockClosedOutline, IoSearch } from "react-icons/io5";
+import { IoLockClosedOutline } from "react-icons/io5";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import LocaleToggle from "@/components/common/toggle-locale";
@@ -51,12 +50,12 @@ export default function Header() {
           {/* Icons if session is exist */}
           {session && (
             <>
-              <IoSearch className="w-5 h-5 text-custom-rose-900" />
-              <FaRegHeart className="w-5 h-5 text-custom-rose-900" />
               <Link href="/orders">
                 <BsCartCheck className="w-5 h-5 text-custom-rose-900" />
               </Link>
-              <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
+              <Link href="/cart">
+                <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
+              </Link>
               <LocaleToggle />
               <ProfileIcon />
             </>
@@ -66,7 +65,6 @@ export default function Header() {
           <div className="flex items-center gap-5">
             {!session && (
               <>
-                <IoSearch className="w-[20px] h-[21px]  text-custom-rose-900" />
                 <LocaleToggle />
                 <AuthDialog>
                   <Button

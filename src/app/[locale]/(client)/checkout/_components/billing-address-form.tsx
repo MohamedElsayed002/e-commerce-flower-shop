@@ -61,8 +61,6 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
     },
   });
 
-  // Hooks
-
   // Functions
   const handleDetectLocation = async () => {
     const locationData = await refetchCurrentLocation();
@@ -78,6 +76,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
   //  Handle submission address form
   const onSubmit = (values: Inputs) => {
     onSubmitAddress?.(values);
+    setOpen("ordring");
   };
 
   return (
