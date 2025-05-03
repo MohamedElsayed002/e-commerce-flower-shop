@@ -33,9 +33,10 @@ import { usePayment } from "@/hooks/use-payment";
 //  Type
 type PaymentFormProps = {
   shippingAddress: ShippingAddress;
+  open?: string;
 };
 
-export function PaymentForm({ shippingAddress }: PaymentFormProps) {
+export function PaymentForm({ shippingAddress, open }: PaymentFormProps) {
   // Translation
   const t = useTranslations();
 
@@ -74,7 +75,7 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
   };
 
   return (
-    <Accordion type="single" collapsible className="space-y-4">
+    <Accordion type="single" value={open} collapsible className="space-y-4">
       {/* Payment process */}
       <AccordionItem value="ordring">
         <AccordionTrigger

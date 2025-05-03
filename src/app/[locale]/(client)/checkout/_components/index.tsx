@@ -25,9 +25,13 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
     long: "",
   });
 
+  // Hooks
+  const [open, setOpen] = useState("billing-address");
+
   // Handle address submit
   const handleAddressSubmit = (address: ShippingAddress) => {
     setShippingAddress(address);
+    setOpen("paymentform");
   };
 
   return (
@@ -35,12 +39,12 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
       <div className="lg:col-span-2 flex flex-col space-y-8">
         {/* Address form  */}
         <div className="my-2">
-          <AddressForm onSubmitAddress={handleAddressSubmit} />
+          <AddressForm onSubmitAddress={handleAddressSubmit} open={open} setOpen={setOpen} />
         </div>
 
         {/* Payment form */}
         <div>
-          <PaymentForm shippingAddress={shippingAddress} />
+          <PaymentForm shippingAddress={shippingAddress} open={open} />
         </div>
 
         {/* Buttons */}

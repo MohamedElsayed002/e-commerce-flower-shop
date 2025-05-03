@@ -29,8 +29,10 @@ import { Locale } from "@/i18n/routing";
 // Type
 type AddressFormProps = {
   onSubmitAddress: (address: ShippingAddress) => void;
+  open: string;
+  setOpen: (value: string) => void;
 };
-export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
+export default function AddressForm({ onSubmitAddress, open, setOpen }: AddressFormProps) {
   // Translation
   const t = useTranslations();
   const locale = useLocale() as Locale;
@@ -65,9 +67,6 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
     },
   });
 
-  // Hooks
-  const [open, setOpen] = useState("billing-address");
-
   // Functions
   const handleDetectLocation = async () => {
     const locationData = await refetchCurrentLocation();
@@ -83,6 +82,7 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
   //  Handle submission address form
   const onSubmit = (values: Inputs) => {
     onSubmitAddress?.(values);
+    setOpen("paymentform");
   };
 
   return (
@@ -268,8 +268,7 @@ export default function AddressForm({ onSubmitAddress }: AddressFormProps) {
 
                 <div className="flex justify-end mt-4 w-full">
                   <Button
-                    type="button"
-                    onClick={() => setOpen("payment-method")}
+                    type="submit"
                     className="
                         bg-custom-rose-900  
                           rounded-[10px] 

@@ -1,4 +1,4 @@
-import Ordersummary from "../order/_component/order-summary-wrapper";
+import Ordersummary from "./_component/order-summary-wrapper";
 
 export default function page() {
   return (
