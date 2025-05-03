@@ -25,13 +25,13 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
     long: "",
   });
 
-  // Hooks
+  // State
   const [open, setOpen] = useState("billing-address");
 
   // Handle address submit
   const handleAddressSubmit = (address: ShippingAddress) => {
     setShippingAddress(address);
-    setOpen("paymentform");
+    setOpen("ordring");
   };
 
   return (

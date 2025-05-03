@@ -82,7 +82,7 @@ export default function AddressForm({ onSubmitAddress, open, setOpen }: AddressF
   //  Handle submission address form
   const onSubmit = (values: Inputs) => {
     onSubmitAddress?.(values);
-    setOpen("paymentform");
+    setOpen("ordring");
   };
 
   return (
