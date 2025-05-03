@@ -2,12 +2,8 @@
 import { cookies } from "next/headers";
 import { decode } from "next-auth/jwt";
 import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
-import { getTranslations } from "next-intl/server";
 
 async function getAuthenticatedToken() {
-  // Translation
-  const t = await getTranslations();
-
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
   if (!tokenCookie) {
     throw new Error("Authentication required");
@@ -29,6 +25,7 @@ async function getAuthenticatedToken() {
 export async function checkoutWithStripe(shippingAddress: ShippingAddress): Promise<string> {
   const token = await getAuthenticatedToken();
 
+  console.log("shippingAddress", shippingAddress);
   const res = await fetch(
     `https://flower.elevateegy.com/api/v1/orders/checkout?url=http://localhost:3000`,
     {

@@ -898,7 +898,7 @@
 
 "@formatjs/icu-skeleton-parser@1.8.14":
   version "1.8.14"
-  resolved "https://registry.yarnpkg.com/@formatjs/icu-skeleton-parser/-/icu-skeleton-parser-1.8.14.tgz#b9581d00363908efb29817fdffc32b79f41dabe5"
+  resolved "https://registry.npmjs.org/@formatjs/icu-skeleton-parser/-/icu-skeleton-parser-1.8.14.tgz#b9581d00363908efb29817fdffc32b79f41dabe5"
   integrity sha512-i4q4V4qslThK4Ig8SxyD76cp3+QJ3sAqr7f6q9VVfeGtxG9OhiAk3y9XF6Q41OymsKzsGQ6OQQoJNY4/lI8TcQ==
   dependencies:
     "@formatjs/ecma402-abstract" "2.3.4"
@@ -1369,7 +1369,7 @@
 
 "@radix-ui/react-collapsible@1.1.8":
   version "1.1.8"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-collapsible/-/react-collapsible-1.1.8.tgz#133554937046480339d640bf7d80d341af205dc0"
+  resolved "https://registry.npmjs.org/@radix-ui/react-collapsible/-/react-collapsible-1.1.8.tgz#133554937046480339d640bf7d80d341af205dc0"
   integrity sha512-hxEsLvK9WxIAPyxdDRULL4hcaSjMZCfP7fHB0Z1uUnDoDBat1Zh46hwYfa69DeZAbJrPckjf0AGAtEZyvDyJbw==
   dependencies:
     "@radix-ui/primitive" "1.1.2"

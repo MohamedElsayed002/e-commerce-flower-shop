@@ -7,7 +7,8 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useLocale, useTranslations } from "next-intl";
 import { Locale } from "@/i18n/routing";
 import SummaryWrapper from "./cart-summary-wrapper";
-import { PaymentForm } from "../../payment/_component/payment";
+import { PaymentForm } from "./payment";
+import { Accordion } from "@/components/ui/accordion";
 
 export default function CheckoutContent({ cart }: { cart: Cart }) {
   // Translation
@@ -37,16 +38,19 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
   return (
     <div className="container grid grid-cols-2 lg:grid-cols-3 gap-8 my-10 px-4">
       <div className="lg:col-span-2 flex flex-col space-y-8">
-        {/* Address form  */}
-        <div className="my-2">
-          <AddressForm onSubmitAddress={handleAddressSubmit} open={open} setOpen={setOpen} />
-        </div>
+        <Accordion
+          type="single"
+          collapsible
+          className="space-y-4"
+          value={open}
+          onValueChange={setOpen}
+        >
+          {/* Address form  */}
+          <AddressForm onSubmitAddress={handleAddressSubmit} setOpen={setOpen} />
 
-        {/* Payment form */}
-        <div>
-          <PaymentForm shippingAddress={shippingAddress} open={open} />
-        </div>
-
+          {/* Payment form */}
+          <PaymentForm shippingAddress={shippingAddress} />
+        </Accordion>
         {/* Buttons */}
         <div className="flex justify-between align-middle mt-10">
           <Button
