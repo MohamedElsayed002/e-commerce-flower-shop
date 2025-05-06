@@ -220,7 +220,6 @@
   "location-detected-successfully": "Location detected successfully",
   "error-detecting-location": "Error detecting location",
   "detecting-location": "Detecting Location...",
-
   "order-state": "order state",
   "payment-method": "payment method",
   "order-date": "order date",
@@ -331,5 +330,10 @@
   "checkout-now": "Checkout Now",
   "free": "Free",
   "order-number": "OrderNumber",
-  "quantity": "Quantity\n"
+  "quantity": "Quantity\n",
+  "preview-website": "preview website",
+  "overview": "overview",
+  "categories": "categories",
+  "occasions": "occasions",
+  "products": "products"
 }
