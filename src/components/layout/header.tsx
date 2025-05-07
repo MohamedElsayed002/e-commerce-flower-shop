@@ -57,7 +57,13 @@ export default function Header() {
                 <IoLockClosedOutline className="w-[30px] h-5 text-custom-rose-900" />
               </Link>
               <LocaleToggle />
-              <ProfileIcon />
+              <ProfileIcon
+                links={[
+                  { href: "/profile", label: "profile" },
+                  { href: "/order", label: "orders" },
+                ]}
+                showSignOut={true}
+              />
             </>
           )}
 

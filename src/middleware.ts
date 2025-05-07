@@ -1,10 +1,10 @@
 import { withAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { LOCALES, routing } from "./i18n/routing";
 
 // Private pages
-const privatePages = ["/cart", "/checkout", "/allOrders", "/paymant"];
+const privatePages = ["/cart", "/checkout", "/allOrders", "/paymant", "/dashboard"];
 
 // Create middleware for handling internationalization (i18n)
 const handleI18nRouting = createMiddleware(routing);
@@ -27,6 +27,13 @@ const authMiddleware = withAuth(
 );
 
 export default async function middleware(req: NextRequest) {
+  // Redirect to the overview page if the user tries to access the dashboard directly
+  if (req.nextUrl.pathname.match(/^\/([a-z]{2})?\/?dashboard\/?$/i)) {
+    const url = req.nextUrl.clone();
+    url.pathname = url.pathname.replace(/dashboard\/?$/, 'dashboard/overview');
+    return NextResponse.redirect(url);
+  }
+
   // Private pathname regex
   const privatePathnameRegex = RegExp(
     `^(/(${LOCALES.join("|")}))?(${privatePages

@@ -104,6 +104,7 @@ const config: Config = {
         },
         "custom-gray": "#797979",
         "custom-black": "#2E2E30",
+        "custom-white": "#fbfbfd",
         "mint-green": {
           "50": "#EBFBF6",
           "100": "#D7F7ED",

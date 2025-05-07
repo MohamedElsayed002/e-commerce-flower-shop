@@ -1,3 +1,4 @@
+import Header from "@/components/layout/dashboard/header";
 import Sidebar from "@/components/layout/dashboard/sidebar";
 
 type LayoutProps = {
@@ -6,12 +7,17 @@ type LayoutProps = {
 
 export default function DashboardLayout({ children }: LayoutProps) {
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       {/* Sidebar */}
       <Sidebar />
 
-      {/* Content */}
-      {children}
+      <div className=" w-full">
+        {/*  Header */}
+        <Header />
+
+        {/* Content */}
+        <div className="bg-custom-white px-4 py-7">{children}</div>
+      </div>
     </div>
   );
 }
