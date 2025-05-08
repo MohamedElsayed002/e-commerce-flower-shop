@@ -18,24 +18,25 @@ export default function NavigationSection() {
 
   // Variables
   const p = usePathname();
+  const iconClassName = "w-[25px] h-[25px]";
   const navigationItems = [
     {
-      icon: <LuLayoutDashboard className="w-[25px] h-[25px] mr-[10px]" />,
+      icon: <LuLayoutDashboard className={iconClassName} />,
       label: t("overview"),
       href: "/dashboard/overview",
     },
     {
-      icon: <LuClipboardList className="w-[25px] h-[25px] mr-[10px]" />,
+      icon: <LuClipboardList className={iconClassName} />,
       label: t("categories"),
       href: "/dashboard/categories",
     },
     {
-      icon: <LuCalendarHeart className="w-[25px] h-[25px] mr-[10px]" />,
+      icon: <LuCalendarHeart className={iconClassName} />,
       label: t("occasions"),
       href: "/dashboard/occasions",
     },
     {
-      icon: <LuPackage className="w-[25px] h-[25px] mr-[10px]" />,
+      icon: <LuPackage className={iconClassName} />,
       label: t("products"),
       href: "/dashboard/products",
     },
@@ -52,16 +53,15 @@ export default function NavigationSection() {
       <div className="w-[237px] flex flex-col gap-4 mt-[37px]">
         <Link
           href="/"
-          className="bg-custom-rose-900 capitalize mb-2 text-base flex justify-center items-center p-[10px] rounded-lg font-semibold text-white"
+          className="bg-custom-rose-900 capitalize mb-2 text-base flex justify-center items-center p-[10px] rounded-lg font-semibold text-white transition duration-300 hover:text-custom-rose-900 hover:bg-custom-rose-50"
         >
-          <LuFlower className="w-[25px] h-[25px] mr-2" />
+          <LuFlower className="w-[25px] h-[25px] mr-2 ml-0 rtl:ml-2 rtl:mr-0" />
           {t("preview-website")}
         </Link>
 
         {/* Navigation list */}
         {navigationItems.map((i, index) => {
-          const isActive =
-            p === i.href || (i.href !== "/" && p.startsWith(i.href));
+          const isActive = p === i.href || (i.href !== "/" && p.startsWith(i.href));
 
           return (
             <Link
@@ -79,9 +79,9 @@ export default function NavigationSection() {
             >
               <span
                 className={`
-              w-[25px] h-[25px] mr-[10px]
-              ${isActive ? "text-custom-rose-900" : "text-current"}
-            `}
+                mr-[10px] ml-0 rtl:mr-0 rtl:ml-[10px]
+                ${isActive ? "text-custom-rose-900" : "text-current"}
+              `}
               >
                 {i.icon}
               </span>

@@ -1,31 +1,19 @@
 import ProfileIcon from "@/components/common/profile-icon";
+import { getUniqueBgColor } from "@/lib/utils/dashboard/get-unique-bg-color";
 import Image from "next/image";
 import React from "react";
 import { LuEllipsisVertical } from "react-icons/lu";
 
-// Define your color options
-const avatarColors = ["#0063D0", "#008961", "#753CBF", "#E32083", "#D50000", "#2E2E30"] as const;
-
-// Function to get a consistent color for a user
-const getAvatarColor = (userId?: string) => {
-  if (!userId) return avatarColors[0];
-  const hash = userId.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  return avatarColors[hash % avatarColors.length];
-};
-
 export default function UserSection({ userData }: { userData?: User }) {
   // Variables
-  const avatarColor = getAvatarColor(userData?._id);
-  const userInitial = userData?.firstName?.[0]?.toUpperCase() || "U";
+  const avatarColor = getUniqueBgColor(userData?._id);
+  const userInitial = userData?.firstName?.[0]?.toUpperCase();
 
   return (
     <div className="w-[255px] h-[70px] pt-4 border-t flex items-center justify-between">
       <div className="flex justify-center items-center">
         {/* Profile picture */}
-        <div
-          className="w-[54px] h-[54px] rounded-full overflow-hidden flex items-center justify-center"
-          style={{ backgroundColor: avatarColor }}
-        >
+        <div className="w-[54px] h-[54px] rounded-full overflow-hidden flex items-center justify-center">
           {userData?.photo ? (
             <Image
               src={userData.photo}
@@ -35,7 +23,12 @@ export default function UserSection({ userData }: { userData?: User }) {
               className="object-cover w-full h-full"
             />
           ) : (
-            <span className="text-white text-xl font-bold">{userInitial}</span>
+            <div
+              className="w-full h-full rounded-full flex items-center justify-center "
+              style={{ backgroundColor: avatarColor }}
+            >
+              <span className="text-white text-xl font-bold">{userInitial}</span>
+            </div>
           )}
         </div>
 

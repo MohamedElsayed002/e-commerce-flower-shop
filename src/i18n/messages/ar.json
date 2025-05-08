@@ -322,5 +322,11 @@
   "overview": "ملخص",
   "categories": "فئات",
   "occasions": "المناسبات",
-  "products": "منتجات"
+  "products": "منتجات",
+  "categories-add-category": "الفئات/إضافة فئة",
+  "occasions-add-occasion": "المناسبات/إضافة مناسبة",
+  "dashboard": "لوحة التحكم",
+  "add-category": "إضافة الفئة",
+  "add-occasion": "أضف مناسبة",
+  "add-product": "أضف المنتج"
 }

@@ -335,5 +335,12 @@
   "overview": "overview",
   "categories": "categories",
   "occasions": "occasions",
-  "products": "products"
+  "products": "products",
+  "categories-add-category": "categories/add m",
+  "occasions-add-occasion": "occasions/add occasion",
+  "products-add-product": "products/add product",
+  "dashboard": "Dashboard",
+  "add-category": "add category",
+  "add-occasion": "add occasion",
+  "add-product": "add product"
 }

@@ -9,7 +9,10 @@ export default async function Sidebar() {
 
   return (
     <aside className="w-[303px] flex justify-between items-center flex-col p-6 border-r border-black/8">
+      {/* Navs */}
       <NavigationSection />
+
+      {/* User */}
       <UserSection userData={userData} />
     </aside>
   );
