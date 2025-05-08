@@ -220,7 +220,6 @@
   "location-detected-successfully": "Location detected successfully",
   "error-detecting-location": "Error detecting location",
   "detecting-location": "Detecting Location...",
-
   "order-state": "order state",
   "payment-method": "payment method",
   "order-date": "order date",
@@ -331,5 +330,12 @@
   "checkout-now": "Checkout Now",
   "free": "Free",
   "order-number": "OrderNumber",
-  "quantity": "Quantity\n"
+  "quantity": "Quantity\n",
+  "delete-message": "Are you sure you want to delete this",
+  "confirm": "   Confirm",
+  "cancel": "Cancel",
+  "delete-title": "DeleteDialog",
+  "description-dialog": "Delete Confirmation Dialog",
+  "image-gallery": "Image Gallery",
+  "image-description": "Image collection"
 }

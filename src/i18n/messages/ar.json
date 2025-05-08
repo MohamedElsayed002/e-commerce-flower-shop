@@ -317,5 +317,11 @@
   "expiry-schema": "يجب أن يكون تاريخ انتهاء الصلاحية بتنسيق MM/Yyyy",
   "ccv-schema": "يجب أن يكون CCV 3 أو 4 أرقام",
   "back-home": "مواصلة التسوق",
-  "checkout-now": "ادفع الآن"
+  "checkout-now": "ادفع الآن",
+  "delete-message": "هل أنت متأكد أنك تريد حذف هذا",
+  "confirm": "يتأكد",
+  "cancel": "الغاء",
+  "delete-title": "الحذف",
+  "image-gallery": "معرض الصور",
+  "image-description": "مجموعة الصور"
 }
