@@ -1,29 +1,26 @@
-import { LucideIcon } from "lucide-react"; // or your icon library
-
 interface StatsCompProps {
-  icon: LucideIcon | React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   value: string | number | undefined;
   text?: string;
-  color?: string;
-  bgColor?: string;
+  color?: string; 
+  bgColor?: string; 
   currency?: string;
 }
 
-export function StatsComp({ icon: Icon, value, text, color, bgColor, currency }: StatsCompProps) {
+export function StatsComp({ icon: Icon, value, text, color = "text-current", bgColor = "bg-transparent", currency }: StatsCompProps) {
   return (
-    <div className={`w-[213px] h-[129px] border bg-[${bgColor}] p-2 space-y-3 rounded-lg`}>
-      
+    <div className={`w-[213px] h-[129px] border ${bgColor} p-2 space-y-3 rounded-lg`}>
       {/* Icon */}
-      <Icon className={color} style={{ color }} width={35} height={35} />
+      <Icon className={color} width={35} height={35} />
 
       {/* Title */}
-      <h1 className="font-bold text-2xl inline-flex items-baseline gap-1" style={{ color }}>
+      <h1 className={`font-bold text-2xl inline-flex items-baseline gap-1 ${color}`}>
         {value}
         {currency && <span className="text-sm">{currency}</span>}
       </h1>
 
       {/* Text */}
-      <p className="text-[#2E2E30]">{text}</p>
+      <p className="text-stats-text-textColor">{text}</p>
     </div>
   );
 }

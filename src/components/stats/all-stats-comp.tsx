@@ -28,12 +28,11 @@ export const AllStatsComp = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 pt-5 gap-3 p-16 bg-white rounded-xl">
-
       {/* Stats comp total products */}
       <StatsComp
         icon={Package}
-        color="#E32083"
-        bgColor="#E320830D"
+        color="text-stats-products-primary"
+        bgColor="bg-stats-products-bg"
         value={data?.overall.totalProducts}
         text={t("total-products")}
       />
@@ -41,8 +40,8 @@ export const AllStatsComp = () => {
       {/* Stats comp total orders */}
       <StatsComp
         icon={NotepadText}
-        color="#0063D0"
-        bgColor="#0063D00D"
+        color="text-stats-orders-primary"
+        bgColor="bg-stats-orders-bg"
         value={data?.overall.totalOrders}
         text={t("total-orders")}
       />
@@ -50,8 +49,8 @@ export const AllStatsComp = () => {
       {/* Stats comp total categories */}
       <StatsComp
         icon={StickyNote}
-        color="#753CBF"
-        bgColor="#753CBF0D"
+        color="text-stats-categories-primary"
+        bgColor="bg-stats-categories-bg"
         value={data?.overall.totalCategories}
         text={t("total-categories")}
       />
@@ -59,11 +58,11 @@ export const AllStatsComp = () => {
       {/* Stats comp total revenue */}
       <StatsComp
         icon={CircleDollarSign}
-        color="#008961"
-        bgColor="#0089610D"
+        color="text-stats-revenue-primary"
+        bgColor="bg-stats-revenue-bg"
         value={formattedNumber}
         text={t("total-revenue")}
-        currency={t('egp')}
+        currency={t("egp")}
       />
     </div>
   );

@@ -14,23 +14,21 @@ import { renderCustomizedLabel } from "./renderCustomizedLabel ";
 import { CategoriesSkeleton } from "../skeletons/stats/categories-skeleton";
 import { useTranslations } from "next-intl";
 
-// Cutomized colors piechart 
+// Cutomized colors piechart
 const customColors = ["#00A85F", "#197FD2", "#E93538"];
 
 export function OrderStatus() {
-
   // Translations
-  const t = useTranslations()
+  const t = useTranslations();
 
   // Mutate
   const { data, isPending, error } = useGetAllOrders();
 
   // Loading
-  if (isPending) return <CategoriesSkeleton/>
+  if (isPending) return <CategoriesSkeleton />;
 
   // Error
-  if (error) return <h1>{error.message}</h1>
-
+  if (error) return <h1>{error.message}</h1>;
 
   const rawOrders = data?.statistics.ordersByStatus || [];
   // Filter out null and pending statuses
@@ -67,17 +65,15 @@ export function OrderStatus() {
 
   return (
     <Card className="flex flex-col w-[276px] h-[381px] bg-white rounded-lg p-2">
-
       {/* Card header */}
       <CardHeader className="items-center pb-0">
-        <CardTitle>{t('orders-status')}</CardTitle>
+        <CardTitle>{t("orders-status")}</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px] [&_.recharts-text]:fill-background"
         >
-          
           {/* Pie shape */}
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent nameKey="count" hideLabel />} />
