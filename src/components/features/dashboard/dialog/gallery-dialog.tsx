@@ -34,7 +34,7 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi | null>(null);
 
-  // Effect to handle carousel
+  // UseEffect to handle carousel
   useEffect(() => {
     if (!api) return;
 
@@ -42,9 +42,12 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
     const onSelect = () => {
       setCurrentIndex(api.selectedScrollSnap());
     };
+
+    //Listen change events
     api.on("select", onSelect);
     onSelect();
 
+    // Remove event
     return () => {
       api.off("select", onSelect);
     };
@@ -69,7 +72,7 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
           className="w-full"
         >
           <div className="relative  my-8">
-            {/* Carousel Images */}
+            {/* Carousel images */}
             <CarouselContent className="w-[789px] h-[480px]">
               {images.map((src, index) => (
                 <CarouselItem key={index}>
