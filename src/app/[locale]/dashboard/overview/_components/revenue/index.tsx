@@ -12,6 +12,9 @@ import {
 } from "recharts";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import ChartTooltip from "./chart-tooltip";
+import ChartDot from "./chart-dot";
+import ChartToggle from "./chart-toggle";
 
 type RevenueChartProps = {
   dailyRevenue: DailyRevenue[];
@@ -25,33 +28,13 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
   // State
   const [isMonthly, setIsMonthly] = useState(true);
 
-  // Format the month name from a date string
-  const formatMonth = (dateStr: string) => {
-    const date = new Date(dateStr);
-    return new Intl.DateTimeFormat("en", { month: "short" }).format(date);
-  };
-
   // Format number as currency (EGP) without decimal places
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat("en-EG", {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(value);
-  };
-
-  // Custom tooltip component to show value on hover
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (!active || !payload || payload.length === 0) return null;
-
-    const value = payload[0].value as number;
-
-    return (
-      <div className="bg-white p-2 rounded shadow text-sm text-custom-rose-900">
-        <p>{t("revenue")}</p>
-        <p>{formatCurrency(value)}</p>
-      </div>
+  const formatMonth = (dateStr: string) =>
+    new Intl.DateTimeFormat("en", { month: "short" }).format(new Date(dateStr));
+  const formatCurrency = (value: number) =>
+    new Intl.NumberFormat("en-EG", { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(
+      value,
     );
-  };
 
   // Get the relevant dataset based on toggle (monthly or weekly)
   const data = (isMonthly ? monthlyRevenue : dailyRevenue).map((entry) => ({
@@ -62,21 +45,6 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
   // Find the highest revenue value for dot highlighting
   const maxValue = Math.max(...data.map((d) => d.value));
 
-  // Custom dot to highlight the max value point
-  const CustomDot = (props: any) => {
-    const { cx, cy, payload } = props;
-    if (payload.value !== maxValue) return null;
-
-    return (
-      <>
-        <circle cx={cx} cy={cy} r={6} fill="#ec4899" stroke="#fff" strokeWidth={2} />
-        <text x={cx} y={cy - 10} textAnchor="middle" fill="#ec4899" fontWeight="bold" fontSize={12}>
-          {formatCurrency(payload.value)}
-        </text>
-      </>
-    );
-  };
-
   return (
     <div>
       <Card>
@@ -84,23 +52,9 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
           <div className="flex justify-between items-center">
             {/* Text */}
             <h2 className="text-lg font-semibold">{t("revenue")}</h2>
-            <div className="text-sm">
-              {/* Button */}
-              <button
-                onClick={() => setIsMonthly(true)}
-                className={`mr-2 ${isMonthly ? "text-custom-rose-900 font-bold" : "text-gray-400"}`}
-              >
-                {t("monthly")}
-              </button>
 
-              {/* Button */}
-              <button
-                onClick={() => setIsMonthly(false)}
-                className={`mr-2 ${!isMonthly ? "text-custom-rose-900 font-bold " : "text-gray-400"}`}
-              >
-                {t("last-week")}
-              </button>
-            </div>
+            {/* Toggle button */}
+            <ChartToggle isMonthly={isMonthly} setIsMonthly={setIsMonthly} />
           </div>
 
           <div dir="ltr">
@@ -128,7 +82,7 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
                 />
 
                 {/* Tooltip on hover */}
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<ChartTooltip formatCurrency={formatCurrency} />} />
 
                 {/* Area */}
                 <Area
@@ -137,7 +91,7 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
                   stroke="#ec4899"
                   fill="url(#custom-rose-900)"
                   strokeWidth={2}
-                  dot={<CustomDot />}
+                  dot={<ChartDot maxValue={maxValue} formatCurrency={formatCurrency} />}
                 />
 
                 {/* Linear gradient */}
