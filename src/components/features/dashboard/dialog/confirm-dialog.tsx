@@ -50,7 +50,11 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
         {/* Dialog footer */}
         <DialogFooter className="flex justify-around w-[426px]">
           {/* Cancel button */}
-          <Button variant="outline" onClick={onClose} className="w-52 h-10 rounded-md">
+          <Button
+            variant="outline"
+            onClick={onClose}
+            className="w-52 h-10 rounded-md me-2 capitalize"
+          >
             {t("cancel")}
           </Button>
 
@@ -61,7 +65,7 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
               onConfirm();
               onClose();
             }}
-            className="w-52 h-10  bg-flamingo  rounded-md text-white"
+            className="w-52 h-10  bg-flamingo  rounded-md text-white capitalize "
           >
             {t("confirm")}
           </Button>
