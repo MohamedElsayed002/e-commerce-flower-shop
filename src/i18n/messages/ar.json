@@ -322,5 +322,11 @@
   "overview": "ملخص",
   "categories": "فئات",
   "occasions": "المناسبات",
-  "products": "منتجات"
+  "products": "منتجات",
+  "revenue": "ربح",
+  "monthly": "شهريا",
+  "last-week": "الأسبوع الماضي",
+  "top-selling-products": "المنتجات الأكثر مبيعًا",
+  "sales": "مبيعات",
+  "low-stock-products": "منتجات منخفضة المخزون"
 }

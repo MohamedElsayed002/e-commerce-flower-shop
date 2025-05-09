@@ -335,5 +335,11 @@
   "overview": "overview",
   "categories": "categories",
   "occasions": "occasions",
-  "products": "products"
+  "products": "Products",
+  "revenue": "Revenue",
+  "monthly": "Monthly",
+  "last-week": "Last Week",
+  "top-selling-products": "Top Selling Products",
+  "sales": "Sales",
+  "low-stock-products": "Low Stock Products"
 }
