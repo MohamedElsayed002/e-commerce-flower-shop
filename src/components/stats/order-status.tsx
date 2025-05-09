@@ -14,6 +14,7 @@ import { renderCustomizedLabel } from "./renderCustomizedLabel ";
 import { CategoriesSkeleton } from "../skeletons/stats/categories-skeleton";
 import { useTranslations } from "next-intl";
 
+// Cutomized colors piechart 
 const customColors = ["#00A85F", "#197FD2", "#E93538"];
 
 export function OrderStatus() {

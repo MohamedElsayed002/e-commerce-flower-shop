@@ -63,6 +63,7 @@ export const AllStatsComp = () => {
         bgColor="#0089610D"
         value={formattedNumber}
         text={t("total-revenue")}
+        currency={t('egp')}
       />
     </div>
   );
