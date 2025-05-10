@@ -20,7 +20,7 @@ export function UseContact() {
 
     // Handel success
     onSuccess: () => {
-      toast(t("message-sent-successfully"));
+      toast.success(t("message-sent-successfully"));
     },
 
     // Handel error
