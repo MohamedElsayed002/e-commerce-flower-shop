@@ -1,30 +1,21 @@
-"use client";
-
-import { useGetAllStats } from "@/hooks/statistics/use-get-all-stats";
-import { CircleDollarSign, NotepadText, Package, StickyNote } from "lucide-react";
-import { useFormatter, useTranslations } from "next-intl";
+import { CircleDollarSign, ClipboardList, Package, ReceiptText } from "lucide-react";
 import { StatsComp } from "../common/stat-comp";
-import { CategoriesSkeleton } from "../skeletons/stats/categories-skeleton";
+import { getAllStatistics } from "@/lib/apis/dashboard/statistics.api";
+import { getTranslations } from "next-intl/server";
 
-export const AllStatsComp = () => {
+export async function AllStatsComp() {
+
   // Translations
-  const t = useTranslations();
+  const t = await getTranslations();
 
-  // Mutation
-  const { data, isPending, error } = useGetAllStats();
+  // Data
+  const data = await getAllStatistics();
 
-  // Formatter
-  const format = useFormatter();
-
-  const formattedNumber = format.number(data?.overall?.totalRevenue ?? 0, {
+  // Formatting
+  const formattedNumber = new Intl.NumberFormat("en-US", {
     style: "decimal",
-  });
-
-  // Loading
-  if (isPending) return <CategoriesSkeleton />;
-
-  // Error
-  if (error) return <h1>{error.message}</h1>;
+    maximumSignificantDigits: 9,
+  }).format(data?.overall?.totalRevenue ?? 0);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 pt-5 gap-3 p-16 bg-white rounded-xl">
@@ -39,7 +30,7 @@ export const AllStatsComp = () => {
 
       {/* Stats comp total orders */}
       <StatsComp
-        icon={NotepadText}
+        icon={ReceiptText}
         color="text-stats-orders-primary"
         bgColor="bg-stats-orders-bg"
         value={data?.overall.totalOrders}
@@ -48,7 +39,7 @@ export const AllStatsComp = () => {
 
       {/* Stats comp total categories */}
       <StatsComp
-        icon={StickyNote}
+        icon={ClipboardList}
         color="text-stats-categories-primary"
         bgColor="bg-stats-categories-bg"
         value={data?.overall.totalCategories}
@@ -66,4 +57,4 @@ export const AllStatsComp = () => {
       />
     </div>
   );
-};
+}

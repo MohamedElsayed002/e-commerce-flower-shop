@@ -25,5 +25,5 @@ export async function getAllCategories() {
     throw new Error(payload.error);
   }
 
-  return payload.categories;
+  return payload;
 }
