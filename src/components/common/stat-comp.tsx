@@ -16,7 +16,7 @@ export function StatsComp({
   currency,
 }: StatsCompProps) {
   return (
-    <div className={`flex items-center gap-4 border ${bgColor} p-2 space-y-3 rounded-2xl`}>
+    <div className={`flex items-center gap-4  ${bgColor} p-2 space-y-3 rounded-2xl`}>
       {/* Icon */}
       <Icon className={color} width={35} height={35} />
 
