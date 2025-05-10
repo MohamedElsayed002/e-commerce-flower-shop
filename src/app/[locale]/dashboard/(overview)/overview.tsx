@@ -13,7 +13,10 @@ export default async function Overview() {
   return (
     <div>
       <div className="grid grid-cols-2 gap-6">
+        {/* Allstatscomp */}
         <AllStatsComp />
+
+        {/* Allcategories */}
         <AllCategories />
       </div>
 
@@ -22,6 +25,7 @@ export default async function Overview() {
           {/* order statue */}
           <OrderStatus />
         </div>
+
         <div className="flex-1">
           {/* Revenue chart */}
           <RevenueChart
@@ -31,7 +35,7 @@ export default async function Overview() {
         </div>
       </div>
 
-      <div className="flex justify-between gap-6 mt-6 ">
+      <div className="flex justify-between gap-6 mt-6">
         {/* Top-selling products */}
         <TopSellingProducts topSellingProducts={statistics.products.topSellingProducts || []} />
 

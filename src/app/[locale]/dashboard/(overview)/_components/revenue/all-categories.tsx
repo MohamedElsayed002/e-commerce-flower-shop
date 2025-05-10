@@ -11,7 +11,7 @@ export async function AllCategories() {
   const data = await getAllCategories();
 
   return (
-    <div className="bg-white rounded-xl shadow-md w-full h-[326px] ">
+    <div className="bg-white rounded-xl shadow-md w-full h-[326px]">
       {/* Title */}
       <h1 className="px-5 pt-5 pb-2 text-2xl text-black font-bold">{t("all-catgories")}</h1>
 
