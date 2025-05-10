@@ -23,7 +23,7 @@ export default function NavigationSection() {
     {
       icon: <LuLayoutDashboard className={iconClassName} />,
       label: t("overview"),
-      href: "/dashboard/overview",
+      href: "/dashboard",
     },
     {
       icon: <LuClipboardList className={iconClassName} />,
