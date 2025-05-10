@@ -23,6 +23,12 @@ type DeleteDialog = {
 export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName }: DeleteDialog) {
   // Translation
   const t = useTranslations();
+
+  // Handler confirm
+  const handleConfirm = () => {
+    onConfirm();
+    onClose();
+  };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       {/* Dialog container */}
@@ -61,10 +67,7 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
           {/* Confirm button */}
           <Button
             variant={"static"}
-            onClick={() => {
-              onConfirm();
-              onClose();
-            }}
+            onClick={handleConfirm}
             className="w-52 h-10  bg-flamingo  rounded-md text-white capitalize "
           >
             {t("confirm")}
