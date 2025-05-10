@@ -47,7 +47,7 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
     api.on("select", onSelect);
     onSelect();
 
-    // Remove event
+    // Clenup event listener
     return () => {
       api.off("select", onSelect);
     };

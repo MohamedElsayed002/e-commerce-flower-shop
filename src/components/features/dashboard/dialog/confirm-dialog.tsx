@@ -24,7 +24,7 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
   // Translation
   const t = useTranslations();
 
-  // Handler confirm
+  // Handler confirmtion
   const handleConfirm = () => {
     onConfirm();
     onClose();
@@ -32,7 +32,7 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       {/* Dialog container */}
-      <DialogContent className="text-center w-[474px] h-[371px] rtl:space-x-reverse">
+      <DialogContent className="text-center max-w-md sm:max-w-lg min-h-[371px] rtl:space-x-reverse">
         {/* Header read on server only */}
         <DialogHeader className="sr-only">
           <DialogTitle>{t("delete-title")}</DialogTitle>
@@ -49,26 +49,25 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
         </div>
 
         {/* Dialog message*/}
-        <p className="mb-6 font-inter font-semibold text-[18px]">
+        <p className="mb-6 font-inter font-semibold text-lg">
           {t("delete-message")} {itemName}?
         </p>
 
         {/* Dialog footer */}
-        <DialogFooter className="flex justify-around w-[426px]">
+        <DialogFooter className="flex justify-around w-full">
           {/* Cancel button */}
           <Button
             variant="outline"
             onClick={onClose}
-            className="w-52 h-10 rounded-md me-2 capitalize"
+            className="w-52 h-10 rounded-md me-2 capitalize text-sm"
           >
             {t("cancel")}
           </Button>
 
           {/* Confirm button */}
           <Button
-            variant={"static"}
             onClick={handleConfirm}
-            className="w-52 h-10  bg-flamingo  rounded-md text-white capitalize "
+            className="w-52 h-10  bg-flamingo text-sm rounded-md text-white capitalize "
           >
             {t("confirm")}
           </Button>
