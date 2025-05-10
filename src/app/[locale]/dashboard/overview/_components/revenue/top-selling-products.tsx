@@ -18,7 +18,7 @@ export default function TopSellingProducts({ topSellingProducts }: TopSellingPro
       <h2 className="text-xl font-bold mb-4 text-black">{t("top-selling-products")}</h2>
 
       {/* Scrollarea */}
-      <ScrollArea className="h-70">
+      <ScrollArea className="h-[200px]">
         <Table>
           <TableBody>
             {topSellingProducts.map((product, index) => (

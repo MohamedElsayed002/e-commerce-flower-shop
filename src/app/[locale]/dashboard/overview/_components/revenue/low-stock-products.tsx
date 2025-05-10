@@ -18,7 +18,7 @@ export default function LowStockProducts({ lowStockProducts }: LowStockProductPr
       <h2 className="text-xl font-bold mb-4 text-black">{t("low-stock-products")}</h2>
 
       {/* Scrollarea */}
-      <ScrollArea className="h-70">
+      <ScrollArea className="h-[200px]">
         <Table>
           <TableBody>
             {lowStockProducts.map((product) => (
