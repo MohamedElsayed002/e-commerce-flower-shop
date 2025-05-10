@@ -1,5 +1,10 @@
-import React from "react";
+import { Suspense } from "react";
+import Overview from "./overview";
 
-export default function OverviewPage() {
-  return <div>Overview Page</div>;
+export default function Page() {
+  return (
+    <Suspense fallback={<div className="p-4"></div>}>
+      <Overview />
+    </Suspense>
+  );
 }

@@ -17,7 +17,7 @@ export async function getAllStatistics() {
     },
     cache: "no-store",
   });
-  const payload: APIResponse<StatisticsResponse> = await response.json();
+  const payload = await response.json();
 
   if ("error" in payload) {
     throw new Error(payload.error);
