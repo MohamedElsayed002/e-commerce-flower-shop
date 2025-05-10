@@ -9,12 +9,10 @@ const textareavariants = cva(
     variants: {
       variant: {
         default:
-          "border border-custom-gray-100 placeholder:text-custom-gray-400 rounded-[10px] hover:border-custom-gray-500 disabled:bg-custom-gray-600",
+          "border border-custom-gray-100 placeholder:text-custom-gray-400 focus:outline-none focus:ring-1 focus:ring-custom-rose-900 focus:border-custom-rose-900 text-custom-gray-300  disabled:bg-custom-gray-600  focus:ring-1  rounded-base-10 hover:border-custom-gray-500 ",
       },
       status: {
         default: "",
-        focused:
-          "focus:outline-none focus:ring-1 focus:ring-custom-rose-900 focus:border-custom-rose-900",
         error:
           "focus:outline-none focus:ring-1 focus:ring-custom-red-50 focus:border-custom-red-50",
       },

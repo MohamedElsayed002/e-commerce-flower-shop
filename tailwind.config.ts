@@ -120,12 +120,14 @@ const config: Config = {
           "600": "#F3F3F3",
           "700": "#8080801A",
           "800": "#808080",
-          "900": "#FAFAFA",
+          "900": "#FAFAFA"
         },
         "custom-red": {
           "50": "#EE1014",
           "60": "#F93F43",
           "70": "#CD3336",
+          "80":"#C01518",
+          "90":"#FDE9E9"
         },
         "mint-green": {
           "50": "#EBFBF6",
@@ -153,9 +155,12 @@ const config: Config = {
           "800": "#05603A",
           "900": "#054F31",
         },
+       
+        
         flamingo: "#F05454",
         "rate-color": "#FBA707",
       },
+     
       backgroundColor: {
         "main-color": "#FEEDF7",
       },
@@ -163,6 +168,7 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "base-10":"10px"
       },
       keyframes: {
         "accordion-down": {
