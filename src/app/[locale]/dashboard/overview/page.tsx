@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import Overview from "./overview";
+import RevenueSkeleton from "./_components/revenue/revenue-skeleton";
 
 export default function Page() {
   return (
-    <Suspense fallback={<div className="p-4"></div>}>
+    <Suspense fallback={<RevenueSkeleton />}>
       <Overview />
     </Suspense>
   );
