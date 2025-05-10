@@ -348,5 +348,12 @@
   "dashboard": "Dashboard",
   "add-category": "add category",
   "add-occasion": "add occasion",
-  "add-product": "add product"
+  "add-product": "add product",
+  "all-catgories": "All Catgories",
+  "total-products": "Total Products",
+  "total-orders": "Total Orders",
+  "total-categories": "Total categories",
+  "total-revenue": "Total revenue",
+  "orders-status": "Orders Status",
+  "egp": "EGP"
 }

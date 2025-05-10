@@ -13,7 +13,7 @@ export default function LowStockProducts({ lowStockProducts }: LowStockProductPr
   const t = useTranslations();
 
   return (
-    <div className="p-4 w-[536px] bg-white rounded-xl shadow-md">
+    <div className="p-4 w-full bg-white rounded-xl shadow-md">
       {/* Text */}
       <h2 className="text-xl font-bold mb-4 text-black">{t("low-stock-products")}</h2>
 

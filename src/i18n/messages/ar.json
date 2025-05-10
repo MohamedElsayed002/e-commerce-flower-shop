@@ -334,5 +334,12 @@
   "dashboard": "لوحة التحكم",
   "add-category": "إضافة الفئة",
   "add-occasion": "أضف مناسبة",
-  "add-product": "أضف المنتج"
+  "add-product": "أضف المنتج",
+  "all-catgories": "جميع منتجات",
+  "total-products": "إجمالي المنتجات",
+  "total-orders": "إجمالي الطلبات",
+  "total-categories": "إجمالي الفئات",
+  "total-revenue": "إجمالي الإيرادات",
+  "orders-status": "أوامر الوضع",
+  "egp": "مصري"
 }

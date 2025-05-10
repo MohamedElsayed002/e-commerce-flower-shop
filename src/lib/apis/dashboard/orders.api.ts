@@ -4,11 +4,11 @@ import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
-export async function getAllStatistics() {
+export async function getAllOrders() {
   const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
   const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
 
-  const apiUrl = `${process.env.API}/statistics`;
+  const apiUrl = `${process.env.API}/statistics/orders`;
 
   const response = await fetch(apiUrl, {
     method: "GET",
@@ -19,11 +19,11 @@ export async function getAllStatistics() {
     },
     cache: "no-store",
   });
-  const payload = await response.json();
 
+  const payload: APIResponse<OrderStatisticsResponse> = await response.json();
+  
   if ("error" in payload) {
     throw new Error(payload.error);
   }
-
-  return payload.statistics;
+  return payload;
 }

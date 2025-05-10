@@ -64,8 +64,11 @@ declare type OrdersStatistics = {
   monthlyRevenue: MonthlyRevenue[];
 };
 
+declare type OrderStatisticsResponse = {
+  statistics: OrdersStatistics
+}
+
 declare type CategoryStatistics = {
-  name: string;
-  totalProducts: number;
-  totalRevenue: number;
-} & DatabaseFields;
+  metadata : Metadata
+  categories: Category[]
+}
