@@ -18,7 +18,7 @@ export default function NavigationSection() {
 
   // Variables
   const p = usePathname();
-  const iconClassName = "w-[25px] h-[25px]";
+  const iconClassName = "w-6 h-6";
   const navigationItems = [
     {
       icon: <LuLayoutDashboard className={iconClassName} />,
@@ -43,19 +43,19 @@ export default function NavigationSection() {
   ];
 
   return (
-    <div className="w-[237px] flex justify-center items-center flex-col">
+    <div className="w-56 flex justify-center items-center flex-col">
       {/* Logo */}
       <Link href="/dashboard">
         <Image src="/assets/images/logo.png" alt="rose-app-logo" width={86} height={0} />
       </Link>
 
       {/* Preview website */}
-      <div className="w-[237px] flex flex-col gap-4 mt-[37px]">
+      <div className="w-56 flex flex-col gap-4 mt-9">
         <Link
           href="/"
-          className="bg-custom-rose-900 capitalize mb-2 text-base flex justify-center items-center p-[10px] rounded-lg font-semibold text-white transition duration-300 hover:text-custom-rose-900 hover:bg-custom-rose-50"
+          className="bg-custom-rose-900 capitalize mb-2 text-base flex justify-center items-center p-2 rounded-lg font-semibold text-white transition duration-300 hover:text-custom-rose-900 hover:bg-custom-rose-50"
         >
-          <LuFlower className="w-[25px] h-[25px] mr-2 ml-0 rtl:ml-2 rtl:mr-0" />
+          <LuFlower className="w-6 h-6 mr-2 ml-0 rtl:ml-2 rtl:mr-0" />
           {t("preview-website")}
         </Link>
 
@@ -68,7 +68,7 @@ export default function NavigationSection() {
               href={i.href}
               key={index}
               className={`
-              text-base capitalize flex items-center p-[10px] rounded-lg font-bold
+              text-base capitalize flex items-center p-2 rounded-lg font-bold
               transition duration-300
               ${
                 isActive
@@ -79,7 +79,7 @@ export default function NavigationSection() {
             >
               <span
                 className={`
-                mr-[10px] ml-0 rtl:mr-0 rtl:ml-[10px]
+                mr-2 ml-0 rtl:mr-0 rtl:ml-2
                 ${isActive ? "text-custom-rose-900" : "text-current"}
               `}
               >

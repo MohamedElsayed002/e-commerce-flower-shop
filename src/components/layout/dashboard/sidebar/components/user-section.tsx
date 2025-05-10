@@ -10,10 +10,10 @@ export default function UserSection({ userData }: { userData?: User }) {
   const userInitial = userData?.firstName?.[0]?.toUpperCase();
 
   return (
-    <div className="w-[255px] h-[70px] pt-4 border-t flex items-center justify-between">
+    <div className="w-60 h-16 pt-4 border-t flex items-center justify-between">
       <div className="flex justify-center items-center">
         {/* Profile picture */}
-        <div className="w-[54px] h-[54px] rounded-full overflow-hidden flex items-center justify-center">
+        <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
           {userData?.photo ? (
             <Image
               src={userData.photo}
@@ -33,7 +33,7 @@ export default function UserSection({ userData }: { userData?: User }) {
         </div>
 
         {/* User data */}
-        <div className="ml-[10px] w-[142px]">
+        <div className="ml-2 w-32">
           {/* Name */}
           <p className="text-sm font-bold truncate capitalize">
             {userData?.firstName} {userData?.lastName}

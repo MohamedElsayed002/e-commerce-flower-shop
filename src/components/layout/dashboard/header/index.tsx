@@ -45,7 +45,7 @@ export default function Header() {
   });
 
   return (
-    <div className="h-[70px] border-b border-black/8 flex items-center px-4">
+    <div className="h-16 border-b border-black/8 flex items-center px-4">
       <Breadcrumb>
         <BreadcrumbList>
           {/* Dashboard root */}

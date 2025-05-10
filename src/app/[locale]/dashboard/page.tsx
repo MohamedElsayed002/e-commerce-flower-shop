@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 export default function Page() {
-  return <span>Hello from dashboard</span>;
+  redirect('/dashboard/overview');
 }

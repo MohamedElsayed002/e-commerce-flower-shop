@@ -8,7 +8,7 @@ export default async function Sidebar() {
   const userData = (await fetchUserData()) || [];
 
   return (
-    <aside className="w-[303px] flex justify-between items-center flex-col p-6 border-r border-black/8">
+    <aside className="w-72 flex justify-between items-center flex-col p-6 border-r border-black/8">
       {/* Navs */}
       <NavigationSection />
 
