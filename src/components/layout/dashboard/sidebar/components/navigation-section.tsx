@@ -61,8 +61,8 @@ export default function NavigationSection() {
 
         {/* Navigation list */}
         {navigationItems.map((i, index) => {
-          const isActive = p === i.href || (i.href !== "/" && p.startsWith(i.href));
-
+          const isActive = p === i.href || (i.href !== "/dashboard" && p.startsWith(`${i.href}/`));
+      
           return (
             <Link
               href={i.href}
