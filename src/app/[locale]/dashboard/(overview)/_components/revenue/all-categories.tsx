@@ -11,12 +11,12 @@ export async function AllCategories() {
   const data = await getAllCategories();
 
   return (
-    <div className="bg-white rounded-xl shadow-md w-full h-[326px]">
+    <div className="bg-white rounded-xl w-full h-[326px] ">
       {/* Title */}
       <h1 className="px-5 pt-5 pb-2 text-2xl text-black font-bold">{t("all-catgories")}</h1>
 
       {/* Scroll area */}
-      <ScrollArea className=" h-[250px] bg-white p-5 ">
+      <ScrollArea className=" h-[260px] bg-white p-5 ">
         <div>
           {data.categories.map((item) => {
             return (

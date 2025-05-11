@@ -48,7 +48,7 @@ export default function RevenueChart({ dailyRevenue, monthlyRevenue }: RevenueCh
   return (
     <div>
       <Card>
-        <CardContent className="shadow-md rounded-xl bg-white w-full h-[381px] ">
+        <CardContent className="rounded-xl bg-white w-full h-[381px] ">
           <div className="flex justify-between items-center">
             {/* Text */}
             <h2 className="text-2xl font-semibold">{t("revenue")}</h2>

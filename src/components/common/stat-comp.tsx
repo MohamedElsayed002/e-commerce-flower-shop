@@ -16,13 +16,13 @@ export function StatsComp({
   currency,
 }: StatsCompProps) {
   return (
-    <div className={`flex items-center gap-4  ${bgColor} p-2 space-y-3 rounded-2xl`}>
-      {/* Icon */}
-      <Icon className={color} width={35} height={35} />
+    <div className={`flex items-center gap-4 ${bgColor} p-2 space-y-3 rounded-2xl`}>
+      <div className="flex flex-col ms-2">
+        {/* Icon */}
+        <Icon className={color} width={35} height={35} />
 
-      <div className="flex flex-col">
         {/* Title */}
-        <h1 className={`font-bold text-2xl ${color}`}>
+        <h1 className={`font-bold text-2xl mt-2 ${color}`}>
           {value}
           {currency && <span className="text-sm">{currency}</span>}
         </h1>

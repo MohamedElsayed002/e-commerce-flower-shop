@@ -17,7 +17,7 @@ export async function AllStatsComp() {
   }).format(data?.overall?.totalRevenue ?? 0);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 w-full h-[326px] gap-3 p-5 bg-white rounded-xl shadow-md ">
+    <div className="grid grid-cols-1 md:grid-cols-2 w-full h-[326px] gap-3 p-5 bg-white rounded-xl">
       {/* Stats comp total products */}
       <StatsComp
         icon={Package}
