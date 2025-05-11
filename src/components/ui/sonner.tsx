@@ -9,6 +9,7 @@ type ToasterProps = React.ComponentProps<typeof Sonner>;
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme();
 
+  // Sonner variants
   const toasterVariants = cva(
     "group group-[.toaster]:text-foreground group-[.toaster]:border group-[.toaster]:shadow-lg",
     {
