@@ -11,7 +11,7 @@ export default function DashboardLayout({ children }: LayoutProps) {
       {/* Sidebar */}
       <Sidebar />
 
-      <div className="w-full ml-72">
+      <div className=" w-full ml-72">
         {/*  Header */}
         <Header />
 

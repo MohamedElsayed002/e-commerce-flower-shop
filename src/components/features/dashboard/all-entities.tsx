@@ -12,13 +12,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Link } from "lucide-react";
 import React, { useState } from "react";
 import { LuPencil, LuPlus, LuSearch, LuTrash2 } from "react-icons/lu";
 import { DeleteConfirmationDialog } from "./dialog/confirm-dialog";
 import { useDeleteProduct } from "@/hooks/dashboard/use-delete-product";
-import { deleteProduct } from "@/lib/actions/dashboard/product.action";
-import { FaRegEye } from "react-icons/fa6";
+import { useDebouncedCallback } from 'use-debounce';
+import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type AllEntitiesProps = {
   data: any[];
@@ -29,10 +29,25 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
   // State
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
   // Mutation
   const { deleteProduct, isPending, error } = useDeleteProduct();
 
   // Functions
+  const handleSearch = useDebouncedCallback((term: string) => {
+    console.log(`Searching... ${term}`);
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set('query', term);
+    } else {
+      params.delete('query');
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }, 300);
+
   const handleDelete = (productId: string) => {
     deleteProduct(productId);
   };
@@ -50,10 +65,12 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
       {/* Search bar */}
       <div className="w-full border border-black/15 flex items-center rounded-lg p-4 mb-4">
         <LuSearch className="mr-2 text-black/15" />
-        <Input
+      <Input
           type="text"
           placeholder="Search for a product..."
           className="w-full p-0 h-auto bg-transparent rounded-none border-none focus:border-none focus:outline-none ring-0 focus-visible:ring-0"
+          onChange={(e) => handleSearch(e.target.value)}
+          defaultValue={searchParams.get('query')?.toString()}
         />
       </div>
 

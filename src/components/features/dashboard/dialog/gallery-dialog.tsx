@@ -19,7 +19,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CarouselDots } from "@/components/ui/carousel-dots";
 import { useTranslations } from "use-intl";
-
+import img from "/Public/d48948c97f91985253ccc6ee4b31a3a0be075d1c.png";
 // Type
 type GalleryProps = {
   isOpen: boolean;
@@ -78,10 +78,10 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                 <CarouselItem key={index}>
                   <div className="relative w-full h-full">
                     <Image
-                      src={src}
-                      alt={`Image ${index + 1}`}
+                      src={img}
+                      alt="/Public/d48948c97f91985253ccc6ee4b31a3a0be075d1c.png"
                       fill
-                      className="object-cover rounded-2xl "
+                      className="object-contain rounded-2xl "
                       priority={index === 0}
                     />
                   </div>
