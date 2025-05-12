@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 import { LOCALES, routing } from "./i18n/routing";
 
 // Private pages
-const privatePages = ["/cart", "/checkout", "/allOrders", "/paymant"];
+const privatePages = ["/cart", "/checkout", "/allOrders", "/paymant", "/dashboard"];
 
 // Create middleware for handling internationalization (i18n)
 const handleI18nRouting = createMiddleware(routing);

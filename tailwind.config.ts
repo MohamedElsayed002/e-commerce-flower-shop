@@ -26,6 +26,27 @@ const config: Config = {
         roboto: ["var(--font-roboto)", "sans-serif"],
       },
       colors: {
+        stats: {
+          text: {
+            textColor: "#2E2E30",
+          },
+          products: {
+            primary: "#E32083",
+            bg: "#E320830D",
+          },
+          orders: {
+            primary: "#0063D0",
+            bg: "#0063D00D",
+          },
+          categories: {
+            primary: "#753CBF",
+            bg: "#753CBF0D",
+          },
+          revenue: {
+            primary: "#008961",
+            bg: "#0089610D",
+          },
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -104,6 +125,7 @@ const config: Config = {
         },
         "custom-gray": "#797979",
         "custom-black": "#2E2E30",
+        "custom-white": "#fbfbfd",
         "mint-green": {
           "50": "#EBFBF6",
           "100": "#D7F7ED",
