@@ -317,7 +317,6 @@
   "expiry-schema": "يجب أن يكون تاريخ انتهاء الصلاحية بتنسيق MM/Yyyy",
   "ccv-schema": "يجب أن يكون CCV 3 أو 4 أرقام",
   "back-home": "مواصلة التسوق",
-  "checkout-now": "ادفع الآن",
   "preview-website": "معاينة موقع الويب",
   "overview": "ملخص",
   "categories": "فئات",
@@ -341,5 +340,12 @@
   "total-categories": "إجمالي الفئات",
   "total-revenue": "إجمالي الإيرادات",
   "orders-status": "أوامر الوضع",
-  "egp": "مصري"
+  "egp": "مصري",
+  "checkout-now": "ادفع الآن",
+  "delete-message": "هل أنت متأكد أنك تريد حذف هذا",
+  "confirm": "تأكد",
+  "cancel": "الغاء",
+  "delete-title": "الحذف",
+  "image-gallery": "معرض الصور",
+  "image-description": "مجموعة الصور"
 }

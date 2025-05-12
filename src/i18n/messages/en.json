@@ -330,7 +330,6 @@
   "checkout-now": "Checkout Now",
   "free": "Free",
   "order-number": "OrderNumber",
-  "quantity": "Quantity\n",
   "preview-website": "preview website",
   "overview": "overview",
   "categories": "categories",
@@ -355,5 +354,13 @@
   "total-categories": "Total categories",
   "total-revenue": "Total revenue",
   "orders-status": "Orders Status",
-  "egp": "EGP"
+  "egp": "EGP",
+  "quantity": "Quantity\n",
+  "delete-message": "Are you sure you want to delete this",
+  "confirm": "   Confirm",
+  "cancel": "Cancel",
+  "delete-title": "DeleteDialog",
+  "description-dialog": "Delete Confirmation Dialog",
+  "image-gallery": "Image Gallery",
+  "image-description": "Image collection"
 }
