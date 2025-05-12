@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -9,8 +13,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Link } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { LuPencil, LuPlus, LuSearch, LuTrash2 } from "react-icons/lu";
+import { DeleteConfirmationDialog } from "./dialog/confirm-dialog";
 
 type AllEntitiesProps = {
   data: any[];
@@ -18,6 +23,13 @@ type AllEntitiesProps = {
 };
 
 export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+
+  // Dummy function
+  const handleDelete = () => {
+    console.log("product deleted");
+  };
+
   return (
     <div className="bg-white w-full rounded-2xl p-6">
       <div className="flex justify-between items-center mb-4">
@@ -100,7 +112,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                           <Button className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2">
                             <LuPencil className="mr-1" /> Edit
                           </Button>
-                          <Button className="bg-custom-red/10 rounded-lg px-2 py-1 flex items-center text-custom-red">
+                          <Button onClick={() => setDeleteDialogOpen(true)} className="bg-custom-red/10 rounded-lg px-2 py-1 flex items-center text-custom-red">
                             <LuTrash2 className="mr-1" /> Delete
                           </Button>
                         </TableCell>
@@ -120,6 +132,13 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
           )}
         </TableBody>
       </Table>
+
+      <DeleteConfirmationDialog
+          isOpen={deleteDialogOpen}
+          onClose={() => setDeleteDialogOpen(false)}
+          onConfirm={handleDelete}
+          itemName="product"
+        />
     </div>
   );
 }

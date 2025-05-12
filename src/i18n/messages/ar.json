@@ -328,5 +328,12 @@
   "dashboard": "لوحة التحكم",
   "add-category": "إضافة الفئة",
   "add-occasion": "أضف مناسبة",
-  "add-product": "أضف المنتج"
+  "add-product": "أضف المنتج",
+  "delete-message": "Are you sure you want to delete this",
+  "confirm": "   Confirm",
+  "cancel": "Cancel",
+  "delete-title": "DeleteDialog",
+  "description-dialog": "Delete Confirmation Dialog",
+  "image-gallery": "Image Gallery",
+  "image-description": "Image collection"
 }
