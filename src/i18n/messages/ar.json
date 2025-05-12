@@ -335,5 +335,7 @@
   "delete-title": "DeleteDialog",
   "description-dialog": "Delete Confirmation Dialog",
   "image-gallery": "Image Gallery",
-  "image-description": "Image collection"
+  "image-description": "Image collection",
+  "product-deleted-successfully": "تم حذف المنتج بنجاح",
+  "failed-to-delete-product": "فشل في حذف المنتج:"
 }

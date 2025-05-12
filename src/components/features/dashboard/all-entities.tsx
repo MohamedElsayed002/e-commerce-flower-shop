@@ -16,6 +16,9 @@ import { Link } from "lucide-react";
 import React, { useState } from "react";
 import { LuPencil, LuPlus, LuSearch, LuTrash2 } from "react-icons/lu";
 import { DeleteConfirmationDialog } from "./dialog/confirm-dialog";
+import { useDeleteProduct } from "@/hooks/dashboard/use-delete-product";
+import { deleteProduct } from "@/lib/actions/dashboard/product.action";
+import { FaRegEye } from "react-icons/fa6";
 
 type AllEntitiesProps = {
   data: any[];
@@ -23,11 +26,15 @@ type AllEntitiesProps = {
 };
 
 export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
+  // State
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
-  // Dummy function
-  const handleDelete = () => {
-    console.log("product deleted");
+  // Mutation
+  const { deleteProduct, isPending, error } = useDeleteProduct();
+
+  // Functions
+  const handleDelete = (productId: string) => {
+    deleteProduct(productId);
   };
 
   return (
@@ -109,10 +116,18 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                           key={`${product._id}-actions`}
                           className="text-right flex items-center"
                         >
-                          <Button className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2">
-                            <LuPencil className="mr-1" /> Edit
+                          <Button
+                            asChild
+                            className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2"
+                          >
+                          <Link href={`/dashboard/products/edit/${product._id}`}>
+                              <LuPencil className="mr-1" /> Edit
+                            </Link>
                           </Button>
-                          <Button onClick={() => setDeleteDialogOpen(true)} className="bg-custom-red/10 rounded-lg px-2 py-1 flex items-center text-custom-red">
+                          <Button
+                            onClick={() => setDeleteDialogOpen(true)}
+                            className="bg-custom-red/10 rounded-lg px-2 py-1 flex items-center text-custom-red"
+                          >
                             <LuTrash2 className="mr-1" /> Delete
                           </Button>
                         </TableCell>
@@ -121,6 +136,12 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                       return null;
                   }
                 })}
+                <DeleteConfirmationDialog
+                  isOpen={deleteDialogOpen}
+                  onClose={() => setDeleteDialogOpen(false)}
+                  onConfirm={() => handleDelete(product._id)}
+                  itemName="product"
+                />
               </TableRow>
             ))
           ) : (
@@ -132,13 +153,6 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
           )}
         </TableBody>
       </Table>
-
-      <DeleteConfirmationDialog
-          isOpen={deleteDialogOpen}
-          onClose={() => setDeleteDialogOpen(false)}
-          onConfirm={handleDelete}
-          itemName="product"
-        />
     </div>
   );
 }

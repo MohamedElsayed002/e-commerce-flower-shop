@@ -1,5 +1,5 @@
 declare type ProductDashboardResponse = {
     message: string;
-    user: User;
+    document: Product;
   };
   

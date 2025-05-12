@@ -4,7 +4,7 @@ import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
-export async function editProfileAction(productId: string) {
+export async function deleteProduct(productId: string) {
   const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
   const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
 
@@ -20,6 +20,8 @@ export async function editProfileAction(productId: string) {
   });
 
   const payload: APIResponse<ProductDashboardResponse> = await response.json();
+
+  console.log("Response from deleteProduct:", payload);
 
   return payload;
 }

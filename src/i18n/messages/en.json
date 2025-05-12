@@ -342,5 +342,7 @@
   "dashboard": "Dashboard",
   "add-category": "add category",
   "add-occasion": "add occasion",
-  "add-product": "add product"
+  "add-product": "add product",
+  "product-deleted-successfully": "Product deleted successfully",
+  "failed-to-delete-product": "Failed to delete product:"
 }
