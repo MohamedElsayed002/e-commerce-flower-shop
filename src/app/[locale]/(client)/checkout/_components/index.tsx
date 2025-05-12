@@ -32,7 +32,7 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
   // Handle address submit
   const handleAddressSubmit = (address: ShippingAddress) => {
     setShippingAddress(address);
-    setOpen("ordring");
+    setOpen("paymentform");
   };
 
   return (
@@ -46,7 +46,7 @@ export default function CheckoutContent({ cart }: { cart: Cart }) {
           onValueChange={setOpen}
         >
           {/* Address form  */}
-          <AddressForm onSubmitAddress={handleAddressSubmit} setOpen={setOpen} />
+          <AddressForm onSubmitAddress={handleAddressSubmit} setOpen={setOpen} open={open} />
 
           {/* Payment form */}
           <PaymentForm shippingAddress={shippingAddress} />
