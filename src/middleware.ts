@@ -6,6 +6,8 @@ import { LOCALES, routing } from "./i18n/routing";
 // Private pages
 const privatePages = ["/cart", "/checkout", "/allOrders", "/paymant"];
 
+const dashboardPathRegex = /^\/(ar|en)?\/?dashboard(\/.*)?$/i;
+
 // Create middleware for handling internationalization (i18n)
 const handleI18nRouting = createMiddleware(routing);
 
@@ -16,10 +18,15 @@ const authMiddleware = withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => token != null,
+      authorized: ({ token, req }) => {
+        if (dashboardPathRegex.test(req.nextUrl.pathname)) {
+          return token?.role === "admin";
+        }
+
+        return token != null;
+      },
     },
     pages: {
-      // Redirect to home page if not authenticated
       signIn: "/",
       error: "/",
     },
@@ -38,7 +45,9 @@ export default async function middleware(req: NextRequest) {
   // Check if the requested page is private
   const isPrivatePage = privatePathnameRegex.test(req.nextUrl.pathname);
 
-  if (isPrivatePage) {
+  const isDashboard = dashboardPathRegex.test(req.nextUrl.pathname);
+
+  if (isPrivatePage || isDashboard) {
     // Apply NextAuth authentication for private pages
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
