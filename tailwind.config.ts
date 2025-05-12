@@ -26,6 +26,27 @@ const config: Config = {
         roboto: ["var(--font-roboto)", "sans-serif"],
       },
       colors: {
+        stats: {
+          text: {
+            textColor: "#2E2E30",
+          },
+          products: {
+            primary: "#E32083",
+            bg: "#E320830D",
+          },
+          orders: {
+            primary: "#0063D0",
+            bg: "#0063D00D",
+          },
+          categories: {
+            primary: "#753CBF",
+            bg: "#753CBF0D",
+          },
+          revenue: {
+            primary: "#008961",
+            bg: "#0089610D",
+          },
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -102,18 +123,9 @@ const config: Config = {
           "800": "#2D265D",
           "900": "#160E4B",
         },
-        "custom-gray": {
-          "50": "#F5F5F5",
-          "100": "#EBEBEB",
-          "200": "#D6D6D6",
-          "300": "#C2C2C2",
-          "400": "#ADADAD",
-          "500": "#999999",
-          "600": "#858585",
-          "700": "#707070",
-          "800": "#5C5C5C",
-          "900": "#474747",
-        },
+        "custom-gray": "#797979",
+        "custom-black": "#2E2E30",
+        "custom-white": "#fbfbfd",
         "mint-green": {
           "50": "#EBFBF6",
           "100": "#D7F7ED",
