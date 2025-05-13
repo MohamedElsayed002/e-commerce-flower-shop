@@ -21,7 +21,5 @@ export async function deleteProduct(productId: string) {
 
   const payload: APIResponse<ProductDashboardResponse> = await response.json();
 
-  console.log("Response from deleteProduct:", payload);
-
   return payload;
 }

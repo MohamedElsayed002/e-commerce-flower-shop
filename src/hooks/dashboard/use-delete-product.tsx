@@ -11,7 +11,6 @@ export function useDeleteProduct() {
   const { mutate } = useMutation({
     mutationFn: async (productId: string) => {
       const payload = await deleteProduct(productId);
-      console.log("payload:", payload);
 
       if ("error" in payload) {
         throw new Error(payload.error);
