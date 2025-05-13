@@ -19,10 +19,11 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 type AllEntitiesProps = {
-  data: Product[];
+  data: Product[]; // NOTE: After merging data is going to be of either type of Product[], Occasion[], or Category[]
   tableHeader: string[];
 };
 
+// NOTE: This component is going to be re-usable for products, occasions and categories table, hence the name of it.
 export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
   // Translation
   const t = useTranslations();
@@ -40,7 +41,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
     setSearchQuery(query);
     if (query) {
       const filtered = data.filter((product) =>
-        product.title.toLowerCase().includes(query.toLowerCase()),
+        product.title?.toLowerCase().includes(query.toLowerCase()),
       );
       setFilteredData(filtered);
     } else {
@@ -59,7 +60,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
       <div className="flex justify-between items-center mb-4">
         {/* Title and add button */}
         <h1 className="text-2xl font-semibold text-custom-black">{t("all-products")}</h1>
-        <Button className="bg-custom-rose-900 text-white rounded-lg px-4 py-2  gap-2">
+        <Button className="bg-custom-rose-900 text-white rounded-lg px-4 py-2 gap-2 transition duration-300 hover:bg-custom-white hover:text-custom-rose-900">
           <Link href="/dashboard/products/add" className="flex items-center">
             <LuPlus /> {t("add-a-new-product")}
           </Link>
@@ -112,7 +113,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                       return (
                         <TableCell
                           key={`${product._id}-stock`}
-                          className={`${product.quantity < 5 ? "text-red-500" : "text-black"}`}
+                          className={`${(product.quantity ?? 0) < 5 ? "text-red-500" : "text-black"}`}
                         >
                           {product.quantity || t("n-a")}
                         </TableCell>
@@ -144,7 +145,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                         >
                           <Button
                             asChild
-                            className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2"
+                            className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2 transition duration-300 hover:bg-custom-white"
                           >
                             <Link href={`/dashboard/products/edit/${product._id}`}>
                               <LuPencil className="mr-1" /> {t("edit")}
@@ -152,7 +153,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                           </Button>
                           <Button
                             onClick={() => setDeleteDialogOpen(true)}
-                            className="bg-custom-red/10 rounded-lg px-2 py-1 flex items-center text-custom-red"
+                            className="bg-custom-red/10 rounded-lg px-2 py-1 flex items-center text-custom-red transition duration-300 hover:bg-custom-white"
                           >
                             <LuTrash2 className="mr-1" /> {t("delete")}
                           </Button>
@@ -165,7 +166,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                 <DeleteConfirmationDialog
                   isOpen={deleteDialogOpen}
                   onClose={() => setDeleteDialogOpen(false)}
-                  onConfirm={() => handleDelete(product._id)}
+                  onConfirm={() => handleDelete(product._id ?? "")}
                   itemName="product"
                 />
               </TableRow>
