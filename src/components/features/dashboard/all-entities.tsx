@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -16,36 +14,38 @@ import React, { useState } from "react";
 import { LuPencil, LuPlus, LuSearch, LuTrash2 } from "react-icons/lu";
 import { DeleteConfirmationDialog } from "./dialog/confirm-dialog";
 import { useDeleteProduct } from "@/hooks/dashboard/use-delete-product";
-import { useDebouncedCallback } from 'use-debounce';
+import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 type AllEntitiesProps = {
-  data: any[];
+  data: Product[];
   tableHeader: string[];
 };
 
 export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
+  // Translation
+  const t = useTranslations();
+
   // State
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState(data);
 
   // Mutation
-  const { deleteProduct, isPending, error } = useDeleteProduct();
+  const { deleteProduct } = useDeleteProduct();
 
   // Functions
-  const handleSearch = useDebouncedCallback((term: string) => {
-    console.log(`Searching... ${term}`);
-    const params = new URLSearchParams(searchParams);
-    if (term) {
-      params.set('query', term);
+  const handleSearch = useDebouncedCallback((query: string) => {
+    setSearchQuery(query);
+    if (query) {
+      const filtered = data.filter((product) =>
+        product.title.toLowerCase().includes(query.toLowerCase()),
+      );
+      setFilteredData(filtered);
     } else {
-      params.delete('query');
+      setFilteredData(data);
     }
-    replace(`${pathname}?${params.toString()}`);
   }, 300);
 
   const handleDelete = (productId: string) => {
@@ -56,21 +56,22 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
     <div className="bg-white w-full rounded-2xl p-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-semibold text-custom-black">All Products</h1>
-        <Button className="bg-custom-rose-900 text-white rounded-lg px-4 py-2 flex items-center gap-2">
-          <LuPlus /> Add a new product
-          {/* <Link href="/dashboard/products/create"></Link> */}
+        <Button className="bg-custom-rose-900 text-white rounded-lg px-4 py-2  gap-2">
+          <Link href="/dashboard/products/add" className="flex items-center">
+            <LuPlus /> Add a new product
+          </Link>
         </Button>
       </div>
 
       {/* Search bar */}
       <div className="w-full border border-black/15 flex items-center rounded-lg p-4 mb-4">
         <LuSearch className="mr-2 text-black/15" />
-      <Input
+        <Input
           type="text"
           placeholder="Search for a product..."
           className="w-full p-0 h-auto bg-transparent rounded-none border-none focus:border-none focus:outline-none ring-0 focus-visible:ring-0"
           onChange={(e) => handleSearch(e.target.value)}
-          defaultValue={searchParams.get('query')?.toString()}
+          value={searchQuery}
         />
       </div>
 
@@ -86,8 +87,8 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.length > 0 ? (
-            data.map((product) => (
+          {filteredData.length > 0 ? (
+            filteredData.map((product) => (
               <TableRow key={product._id}>
                 {/* Dynamic cells matching headers */}
                 {tableHeader.map((header) => {
@@ -137,7 +138,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                             asChild
                             className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2"
                           >
-                          <Link href={`/dashboard/products/edit/${product._id}`}>
+                            <Link href={`/dashboard/products/edit/${product._id}`}>
                               <LuPencil className="mr-1" /> Edit
                             </Link>
                           </Button>

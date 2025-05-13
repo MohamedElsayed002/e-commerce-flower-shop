@@ -8,7 +8,7 @@ export function useDeleteProduct() {
   const t = useTranslations();
 
   // Mutation
-  const { mutate, isPending, error } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: async (productId: string) => {
       const payload = await deleteProduct(productId);
 
@@ -26,5 +26,5 @@ export function useDeleteProduct() {
     }
   });
 
-  return { deleteProduct: mutate, isPending, error };
+  return { deleteProduct: mutate };
 }
