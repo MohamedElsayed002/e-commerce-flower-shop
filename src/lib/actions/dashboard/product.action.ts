@@ -11,12 +11,12 @@ export async function deleteProduct(productId: string) {
   const apiUrl = `${process.env.API}/products/${productId}`;
 
   const response = await fetch(apiUrl, {
-    method: "PUT",
+    method: "DELETE",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token?.token}`,
-    }
+    },
   });
 
   const payload: APIResponse<ProductDashboardResponse> = await response.json();

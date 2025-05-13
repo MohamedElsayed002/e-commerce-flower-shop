@@ -53,12 +53,15 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
   };
 
   return (
+    // Main container
     <div className="bg-white w-full rounded-2xl p-6">
+      {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold text-custom-black">All Products</h1>
+        {/* Title and add button */}
+        <h1 className="text-2xl font-semibold text-custom-black">{t("all-products")}</h1>
         <Button className="bg-custom-rose-900 text-white rounded-lg px-4 py-2  gap-2">
           <Link href="/dashboard/products/add" className="flex items-center">
-            <LuPlus /> Add a new product
+            <LuPlus /> {t("add-a-new-product")}
           </Link>
         </Button>
       </div>
@@ -68,7 +71,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
         <LuSearch className="mr-2 text-black/15" />
         <Input
           type="text"
-          placeholder="Search for a product..."
+          placeholder={t("search-for-a-product")}
           className="w-full p-0 h-auto bg-transparent rounded-none border-none focus:border-none focus:outline-none ring-0 focus-visible:ring-0"
           onChange={(e) => handleSearch(e.target.value)}
           value={searchQuery}
@@ -77,6 +80,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
 
       {/* Table */}
       <Table className="rounded-lg">
+        {/* Table header */}
         <TableHeader className="bg-custom-white rounded-lg">
           <TableRow className="text-sm font-medium">
             {tableHeader.map((header, index) => (
@@ -86,30 +90,34 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
             ))}
           </TableRow>
         </TableHeader>
+
+        {/* Table body */}
         <TableBody>
           {filteredData.length > 0 ? (
             filteredData.map((product) => (
               <TableRow key={product._id}>
-                {/* Dynamic cells matching headers */}
                 {tableHeader.map((header) => {
                   switch (header) {
-                    case "name":
+                    case t("name"):
                       return (
                         <TableCell key={`${product._id}-name`} className="font-medium">
                           {product.title}
                         </TableCell>
                       );
-                    case "price":
+                    case t("price"):
                       return (
                         <TableCell key={`${product._id}-price`}>{product.price} EGP</TableCell>
                       );
-                    case "stock":
+                    case t("stock"):
                       return (
-                        <TableCell key={`${product._id}-stock`}>
-                          {product.quantity || "N/A"}
+                        <TableCell
+                          key={`${product._id}-stock`}
+                          className={`${product.quantity < 5 ? "text-red-500" : "text-black"}`}
+                        >
+                          {product.quantity || t("n-a")}
                         </TableCell>
                       );
-                    case "sales":
+                    case t("sales"):
                       return (
                         <TableCell key={`${product._id}-sales`}>{product.sold || 0}</TableCell>
                       );
@@ -124,7 +132,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                               <span className="text-sm text-gray-500">({product.rateCount})</span>
                             </div>
                           ) : (
-                            "N/A"
+                            t("n-a")
                           )}
                         </TableCell>
                       );
@@ -139,14 +147,14 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                             className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2"
                           >
                             <Link href={`/dashboard/products/edit/${product._id}`}>
-                              <LuPencil className="mr-1" /> Edit
+                              <LuPencil className="mr-1" /> {t("edit")}
                             </Link>
                           </Button>
                           <Button
                             onClick={() => setDeleteDialogOpen(true)}
                             className="bg-custom-red/10 rounded-lg px-2 py-1 flex items-center text-custom-red"
                           >
-                            <LuTrash2 className="mr-1" /> Delete
+                            <LuTrash2 className="mr-1" /> {t("delete")}
                           </Button>
                         </TableCell>
                       );
@@ -165,7 +173,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
           ) : (
             <TableRow>
               <TableCell colSpan={tableHeader.length} className="h-24 text-center">
-                No products available
+                {t("no-products-available")}
               </TableCell>
             </TableRow>
           )}
