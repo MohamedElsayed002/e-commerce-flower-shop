@@ -20,13 +20,14 @@ async function getAuthenticatedToken() {
 
   return token.token;
 }
+
 // addcategory
 
 export async function addcategory(formData: FormData) {
   const token = await getAuthenticatedToken();
-  console.log("token", token);
+  console.log("tokennn", token);
 
-  const response = await fetch(`https://flower.elevateegy.com/api/v1/categories`, {
+  const response = await fetch(`${process.env.API}/categories`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -37,4 +38,50 @@ export async function addcategory(formData: FormData) {
 
   const payload = await response.json();
   console.log("payload", payload);
+
+  if ("error" in payload) {
+    throw new Error(payload.error);
+  }
+}
+
+// update category
+
+export async function updatecategory(id: string, formData: FormData) {
+  const token = await getAuthenticatedToken();
+
+  const response = await fetch(`${process.env.API}/categories/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+    body: formData,
+  });
+
+  const payload = await response.json();
+
+  if ("error" in payload) {
+    throw new Error(payload.error);
+  }
+}
+
+// get Category by id
+
+export async function getCategoryById(id: string): Promise<Category> {
+  const token = await getAuthenticatedToken();
+
+  const res = await fetch(`${process.env.API}/categories/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+  const payload: APIResponse<{ category: Category }> = await res.json();
+
+  if ("error" in payload) {
+    throw new Error(payload.error);
+  }
+
+  return payload.category;
 }

@@ -1,7 +1,23 @@
+import Header from "@/components/layout/dashboard/header";
+import Sidebar from "@/components/layout/dashboard/sidebar";
+
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 export default function DashboardLayout({ children }: LayoutProps) {
-  return children;
+  return (
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <Sidebar />
+
+      <div className=" w-full ml-72">
+        {/*  Header */}
+        <Header />
+
+        {/* Content */}
+        <div className="bg-custom-white px-4 py-7">{children}</div>
+      </div>
+    </div>
+  );
 }

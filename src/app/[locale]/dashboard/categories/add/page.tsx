@@ -1,4 +1,4 @@
-import AddCategory from "./_commponent/add-category";
+import AddCategory from "./_components/add-category";
 
 export default function page() {
   return (

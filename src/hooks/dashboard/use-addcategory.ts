@@ -13,6 +13,7 @@ export function useAddCategory() {
   // Navigation
   const router = useRouter();
 
+  // Mutation for adding category
   const mutation = useMutation({
     mutationFn: addcategory,
     onSuccess: () => {
