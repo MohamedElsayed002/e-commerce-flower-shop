@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import {
@@ -11,87 +10,58 @@ import {
 } from "@/components/ui/breadcrumb";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { Fragment } from "react";
+import React from "react";
 
-// types/breadcrumb.ts
-export interface BreadcrumbItem {
-  title: string; // The translated title to display
-  href: string; // The path to navigate to
-  isTranslated?: boolean; // Whether the title is already translated
-}
+type BreadcrumbPath = {
+  title: string;
+  href: string;
+};
 
-interface HeaderProps {
-  breadcrumbs?: BreadcrumbItem[];
-  title?: string;
-}
+type HeaderProps = {
+  paths?: BreadcrumbPath[];
+};
 
-export default function Header({ breadcrumbs = [], title }: HeaderProps) {
+export default function Header({ paths = [] }: HeaderProps) {
   // Translations
   const t = useTranslations();
 
-  // Hooks
-  const p = usePathname();
-
-  // Variables
-  const cleanPath = p.replace(/^\/[a-z]{2}\/dashboard/, "");
-  const segments = cleanPath.split("/").filter(Boolean);
-
-  // Functions
-  // const breadcrumbs = segments.map((segment, index) => {
-  //   const path = `/dashboard/${segments.slice(0, index + 1).join("/")}`;
-  //   const labelMap: Record<string, string> = {
-  //     overview: t("overview"),
-  //     categories: t("categories"),
-  //     "categories/add": t('add-category'),
-  //     "categories/update": t('update-category'),
-  //     occasions: t("occasions"),
-  //     "occasions/add": t('add-occasion'),
-  //     "occasions/update": t('update-occasion'),
-  //     products: t("products"),
-  //     "products/add": t('add-product'),
-  //     "products/update": t('update-product'),
-  //   };
-
-  //   return {
-  //     href: path,
-  //     label: labelMap[segments.slice(0, index + 1).join("/")] || segment.replace(/-/g, " "),
-  //     isLast: index === segments.length - 1,
-  //   };
-  // });
-
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-      {title && <h1 className="text-lg font-semibold">{title}</h1>}
-
-      <Breadcrumb className="hidden md:flex">
+    // Header container
+    <div className="h-16 border-b border-black/8 flex items-center px-4">
+      {/* Breadcrumb */}
+      <Breadcrumb>
+        {/* Breadcrumb list */}
         <BreadcrumbList>
-          {breadcrumbs.map((crumb, index) => {
-            const isLast = index === breadcrumbs.length - 1;
-            const shouldHighlight = breadcrumbs.length > 1 && isLast;
-            const label = crumb.isTranslated ? crumb.title : t(crumb.title);
+          {paths.map((path, index) => {
+            const isLast = index === paths.length - 1;
+            const isOnly = paths.length === 1;
 
-            return (
-              <Fragment key={crumb.href}>
-                <BreadcrumbItem>
-                  {isLast ? (
-                    <BreadcrumbPage className={shouldHighlight ? "text-primary font-medium" : ""}>
-                      {label}
-                    </BreadcrumbPage>
-                  ) : (
-                    <BreadcrumbLink asChild>
-                      <Link href={crumb.href} className="hover:text-primary">
-                        {label}
-                      </Link>
-                    </BreadcrumbLink>
-                  )}
+            if (isLast) {
+              return (
+                <BreadcrumbItem key={path.href}>
+                  <BreadcrumbPage className={isOnly ? "text-gray-600" : "text-custom-rose-900"}>
+                    {t(path.title)}
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
-                {!isLast && <BreadcrumbSeparator />}
-              </Fragment>
+              );
+            }
+
+            // Render item
+            return (
+              <React.Fragment key={path.href}>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href={path.href} className="text-gray-600 hover:text-gray-900">
+                      {t(path.title)}
+                    </Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+              </React.Fragment>
             );
           })}
         </BreadcrumbList>
       </Breadcrumb>
-    </header>
+    </div>
   );
 }

@@ -1,24 +1,26 @@
 "use client";
 
-import Header, { BreadcrumbItem } from '@/components/layout/dashboard/header';
-import { useSearchParams } from 'next/navigation';
-import React from 'react'
+import Header from "@/components/layout/dashboard/header";
+import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
+import React from "react";
 
-export default function UpdateProduct({ params }: { params: { id: string } }) {
-const searchParams = useSearchParams();
-  const productName = searchParams.get('productName');
+export default function UpdateProduct() {
+  // NOTE: This is just for testing breadcrumbs.
+  const t = useTranslations();
+  const searchParams = useSearchParams();
+  const productName = searchParams.get("productName");
 
-  const breadcrumbs: BreadcrumbItem[] = [
+  const breadcrumbPaths = [
     { title: "dashboard", href: "/dashboard" },
     { title: "products", href: "/dashboard/products" },
-    { 
-      title: `update-product:${productName}`, 
-      href: `/dashboard/products/update/${params.id}`,
-      isTranslated: true 
-    },
+    { title: `${t("update-product")}: ${productName}`, href: "" },
   ];
 
   return (
-    <div><Header breadcrumbs={breadcrumbs} /></div>
-  )
+    <>
+      <Header paths={breadcrumbPaths} />
+      <div className="bg-custom-white px-4 py-7">Update Product</div>
+    </>
+  );
 }
