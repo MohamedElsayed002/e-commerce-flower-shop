@@ -28,10 +28,5 @@ export async function updateOccasionsAction(fields: OccasionFields, occasionId: 
 
   const payload: APIResponse<OccasionResponse> = await response.json();
 
-  // Handle error
-  if ("error" in payload) {
-    throw new Error(payload.error);
-  }
-
   return payload;
 }

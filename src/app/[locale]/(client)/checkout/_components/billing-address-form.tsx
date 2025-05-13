@@ -25,8 +25,9 @@ import { Locale } from "@/i18n/routing";
 type AddressFormProps = {
   onSubmitAddress: (address: ShippingAddress) => void;
   setOpen: (value: string) => void;
+  open: string;
 };
-export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormProps) {
+export default function AddressForm({ onSubmitAddress, setOpen, open }: AddressFormProps) {
   // Translation
   const t = useTranslations();
   const locale = useLocale() as Locale;
@@ -76,7 +77,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
   //  Handle submission address form
   const onSubmit = (values: Inputs) => {
     onSubmitAddress?.(values);
-    setOpen("ordring");
+    setOpen("paymentform");
   };
 
   return (
@@ -253,8 +254,7 @@ export default function AddressForm({ onSubmitAddress, setOpen }: AddressFormPro
 
             <div className="flex justify-end mt-4 w-full">
               <Button
-                type="button"
-                onClick={() => setOpen("payment-method")}
+                type="submit"
                 className="
                         bg-custom-rose-900  
                           rounded-[10px] 

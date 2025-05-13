@@ -45,7 +45,13 @@ export function FileUpload({ onFileSelect, accept = "image/*" }: FileUploadProps
           Upload file
         </Button>
       </div>
-      <Input type="file" ref={fileInputRef} onChange={handleFileChange} accept={accept} />
+      <Input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        className="hidden"
+        accept={accept}
+      />
     </div>
   );
 }

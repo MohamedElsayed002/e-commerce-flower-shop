@@ -7,7 +7,7 @@ declare type Occasions = {
 
 declare type OccasionFields = {
   name: string;
-  image: File;
+  image?: File;
 };
 declare type OccasionResponse = {
   message: string;

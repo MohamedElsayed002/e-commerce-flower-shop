@@ -24,8 +24,8 @@ export default function useAddOccasion() {
     },
 
     // Error message toast
-    onError: (error: Error) => {
-      toast.error(error.message);
+    onError: () => {
+      toast.error("Occasion already exists");
     },
   });
 
