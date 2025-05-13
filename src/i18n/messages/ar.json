@@ -354,5 +354,8 @@
   "edit": "يحرر",
   "delete": "يمسح",
   "product-deleted-successfully": "تم حذف المنتج بنجاح",
-  "failed-to-delete-product": "فشل في حذف المنتج"
+  "failed-to-delete-product": "فشل في حذف المنتج",
+  "update-product": "تحديث المنتج",
+  "update-category": "فئة التحديث",
+  "update-occasion": "تحديث التحديث"
 }

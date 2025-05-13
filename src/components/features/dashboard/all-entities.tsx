@@ -146,7 +146,12 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                             asChild
                             className="bg-custom-blue/10 rounded-lg px-2 py-1 flex items-center text-custom-blue mr-2"
                           >
-                            <Link href={`/dashboard/products/edit/${product._id}`}>
+                            <Link
+                              href={{
+                                pathname: `/dashboard/products/update/${product._id}`,
+                                query: { productName: product.rateAvg },
+                              }}
+                            >
                               <LuPencil className="mr-1" /> {t("edit")}
                             </Link>
                           </Button>

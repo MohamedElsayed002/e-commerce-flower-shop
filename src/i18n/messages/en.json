@@ -369,5 +369,8 @@
   "edit": "Edit",
   "delete": "Delete",
   "product-deleted-successfully": "Product deleted successfully",
-  "failed-to-delete-product": "Failed to delete product"
+  "failed-to-delete-product": "Failed to delete product",
+  "update-product": "Update Product",
+  "update-category": "update-category",
+  "update-occasion": "update-occasion"
 }
