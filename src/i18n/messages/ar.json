@@ -347,5 +347,13 @@
   "cancel": "الغاء",
   "delete-title": "الحذف",
   "image-gallery": "معرض الصور",
-  "image-description": "مجموعة الصور"
+  "image-description": "مجموعة الصور",
+  "all-occasions-0": "جميع المناسبات",
+  "add-a-new-occassion": "أضف مناسبة جديدة",
+  "edit": "تعديل",
+  "delete": "مسح",
+  "search-for-a-category": "...ابحث عن فئة",
+  "search-for-a-occasion": "...ابحث عن مناسبة",
+  "category-deleted-successfully": "تم حذف الفئة بنجاح",
+  "delete-failed": "فشل الحذف"
 }

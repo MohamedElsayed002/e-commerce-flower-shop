@@ -125,6 +125,8 @@ const config: Config = {
         },
         "custom-gray": "#797979",
         "custom-black": "#2E2E30",
+        "custom-red": "#FF00001A",
+        "custom-red-2": "#D50000",
         "custom-white": "#fbfbfd",
         "mint-green": {
           "50": "#EBFBF6",

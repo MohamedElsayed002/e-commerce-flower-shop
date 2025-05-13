@@ -362,5 +362,15 @@
   "delete-title": "DeleteDialog",
   "description-dialog": "Delete Confirmation Dialog",
   "image-gallery": "Image Gallery",
-  "image-description": "Image collection"
+  "image-description": "Image collection",
+  "all-occasions-0": "All Occasions",
+  "add-a-new-occassion": "Add a new Occassion",
+  "edit": "Edit",
+  "delete": "Delete",
+  "search-for-a-category": "Search for a category...",
+  "all-categoires": "All Categoires",
+  "add-a-new-category": "Add a new Category",
+  "search-for-a-occasion": "Search for a occasion...",
+  "category-deleted-successfully": "Category deleted successfully",
+  "delete-failed": "Failed delete"
 }

@@ -1,6 +1,8 @@
-export async function fetchOccasions() {
+import { searchParamsToString } from "../utils/convert-search-params";
+
+export async function fetchOccasions(searchParams: SearchParams) {
   try {
-    const response = await fetch(`${process.env.API}/occasions`, {
+    const response = await fetch(`${process.env.API}/occasions?${searchParamsToString(searchParams)}`, {
       cache: "no-store",
     });
 
