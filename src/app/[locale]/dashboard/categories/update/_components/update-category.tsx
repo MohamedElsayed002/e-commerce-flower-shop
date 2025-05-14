@@ -18,10 +18,14 @@ import { useUpdateCategory } from "@/hooks/dashboard/use-updatecategory";
 import { GalleryCarouselDialog } from "@/components/features/dashboard/dialog/gallery-dialog";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useCategoryById } from "@/hooks/dashboard/use-category-by-id";
 import Heading from "@/components/common/header";
 
-export default function UpdateCategoryPage({ params }: { params: { id: string } }) {
+type TypeParam = {
+  params: { id: string };
+  category: Category;
+};
+
+export default function UpdateCategoryPage({ params, category }: TypeParam) {
   // Translation
   const t = useTranslations();
 
@@ -30,7 +34,7 @@ export default function UpdateCategoryPage({ params }: { params: { id: string } 
 
   // Mutation
   const { updateCategory, isLoading } = useUpdateCategory();
-  const { data: category } = useCategoryById(params.id);
+  // const { data: category } = useCategoryById(params.id);
 
   // Validation schema
   const Schema = z.object({

@@ -1,15 +1,13 @@
+import { Suspense } from "react";
 import UpdateCategorySkeleton from "@/components/skeletons/dashboard/update-category-skeleton";
-import dynamic from "next/dynamic";
+import UpdateCategoryWrapper from "../_components/update-category-wrapper";
 
-// Dynamically import UpdateCategory with fallback skeleton
-const UpdateCategory = dynamic(() => import("../_components/update-category"), {
-  ssr: false,
-  loading: () => <UpdateCategorySkeleton />,
-});
-export default function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
   return (
-    <div>
-      <UpdateCategory params={{ id: params.id }} />
-    </div>
+    <>
+      <Suspense fallback={<UpdateCategorySkeleton />}>
+        <UpdateCategoryWrapper params={params} />
+      </Suspense>
+    </>
   );
 }
