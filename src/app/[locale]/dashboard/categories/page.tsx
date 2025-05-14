@@ -5,6 +5,7 @@ export default function CategoriesPage() {
   return (
     <div>
       <Link href="/dashboard/categories/add">Add Category</Link>
+      <Link href="/dashboard/categories/update">Update Category</Link>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { cookies } from "next/headers";
 import { decode } from "next-auth/jwt";
 import { AUTH_COOKIE } from "@/lib/constants/auth.constant";
+import { revalidatePath } from "next/cache";
 
 async function getAuthenticatedToken() {
   const tokenCookie = cookies().get(AUTH_COOKIE)?.value;
@@ -25,7 +26,6 @@ async function getAuthenticatedToken() {
 
 export async function addcategory(formData: FormData) {
   const token = await getAuthenticatedToken();
-  console.log("tokennn", token);
 
   const response = await fetch(`${process.env.API}/categories`, {
     method: "POST",
@@ -42,6 +42,7 @@ export async function addcategory(formData: FormData) {
   if ("error" in payload) {
     throw new Error(payload.error);
   }
+  revalidatePath("/categories");
 }
 
 // update category
@@ -63,6 +64,8 @@ export async function updatecategory(id: string, formData: FormData) {
   if ("error" in payload) {
     throw new Error(payload.error);
   }
+
+  revalidatePath("/categories");
 }
 
 // get Category by id
