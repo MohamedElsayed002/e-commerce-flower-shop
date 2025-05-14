@@ -1,28 +1,28 @@
 "use client";
 
-import { deleteCategory } from "@/lib/actions/category/delete-category";
+import { deleteOccasion } from "@/lib/actions/occasion/delete-occasion";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-export default function useDeleteCategory() {
+export default function useDeleteOccasion() {
   // Translation
   const t = useTranslations();
 
   // Mutation
   const { isPending, error, mutate } = useMutation({
-    mutationFn: async ({ categoryId }: { categoryId: string }) => {
-      const response = await deleteCategory({ categoryId });
+    mutationFn: async ({ occasionId }: { occasionId: string }) => {
+      const response = await deleteOccasion({ occasionId });
 
       if (response.message !== "success") {
         const errorData = await response.json();
-        throw new Error(errorData.message || t('failed-to-delete-category'));
+        throw new Error(errorData.message || t('failed-to-delete-occasion'));
       }
 
       return response;
     },
     onSuccess: () => {
-      toast.success(t("category-deleted-successfully"));
+      toast.success(t("occasion-deleted-successfully"));
     },
     onError: () => {
       toast.error(t("delete-failed"));

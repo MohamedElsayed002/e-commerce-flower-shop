@@ -152,6 +152,7 @@ const config: Config = {
           "800": "#05603A",
           "900": "#054F31",
         },
+        tableHeader: "#F5F5F5",
         flamingo: "#F05454",
         "rate-color": "#FBA707",
       },

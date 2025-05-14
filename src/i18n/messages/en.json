@@ -372,5 +372,8 @@
   "add-a-new-category": "Add a new Category",
   "search-for-a-occasion": "Search for a occasion...",
   "category-deleted-successfully": "Category deleted successfully",
-  "delete-failed": "Failed delete"
+  "delete-failed": "Failed delete",
+  "occasion-deleted-successfully": "Occasion deleted successfully",
+  "failed-to-delete-occasion": "Failed to delete occasion",
+  "failed-to-delete-category": "Failed to delete category"
 }

@@ -5,13 +5,13 @@ import { cookies } from "next/headers";
 import { decode } from "next-auth/jwt";
 import { revalidatePath } from "next/cache";
 
-export async function deleteCategory({ categoryId }: { categoryId: string }) {
+export async function deleteOccasion({ occasionId }: { occasionId: string }) {
 
   // Get token
   const tokenCookies = cookies().get(AUTH_COOKIE)?.value;
   const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
 
-  const response = await fetch(`${process.env.API}/categories/${categoryId}`, {
+  const response = await fetch(`${process.env.API}/occasions/${occasionId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export async function deleteCategory({ categoryId }: { categoryId: string }) {
     },
   });
   const payload = await response.json();
-  revalidatePath("/dashboard/categories");
+  revalidatePath("/dashboard/occasions");
 
   return payload;
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { DeleteConfirmationDialog } from "@/components/features/dashboard/dialog/confirm-dialog";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -8,27 +10,25 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DeleteConfirmationDialog } from "@/components/features/dashboard/dialog/confirm-dialog";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import useDeleteOccasion from "@/hooks/occasion/use-delete-occasion";
 import { Pencil, Trash2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
 import { useState } from "react";
-import useDeleteCategory from "@/hooks/category/use-delete-category";
 
-export function CategoriesTable({ data }: { data: Category[] }) {
+export function OcassionsTable({ data }: { data: Occasion[] }) {
   // State for dialog control
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState<{ id: string; name: string } | null>(null);
 
-  // Translations
-  const t = useTranslations();
-
   // Locale
   const locale = useLocale();
 
+  //  Translations
+  const t = useTranslations();
+
   // Mutate
-  const { mutate, isPending } = useDeleteCategory();
+  const { mutate, isPending } = useDeleteOccasion();
 
   // Functions
   const onDelete = (id: string, name: string) => {
@@ -38,7 +38,7 @@ export function CategoriesTable({ data }: { data: Category[] }) {
 
   const handleConfirmDelete = () => {
     if (currentItem) {
-      mutate({ categoryId: currentItem.id });
+      mutate({ occasionId: currentItem.id });
     }
     setIsDialogOpen(false);
   };
@@ -50,10 +50,11 @@ export function CategoriesTable({ data }: { data: Category[] }) {
         <TableHeader className="w-full bg-tableHeader">
           <TableRow className="flex w-full mt-5">
             <TableHead className="flex-1">{t("name")}</TableHead>
-            <TableHead className="flex-1 text-left">{t("products")}</TableHead>
+            <TableHead className="flex-1">{t("products")}</TableHead>
             <TableHead className="flex-1" />
           </TableRow>
         </TableHeader>
+
         {/* Table body */}
         <TableBody className="w-full">
           {data?.map((item) => {
@@ -64,18 +65,18 @@ export function CategoriesTable({ data }: { data: Category[] }) {
                 <TableCell className="flex-1 flex justify-end">
                   <Button
                     size="sm"
-                    className="text-stats-orders-primary bg-stats-orders-bg hover:bg-stats-order-bg/20 mr-2"
+                    className="text-stats-orders-primary bg-stats-orders-bg hover:bg-stats-order-bg/20 mr-2 ml-2"
                     asChild
                   >
-                    <Link href={`/${locale}/dashboard/update-category/${item._id}`}>
+                    <Link href={`/${locale}/dashboard/occasions/${item._id}/update-occasion`}>
                       <Pencil className="mr-1" />
                       {t("edit")}
                     </Link>
                   </Button>
                   <Button
-                    onClick={() => onDelete(item._id, item.name)}
                     size="sm"
                     className="bg-custom-red hover:bg-custom-red/20 text-custom-red-2"
+                    onClick={() => onDelete(item._id, item.name)}
                     disabled={isPending}
                   >
                     <Trash2 className="mr-1" />

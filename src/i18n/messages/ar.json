@@ -355,5 +355,8 @@
   "search-for-a-category": "...ابحث عن فئة",
   "search-for-a-occasion": "...ابحث عن مناسبة",
   "category-deleted-successfully": "تم حذف الفئة بنجاح",
-  "delete-failed": "فشل الحذف"
+  "delete-failed": "فشل الحذف",
+  "occasion-deleted-successfully": "تم حذف المناسبة بنجاح",
+  "failed-to-delete-occasion": "فشل في حذف المناسبة",
+  "failed-to-delete-category": "فشل في حذف الفئة"
 }
