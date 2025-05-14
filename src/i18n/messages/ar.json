@@ -359,12 +359,10 @@
   "upload-image": "تحميل الصورة",
   "selected-file:": "ملف محدد:",
   "category-name": "اسم الفئة",
-  "update-cat ": "فئة التحديث",
   "selected-file": "ملف محدد",
   "no-file-selected": "لم يتم تحديد ملف",
   "category-name-placeholder": "أدخل اسم الفئة",
   "category-added-successfully": " تم اضافة الفئة بنجاح ",
   "category-add-failed": "فشلت الفئة إضافة",
-  "button-update": "تحديث الفئة",
   "update-cat": "تحديث الفئة"
 }

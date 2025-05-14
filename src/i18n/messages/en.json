@@ -374,12 +374,10 @@
   "upload-image": "Upload Image",
   "selected-file:": "Selected file:",
   "category-name": " Category Name",
-  "button-update": "Update Category",
-  "update-cat ": "Update Category",
-  "update-cat": "Update Category",
   "selected-file": "Selected File",
   "no-file-selected": "No File Selected",
   "category-name-placeholder": "Enter category name\n",
   "category-added-successfully": "Category Added Successfully",
-  "category-add-failed": "Category Add Failed"
+  "category-add-failed": "Category Add Failed",
+  "update-cat": "Update Category"
 }

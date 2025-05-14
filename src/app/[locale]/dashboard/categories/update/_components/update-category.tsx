@@ -115,7 +115,7 @@ export default function UpdateCategoryPage({ params }: { params: { id: string } 
               type="submit"
               className="bg-custom-rose-900 w-4/5 text-white h-10 rounded-lg mt-16 capitalize font-semibold text-sm"
             >
-              {isLoading ? <Loader className="text-center" /> : t("button-update")}
+              {isLoading ? <Loader className="text-center" /> : t("update-cat")}
             </Button>
           </form>
         </Form>
