@@ -29,7 +29,7 @@ export default async function Unauthorized() {
       <div className="border-t border-gray-300 my-4 w-full max-w-sm mx-auto" />
       {/* Button */}
       <Link href="/">
-        <Button className="bg-wh text-black rounded-lg shadow-sm border px-6 py-2 hover:bg-transparent">
+        <Button className="bg-white text-black rounded-lg shadow-sm border px-6 py-2 hover:bg-transparent">
           {t("go-to-homepage")}
         </Button>
       </Link>
