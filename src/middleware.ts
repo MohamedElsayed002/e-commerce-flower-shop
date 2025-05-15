@@ -6,7 +6,8 @@ import { LOCALES, routing } from "./i18n/routing";
 // Private pages
 const privatePages = ["/cart", "/checkout", "/allOrders", "/paymant", "/dashboard"];
 
-const dashboardPathRegex = /^\/(ar|en)?\/?dashboard(\/.*)?$/i;
+// Dashboard pathname regex
+const dashboardPathRegex = RegExp(`^(/(${LOCALES.join("|")}))?/dashboard(\/.*)?$`, "i");
 
 // Create middleware for handling internationalization (i18n)
 const handleI18nRouting = createMiddleware(routing);
@@ -16,6 +17,7 @@ const authMiddleware = withAuth(
   function onSuccess(req) {
     return handleI18nRouting(req);
   },
+
   {
     callbacks: {
       authorized: ({ token, req }) => {
@@ -45,6 +47,7 @@ export default async function middleware(req: NextRequest) {
   // Check if the requested page is private
   const isPrivatePage = privatePathnameRegex.test(req.nextUrl.pathname);
 
+  // Check if the current request path matches the dashboard
   const isDashboard = dashboardPathRegex.test(req.nextUrl.pathname);
 
   if (isPrivatePage || isDashboard) {

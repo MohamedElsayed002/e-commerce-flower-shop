@@ -20,12 +20,12 @@ export default function useAddOccasion() {
 
     // Success message toast
     onSuccess: () => {
-      toast.success("Occasion added successfully");
+      toast.success(t("occasion-add-success"));
     },
 
     // Error message toast
-    onError: () => {
-      toast.error("Occasion already exists");
+    onError: (error: Error) => {
+      toast.error(error.message || t("failed-to-add-occasion"));
     },
   });
 

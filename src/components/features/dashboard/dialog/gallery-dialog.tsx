@@ -19,12 +19,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CarouselDots } from "@/components/ui/carousel-dots";
 import { useTranslations } from "use-intl";
-import img from "/Public/d48948c97f91985253ccc6ee4b31a3a0be075d1c.png";
+
 // Type
 type GalleryProps = {
   isOpen: boolean;
   onClose: () => void;
-  images: string[];
+  images: string | string[];
 };
 
 export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps) {
@@ -33,6 +33,8 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
   // State
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi | null>(null);
+
+  const dialogImages = typeof images === "string" ? [images] : images;
 
   // UseEffect to handle carousel
   useEffect(() => {
@@ -74,12 +76,12 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
           <div className="relative  my-8">
             {/* Carousel images */}
             <CarouselContent className="w-[789px] h-[480px]">
-              {images.map((src, index) => (
+              {dialogImages.map((src, index) => (
                 <CarouselItem key={index}>
                   <div className="relative w-full h-full">
                     <Image
-                      src={img}
-                      alt="/Public/d48948c97f91985253ccc6ee4b31a3a0be075d1c.png"
+                      src={src}
+                      alt={`category-image-${index}`}
                       fill
                       className="object-contain rounded-2xl "
                       priority={index === 0}

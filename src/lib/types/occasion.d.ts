@@ -1,14 +1,20 @@
 declare type Occasions = {
   name: string;
   slug: string;
-  image: File;
+  image: string;
   productsCount: number;
 } & DatabaseFields;
 
-declare type OccasionFields = {
+type OccasionCreateFields = {
   name: string;
-  image?: File;
+  image: File;
 };
+
+type OccasionUpdateFields = {
+  name: string;
+  image?: string;
+};
+
 declare type OccasionResponse = {
   message: string;
   metadata: Metadata;
