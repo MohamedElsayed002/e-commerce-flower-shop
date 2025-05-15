@@ -29,9 +29,10 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
   const t = useTranslations();
 
   // State
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredData, setFilteredData] = useState(data);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filteredData, setFilteredData] = useState<Product[]>(data);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState<boolean>(false);
+  const [selectedProductId, setSelectedProductId] = useState<string>("");
 
   // Mutation
   const { deleteProduct } = useDeleteProduct();
@@ -42,7 +43,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
       setFilteredData(data);
     } else {
       const filtered = data.filter((product) =>
-        product.title?.toLowerCase().includes(query.toLowerCase())
+        product.title?.toLowerCase().includes(query.toLowerCase()),
       );
       setFilteredData(filtered);
     }
@@ -54,8 +55,12 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
     debouncedFilter(newQuery);
   };
 
-  const handleDelete = (productId: string) => {
-    deleteProduct(productId);
+  const handleDelete = () => {
+    if (selectedProductId) {
+      deleteProduct(selectedProductId);
+      setSelectedProductId("");
+      setDeleteDialogOpen(false);
+    }
   };
 
   return (
@@ -157,7 +162,10 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                             </Link>
                           </Button>
                           <Button
-                            onClick={() => setDeleteDialogOpen(true)}
+                            onClick={() => {
+                              setSelectedProductId(product._id ?? "");
+                              setDeleteDialogOpen(true);
+                            }}
                             className="bg-custom-red/10 rounded-lg px-2 py-1 flex items-center text-custom-red transition duration-300 hover:bg-custom-white"
                           >
                             <LuTrash2 className="mr-1" /> {t("delete")}
@@ -168,12 +176,6 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                       return null;
                   }
                 })}
-                <DeleteConfirmationDialog
-                  isOpen={deleteDialogOpen}
-                  onClose={() => setDeleteDialogOpen(false)}
-                  onConfirm={() => handleDelete(product._id ?? "")}
-                  itemName="product"
-                />
               </TableRow>
             ))
           ) : (
@@ -185,6 +187,12 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
           )}
         </TableBody>
       </Table>
+      <DeleteConfirmationDialog
+        isOpen={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+        onConfirm={handleDelete}
+        itemName="product"
+      />
     </div>
   );
 }
