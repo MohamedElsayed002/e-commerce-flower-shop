@@ -393,5 +393,8 @@
   "image-must-be-less-than-5mb": "image must be less than 5mb",
   "only-jpeg-png-jpg-and-gif-are-allowed": "Only JPEG, PNG, JPG and GIF are allowed",
   "add-occasion-0": "Add occasion",
-  "add-a-new-occasion-0": "Add a New Occasion"
+  "add-a-new-occasion-0": "Add a New Occasion",
+  "you-are-not-authorized-to-access-this-page": "You are not authorized to access this page.",
+  "if-you-think-this-is-wrong-please-contact-support": "If you think this is wrong, please contact support.",
+  "go-to-homepage": "Go to Homepage"
 }

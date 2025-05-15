@@ -377,5 +377,8 @@
   "name-must-be-at-least-2-characters-0": "يجب أن يكون الاسم حرفين على الأقل",
   "add-a-new-occasion": "أضف مناسبة جديدة",
   "add-occasion-0": "أضف مناسبة",
-  "add-a-new-occasion-0": "أضف مناسبة جديدة"
+  "add-a-new-occasion-0": "أضف مناسبة جديدة",
+  "you-are-not-authorized-to-access-this-page": "أنت غير مسموح ليك للوصول إلى هذه الصفحة.",
+  "if-you-think-this-is-wrong-please-contact-support": "إذا كنت تعتقد أن هذا خطأ ، فيرجى الاتصال بالدعم.",
+  "go-to-homepage": "اذهب إلى الصفحة الرئيسية"
 }
