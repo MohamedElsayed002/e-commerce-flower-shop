@@ -37,17 +37,22 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
   const { deleteProduct } = useDeleteProduct();
 
   // Functions
-  const handleSearch = useDebouncedCallback((query: string) => {
-    setSearchQuery(query);
-    if (query) {
+  const debouncedFilter = useDebouncedCallback((query: string) => {
+    if (!query) {
+      setFilteredData(data);
+    } else {
       const filtered = data.filter((product) =>
-        product.title?.toLowerCase().includes(query.toLowerCase()),
+        product.title?.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredData(filtered);
-    } else {
-      setFilteredData(data);
     }
   }, 300);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuery = e.target.value;
+    setSearchQuery(newQuery);
+    debouncedFilter(newQuery);
+  };
 
   const handleDelete = (productId: string) => {
     deleteProduct(productId);
@@ -74,7 +79,7 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
           type="text"
           placeholder={t("search-for-a-product")}
           className="w-full p-0 h-auto bg-transparent rounded-none border-none focus:border-none focus:outline-none ring-0 focus-visible:ring-0"
-          onChange={(e) => handleSearch(e.target.value)}
+          onChange={handleInputChange}
           value={searchQuery}
         />
       </div>
