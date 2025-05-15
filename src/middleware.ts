@@ -1,6 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { LOCALES, routing } from "./i18n/routing";
 
 // Private pages
@@ -15,18 +15,20 @@ const handleI18nRouting = createMiddleware(routing);
 // Authentication middleware using NextAuth
 const authMiddleware = withAuth(
   function onSuccess(req) {
+    const isDashboard = dashboardPathRegex.test(req.nextUrl.pathname);
+    const token = req.nextauth.token;
+
+    // Redirect if user is not admin
+    if (isDashboard && token?.role !== "admin") {
+      const locale = req.nextUrl.pathname.split("/")[1];
+      return NextResponse.redirect(new URL(`/${locale}/unauthorized`, req.url));
+    }
     return handleI18nRouting(req);
   },
 
   {
     callbacks: {
-      authorized: ({ token, req }) => {
-        if (dashboardPathRegex.test(req.nextUrl.pathname)) {
-          return token?.role === "admin";
-        }
-
-        return token != null;
-      },
+      authorized: ({ token }) => token != null,
     },
     pages: {
       signIn: "/",
