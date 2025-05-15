@@ -20,10 +20,13 @@ import useAddOccasion from "@/hooks/occasion/use-add-occasion";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import type { FileUploadHandle } from "./file-upload";
+import { useRouter } from "@/i18n/routing";
 
 export default function AddOccasionForm() {
   // Translation
   const t = useTranslations();
+
+  const router = useRouter();
 
   // Mutation
   const { isPending, AddOccasion } = useAddOccasion();
@@ -63,6 +66,7 @@ export default function AddOccasionForm() {
       onSuccess: () => {
         form.reset();
         fileUploadRef.current?.reset();
+        router.push("/dashboard/occasions");
       },
     });
   };

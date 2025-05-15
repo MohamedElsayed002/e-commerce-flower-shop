@@ -20,6 +20,7 @@ import { GalleryCarouselDialog } from "@/components/features/dashboard/dialog/ga
 import { useState } from "react";
 import { GoImage } from "react-icons/go";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 
 export default function UpdateOccasionForm({
   initialData,
@@ -30,6 +31,8 @@ export default function UpdateOccasionForm({
 }) {
   // Translation
   const t = useTranslations();
+
+  const router = useRouter();
 
   // Mutation
   const { isPending, UpdateOccasion } = useUpdateOccasion();
@@ -61,7 +64,14 @@ export default function UpdateOccasionForm({
     if (values.name !== initialData?.name) {
       fields.name = values.name;
     }
-    UpdateOccasion({ fields, occasionId });
+    UpdateOccasion(
+      { fields, occasionId },
+      {
+        onSuccess: () => {
+          router.push("/dashboard/occasions");
+        },
+      },
+    );
   };
 
   return (
