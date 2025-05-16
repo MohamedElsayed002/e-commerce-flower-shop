@@ -32,20 +32,18 @@ export async function addcategory(formData: FormData) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    cache: "no-store",
     body: formData,
   });
 
   const payload = await response.json();
-  console.log("payload", payload);
 
   if ("error" in payload) {
     throw new Error(payload.error);
   }
-  revalidatePath("/categories");
+  revalidatePath("dashboard/categories");
 }
 
-// update category
+// Update category
 
 export async function updatecategory(id: string, formData: FormData) {
   const token = await getAuthenticatedToken();
@@ -55,7 +53,6 @@ export async function updatecategory(id: string, formData: FormData) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    cache: "no-store",
     body: formData,
   });
 
@@ -65,10 +62,10 @@ export async function updatecategory(id: string, formData: FormData) {
     throw new Error(payload.error);
   }
 
-  revalidatePath("/categories");
+  revalidatePath("dashboard/categories");
 }
 
-// get Category by id
+// Get category by id
 
 export async function getCategoryById(id: string): Promise<Category> {
   const token = await getAuthenticatedToken();

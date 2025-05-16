@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { FileUp, Loader } from "lucide-react";
-import { useAddCategory } from "@/hooks/dashboard/use-addcategory";
+import { UseAddCategory } from "@/hooks/dashboard/use-add-category";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Heading from "@/components/common/header";
@@ -42,9 +42,9 @@ export default function AddCategory() {
   });
 
   // Mutation
-  const { addCategory, isLoading } = useAddCategory();
+  const { addCategory, isLoading } = UseAddCategory();
 
-  // Handle form submission
+  // Function
   const onSubmit = async (data: Inputs) => {
     const formData = new FormData();
     formData.append("name", data.name);
@@ -115,7 +115,7 @@ export default function AddCategory() {
                               {t("selected-file")}: {field.value.name}
                             </p>
                           ) : (
-                            <p className="text-sm text-gray-400 truncate">
+                            <p className="text-sm text-gray-400 truncate sr-only">
                               {t("no-file-selected")}
                             </p>
                           )}

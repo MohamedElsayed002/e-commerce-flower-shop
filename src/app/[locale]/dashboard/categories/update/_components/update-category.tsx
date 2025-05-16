@@ -14,11 +14,11 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Image, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useUpdateCategory } from "@/hooks/dashboard/use-updatecategory";
 import { GalleryCarouselDialog } from "@/components/features/dashboard/dialog/gallery-dialog";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Heading from "@/components/common/header";
+import { UseUpdateCategory } from "@/hooks/dashboard/use-update-category";
 
 type TypeParam = {
   params: { id: string };
@@ -33,8 +33,7 @@ export default function UpdateCategoryPage({ params, category }: TypeParam) {
   const [galleryOpen, setGalleryOpen] = useState(false);
 
   // Mutation
-  const { updateCategory, isLoading } = useUpdateCategory();
-  // const { data: category } = useCategoryById(params.id);
+  const { updateCategory, isLoading } = UseUpdateCategory();
 
   // Validation schema
   const Schema = z.object({
@@ -49,7 +48,7 @@ export default function UpdateCategoryPage({ params, category }: TypeParam) {
     values: category ? { name: category.name } : { name: "" },
   });
 
-  // Handle form submission
+  // Function
   const onSubmit = async (data: Inputs) => {
     const formData = new FormData();
     formData.append("name", data.name);

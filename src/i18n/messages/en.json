@@ -376,7 +376,7 @@
   "category-name": " Category Name",
   "selected-file": "Selected File",
   "no-file-selected": "No File Selected",
-  "category-name-placeholder": "Enter category name\n",
+  "category-name-placeholder": "Enter category name",
   "category-added-successfully": "Category Added Successfully",
   "category-add-failed": "Category Add Failed",
   "update-cat": "Update Category"

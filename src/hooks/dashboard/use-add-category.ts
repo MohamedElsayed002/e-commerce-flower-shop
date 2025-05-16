@@ -3,35 +3,30 @@
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { addcategory } from "@/lib/apis/dashboard/category.api";
 import { useRouter } from "@/i18n/routing";
-import { updatecategory } from "@/lib/apis/dashboard/category.api";
 
-type UpdateCategoryParams = {
-  id: string;
-  data: FormData;
-};
-
-export function useUpdateCategory() {
-  // Translation
+export function UseAddCategory() {
+  // Translations
   const t = useTranslations();
 
   // Navigation
   const router = useRouter();
 
-  // Mutation
+  // Mutation for adding category
   const mutation = useMutation({
-    mutationFn: ({ id, data }: UpdateCategoryParams) => updatecategory(id, data),
+    mutationFn: addcategory,
     onSuccess: () => {
-      toast.success(t("category-updated"));
+      toast.success(t("category-added-successfully"));
       router.push("/dashboard/categories");
     },
     onError: (error: any) => {
-      toast.error(error.message || t("category-update-failed"));
+      toast.error(error.message || t("category-add-failed"));
     },
   });
 
   return {
-    updateCategory: mutation.mutateAsync,
+    addCategory: mutation.mutateAsync,
     isLoading: mutation.isPending,
   };
 }
