@@ -59,18 +59,22 @@ export const FileUpload = forwardRef<FileUploadHandle, FileUploadProps>(
           className="flex items-center justify-end h-[49px] w-[746px] rounded-lg border border-input"
           onClick={handleFileClick}
         >
+          {/* Display file name in input */}
           <span>{fileName}</span>
 
+          {/* Button */}
           <Button
             type="button"
             variant="ghost"
             className="text-custom-rose-900 hover:text-custom-rose-900 hover:bg-transparent"
           >
+            {/* Icon */}
             <MdUploadFile className="text-gray-500 w-8 h-8 " />
             {t("upload-file")}
           </Button>
         </div>
 
+        {/* Input */}
         <Input
           type="file"
           ref={fileInputRef}

@@ -380,5 +380,7 @@
   "add-a-new-occasion-0": "أضف مناسبة جديدة",
   "you-are-not-authorized-to-access-this-page": "أنت غير مسموح ليك للوصول إلى هذه الصفحة.",
   "if-you-think-this-is-wrong-please-contact-support": "إذا كنت تعتقد أن هذا خطأ ، فيرجى الاتصال بالدعم.",
-  "go-to-homepage": "اذهب إلى الصفحة الرئيسية"
+  "go-to-homepage": "اذهب إلى الصفحة الرئيسية",
+  "missing-fields": "الحقول المفقودة",
+  "occasion-created-successfully": "مناسبة تم إنشاؤها بنجاح!"
 }

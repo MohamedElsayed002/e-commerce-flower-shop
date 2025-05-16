@@ -396,5 +396,7 @@
   "add-a-new-occasion-0": "Add a New Occasion",
   "you-are-not-authorized-to-access-this-page": "You are not authorized to access this page.",
   "if-you-think-this-is-wrong-please-contact-support": "If you think this is wrong, please contact support.",
-  "go-to-homepage": "Go to Homepage"
+  "go-to-homepage": "Go to Homepage",
+  "missing-fields": "Missing fields",
+  "occasion-created-successfully": "Occasion created successfully!"
 }

@@ -26,7 +26,9 @@ export default async function Unauthorized() {
       {/* Text */}
       <p className="text-gray-500 ">{t("if-you-think-this-is-wrong-please-contact-support")}</p>
 
+      {/* Line */}
       <div className="border-t border-gray-300 my-4 w-full max-w-sm mx-auto" />
+
       {/* Button */}
       <Link href="/">
         <Button className="bg-white text-black rounded-lg shadow-sm border px-6 py-2 hover:bg-transparent">

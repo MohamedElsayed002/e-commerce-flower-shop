@@ -32,6 +32,7 @@ export default function UpdateOccasionForm({
   // Translation
   const t = useTranslations();
 
+  // Router
   const router = useRouter();
 
   // Mutation
@@ -112,8 +113,7 @@ export default function UpdateOccasionForm({
                     <button
                       type="button"
                       onClick={() => setGalleryOpen(true)}
-                      className="text-blue-600 text-sm border border-gray-300 p-2 rounded-lg flex items-center gap-x-1 mt-2
-                       "
+                      className="text-blue-600 text-sm border border-gray-300 p-2 rounded-lg flex items-center gap-x-1 mt-2"
                     >
                       <GoImage className="w-5 h-5" />
                       {t("view-occasion-image")}

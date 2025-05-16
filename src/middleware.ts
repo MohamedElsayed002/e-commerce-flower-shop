@@ -15,12 +15,17 @@ const handleI18nRouting = createMiddleware(routing);
 // Authentication middleware using NextAuth
 const authMiddleware = withAuth(
   function onSuccess(req) {
+    // Check if the current request path matches the dashboard
     const isDashboard = dashboardPathRegex.test(req.nextUrl.pathname);
+
+    // Extract the token from the NextAuth session attached to the request
     const token = req.nextauth.token;
+
+    // Extract the locale ('en', 'ar') from the first part of the pathname
+    const locale = req.nextUrl.pathname.split("/")[1];
 
     // Redirect if user is not admin
     if (isDashboard && token?.role !== "admin") {
-      const locale = req.nextUrl.pathname.split("/")[1];
       return NextResponse.redirect(new URL(`/${locale}/unauthorized`, req.url));
     }
     return handleI18nRouting(req);
