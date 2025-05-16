@@ -31,7 +31,7 @@ export function SearchBar({placeholder}: { placeholder?: string }) {
       params.delete("search");
     }
     replace(`${pathname}?${params.toString()}`);
-  }, 1000);
+  }, 500);
 
   useEffect(() => {
     if (!searchParams.get("search")) {

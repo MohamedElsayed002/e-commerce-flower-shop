@@ -358,5 +358,6 @@
   "delete-failed": "فشل الحذف",
   "occasion-deleted-successfully": "تم حذف المناسبة بنجاح",
   "failed-to-delete-occasion": "فشل في حذف المناسبة",
-  "failed-to-delete-category": "فشل في حذف الفئة"
+  "failed-to-delete-category": "فشل في حذف الفئة",
+  "products-0": "منتجات"
 }

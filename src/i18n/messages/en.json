@@ -375,5 +375,6 @@
   "delete-failed": "Failed delete",
   "occasion-deleted-successfully": "Occasion deleted successfully",
   "failed-to-delete-occasion": "Failed to delete occasion",
-  "failed-to-delete-category": "Failed to delete category"
+  "failed-to-delete-category": "Failed to delete category",
+  "products-0": "Products"
 }

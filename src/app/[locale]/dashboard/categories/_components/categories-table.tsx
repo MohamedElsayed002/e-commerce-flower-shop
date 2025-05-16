@@ -17,12 +17,13 @@ import { useState } from "react";
 import useDeleteCategory from "@/hooks/category/use-delete-category";
 
 export function CategoriesTable({ data }: { data: Category[] }) {
-  // State for dialog control
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [currentItem, setCurrentItem] = useState<{ id: string; name: string } | null>(null);
 
   // Translations
   const t = useTranslations();
+
+  // State
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState<{ id: string; name: string } | null>(null);
 
   // Locale
   const locale = useLocale();
@@ -49,8 +50,8 @@ export function CategoriesTable({ data }: { data: Category[] }) {
       <Table className="mt-10 w-full px-20 mx-auto">
         <TableHeader className="w-full bg-tableHeader">
           <TableRow className="flex w-full mt-5">
-            <TableHead className="flex-1">{t("name")}</TableHead>
-            <TableHead className="flex-1 text-left">{t("products")}</TableHead>
+            <TableHead className="flex-1 text-black">{t("name")}</TableHead>
+            <TableHead className="flex-1 text-black">{t("products")}</TableHead>
             <TableHead className="flex-1" />
           </TableRow>
         </TableHeader>
@@ -60,14 +61,14 @@ export function CategoriesTable({ data }: { data: Category[] }) {
             return (
               <TableRow key={item._id} className="flex w-full hover:bg-custom-rose-100">
                 <TableCell className="flex-1">{item.name}</TableCell>
-                <TableCell className="flex-1">{item.productsCount}</TableCell>
+                <TableCell className="flex-1">{item.productsCount} {t('products-0')}</TableCell>
                 <TableCell className="flex-1 flex justify-end">
                   <Button
                     size="sm"
                     className="text-stats-orders-primary bg-stats-orders-bg hover:bg-stats-order-bg/20 mr-2"
                     asChild
                   >
-                    <Link href={`/${locale}/dashboard/update-category/${item._id}`}>
+                    <Link href={`/dashboard/update-category/${item._id}`}>
                       <Pencil className="mr-1" />
                       {t("edit")}
                     </Link>
