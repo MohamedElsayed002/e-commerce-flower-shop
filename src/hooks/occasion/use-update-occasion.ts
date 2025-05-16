@@ -35,5 +35,5 @@ export default function useupdateOccasion() {
     },
   });
 
-  return { isPending, error, UpdateOccasion: mutate };
+  return { isPending, error, updateOccasion: mutate };
 }

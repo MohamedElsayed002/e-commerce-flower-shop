@@ -36,7 +36,7 @@ export default function UpdateOccasionForm({
   const router = useRouter();
 
   // Mutation
-  const { isPending, UpdateOccasion } = useUpdateOccasion();
+  const { isPending, updateOccasion } = useUpdateOccasion();
 
   // State
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -65,7 +65,7 @@ export default function UpdateOccasionForm({
     if (values.name !== initialData?.name) {
       fields.name = values.name;
     }
-    UpdateOccasion(
+    updateOccasion(
       { fields, occasionId },
       {
         onSuccess: () => {
@@ -77,7 +77,7 @@ export default function UpdateOccasionForm({
 
   return (
     <div>
-      {/* Text */}
+      {/* Title */}
       <Heading name={initialData?.name || ""}>{t("update-occasion")}:</Heading>
 
       <div className="bg-white p-6">

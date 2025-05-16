@@ -74,7 +74,7 @@ export default function AddOccasionForm() {
 
   return (
     <div>
-      {/* Text */}
+      {/* Title */}
       <Heading>{t("add-a-new-occasion-0")}</Heading>
 
       <div className="bg-white p-6">
