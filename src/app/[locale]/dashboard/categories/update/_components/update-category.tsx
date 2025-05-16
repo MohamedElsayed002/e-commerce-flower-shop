@@ -45,7 +45,9 @@ export default function UpdateCategoryPage({ params, category }: TypeParam) {
   type Inputs = z.infer<typeof Schema>;
   const form = useForm<Inputs>({
     resolver: zodResolver(Schema),
-    values: category ? { name: category.name } : { name: "" },
+    defaultValues: {
+      name: category?.name,
+    },
   });
 
   // Function
