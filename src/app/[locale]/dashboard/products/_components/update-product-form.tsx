@@ -36,7 +36,7 @@ export default function UpdateProductform({ params, product, categories }: TypeP
 
   // State
   const [galleryOpen, setGalleryOpen] = useState(false);
-  // const [category, setCategory] = useState("");
+ 
 
   // Mutation
   const { updateProduct,isLoading } = useUpdateProduct();
@@ -86,6 +86,7 @@ export default function UpdateProductform({ params, product, categories }: TypeP
       .max(1000, t("maximum-quantity-is-1000")),
 
     category: z.string().nonempty("Please select a category"),
+    occassion: z.string().nonempty("please select occassion"),
   });
 
   type Inputs = z.infer<typeof Schema>;
@@ -309,6 +310,32 @@ export default function UpdateProductform({ params, product, categories }: TypeP
             />
 
             {/* Ocassion */}
+             <FormField
+              control={form.control}
+              name="occassion"
+              render={({ field }) => (
+                <FormItem className="mb-6">
+                  {/* Label */}
+                  <FormLabel className="captalize font-medium text-sm font-inter">
+                 {t('occassion')}
+                    <span className="text-custom-red-100 ps-1">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    {/* Input */}
+                    <Input
+                      placeholder="Flowers"
+                      {...field}
+                      type="text"
+                      className="w-4/5 border-blue-gray-100 border-2 rounded-lg"
+                    />
+                  </FormControl>
+
+                  {/* Message */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
             
 
             {/* Trigger to open gallery dialog */}

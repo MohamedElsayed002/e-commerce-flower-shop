@@ -26,7 +26,7 @@ export default function ProductForm() {
    
   // Validation
   const Schema = z.object({
-    name: z.string().min(1, t("name-is-required")).min(2, t("name-must-be-at-least-2-characters")),
+    title: z.string().min(1, t("name-is-required")).min(2, t("name-must-be-at-least-2-characters")),
     message: z
       .string()
       .min(1, t("message-is-required"))
@@ -60,6 +60,9 @@ export default function ProductForm() {
       .number({ required_error: "Quantity is required" })
       .min(1, "Minimum quantity is 1")
       .max(1000, "Maximum quantity is 1000"),
+
+        category: z.string().nonempty("Please select a category"),
+          occassion: z.string().nonempty("please select occassion"),
   });
 
   type Inputs = z.infer<typeof Schema>;
@@ -67,7 +70,7 @@ export default function ProductForm() {
   // Form
   const form = useForm({
     defaultValues: {
-      name: "",
+      title: "",
       message: "",
     },
     resolver: zodResolver(Schema),
@@ -79,7 +82,7 @@ export default function ProductForm() {
   // Submission
   const onSubmit = async (data: Inputs) => {
     const formData = new FormData();
-    formData.append("name", data.name);
+    formData.append("name", data.title);
     formData.append("image", data.image);
      await addProducts(formData);
   };
@@ -97,7 +100,7 @@ export default function ProductForm() {
             {/* Title */}
             <FormField
               control={form.control}
-              name="name"
+              name="title"
               render={({ field }) => (
                 <FormItem className="mb-6">
                   {/* Label */}
@@ -248,6 +251,59 @@ export default function ProductForm() {
                       {...field}
                       type="number"
                       className=" w-4/5  border-blue-gray-100 border-2 rounded-lg"
+                    />
+                  </FormControl>
+
+                  {/* Message */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+             {/* Category */}
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem className="mb-6">
+                  {/* Label */}
+                  <FormLabel className="captalize font-medium text-sm font-inter">
+                  {t('category')}
+                    <span className="text-custom-red-100 ps-1">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    {/* Input */}
+                    <Input
+                      placeholder="Flowers"
+                      {...field}
+                      type="text"
+                      className="w-4/5 border-blue-gray-100 border-2 rounded-lg"
+                    />
+                  </FormControl>
+
+                  {/* Message */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Ocassion */}
+             <FormField
+              control={form.control}
+              name="occassion"
+              render={({ field }) => (
+                <FormItem className="mb-6">
+                  {/* Label */}
+                  <FormLabel className="captalize font-medium text-sm font-inter">
+                 {t('occassion')}
+                    <span className="text-custom-red-100 ps-1">*</span>
+                  </FormLabel>
+                  <FormControl>
+                    {/* Input */}
+                    <Input
+                      placeholder="Flowers"
+                      {...field}
+                      type="text"
+                      className="w-4/5 border-blue-gray-100 border-2 rounded-lg"
                     />
                   </FormControl>
 
