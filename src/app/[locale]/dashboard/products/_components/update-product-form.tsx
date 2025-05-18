@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { FileUp, Image, Loader } from "lucide-react";
+import { Image, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GalleryCarouselDialog } from "@/components/features/dashboard/dialog/gallery-dialog";
 import { useState } from "react";
@@ -20,93 +20,100 @@ import { useTranslations } from "next-intl";
 import Heading from "@/components/common/header";
 import { useUpdateProduct } from "@/hooks/dashboard/use-update-product";
 import { Textarea } from "@/components/ui/textarea";
-import { fetchCategories } from "@/lib/apis/category.api";
-import { Select, SelectContent, SelectItem,  SelectTrigger, SelectValue } from "@radix-ui/react-select";
 
 type TypeParam = {
   params: { id: string };
   product: Product;
   categories: Category[];
-
 };
 
-export default function UpdateProductform({ params, product,categories }: TypeParam) {
+export default function UpdateProductform({ params, product, categories }: TypeParam) {
   // Translation
   const t = useTranslations();
   console.log(product);
-  console.log('cate',categories)
+  console.log("cate", categories);
+  console.log("id", params);
 
   // State
   const [galleryOpen, setGalleryOpen] = useState(false);
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
 
   // Mutation
-  const { updateProduct, isLoading } = useUpdateProduct();
+  const { updateProduct,isLoading } = useUpdateProduct();
 
-  // Validation 
+  // Validation
   const Schema = z.object({
-    title: z.string().min(1, t('title-is-required') ).min(2,t('title-must-be-at-least-2-characters')),
+    name: z
+      .string({ required_error: t("name-is-required") })
+      .min(2, t("name-must-be-at-least-2-characters")),
+    title: z
+      .string()
+      .min(1, t("title-is-required"))
+      .min(2, t("title-must-be-at-least-2-characters")),
     description: z
       .string()
       .min(1, t("message-is-required"))
       .min(10, t("message-must-be-at-least-10-characters")),
 
-        image: z
-       .instanceof(File, { message: t('image-required') })
+    image: z
+      .instanceof(File, { message: t("image-required") })
       .refine((file) => file.size > 0, { message: t("image-required") }),
 
     price: z
       .number({
-        invalid_type_error: t('price-must-be-a-number'),
-        required_error:t('price-is-required'),
+        invalid_type_error: t("price-must-be-a-number"),
+        required_error: t("price-is-required"),
       })
-      .min(0.01, t('price-must-be-greater-than-0')),
+      .min(0.01, t("price-must-be-greater-than-0")),
 
     pricediscount: z
       .number({
-        invalid_type_error: t('price-must-be-a-number'),
-        required_error: t('price-is-required'),
+        invalid_type_error: t("price-must-be-a-number"),
+        required_error: t("price-is-required"),
       })
-      .min(0.01, t('price-must-be-greater-than-0')),
+      .min(0.01, t("price-must-be-greater-than-0")),
 
     priceafterdiscount: z
       .number({
-        invalid_type_error: t('price-must-be-a-number'),
-        required_error: t('price-is-required'),
+        invalid_type_error: t("price-must-be-a-number"),
+        required_error: t("price-is-required"),
       })
-      .min(0.01, t('price-must-be-greater-than-0')),
+      .min(0.01, t("price-must-be-greater-than-0")),
 
     quantity: z
-      .number({ required_error: t('quantity-is-required') })
-      .min(1,t('minimum-quantity-is-1'))
-      .max(1000,t('maximum-quantity-is-1000')),
+      .number({ required_error: t("quantity-is-required") })
+      .min(1, t("minimum-quantity-is-1"))
+      .max(1000, t("maximum-quantity-is-1000")),
 
-       category: z.string().nonempty("Please select a category"),
-       
+    category: z.string().nonempty("Please select a category"),
   });
 
   type Inputs = z.infer<typeof Schema>;
   const form = useForm<Inputs>({
+    defaultValues: {
+      title: product?.title || "",
+      category: product?.category || categories[0]?.name || "",
+    },
+
     resolver: zodResolver(Schema),
-    defaultValues: product ? { title: product.title } : { title: "" },
   });
 
   // Submission
   const onSubmit = async (data: Inputs) => {
     const formData = new FormData();
-     formData.append("title", data.title);
-     formData.append("description", data.description);
-     formData.append("price", data.price.toString());
-     formData.append("pricediscount", data.pricediscount.toString());
-     formData.append("priceafterdiscount", data.priceafterdiscount.toString());
-     formData.append("quantity", data.quantity.toString());
-     await updateProduct({ id: params.id, data: formData });
-     await fetchCategories(categories);
-
+    formData.append("title", data.name);
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("price", data.price.toString());
+    formData.append("pricediscount", data.pricediscount.toString());
+    formData.append("priceafterdiscount", data.priceafterdiscount.toString());
+    formData.append("quantity", data.quantity.toString());
+    await updateProduct({ id: params.id, data: formData });
+  };
   return (
-    <>
+    <div>
       {/* Heading */}
-      <Heading name={product?.title || ""}>{t('update-product')} :</Heading>
+      <Heading name={product?.title || ""}>{t("update-product")} :</Heading>
 
       <div className="bg-white w-full rounded-lg p-6 shadow-sm">
         <Form {...form}>
@@ -119,11 +126,10 @@ export default function UpdateProductform({ params, product,categories }: TypePa
                 <FormItem className="mb-6">
                   {/* Label */}
                   <FormLabel className="captalize font-medium text-sm font-inter">
-                  {t('title')}
+                    {t("title")}
                     <span className="text-custom-red-100 ps-1">*</span>
                   </FormLabel>
                   <FormControl>
-
                     {/* Input */}
                     <Input
                       placeholder="Flowers"
@@ -140,14 +146,14 @@ export default function UpdateProductform({ params, product,categories }: TypePa
             />
 
             {/* Discription */}
-               <FormField
+            <FormField
               control={form.control}
               name="description"
               render={({ field }) => (
                 <FormItem className="mb-6">
                   {/* Label */}
                   <FormLabel className="captalize font-medium text-sm font-inter">
-                   {t('description')}
+                    {t("description")}
                     <span className="text-custom-red-100 ps-1">*</span>
                   </FormLabel>
                   <FormControl>
@@ -163,8 +169,9 @@ export default function UpdateProductform({ params, product,categories }: TypePa
               )}
             />
 
-             <div className="flex gap-4">
-              {/* Price field */}
+            {/* Price feild */}
+            <div className="flex gap-4">
+              {/* Price */}
               <FormField
                 control={form.control}
                 name="price"
@@ -172,11 +179,10 @@ export default function UpdateProductform({ params, product,categories }: TypePa
                   <FormItem className="mb-6">
                     {/* Label */}
                     <FormLabel className="captalize font-medium text-sm font-inter">
-                     {t('price')}
+                      {t("price")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
                     <FormControl>
-
                       {/* Input */}
                       <Input
                         placeholder="Example: 5000"
@@ -200,11 +206,10 @@ export default function UpdateProductform({ params, product,categories }: TypePa
                   <FormItem className="mb-6">
                     {/* Label */}
                     <FormLabel className="captalize font-medium text-sm font-inter">
-                  {t('discount')}
+                      {t("discount")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
                     <FormControl>
-
                       {/* Input */}
                       <Input
                         placeholder="Example: 5"
@@ -228,11 +233,10 @@ export default function UpdateProductform({ params, product,categories }: TypePa
                   <FormItem className="mb-6">
                     {/* Label */}
                     <FormLabel className="captalize font-medium text-sm font-inter">
-                     {t('price-after-discount')}
+                      {t("price-after-discount")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
                     <FormControl>
-
                       {/* Input */}
                       <Input
                         placeholder="Example: 5"
@@ -257,12 +261,11 @@ export default function UpdateProductform({ params, product,categories }: TypePa
                 <FormItem className="mb-6">
                   {/* Label */}
                   <FormLabel className="captalize font-medium text-sm font-inter">
-                 {t('quantity')}
+                    {t("quantity")}
                     <span className="text-custom-red-100 ps-1">*</span>
                   </FormLabel>
 
                   <FormControl>
-
                     {/* Input */}
                     <Input
                       placeholder="Example: 200"
@@ -278,18 +281,18 @@ export default function UpdateProductform({ params, product,categories }: TypePa
               )}
             />
 
-              <FormField
+            {/* Category */}
+            <FormField
               control={form.control}
               name="category"
               render={({ field }) => (
                 <FormItem className="mb-6">
                   {/* Label */}
                   <FormLabel className="captalize font-medium text-sm font-inter">
-                  {t('title')}
+                  {t('category')}
                     <span className="text-custom-red-100 ps-1">*</span>
                   </FormLabel>
                   <FormControl>
-
                     {/* Input */}
                     <Input
                       placeholder="Flowers"
@@ -305,12 +308,11 @@ export default function UpdateProductform({ params, product,categories }: TypePa
               )}
             />
 
+            {/* Ocassion */}
+            
 
-    
-
-          
             {/* Trigger to open gallery dialog */}
-             <div className="flex justify-end w-4/5">
+            <div className="flex justify-end w-4/5">
               <div className="text-stats-orders-primary flex items-center gap-2 font-normal text-sm  border-2 border-blue-gray-100 rounded-lg p-2 ">
                 <Image className="w-4 h-4" />
                 <button
@@ -318,17 +320,17 @@ export default function UpdateProductform({ params, product,categories }: TypePa
                   onClick={() => setGalleryOpen(true)}
                   className="text-stats-orders-primary capitalize"
                 >
-                  {t("dialog-image")}
+                {t('dialog-image')}
                 </button>
               </div>
-            </div> 
+            </div>
 
             {/* Gallery dialog */}
             <GalleryCarouselDialog
               isOpen={galleryOpen}
               onClose={() => setGalleryOpen(false)}
               images={product?.images ?? []}
-            /> 
+            />
 
             {/* Submit button */}
             <Button
@@ -341,6 +343,6 @@ export default function UpdateProductform({ params, product,categories }: TypePa
           </form>
         </Form>
       </div>
-    </>
+    </div>
   );
-}}
+}

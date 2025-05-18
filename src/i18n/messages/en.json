@@ -396,5 +396,9 @@
   "product-update-failed": "product update failed",
   "function-not-implemented": "Function not implemented.",
   "function-not-implemented-0": "Function not implemented.",
-  "function-not-implemented-1": "Function not implemented."
+  "function-not-implemented-1": "Function not implemented.",
+  "category-0": "category",
+  "dialog-image": "dialog image",
+  "category-1": "Category",
+  "category-2": "Category"
 }
