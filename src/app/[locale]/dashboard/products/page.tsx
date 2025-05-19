@@ -2,20 +2,21 @@ import React from "react";
 import UpdateProductform from "./_components/update-product-form";
 import { fetchProductDetails } from "@/lib/apis/product.api";
 import { fetchCategories } from "@/lib/apis/category.api";
-import ProductForm from "./_components/add-product-form";
+import { fetchOccasions } from "@/lib/apis/occasion.api";
 
 export default async function ProductsPage({ params }: { params: { id: string } }) {
   const data = await fetchProductDetails("67d727af836ee8be706225dc");
-  const categoriesdata = await fetchCategories();
-  console.log("data", data);
-  console.log(" CAT", categoriesdata);
+  const categoriesData = await fetchCategories();
+  const occasionsData = await fetchOccasions();
+
   return (
     <div>
-       {/* <ProductForm />  */}
+      {/* <ProductForm />  */}
       <UpdateProductform
         params={{ id: params.id }}
         product={data?.product}
-        categories={categoriesdata?.categories || []}
+        categories={categoriesData?.categories || []}
+        occasions={occasionsData?.occasions || []}
       />
     </div>
   );
