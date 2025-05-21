@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { updateProduct } from "@/lib/apis/dashboard/product.api";
 
-
 type UpdateProductParams = {
   id: string;
   data: FormData;
@@ -23,11 +22,11 @@ export function useUpdateProduct() {
   const mutation = useMutation({
     mutationFn: ({ id, data }: UpdateProductParams) => updateProduct(id, data),
     onSuccess: () => {
-      toast.success(t('product-updated'));
+      toast.success(t("product-updated"));
       router.push("/dashboard/products");
     },
     onError: (error: any) => {
-      toast.error(error.message || t('product-update-failed'));
+      toast.error(error.message || t("product-update-failed"));
     },
   });
 

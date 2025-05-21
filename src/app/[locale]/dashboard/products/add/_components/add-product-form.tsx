@@ -18,16 +18,23 @@ import { useTranslations } from "next-intl";
 import Heading from "@/components/common/header";
 import { Textarea } from "@/components/ui/textarea";
 import { useAddProduct } from "@/hooks/dashboard/use-add-product";
+import { GoChevronDown, GoChevronUp } from "react-icons/go";
 
+type TypeParam = {
+  params: { id: string };
+  product: Product;
+  categories: Category[];
+  occasions: Occasions[];
+};
 
-export default function ProductForm() {
+export default function AddProductForm({ params, product, categories, occasions }: TypeParam) {
   // Translation
   const t = useTranslations();
-   
+
   // Validation
   const Schema = z.object({
     title: z.string().min(1, t("name-is-required")).min(2, t("name-must-be-at-least-2-characters")),
-    message: z
+    description: z
       .string()
       .min(1, t("message-is-required"))
       .min(10, t("message-must-be-at-least-10-characters")),
@@ -61,39 +68,45 @@ export default function ProductForm() {
       .min(1, "Minimum quantity is 1")
       .max(1000, "Maximum quantity is 1000"),
 
-        category: z.string().nonempty("Please select a category"),
-          occassion: z.string().nonempty("please select occassion"),
+    category: z.string().nonempty("Please select a category"),
+    occasion: z.string().nonempty("please select occassion"),
   });
 
   type Inputs = z.infer<typeof Schema>;
-   
+
   // Form
   const form = useForm({
     defaultValues: {
-      title: "",
-      message: "",
+      title: product?.title || "",
+      category: product?.category || categories[0]?.name || "",
+      occasion: product?.occasion || occasions[0]?.name || "",
     },
     resolver: zodResolver(Schema),
   });
 
   // Mutation
-   const { addProducts, isLoading } = useAddProduct();
+  const { addProducts, isLoading } = useAddProduct();
 
   // Submission
   const onSubmit = async (data: Inputs) => {
     const formData = new FormData();
-    formData.append("name", data.title);
-    formData.append("image", data.image);
-     await addProducts(formData);
+    formData.append("occasion", data.occasion);
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("price", data.price.toString());
+    formData.append("pricediscount", data.pricediscount.toString());
+    formData.append("priceafterdiscount", data.priceafterdiscount.toString());
+    formData.append("quantity", data.quantity.toString());
+    await addProducts(formData);
   };
 
   return (
     <>
       {/* Heading */}
-      <Heading>{t('add-a-new-product')}</Heading>
-        
-        {/* Form */}
-        <div className="bg-white w-full rounded-lg p-6 flex flex-col gap-5 shadow-sm">
+      <Heading>{t("add-a-new-product")}</Heading>
+
+      {/* Form */}
+      <div className="bg-white w-full rounded-lg p-6 flex flex-col gap-5 shadow-sm">
         {/* Form add product */}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -105,14 +118,14 @@ export default function ProductForm() {
                 <FormItem className="mb-6">
                   {/* Label */}
                   <FormLabel className="captalize font-medium text-sm font-inter">
-                   {t('title')}
+                    {t("title")}
                     <span className="text-custom-red-100 ps-1">*</span>
                   </FormLabel>
 
                   <FormControl>
                     {/* Input */}
                     <Input
-                      placeholder={t('enter-product-title')}
+                      placeholder={t("enter-product-title")}
                       {...field}
                       type="text"
                       className=" w-4/5  border-blue-gray-100 border-2 rounded-lg"
@@ -128,17 +141,17 @@ export default function ProductForm() {
             {/* Description field */}
             <FormField
               control={form.control}
-              name="message"
+              name="description"
               render={({ field }) => (
                 <FormItem className="mb-6">
                   {/* Label */}
                   <FormLabel className="captalize font-medium text-sm font-inter">
-                    {t('description')}
+                    {t("description")}
                     <span className="text-custom-red-100 ps-1">*</span>
                   </FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder={t('enter-product-description')}
+                      placeholder={t("enter-product-description")}
                       rows={5}
                       {...field}
                       className=" w-4/5 max-h-64 border-2 border-blue-gray-100"
@@ -158,13 +171,13 @@ export default function ProductForm() {
                   <FormItem className="mb-6">
                     {/* Label */}
                     <FormLabel className="captalize font-medium text-sm font-inter">
-                     {t('price')}
+                      {t("price")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
                     <FormControl>
                       {/* Input */}
                       <Input
-                        placeholder={t('example-5000')}
+                        placeholder={t("example-5000")}
                         {...field}
                         type="number"
                         className=" w-[242px] h-14 border-blue-gray-100 border-2 rounded-lg"
@@ -240,7 +253,7 @@ export default function ProductForm() {
                 <FormItem className="mb-6">
                   {/* Label */}
                   <FormLabel className="captalize font-medium text-sm font-inter">
-                   {t('quantity')}
+                    {t("quantity")}
                     <span className="text-custom-red-100 ps-1">*</span>
                   </FormLabel>
 
@@ -259,58 +272,111 @@ export default function ProductForm() {
                 </FormItem>
               )}
             />
-             {/* Category */}
+
+            {/* Category */}
             <FormField
               control={form.control}
               name="category"
-              render={({ field }) => (
-                <FormItem className="mb-6">
-                  {/* Label */}
-                  <FormLabel className="captalize font-medium text-sm font-inter">
-                  {t('category')}
-                    <span className="text-custom-red-100 ps-1">*</span>
-                  </FormLabel>
-                  <FormControl>
-                    {/* Input */}
-                    <Input
-                      placeholder="Flowers"
-                      {...field}
-                      type="text"
-                      className="w-4/5 border-blue-gray-100 border-2 rounded-lg"
-                    />
-                  </FormControl>
+              render={({ field }) => {
+                const currentIndex = categories.findIndex((c) => c.name === field.value);
 
-                  {/* Message */}
-                  <FormMessage />
-                </FormItem>
-              )}
+                const handleNext = () => {
+                  const nextIndex = (currentIndex + 1) % categories.length;
+                  field.onChange(categories[nextIndex].name);
+                };
+
+                const handlePrev = () => {
+                  const prevIndex = (currentIndex - 1 + categories.length) % categories.length;
+                  field.onChange(categories[prevIndex].name);
+                };
+
+                return (
+                  <FormItem className="mb-6">
+                    <FormLabel className="capitalize font-medium text-sm font-inter">
+                      {t("category")}
+                      <span className="text-custom-red-100 ps-1">*</span>
+                    </FormLabel>
+                    <div className="relative w-4/5">
+                      <Input
+                        readOnly
+                        value={field.value || ""}
+                        placeholder="Select a category"
+                        className="w-full border-blue-gray-100 border-2 rounded-lg pr-10"
+                      />
+                      <div className="absolute inset-y-0 right-2 flex flex-col justify-center space-y-1">
+                        <button
+                          type="button"
+                          onClick={handlePrev}
+                          className="text-gray-600 hover:text-black text-sm"
+                        >
+                          <GoChevronUp className="mr-2" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleNext}
+                          className="text-gray-600 hover:text-black text-sm"
+                        >
+                          <GoChevronDown className="mr-2" />
+                        </button>
+                      </div>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
 
-            {/* Ocassion */}
-             <FormField
+            {/* Occasion */}
+            <FormField
               control={form.control}
-              name="occassion"
-              render={({ field }) => (
-                <FormItem className="mb-6">
-                  {/* Label */}
-                  <FormLabel className="captalize font-medium text-sm font-inter">
-                 {t('occassion')}
-                    <span className="text-custom-red-100 ps-1">*</span>
-                  </FormLabel>
-                  <FormControl>
-                    {/* Input */}
-                    <Input
-                      placeholder="Flowers"
-                      {...field}
-                      type="text"
-                      className="w-4/5 border-blue-gray-100 border-2 rounded-lg"
-                    />
-                  </FormControl>
+              name="occasion"
+              render={({ field }) => {
+                const currentIndex = occasions.findIndex((o) => o.name === field.value);
 
-                  {/* Message */}
-                  <FormMessage />
-                </FormItem>
-              )}
+                const handleNext = () => {
+                  const nextIndex = (currentIndex + 1) % occasions.length;
+                  field.onChange(occasions[nextIndex].name);
+                };
+
+                const handlePrev = () => {
+                  const prevIndex = (currentIndex - 1 + occasions.length) % occasions.length;
+                  field.onChange(occasions[prevIndex].name);
+                };
+
+                return (
+                  <FormItem className="mb-6">
+                    <FormLabel className="capitalize font-medium text-sm font-inter">
+                      {t("occasion")}
+                      <span className="text-custom-red-100 ps-1">*</span>
+                    </FormLabel>
+                    <div className="relative w-4/5">
+                      <Input
+                        readOnly
+                        value={field.value || ""}
+                        placeholder="Select an occasion"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-700 pr-10"
+                      />
+                      <div className="absolute inset-y-0 right-2 flex flex-col justify-center space-y-1">
+                        <button
+                          type="button"
+                          onClick={handlePrev}
+                          className="text-gray-600 hover:text-black text-sm"
+                        >
+                          <GoChevronUp className="mr-2" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleNext}
+                          className="text-gray-600 hover:text-black text-sm"
+                        >
+                          <GoChevronDown className="mr-2" />
+                        </button>
+                      </div>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
 
             {/* Image field */}
@@ -337,11 +403,11 @@ export default function ProductForm() {
                           <div className="flex-1 min-w-0 text-left">
                             {field.value ? (
                               <p className="text-sm text-gray-600 truncate">
-                                {t('selected-file')}: {field.value.name}
+                                {t("selected-file")}: {field.value.name}
                               </p>
                             ) : (
                               <p className="text-sm text-gray-400 truncate">
-                              {t('selected-image-name-examp')}
+                                {t("selected-image-name-examp")}
                               </p>
                             )}
                           </div>
@@ -377,7 +443,7 @@ export default function ProductForm() {
                   <FormItem className="mb-6">
                     {/* Label */}
                     <FormLabel className="captalize font-medium text-sm font-inter h-12">
-                    {t('product-gallery')}
+                      {t("product-gallery")}
                       <span className="text-custom-red-100 ps-1">*</span>
                     </FormLabel>
 
@@ -390,10 +456,9 @@ export default function ProductForm() {
                         >
                           {/* Show selected file name */}
                           <div className="flex-1 min-w-0 text-left">
-                              <p className="text-sm text-gray-600 truncate">
-                                {t("selected-file")}: {field.value.name}
-                              </p>
-                             
+                            <p className="text-sm text-gray-600 truncate">
+                              {t("selected-file")}: {field.value.name}
+                            </p>
                           </div>
                           <span className="flex items-center gap-1 text-sm">
                             {/* File icon */}
@@ -427,14 +492,11 @@ export default function ProductForm() {
               type="submit"
               className=" bg-custom-rose-900 w-4/5 text-white h-10 rounded-lg mt-16 capitalize font-semibold text-sm"
             >
-                {isLoading ? <Loader className="text-center" /> :t('add-product')}
+              {isLoading ? <Loader className="text-center" /> : t("add-product")}
             </Button>
           </form>
         </Form>
       </div>
-
-    
     </>
-    
   );
 }
