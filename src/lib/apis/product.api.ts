@@ -20,7 +20,6 @@ export async function fetchProducts(searchParams: SearchParams) {
   return payload;
 }
 
-
 // Function to fetch product details from the API
 export const fetchProductDetails = async (productid: string) => {
   // Translations
@@ -61,3 +60,4 @@ export default async function fetchProductsByCategory(category: string) {
   }
   return payload.products;
 }
+
