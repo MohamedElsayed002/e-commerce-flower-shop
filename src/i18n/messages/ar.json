@@ -208,7 +208,7 @@
   "total-0": "المجموع",
   "price": "سعر",
   "image": "صورة",
-  "name": "الاسم",
+  "name": "اسم",
   "your-message": "رسالتك",
   "call-anytime": "اتصل بنا في اي وقت",
   "send-email": "ارسل بريدك الالكتروني",
@@ -347,5 +347,15 @@
   "cancel": "الغاء",
   "delete-title": "الحذف",
   "image-gallery": "معرض الصور",
-  "image-description": "مجموعة الصور"
+  "image-description": "مجموعة الصور",
+  "add-a-new-product": "أضف منتجًا جديدًا",
+  "search-for-a-product": "ابحث عن منتج ...",
+  "n-a": "غير موجود",
+  "edit": "يحرر",
+  "delete": "يمسح",
+  "product-deleted-successfully": "تم حذف المنتج بنجاح",
+  "failed-to-delete-product": "فشل في حذف المنتج",
+  "update-product": "تحديث المنتج",
+  "update-category": "فئة التحديث",
+  "update-occasion": "تحديث التحديث"
 }
