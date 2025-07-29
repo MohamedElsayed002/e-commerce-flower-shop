@@ -27,7 +27,7 @@ type TypeParam = {
   occasions: Occasions[];
 };
 
-export default function AddProductForm({ params, product, categories, occasions }: TypeParam) {
+export default function AddProductForm({ product, categories, occasions }: TypeParam) {
   // Translation
   const t = useTranslations();
 
@@ -403,7 +403,7 @@ export default function AddProductForm({ params, product, categories, occasions 
                           <div className="flex-1 min-w-0 text-left">
                             {field.value ? (
                               <p className="text-sm text-gray-600 truncate">
-                                {t("selected-file")}: {field.value.name}
+                                {t("selected-file")}: {field.value?.name}
                               </p>
                             ) : (
                               <p className="text-sm text-gray-400 truncate">
@@ -457,7 +457,7 @@ export default function AddProductForm({ params, product, categories, occasions 
                           {/* Show selected file name */}
                           <div className="flex-1 min-w-0 text-left">
                             <p className="text-sm text-gray-600 truncate">
-                              {t("selected-file")}: {field.value.name}
+                              {t("selected-file")}: {field.value?.name}
                             </p>
                           </div>
                           <span className="flex items-center gap-1 text-sm">

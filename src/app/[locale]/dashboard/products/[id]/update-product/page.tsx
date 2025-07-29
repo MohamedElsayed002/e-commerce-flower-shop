@@ -4,14 +4,13 @@ import { fetchProductDetails } from "@/lib/apis/product.api";
 import { fetchCategories } from "@/lib/apis/category.api";
 import { fetchOccasions } from "@/lib/apis/occasion.api";
 
-export default async function UpdateProductsPage({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
   const data = await fetchProductDetails("67d727af836ee8be706225dc");
   const categoriesData = await fetchCategories();
   const occasionsData = await fetchOccasions();
 
   return (
     <div>
-      {/* <ProductForm />  */}
       <UpdateProductform
         params={{ id: params.id }}
         product={data?.product}
