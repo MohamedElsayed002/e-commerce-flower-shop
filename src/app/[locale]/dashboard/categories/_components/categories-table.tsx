@@ -10,23 +10,19 @@ import {
 } from "@/components/ui/table";
 import { DeleteConfirmationDialog } from "@/components/features/dashboard/dialog/confirm-dialog";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Pencil, Trash2 } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import useDeleteCategory from "@/hooks/category/use-delete-category";
+import { Link } from "@/i18n/routing";
 
 export function CategoriesTable({ data }: { data: Category[] }) {
-
   // Translations
   const t = useTranslations();
 
   // State
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState<{ id: string; name: string } | null>(null);
-
-  // Locale
-  const locale = useLocale();
 
   // Mutate
   const { mutate, isPending } = useDeleteCategory();
@@ -61,14 +57,16 @@ export function CategoriesTable({ data }: { data: Category[] }) {
             return (
               <TableRow key={item._id} className="flex w-full hover:bg-custom-rose-100">
                 <TableCell className="flex-1">{item.name}</TableCell>
-                <TableCell className="flex-1">{item.productsCount} {t('products-0')}</TableCell>
+                <TableCell className="flex-1">
+                  {item.productsCount} {t("products-0")}
+                </TableCell>
                 <TableCell className="flex-1 flex justify-end">
                   <Button
                     size="sm"
                     className="text-stats-orders-primary bg-stats-orders-bg hover:bg-stats-order-bg/20 mr-2"
                     asChild
                   >
-                    <Link href={`/dashboard/update-category/${item._id}`}>
+                    <Link href={`/dashboard/categories/${item._id}/update-category`}>
                       <Pencil className="mr-1" />
                       {t("edit")}
                     </Link>

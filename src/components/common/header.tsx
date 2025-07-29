@@ -1,6 +1,13 @@
-import { useTranslations } from "next-intl";
+interface HeadingProps {
+  name?: string;
+  children: React.ReactNode;
+}
 
-export function Header({ title }: { title: string }) {
-  const t = useTranslations();
-  return <h1 className="text-2xl font-bold">{t(title)}</h1>;
+export default function Heading({ name, children }: HeadingProps) {
+  return (
+    <div className="mb-6 flex items-center space-x-2">
+      <h1 className="text-2xl font-semibold capitalize">{children}</h1>
+      <p className="text-2xl font-semibold capitalize">{name}</p>
+    </div>
+  );
 }

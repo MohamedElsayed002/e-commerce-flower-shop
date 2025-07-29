@@ -99,6 +99,9 @@ const config: Config = {
           "800": "#F940B2",
           "900": "#F82BA9",
         },
+        "custom-red":{
+          "100":"#E20004"
+        },
         "custom-purple": {
           "50": "#F3EEFF",
           "100": "#E8DCFF",
@@ -113,6 +116,7 @@ const config: Config = {
         },
         "blue-gray": {
           "50": "#E8E7ED",
+          "60": "#D9D9D9",
           "100": "#D0CFDB",
           "200": "#B9B7C9",
           "300": "#A29FB7",
@@ -123,11 +127,24 @@ const config: Config = {
           "800": "#2D265D",
           "900": "#160E4B",
         },
-        "custom-gray": "#797979",
         "custom-black": "#2E2E30",
         "custom-red": "#FF00001A",
         "custom-red-2": "#D50000",
         "custom-white": "#fbfbfd",
+        "custom-blue": "#0063D0",
+        "custom-red": "#D50000",
+        "custom-gray": {
+          "50": "#F5F5F5",
+          "100": "#EBEBEB",
+          "200": "#D6D6D6",
+          "300": "#C2C2C2",
+          "400": "#ADADAD",
+          "500": "#999999",
+          "600": "#858585",
+          "700": "#707070",
+          "800": "#5C5C5C",
+          "900": "#474747",
+        },
         "mint-green": {
           "50": "#EBFBF6",
           "100": "#D7F7ED",
