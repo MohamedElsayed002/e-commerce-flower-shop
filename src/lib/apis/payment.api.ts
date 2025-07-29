@@ -20,6 +20,7 @@ async function getAuthenticatedToken() {
   return token.token;
 }
 // checkoutWithStripe
+
 export async function checkoutWithStripe(shippingAddress: ShippingAddress) {
   const token = await getAuthenticatedToken();
   const res = await fetch(`${process.env.API}/orders/checkout`, {
@@ -33,17 +34,22 @@ export async function checkoutWithStripe(shippingAddress: ShippingAddress) {
       shippingAddress,
     }),
   });
-  if ("error" in res) {
+
+  if (!res.ok) {
     const errorData = await res.json();
-    throw new Error(errorData.error || "Failed to create order");
+    throw new Error(errorData?.error || "Failed to create order");
   }
+
   const data = await res.json();
 
+  // session.url
   if (!data?.session?.url) {
     throw new Error("Payment gateway URL not provided by server");
   }
+
   return data.session.url;
 }
+
 // CashOrder
 export async function createCashOrder(shippingAddress: ShippingAddress) {
   const token = await getAuthenticatedToken();

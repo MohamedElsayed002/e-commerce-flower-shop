@@ -110,114 +110,7 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
             </button>
           </div>
 
-          {/* Billing form */}
-          {paymentType === "card" && (
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6"
-              >
-                {/* Name */}
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      {/* Label */}
-                      <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                        {t("name-card")}
-                      </FormLabel>
-                      {/* Input */}
-                      <FormControl>
-                        <Input
-                          placeholder={t("card-name")}
-                          {...field}
-                          className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                        />
-                      </FormControl>
-                      {/* Message */}
-                      <FormMessage className="text-red-500 text-xs" />
-                    </FormItem>
-                  )}
-                />
-                {/* Number */}
-                <FormField
-                  control={form.control}
-                  name="number"
-                  render={({ field }) => (
-                    <FormItem>
-                      {/* Label */}
-                      <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                        {t("card-num")}
-                      </FormLabel>
-                      {/* Input */}
-
-                      <FormControl>
-                        <Input
-                          placeholder="4242 4242 4242 4242"
-                          {...field}
-                          className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                        />
-                      </FormControl>
-                      {/* Message */}
-
-                      <FormMessage className="text-red-500 text-xs" />
-                    </FormItem>
-                  )}
-                />
-                {/* Expiry  */}
-                <FormField
-                  control={form.control}
-                  name="expiry"
-                  render={({ field }) => (
-                    <FormItem>
-                      {/* Label */}
-                      <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                        {t("expiry-date")}
-                      </FormLabel>
-                      {/* Input */}
-
-                      <FormControl>
-                        <Input
-                          placeholder="MM/YY"
-                          {...field}
-                          className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                        />
-                      </FormControl>
-                      {/* Message */}
-
-                      <FormMessage className="text-red-500 text-xs" />
-                    </FormItem>
-                  )}
-                />
-                {/* CCv */}
-                <FormField
-                  control={form.control}
-                  name="ccv"
-                  render={({ field }) => (
-                    <FormItem>
-                      {/* Label */}
-                      <FormLabel className="text-base font-medium text-[#160E4B] font-roboto">
-                        {t("ccv")}
-                      </FormLabel>
-                      {/* Input */}
-                      <FormControl>
-                        <Input
-                          placeholder="123"
-                          {...field}
-                          className="w-[413px] h-[48px] rounded-[8px] px-5 pt-[14px] pb-[15px] border border-[rgba(222, 226, 230, 1)]"
-                        />
-                      </FormControl>
-                      {/* Message */}
-
-                      <FormMessage className="text-red-500 text-xs" />
-                    </FormItem>
-                  )}
-                />
-              </form>
-            </Form>
-          )}
-
+          {/* Navigation buttons */}
           <div className="flex justify-between mt-4">
             <Button className="bg-custom-rose-900 rounded-xl" onClick={() => router.back()}>
               <ArrowLeft /> {t("previous")}
@@ -225,7 +118,7 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
 
             <Button
               className="bg-custom-rose-900 hover:bg-custom-rose-700 rounded-xl"
-              onClick={paymentType === "cash" ? onSubmit : form.handleSubmit(onSubmit)}
+              onClick={onSubmit}
             >
               {t("pay-now")} <ArrowRight />
             </Button>
