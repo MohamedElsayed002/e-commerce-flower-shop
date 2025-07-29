@@ -67,7 +67,7 @@ export function DeleteConfirmationDialog({ isOpen, onClose, onConfirm, itemName 
           {/* Confirm button */}
           <Button
             onClick={handleConfirm}
-            className="w-52 h-10  bg-flamingo text-sm rounded-md text-white capitalize "
+            className="w-52 h-10  bg-flamingo hover:bg-flamingo/80 text-sm rounded-md text-white capitalize "
           >
             {t("confirm")}
           </Button>
