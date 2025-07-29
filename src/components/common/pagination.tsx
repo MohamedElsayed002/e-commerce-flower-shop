@@ -9,8 +9,7 @@ import {
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import ArrowLeftGo from "@/components/common/go-arrow-left";
-import ArrowRightGo from "@/components/common/go-arrow-right";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 
 type PagePaginationProps = {
   metadata?: Metadata;
@@ -80,18 +79,32 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
   return (
     <Pagination className="flex items-center justify-center">
       <PaginationContent>
+        {/* Go to First Page */}
+        <PaginationItem>
+          <button
+            onClick={() => navigateToPage(1)}
+            disabled={currentPage === 1}
+            className={`rounded-lg border text-sm w-10 h-10 flex items-center justify-center ${
+              currentPage === 1
+                ? "bg-white text-gray-400 border-gray-300 cursor-not-allowed"
+                : "bg-white text-black border-gray-300 hover:bg-gray-100"
+            }`}
+          >
+            <ChevronsLeft className="w-4 h-4" />
+          </button>
+        </PaginationItem>
         {/* Previous button */}
         <PaginationItem>
           <button
             onClick={() => navigateToPage(currentPage - 1)}
             disabled={currentPage === 1}
-            className={`rounded-full flex items-center justify-center w-10 h-10  ${
+            className={`rounded-lg border text-sm w-10 h-10 flex items-center justify-center ${
               currentPage === 1
-                ? "bg-gray-400 text-white cursor-not-allowed"
-                : "bg-blue-gray-900 text-white"
+                ? "bg-white text-gray-400 border-gray-300 cursor-not-allowed"
+                : "bg-white text-black border-gray-300 hover:bg-gray-100"
             }`}
           >
-            <ArrowLeftGo />
+            <ChevronLeft className="w-4 h-4" />
           </button>
         </PaginationItem>
 
@@ -105,7 +118,7 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
                   e.preventDefault();
                   navigateToPage(page);
                 }}
-                className={`rounded-full w-10 h-10 flex items-center justify-center ${
+                className={`rounded-lg w-10 h-10 flex items-center justify-center ${
                   page === currentPage
                     ? "bg-custom-rose-900 text-white hover:bg-custom-rose-900 hover:text-white"
                     : "bg-blue-gray-900 text-white hover:bg-blue-gray-900 hover:text-white"
@@ -128,13 +141,28 @@ export default function PagePagination({ metadata }: PagePaginationProps) {
           <button
             onClick={() => navigateToPage(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className={`rounded-full flex items-center justify-center w-10 h-10  ${
+            className={`rounded-lg border text-sm w-10 h-10 flex items-center justify-center ${
               currentPage === totalPages
-                ? "bg-gray-400 text-white cursor-not-allowed"
-                : "bg-blue-gray-900  text-white"
+                ? "bg-white text-gray-400 border-gray-300 cursor-not-allowed"
+                : "bg-white text-black border-gray-300 hover:bg-gray-100"
             }`}
           >
-            <ArrowRightGo />
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </PaginationItem>
+
+        {/* Go to Last Page */}
+        <PaginationItem>
+          <button
+            onClick={() => navigateToPage(totalPages)}
+            disabled={currentPage === totalPages}
+            className={`rounded-lg border text-sm w-10 h-10 flex items-center justify-center ${
+              currentPage === totalPages
+                ? "bg-white text-gray-400 border-gray-300 cursor-not-allowed"
+                : "bg-white text-black border-gray-300 hover:bg-gray-100"
+            }`}
+          >
+            <ChevronsRight className="w-4 h-4" />
           </button>
         </PaginationItem>
       </PaginationContent>

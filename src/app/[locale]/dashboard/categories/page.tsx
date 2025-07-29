@@ -6,6 +6,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { SearchBar } from "@/components/common/search-bar";
 import { CategoriesTable } from "./_components/categories-table";
 import Heading from "@/components/common/heading";
+import PagePagination from "@/components/common/pagination";
 
 export default async function CategoriesPage({ searchParams }: { searchParams: SearchParams }) {
   // Translations
@@ -35,6 +36,8 @@ export default async function CategoriesPage({ searchParams }: { searchParams: S
 
       {/* Table */}
       <CategoriesTable data={data?.categories || []} />
+
+      <PagePagination metadata={data?.metadata} />
     </div>
   );
 }
