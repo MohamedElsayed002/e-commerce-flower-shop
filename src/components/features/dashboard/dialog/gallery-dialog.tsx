@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Dialog,
   DialogContent,
@@ -19,40 +18,33 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CarouselDots } from "@/components/ui/carousel-dots";
 import { useTranslations } from "use-intl";
-import img from "/Public/d48948c97f91985253ccc6ee4b31a3a0be075d1c.png";
 // Type
 type GalleryProps = {
   isOpen: boolean;
   onClose: () => void;
   images: string[];
 };
-
 export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps) {
   // Translation
   const t = useTranslations();
   // State
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi | null>(null);
-
   // UseEffect to handle carousel
   useEffect(() => {
     if (!api) return;
-
     // Get current index
     const onSelect = () => {
       setCurrentIndex(api.selectedScrollSnap());
     };
-
     //Listen change events
     api.on("select", onSelect);
     onSelect();
-
     // Clenup event listener
     return () => {
       api.off("select", onSelect);
     };
   }, [api]);
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       {/* Main dialog content */}
@@ -62,7 +54,6 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
           <DialogTitle>{t("image-gallery")}</DialogTitle>
           <DialogDescription>{t("image-description")}</DialogDescription>
         </DialogHeader>
-
         {/* Image carousel */}
         <Carousel
           opts={{
@@ -78,8 +69,8 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                 <CarouselItem key={index}>
                   <div className="relative w-full h-full">
                     <Image
-                      src={img}
-                      alt="/Public/d48948c97f91985253ccc6ee4b31a3a0be075d1c.png"
+                      src={src}
+                      alt={`image-${index}`}
                       fill
                       className="object-contain rounded-2xl "
                       priority={index === 0}
@@ -88,7 +79,6 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                 </CarouselItem>
               ))}
             </CarouselContent>
-
             {/* Controls */}
             <div className="relative mt-5  ">
               {/* Navigation dots*/}
@@ -103,7 +93,6 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                 }
                 className="mb-4 rtl:flex-row-reverse"
               />
-
               {/* Arrows */}
               <div className="absolute end-12 rtl:flex-row-reverse">
                 <CarouselPrevious className="gap-0 rounded-full border border-rose-300 text-rose-500 hover:bg-rose-100" />
@@ -116,3 +105,13 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
     </Dialog>
   );
 }
+
+
+
+
+
+
+
+
+
+

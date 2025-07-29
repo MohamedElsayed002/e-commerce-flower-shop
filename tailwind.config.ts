@@ -99,6 +99,9 @@ const config: Config = {
           "800": "#F940B2",
           "900": "#F82BA9",
         },
+        "custom-red":{
+          "100":"#E20004"
+        },
         "custom-purple": {
           "50": "#F3EEFF",
           "100": "#E8DCFF",
@@ -113,6 +116,7 @@ const config: Config = {
         },
         "blue-gray": {
           "50": "#E8E7ED",
+          "60": "#D9D9D9",
           "100": "#D0CFDB",
           "200": "#B9B7C9",
           "300": "#A29FB7",

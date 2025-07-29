@@ -19,9 +19,9 @@ export default async function ProductsPage({ searchParams }: { searchParams: Sea
   return (
     <>
       <Header paths={breadcrumbPaths} />
-      <div className="bg-custom-white px-4 py-7">
 
-      <AllEntities data={payload.products} tableHeader={tableHeader} />
+      <div className="bg-custom-white px-4 py-7">
+        <AllEntities data={payload.products} tableHeader={tableHeader} />
       </div>
     </>
   );

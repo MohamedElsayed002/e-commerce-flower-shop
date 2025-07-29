@@ -148,10 +148,10 @@ export default function AllEntities({ data, tableHeader }: AllEntitiesProps) {
                           >
                             <Link
                               href={{
-                                pathname: `/dashboard/products/update/${product._id}`,
+                                pathname: `/dashboard/products/${product._id}/update-product`,
                                 query: { productName: product.title },
                               }}
-                              onClick={() => console.log('product title:', product.title)}
+                              onClick={() => console.log("product title:", product.title)}
                             >
                               <LuPencil className="mr-1" /> {t("edit")}
                             </Link>
