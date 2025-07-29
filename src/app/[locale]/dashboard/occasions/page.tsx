@@ -5,7 +5,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { fetchOccasions } from "@/lib/apis/occasion.api";
 import { SearchBar } from "@/components/common/search-bar";
 import { OcassionsTable } from "./_components/occasions-table";
-import { Header } from "@/components/common/header";
+import Heading from "@/components/common/heading";
 
 export default async function OccasionPage({ searchParams }: { searchParams: SearchParams }) {
   // Translations
@@ -21,7 +21,8 @@ export default async function OccasionPage({ searchParams }: { searchParams: Sea
     <div className="px-10">
       <div className="flex justify-between items-center">
         {/* Header */}
-        <Header title="all-occasions-0" />
+        <Heading>{t("all-occasions")}</Heading>
+
         <Button className="bg-custom-rose-900" asChild>
           <Link href={`/${locale}/dashboard/occasions/add-occasion`}>
             <Plus /> {t("add-a-new-occassion")}

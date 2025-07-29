@@ -18,11 +18,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CarouselDots } from "@/components/ui/carousel-dots";
 import { useTranslations } from "use-intl";
+
 // Type
 type GalleryProps = {
   isOpen: boolean;
   onClose: () => void;
-  images: string[];
+  images: string | string[];
 };
 export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps) {
   // Translation
@@ -30,6 +31,9 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
   // State
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi | null>(null);
+
+  const dialogImages = typeof images === "string" ? [images] : images;
+
   // UseEffect to handle carousel
   useEffect(() => {
     if (!api) return;
@@ -65,12 +69,12 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
           <div className="relative  my-8">
             {/* Carousel images */}
             <CarouselContent className="w-[789px] h-[480px]">
-              {images.map((src, index) => (
+              {dialogImages.map((src, index) => (
                 <CarouselItem key={index}>
                   <div className="relative w-full h-full">
                     <Image
                       src={src}
-                      alt={`image-${index}`}
+                      alt={`category-image-${index}`}
                       fill
                       className="object-contain rounded-2xl "
                       priority={index === 0}
@@ -105,13 +109,3 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
     </Dialog>
   );
 }
-
-
-
-
-
-
-
-
-
-

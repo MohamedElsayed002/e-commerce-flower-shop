@@ -7444,9 +7444,9 @@ ui@shadcn/ui:
     tailwindcss-animate "^1.0.5"
     tsx "^4.1.4"
     turbo "^1.9.9"
-    vite "^5.4.1"
+    vite "^5.4.15"
     vite-tsconfig-paths "^4.2.0"
-    vitest "^2.0.5"
+    vitest "^2.1.9"
 
 unbox-primitive@^1.1.0:
   version "1.1.0"
