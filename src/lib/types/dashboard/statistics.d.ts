@@ -23,6 +23,22 @@ declare type ProductList = {
   sold?: number;
 } & DatabaseFields;
 
+declare type ProductcreationResponse ={
+  message:'string';
+  Products :{
+  title: string;
+  description: string;
+  quantity: number;
+  price: number;
+  discount: number;
+  priceAfterDiscount: number;
+  category: string; 
+  occasion: string; 
+  imgCover: File; 
+  images: File[];
+  }
+}
+
 declare type ProductsByCategory = {
   _id: string;
   count: number;

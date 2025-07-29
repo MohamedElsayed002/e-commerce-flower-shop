@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { fetchCategories } from "@/lib/apis/category.api";
 import { Plus } from "lucide-react";
 import Link from "next/link";
-
 import { getLocale, getTranslations } from "next-intl/server";
 import { SearchBar } from "@/components/common/search-bar";
 import { CategoriesTable } from "./_components/categories-table";
+import Heading from "@/components/common/heading";
 
 export default async function CategoriesPage({ searchParams }: { searchParams: SearchParams }) {
   // Translations
@@ -21,8 +21,9 @@ export default async function CategoriesPage({ searchParams }: { searchParams: S
     <div className="px-10">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1>{t("all-categoires")}</h1>
-        <Button className="bg-custom-rose-900" asChild>
+        <Heading>{t("all-categoires")}</Heading>
+
+        <Button className="bg-custom-rose-900 hover:bg-custom-rose-900/80" asChild>
           <Link href={`/${locale}/dashboard/categories/add`}>
             <Plus /> {t("add-a-new-category")}
           </Link>

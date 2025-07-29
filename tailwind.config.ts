@@ -89,6 +89,8 @@ const config: Config = {
         },
         "custom-rose": {
           "50": "#FEEAF6",
+          "60": "#DD2797",
+          "70": "#F82BA91A",
           "100": "#FED5EE",
           "200": "#FDBFE5",
           "300": "#FCAADD",
@@ -113,6 +115,7 @@ const config: Config = {
         },
         "blue-gray": {
           "50": "#E8E7ED",
+          "60": "#D9D9D9",
           "100": "#D0CFDB",
           "200": "#B9B7C9",
           "300": "#A29FB7",
@@ -123,13 +126,33 @@ const config: Config = {
           "800": "#2D265D",
           "900": "#160E4B",
         },
-        "custom-gray": "#797979",
         "custom-black": "#2E2E30",
-        "custom-red": "#FF00001A",
         "custom-red-2": "#D50000",
         "custom-white": "#fbfbfd",
+        "custom-blue": "#0063D0",
+        "custom-gray": {
+          "50": "#F5F5F5",
+          "100": "#EBEBEB",
+          "200": "#D6D6D6",
+          "300": "#C2C2C2",
+          "400": "#ADADAD",
+          "500": "#999999",
+          "600": "#858585",
+          "700": "#707070",
+          "800": "#5C5C5C",
+          "900": "#474747",
+        },
+        "custom-red": {
+          "50": "#EE1014",
+          "60": "#F93F43",
+          "70": "#CD3336",
+          "80": "#C01518",
+          "90": "#FDE9E9",
+        },
         "mint-green": {
           "50": "#EBFBF6",
+          "60": "#28A25F",
+          "70": "#E2FFEF",
           "100": "#D7F7ED",
           "200": "#C4F3E3",
           "300": "#B0EFDA",
@@ -152,9 +175,12 @@ const config: Config = {
           "800": "#05603A",
           "900": "#054F31",
         },
+        tableHeader: "#F5F5F5",
+
         flamingo: "#F05454",
         "rate-color": "#FBA707",
       },
+
       backgroundColor: {
         "main-color": "#FEEDF7",
       },
@@ -162,6 +188,7 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "base-10": "10px",
       },
       keyframes: {
         "accordion-down": {

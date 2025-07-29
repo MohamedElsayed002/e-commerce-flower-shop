@@ -25,9 +25,9 @@ const authMiddleware = withAuth(
     const locale = req.nextUrl.pathname.split("/")[1];
 
     // Redirect if user is not admin
-    if (isDashboard && token?.role !== "admin") {
-      return NextResponse.redirect(new URL(`/${locale}/unauthorized`, req.url));
-    }
+    // if (isDashboard && token?.role !== "admin") {
+    //   return NextResponse.redirect(new URL(`/${locale}/unauthorized`, req.url));
+    // }
     return handleI18nRouting(req);
   },
 

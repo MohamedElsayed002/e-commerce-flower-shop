@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Dialog,
   DialogContent,
@@ -26,7 +25,6 @@ type GalleryProps = {
   onClose: () => void;
   images: string | string[];
 };
-
 export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps) {
   // Translation
   const t = useTranslations();
@@ -39,22 +37,18 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
   // UseEffect to handle carousel
   useEffect(() => {
     if (!api) return;
-
     // Get current index
     const onSelect = () => {
       setCurrentIndex(api.selectedScrollSnap());
     };
-
     //Listen change events
     api.on("select", onSelect);
     onSelect();
-
     // Clenup event listener
     return () => {
       api.off("select", onSelect);
     };
   }, [api]);
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       {/* Main dialog content */}
@@ -64,7 +58,6 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
           <DialogTitle>{t("image-gallery")}</DialogTitle>
           <DialogDescription>{t("image-description")}</DialogDescription>
         </DialogHeader>
-
         {/* Image carousel */}
         <Carousel
           opts={{
@@ -90,7 +83,6 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                 </CarouselItem>
               ))}
             </CarouselContent>
-
             {/* Controls */}
             <div className="relative mt-5  ">
               {/* Navigation dots*/}
@@ -105,7 +97,6 @@ export function GalleryCarouselDialog({ isOpen, onClose, images }: GalleryProps)
                 }
                 className="mb-4 rtl:flex-row-reverse"
               />
-
               {/* Arrows */}
               <div className="absolute end-12 rtl:flex-row-reverse">
                 <CarouselPrevious className="gap-0 rounded-full border border-rose-300 text-rose-500 hover:bg-rose-100" />

@@ -1,4 +1,4 @@
-import AddOccasionForm from "./add-occasion.form";
+import AddOccasionForm from "./_components/add-occasion.form";
 
 export default async function AddOccasionPage() {
   return (

@@ -9,13 +9,19 @@ import { useTranslations } from "next-intl";
 
 export function SearchBar({placeholder}: { placeholder?: string }) {
 
+  // Translations
   const t = useTranslations()
+
+  // Params
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  // State
   const [search, setSearch] = useState(searchParams.get("search")?.toString() || "");
 
+  // Functions
+  
   const handleSearch = useDebouncedCallback((value: string) => {
     const params = new URLSearchParams(searchParams);
 
@@ -25,7 +31,7 @@ export function SearchBar({placeholder}: { placeholder?: string }) {
       params.delete("search");
     }
     replace(`${pathname}?${params.toString()}`);
-  }, 1000);
+  }, 500);
 
   useEffect(() => {
     if (!searchParams.get("search")) {

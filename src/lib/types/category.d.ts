@@ -5,3 +5,14 @@ declare type Category = {
   slug: string;
   id: string;
 } & DatabaseFields;
+
+
+declare type DeleteCategory = {
+    name: string;
+    slug: string;
+    image: string;
+} & DatabaseFields
+
+declare type CategoryResponse = {
+  document: DeleteCategory;
+}

@@ -14,13 +14,12 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { SubmitHandler } from "react-hook-form";
-import { FileUpload } from "./file-upload";
 import Heading from "@/components/common/heading";
 import useAddOccasion from "@/hooks/occasion/use-add-occasion";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
-import type { FileUploadHandle } from "./file-upload";
 import { useRouter } from "@/i18n/routing";
+import { FileUpload, FileUploadHandle } from "./file-upload";
 
 export default function AddOccasionForm() {
   // Translation
