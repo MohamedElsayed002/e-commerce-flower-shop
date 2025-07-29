@@ -18,6 +18,7 @@ export default function ContactForm() {
   // Mutation
   const { mutate, isPending } = UseContact();
 
+  // Function
   const onSubmit = (data: ContactFormInputs) => {
     mutate(data);
   };
@@ -53,6 +54,9 @@ export default function ContactForm() {
     },
   });
 
+  // Errors
+  const errors = form.formState.errors;
+
   return (
     <Form {...form}>
       <form
@@ -67,9 +71,10 @@ export default function ContactForm() {
             <FormItem>
               <FormControl>
                 <Input
+                  variant="outline"
                   placeholder={t("name")}
                   {...field}
-                  className="w-[690px] placeholder:text-custom-rose-900 h-[50px] focus:outline-none focus:ring-0 rounded-[10px] border-custom-rose-900 border-[1px]"
+                  className="w-[690px] h-[50px]  border-[1px]"
                 />
               </FormControl>
               <FormMessage />
@@ -85,10 +90,11 @@ export default function ContactForm() {
             <FormItem>
               <FormControl>
                 <Input
+                  variant="outline"
                   type="email"
                   placeholder={t("email")}
                   {...field}
-                  className="w-[690px] placeholder:text-custom-rose-900 focus:outline-none focus:ring-0 h-[50px] rounded-[10px] border-custom-rose-900 border-[1px]"
+                  className="w-[690px] h-[50px] "
                 />
               </FormControl>
               <FormMessage />
@@ -104,9 +110,10 @@ export default function ContactForm() {
             <FormItem>
               <FormControl>
                 <Input
+                  variant="outline"
                   placeholder={t("phone")}
                   {...field}
-                  className="w-[690px] placeholder:text-custom-rose-900 h-[50px] focus:outline-none focus:ring-0 rounded-[10px] border-custom-rose-900 border-[1px]"
+                  className="w-[690px] h-[50px] "
                 />
               </FormControl>
               <FormMessage />
@@ -122,10 +129,11 @@ export default function ContactForm() {
             <FormItem>
               <FormControl>
                 <Textarea
+                  variant="default"
                   placeholder={t("your-message")}
                   rows={5}
                   {...field}
-                  className="w-[690px] h-[150px] placeholder:text-custom-rose-900  rounded-[10px] focus:outline-none focus:ring-0 border-custom-rose-900 border-[1px]"
+                  className="w-[690px] h-[150px]"
                 />
               </FormControl>
               <FormMessage />
@@ -137,7 +145,10 @@ export default function ContactForm() {
         <div className="flex justify-end ">
           <Button
             type="submit"
-            className="bg-gradient-to-r my-5 text-base font-medium from-custom-rose-900 to-pink-500 text-white w-[96px] h-[45px] rounded-[30px]"
+            // This comment to test error case
+            // variant={Object.keys(form.formState.errors).length > 0 ? "destructive" : "default"}
+            variant="default"
+            className=" my-5 text-base font-medium  w-[96px] h-[45px] "
             disabled={isPending}
           >
             {t("send")}

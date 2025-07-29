@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils/cn";
 import { Toaster } from "sonner";
 import NextAuthProvider from "@/components/provider/components/next-auth-provider";
 import AuthDialog from "@/components/features/auth/auth-dialog";
+import { Check, Info, X } from "lucide-react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,7 +37,14 @@ export default function LocaleLayout({ params: { locale }, children }: LayoutPro
             {children}
 
             {/* Toaster */}
-            <Toaster position="top-center" />
+            <Toaster
+              position="top-center"
+              icons={{
+              info: <Info size={16} className="text-foreground" />,
+              success: <Check size={16} className="text-success" />,
+              error: <X size={16} className="text-error" />,
+            }}
+            />
           </NextAuthProvider>
         </Providers>
       </body>
