@@ -26,6 +26,27 @@ const config: Config = {
         roboto: ["var(--font-roboto)", "sans-serif"],
       },
       colors: {
+        stats: {
+          text: {
+            textColor: "#2E2E30",
+          },
+          products: {
+            primary: "#E32083",
+            bg: "#E320830D",
+          },
+          orders: {
+            primary: "#0063D0",
+            bg: "#0063D00D",
+          },
+          categories: {
+            primary: "#753CBF",
+            bg: "#753CBF0D",
+          },
+          revenue: {
+            primary: "#008961",
+            bg: "#0089610D",
+          },
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -94,6 +115,7 @@ const config: Config = {
         },
         "blue-gray": {
           "50": "#E8E7ED",
+          "60": "#D9D9D9",
           "100": "#D0CFDB",
           "200": "#B9B7C9",
           "300": "#A29FB7",
@@ -104,30 +126,28 @@ const config: Config = {
           "800": "#2D265D",
           "900": "#160E4B",
         },
+        "custom-black": "#2E2E30",
+        "custom-red-2": "#D50000",
+        "custom-white": "#fbfbfd",
+        "custom-blue": "#0063D0",
         "custom-gray": {
-          "30": "#F4F4F4",
-          "40": "#FEFEFE",
-          "50": "#797979",
-          "60": "#DBDBDB",
-          "70": "#2E2E30",
-          "80": "#F0F0F0",
-          "90": "#B1B1B1",
-          "100": "#D9D9D9",
-          "200": "#BCBCBC",
-          "300": "#2E2E30",
-          "400": "#00000080",
-          "500": "#A3A3A3",
-          "600": "#F3F3F3",
-          "700": "#8080801A",
-          "800": "#808080",
-          "900": "#FAFAFA"
+          "50": "#F5F5F5",
+          "100": "#EBEBEB",
+          "200": "#D6D6D6",
+          "300": "#C2C2C2",
+          "400": "#ADADAD",
+          "500": "#999999",
+          "600": "#858585",
+          "700": "#707070",
+          "800": "#5C5C5C",
+          "900": "#474747",
         },
         "custom-red": {
           "50": "#EE1014",
           "60": "#F93F43",
           "70": "#CD3336",
-          "80":"#C01518",
-          "90":"#FDE9E9"
+          "80": "#C01518",
+          "90": "#FDE9E9",
         },
         "mint-green": {
           "50": "#EBFBF6",
@@ -155,12 +175,12 @@ const config: Config = {
           "800": "#05603A",
           "900": "#054F31",
         },
-       
-        
+        tableHeader: "#F5F5F5",
+
         flamingo: "#F05454",
         "rate-color": "#FBA707",
       },
-     
+
       backgroundColor: {
         "main-color": "#FEEDF7",
       },
@@ -168,7 +188,7 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        "base-10":"10px"
+        "base-10": "10px",
       },
       keyframes: {
         "accordion-down": {

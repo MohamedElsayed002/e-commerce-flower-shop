@@ -69,7 +69,7 @@ export function PaymentForm({ shippingAddress }: PaymentFormProps) {
   };
 
   return (
-    <AccordionItem value="payment-method">
+    <AccordionItem value="paymentform">
       <AccordionTrigger
         className="text-custom-rose-900 font-inter fw-600 text-base
           leading-[19.2px] capitalize border rounded-[5px] py-4 px-5"

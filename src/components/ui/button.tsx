@@ -18,6 +18,8 @@ const buttonVariants = cva(
           "border border-custom-rose-900  hover:bg-custom-rose-70 disabled:bg-custom-gray-700 disabled:border-custom-gray-800 rounded-base-10 text-custom-rose-900",
         secondary:
           "bg-custom-gray-900 text-custom-gray-70 border border-custom-gray-60 hover:bg-custom-gray-80 hover:text-custom-gray-90 disabled:bg-custom-gray-40 disabled:border-custom-gray-30 disabled:text-custom-gray-90 ",
+        static:
+          "bg-transparent text-inherit shadow-none hover:bg-transparent hover:text-inherit cursor-pointer",
       },
       size: {
         default: "h-10 px-4 py-2",
