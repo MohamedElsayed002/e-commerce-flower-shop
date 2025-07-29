@@ -12,7 +12,7 @@ import { usePathname, useRouter } from "@/i18n/routing";
 
 // Types
 type OccasionFilterProps = {
-  occasions: Occasion[];
+  occasions: Occasions[];
 };
 
 // Schema

@@ -6,7 +6,7 @@ export default async function OccasionFilterWrapper() {
   // Translation
   const t = await getTranslations();
   // Fetch occasions
-  const occasionsData = await fetchOccasions();
+  const occasionsData = await fetchOccasions({});
   if (!occasionsData) {
     return <div> {t("error-occasions")}</div>;
   }

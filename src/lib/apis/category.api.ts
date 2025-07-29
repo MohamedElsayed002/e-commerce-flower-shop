@@ -2,10 +2,13 @@ import { searchParamsToString } from "../utils/convert-search-params";
 
 export async function fetchCategories(searchParams: SearchParams) {
   try {
-    const response = await fetch(`${process.env.API}/categories?${searchParamsToString(searchParams)}`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${process.env.API}/categories?${searchParamsToString(searchParams)}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      },
+    );
     if (!response.ok) {
       throw new Error("Failed to fetch categories");
     }
