@@ -1,6 +1,8 @@
-export async function fetchCategories() {
+import { searchParamsToString } from "../utils/convert-search-params";
+
+export async function fetchCategories(searchParams: SearchParams) {
   try {
-    const response = await fetch(`${process.env.API}/categories`, {
+    const response = await fetch(`${process.env.API}/categories?${searchParamsToString(searchParams)}`, {
       method: "GET",
       cache: "no-store",
     });

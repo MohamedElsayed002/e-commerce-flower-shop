@@ -22,7 +22,7 @@ export default function LowStockProducts({ lowStockProducts }: LowStockProductPr
         <Table>
           <TableBody>
             {lowStockProducts.map((product) => (
-              <TableRow>
+              <TableRow key={product._id}>
                 {/* Product title */}
                 <TableCell className="text-black">{product.title}</TableCell>
 

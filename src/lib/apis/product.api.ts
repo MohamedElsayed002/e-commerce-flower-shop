@@ -20,7 +20,6 @@ export async function fetchProducts(searchParams: SearchParams) {
   return payload;
 }
 
-
 // Function to fetch product details from the API
 export const fetchProductDetails = async (productid: string) => {
   // Translations
@@ -34,7 +33,7 @@ export const fetchProductDetails = async (productid: string) => {
     if (!response.ok) throw new Error(t("product-not-found"));
 
     // Parse the response JSON
-    const data: APIResponse<PaginatedResponse<{ product: Product }>> = await response.json();
+    const data = await response.json();
 
     return data;
   } catch (error) {
@@ -61,3 +60,4 @@ export default async function fetchProductsByCategory(category: string) {
   }
   return payload.products;
 }
+
